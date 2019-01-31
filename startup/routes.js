@@ -16,11 +16,15 @@ module.exports = function(app) {
     //res.header("Access-Control-Expose-Headers", "X-Auth-Token");
     next();
   });
+  app.use(express.static(path.join(__dirname, 'client/build')));
   app.use(cors());
   app.use(express.json());
   app.use('/api/websites', websites);
   app.use('/api/pages', pages);
   app.use('/api/users', users);
   app.use('/api/auth', auth);
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  });
   app.use(error);
 }
