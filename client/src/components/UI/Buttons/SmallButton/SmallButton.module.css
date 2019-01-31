@@ -1,0 +1,31 @@
+.Button {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: block;
+    height: initial;
+    padding: 4px 5px;
+}
+
+.Inline {
+    display: inline-block;
+}
+
+.Button:hover {
+    background: #d5d5d5;
+}
+
+.Table {
+    border-collapse: collapse;
+}
+
+.Cell {
+    padding: 0px;
+}
+
+.Svg {
+    margin-right: 5px;
+    display: block;
+}

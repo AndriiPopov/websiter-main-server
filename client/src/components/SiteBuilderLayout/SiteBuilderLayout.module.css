@@ -1,0 +1,12 @@
+.Content {
+    width: 100%;
+    height: calc(100% - 100px);
+    padding-top: 100px;
+    overflow: hidden;
+}
+
+.ContentPreview {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

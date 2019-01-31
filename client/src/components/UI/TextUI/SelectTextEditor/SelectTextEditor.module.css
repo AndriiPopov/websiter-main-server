@@ -1,0 +1,36 @@
+.ColorDiv {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+}
+
+.Button {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.Button:hover {
+    background: #d5d5d5;
+}
+
+.Table {
+    border-collapse: collapse;
+}
+
+.StyleControls {
+    display: inline-block;
+}
+
+.OnCheckbox {
+    width: 190px;
+}
+
+.Select {
+    position: static !important;
+    width: 150px;
+    display: inline-block;
+}

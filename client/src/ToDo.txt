@@ -1,0 +1,17 @@
+
+absolute relative
+bottom right
+change parent on move
+size based on content
+header and footer
+plugins
+onsave check dead styles
+set current page when loaded and save it
+set current website and save it
+autosave pages
+add validation on server
+add tests on server
+add test on react
+proptypes on react
+text is not saving in redux
+create component for smallbuttons next to buttons

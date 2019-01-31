@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar it should render a toolbar 1`] = `
+<header
+  className="Toolbar"
+>
+  <nav
+    className="DesktopOnly"
+  >
+    <NavigationItems />
+  </nav>
+  <div
+    className="ToolSetsContainer"
+  >
+    <Connect(ToolsSet) />
+  </div>
+</header>
+`;

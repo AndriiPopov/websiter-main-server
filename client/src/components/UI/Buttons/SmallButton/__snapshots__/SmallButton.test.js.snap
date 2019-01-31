@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SmallButton it should render button with onclick null when disabled 1`] = `
+<SmallButton
+  buttonClicked="clickOnButton"
+  icon="<svg height=\\"16\\" viewBox=\\"0 0 24 24\\" width=\\"16\\"><path d=\\"M0 0h24v24H0z\\" fill=\\"none\\"></path><path d=\\"M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z\\"></path></svg>"
+  title="Button"
+>
+  <button
+    className="Button null"
+    onClick={[Function]}
+  >
+    <table
+      className="Table"
+    >
+      <tbody>
+        <tr>
+          <td
+            className="Cell"
+          >
+            <Svg
+              className="Svg"
+              icon="<svg height=\\"16\\" viewBox=\\"0 0 24 24\\" width=\\"16\\"><path d=\\"M0 0h24v24H0z\\" fill=\\"none\\"></path><path d=\\"M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z\\"></path></svg>"
+            >
+              <svg
+                className="Svg"
+                height="16"
+                viewBox="0 0 24 24"
+                width="16"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                  key="0"
+                />
+                <path
+                  d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                  key="1"
+                />
+              </svg>
+            </Svg>
+          </td>
+          <td
+            className="Cell"
+          >
+            Button
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </button>
+</SmallButton>
+`;

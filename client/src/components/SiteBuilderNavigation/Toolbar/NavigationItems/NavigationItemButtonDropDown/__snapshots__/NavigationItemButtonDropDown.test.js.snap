@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationItemButtonDropDown it should render a dropdown div with cover 1`] = `
+<aux>
+  <li
+    className="NavigationItemButtonDropDown"
+    onClick={[Function]}
+  >
+    <Svg
+      icon="<svg></svg>"
+    />
+  </li>
+  <dropDownMenu
+    close={[Function]}
+  />
+</aux>
+`;
+
+exports[`NavigationItemButtonDropDown it should render button with onclick 1`] = `
+<aux>
+  <li
+    className="NavigationItemButtonDropDown"
+    onClick={[Function]}
+  >
+    <Svg
+      icon="<svg></svg>"
+    />
+  </li>
+</aux>
+`;
+
+exports[`NavigationItemButtonDropDown it should render button with onclick null when disabled 1`] = `
+<aux>
+  <li
+    className="NavigationItemButtonDropDown"
+    onClick={[Function]}
+  >
+    <Svg
+      icon="<svg></svg>"
+    />
+  </li>
+</aux>
+`;

@@ -1,0 +1,7 @@
+.Content{
+    text-align: left;
+    height: calc(100% - 56px);
+    width: 100%;
+    position: fixed;
+    top: 56px;
+}

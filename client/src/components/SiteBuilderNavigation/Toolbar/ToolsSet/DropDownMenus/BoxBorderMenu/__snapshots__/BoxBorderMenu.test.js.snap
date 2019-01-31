@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BoxBorderMenu it should render a dropdown align menu 1`] = `
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Border color
+      </td>
+      <td>
+        <Connect(BigColorPicker)
+          changed="changeElementPropertyValue"
+          color="rgba(0, 0, 0, 1)"
+          valueKey="borderColor"
+        />
+      </td>
+      <td />
+    </tr>
+    <tr>
+      <td>
+        Size
+      </td>
+      <td>
+        <Connect(RangeInput)
+          changed="changeElementPropertyValue"
+          max="20"
+          min="0"
+          step="1"
+          valueKey="borderSize"
+        />
+      </td>
+      <td>
+        <Connect(ValueInput)
+          changed="changeElementPropertyValue"
+          valueKey="borderSize"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Radius
+      </td>
+      <td>
+        <Connect(RangeInput)
+          changed="changeElementPropertyValue"
+          max="20"
+          valueKey="borderRadius"
+        />
+      </td>
+      <td>
+        <Connect(ValueInput)
+          changed="changeElementPropertyValue"
+          valueKey="borderRadius"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        H offset
+      </td>
+      <td>
+        <Connect(RangeInput)
+          changed="changeElementPropertyValue"
+          max="20"
+          min="-20"
+          valueKey="borderHOffset"
+        />
+      </td>
+      <td>
+        <Connect(ValueInput)
+          changed="changeElementPropertyValue"
+          valueKey="borderHOffset"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        V offset
+      </td>
+      <td>
+        <Connect(RangeInput)
+          changed="changeElementPropertyValue"
+          max="20"
+          min="-20"
+          valueKey="borderVOffset"
+        />
+      </td>
+      <td>
+        <Connect(ValueInput)
+          changed="changeElementPropertyValue"
+          valueKey="borderVOffset"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Blur
+      </td>
+      <td>
+        <Connect(RangeInput)
+          changed="changeElementPropertyValue"
+          max="20"
+          valueKey="borderBlur"
+        />
+      </td>
+      <td>
+        <Connect(ValueInput)
+          changed="changeElementPropertyValue"
+          valueKey="borderBlur"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Inset
+      </td>
+      <td>
+        <Connect(Checkbox)
+          changed="changeElementPropertyValue"
+          valueKey="borderInset"
+        />
+      </td>
+      <td />
+    </tr>
+  </tbody>
+</table>
+`;

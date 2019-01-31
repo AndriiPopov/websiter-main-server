@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolsSection it should render a td with children and title 1`] = `
+<td
+  className="Section"
+>
+  <div
+    className="ContentDiv"
+  >
+    <table
+      className="ContentTable"
+    >
+      <tbody>
+        <tr>
+          <p>
+            Test
+          </p>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    className="TitleDiv"
+  >
+    Test section
+  </div>
+</td>
+`;

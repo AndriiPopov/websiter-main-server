@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox it should render button with onclick null when disabled 1`] = `
+<Checkbox
+  boxesValues="{}"
+  changedStyleValues="[]"
+  checked={true}
+  sectionValues="{}"
+>
+  <div
+    className="Div"
+  >
+    <input
+      checked={true}
+      className="Input"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </div>
+</Checkbox>
+`;

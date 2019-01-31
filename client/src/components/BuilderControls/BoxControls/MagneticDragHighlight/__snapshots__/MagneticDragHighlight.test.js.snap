@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MagneticDragHighlight it should render 2 divs 1`] = `
+<aux>
+  <div
+    style={
+      Object {
+        "background": "#ff03be",
+        "height": "100px",
+        "left": "300px",
+        "position": "fixed",
+        "top": "500px",
+        "width": "200px",
+        "zIndex": "16777269",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "background": "transparent",
+        "height": "101px",
+        "left": "301px",
+        "outline": "1px solid #ff03be",
+        "position": "fixed",
+        "top": "501px",
+        "width": "201px",
+        "zIndex": "16777269",
+      }
+    }
+  />
+</aux>
+`;

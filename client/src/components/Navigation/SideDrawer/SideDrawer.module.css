@@ -1,0 +1,29 @@
+.SideDrawer {
+    position: fixed;
+    width: 280px;
+    max-width: 70%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 16777272;
+    background-color: white;
+    padding:0px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out;
+    border-right: 1px solid #ccc;
+    box-shadow: 1px 0px 11px 1px #eee;
+}
+
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateX(-100%);
+}
+
+.LogoContainer {
+    height: 56px;
+    border-bottom: 1px solid rgb(232, 232, 232);
+    padding: 5px 30px;
+}
