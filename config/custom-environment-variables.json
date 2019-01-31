@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "websiter_jwtPrivateKey"
+  "jwtPrivateKey": "websiter_jwtPrivateKey",
+  "db": "websiter_db"
 }

@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "JWT_Websiter"
+  "jwtPrivateKey": "",
+  "db": "mongodb://localhost/websiter"
 }
