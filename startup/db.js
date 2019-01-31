@@ -1,10 +1,12 @@
 const winston = require('winston');
 const mongoose = require('mongoose');
+const config = require('config');
 
 const { Page } = require('../models/page');
 
 module.exports = function() {
-  mongoose.connect('mongodb://localhost/websiter')
+  const db = config.get('db');
+  mongoose.connect(db)
     .then(
       
       () => {
@@ -15,6 +17,6 @@ module.exports = function() {
              function(err, numberAffected){  
                console.log(numberAffected);
              });
-        winston.info('Connected to MongoDB...')}
+        winston.info(`Connected to ${db}`)}
     );
 }
