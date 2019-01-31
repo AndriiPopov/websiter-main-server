@@ -24,7 +24,6 @@ module.exports = function(app) {
   app.use('/api/users', users);
   app.use('/api/auth', auth);
   app.get('*', (req, res) => {
-    console.log('hello');
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
   });
   app.use(error);
