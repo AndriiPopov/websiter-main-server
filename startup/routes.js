@@ -16,7 +16,7 @@ module.exports = function(app) {
     //res.header("Access-Control-Expose-Headers", "X-Auth-Token");
     next();
   });
-  app.use(express.static(path.join('', 'app/client/build')));
+  app.use(express.static(path.join(__dirname, '/client/build')));
   app.use(cors());
   app.use(express.json());
   app.use('/api/websites', websites);
@@ -25,7 +25,7 @@ module.exports = function(app) {
   app.use('/api/auth', auth);
   app.get('*', (req, res) => {
     console.log('hello');
-    res.sendFile(path.join(''+'/app/client/build/index.html'));
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
   });
   app.use(error);
 }
