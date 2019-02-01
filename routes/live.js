@@ -17,8 +17,9 @@ router.get('*', async (req, res) => {
 
   const pagesObjects = {};
   await Promise.all(pagesStructure.map( async item => {
-    pagesObjects[item.id] = await Page.findById(item.id, 'publishedVersion').publishedVersion;
+    pagesObjects[item.id] = await Page.findById(item.id, 'publishedVersion');
   }));
+  console.log(pagesObjects);
 
   fs.readFile(path.join(__dirname+'/../client/build/index.html'), "utf8", (err, data) => {
     if(err) throw err;
