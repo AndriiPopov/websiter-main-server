@@ -9,8 +9,10 @@ const { Page } = require('../models/page');
 
 
 router.get('/*', async (req, res) => {
-  console.log(req.params[0]);
-  const url = req.params[0];
+  console.log('start');
+  console.log(req.params);
+  console.log(req.route);
+  const url = req.params;
   if (!url || url === '') return res.status(404).send('The website with the given URL was not found.');
   
   const domain = url.split('/')[0];
