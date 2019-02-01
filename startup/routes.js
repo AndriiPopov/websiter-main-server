@@ -24,7 +24,7 @@ module.exports = function(app) {
   app.use('/api/pages', pages);
   app.use('/api/users', users);
   app.use('/api/auth', auth);
-  app.use('/live', live);
+  app.use('/live/', live);
   app.get('*', (req, res) => {
     console.log('main');
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
