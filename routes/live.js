@@ -8,8 +8,8 @@ const { Website } = require('../models/website');
 const { Page } = require('../models/page');
 
 
-router.get('/', async (req, res) => {
-  console.log(req.path);
+router.get('/:url', async (req, res) => {
+  console.log(req.params.url);
   const url = req.params.url;
   if (!url || url === '') return res.status(404).send('The website with the given URL was not found.');
   
