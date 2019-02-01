@@ -22,10 +22,10 @@ router.get('*', async (req, res) => {
 
   fs.readFile(path.join(__dirname+'/../client/build/index.html'), "utf8", (err, data) => {
     if(err) throw err;
-    console.log(data);
-    data.replace('<head>', '<head><script>window.pagesStructure = JSON.parse(' + JSON.stringify(pagesStructure) + ');window.pagesObjects = JSON.parse(' + JSON.stringify(pagesObjects) + ');</script>');
+    const newData = data.replace('<head>', '<head><script>window.pagesStructure = JSON.parse(' + JSON.stringify(pagesStructure) + ');window.pagesObjects = JSON.parse(' + JSON.stringify(pagesObjects) + ');</script>');
+    console.log(newData);
 
-    res.send(data);
+    res.send(newData);
   });
 });
 
