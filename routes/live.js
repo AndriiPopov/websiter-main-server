@@ -12,7 +12,8 @@ router.get('*', async (req, res) => {
   const url = req.originalUrl;
   if (!url || url === '') return res.status(404).send('The website with the given URL was not found.');
   
-  const domain = url.split('/')[1];
+  const domain = url.split('/')[0];
+  console.log(domain);
   const { pagesStructure } = await Website.findOne({ 'domain': domain }, 'pagesStructure');
 
   const pagesObjects = {};
