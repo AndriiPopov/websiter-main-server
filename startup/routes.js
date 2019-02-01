@@ -5,6 +5,7 @@ const path = require('path');
 const websites = require('../routes/websites');
 const pages = require('../routes/pages');
 const users = require('../routes/users');
+const live = require('../routes/live');
 
 const auth = require('../routes/auth');
 const error = require('../middleware/error');
@@ -23,6 +24,7 @@ module.exports = function(app) {
   app.use('/api/pages', pages);
   app.use('/api/users', users);
   app.use('/api/auth', auth);
+  app.use('/api/live', live);
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
   });

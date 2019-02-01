@@ -19,6 +19,11 @@ module.exports.Page = mongoose.model('Page', new mongoose.Schema({
     trim: true,
     maxlength: 2000
   },
+  url: {
+    type: String,
+    trim: true, 
+    maxlength: 255
+  },
   website: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Websites'
@@ -33,6 +38,7 @@ module.exports.validatePage = page => {
     name: Joi.string().min(1).max(50).required(),
     title: Joi.string().max(255),
     description: Joi.string().max(2000),
+    url: Joi.string().max(255),
     website: Joi.objectId().required(),
     content: Joi.object(),
     isVisible: Joi.bool(),
