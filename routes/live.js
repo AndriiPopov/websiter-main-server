@@ -8,12 +8,12 @@ const { Website } = require('../models/website');
 const { Page } = require('../models/page');
 
 
-router.post('/:url', async (req, res) => {
+router.get('/:url', async (req, res) => {
   const url = req.params.url;
   if (!url || url === '') return res.status(404).send('The website with the given URL was not found.');
   
   const domain = url.split('/')[0];
-  const { pagesStructure } = await Wesite.findOne({ 'domain': domain }, 'pagesStructure');
+  const { pagesStructure } = await Website.findOne({ 'domain': domain }, 'pagesStructure');
 
   const pagesObjects = {};
   await Promise.all(pagesStructure.map( async item => {
