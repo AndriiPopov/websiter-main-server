@@ -40,12 +40,12 @@ self.__precacheManifest = [
     "url": "/static/js/runtime~main.3db82a20.js"
   },
   {
-    "revision": "17320d74b1a891c227cbb32418dd739a",
-    "url": "/static/media/visibility_off_hover.17320d74.svg"
-  },
-  {
     "revision": "98c6b9d25b216a4532da190ba832c7df",
     "url": "/static/media/visibility_off.98c6b9d2.svg"
+  },
+  {
+    "revision": "17320d74b1a891c227cbb32418dd739a",
+    "url": "/static/media/visibility_off_hover.17320d74.svg"
   },
   {
     "revision": "0cd95a97be67f5145af93d607471ae1d",
