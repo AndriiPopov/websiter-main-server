@@ -9,13 +9,10 @@ const { Page } = require('../models/page');
 
 
 router.get('*', async (req, res) => {
-  console.log('start');
-  console.log(req.params);
-  console.log(req.originalUrl);
-  const url = req.params;
+  const url = req.originalUrl;
   if (!url || url === '') return res.status(404).send('The website with the given URL was not found.');
   
-  const domain = url.split('/')[0];
+  const domain = url.split('/')[1];
   const { pagesStructure } = await Website.findOne({ 'domain': domain }, 'pagesStructure');
 
   const pagesObjects = {};
