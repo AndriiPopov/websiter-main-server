@@ -20,7 +20,7 @@ router.get('*', async (req, res) => {
     pagesObjects[item.id] = await Page.findById(item.id, 'publishedVersion').publishedVersion;
   }));
 
-  fs.readFile(path.join(__dirname+'/client/build/index.html'), "utf8", (err, data) => {
+  fs.readFile(path.join(__dirname+'/../client/build/index.html'), "utf8", (err, data) => {
     if(err) throw err;
     console.log(data);
     data.replace('<head>', '<head><script>window.pagesStructure = JSON.parse(' + JSON.stringify(pagesStructure) + ');window.pagesObjects = JSON.parse(' + JSON.stringify(pagesObjects) + ');</script>');

@@ -17,7 +17,7 @@ module.exports = function(app) {
     //res.header("Access-Control-Expose-Headers", "X-Auth-Token");
     next();
   });
-  app.use(express.static(path.join(__dirname, '/client/build')));
+  app.use(express.static(path.join(__dirname, '/../client/build')));
   app.use(cors());
   app.use(express.json());
   app.use('/api/websites', websites);
@@ -27,7 +27,7 @@ module.exports = function(app) {
   app.use('/live/*', live);
   app.get('*', (req, res) => {
     console.log('main');
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+    res.sendFile(path.join(__dirname+'/../client/build/index.html'));
   });
   app.use(error);
 }
