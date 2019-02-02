@@ -56,7 +56,7 @@ router.put('/:id', auth, async (req, res) => {
 
 router.delete('/:id', auth, async (req, res) => {
     const user = await User.findById(req.user);
-    await user.deleteWebsite(req.params.id, res);
+    await user.deleteWebsite(req.params.id, res, user);
 
     const websites = await Promise.all(user.websites.map( async id => {
       const website = await Website.findById(id);

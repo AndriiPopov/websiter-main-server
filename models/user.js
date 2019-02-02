@@ -41,7 +41,7 @@ userSchema.methods.createWebsite = async function() {
   return website;
 };
 
-userSchema.methods.deleteWebsite = async (_id, res) => { 
+userSchema.methods.deleteWebsite = async (_id, res, user) => { 
   const website = await Website.findById(_id);
   if (!website) return res.status(404).send('The website with the given ID was not found.');
 
@@ -49,9 +49,9 @@ userSchema.methods.deleteWebsite = async (_id, res) => {
     await Page.findByIdAndRemove(item.id)
   }));
   await Website.findByIdAndRemove(_id);
-  const index = this.websites.indexOf(_id);
-  this.websites.splice(index, 1);
-  await this.save();
+  const index = user.websites.indexOf(_id);
+  user.websites.splice(index, 1);
+  await user.save();
 };
 
 module.exports.User = mongoose.model('User', userSchema);

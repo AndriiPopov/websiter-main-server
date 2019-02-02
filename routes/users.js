@@ -79,7 +79,7 @@ router.delete('/', auth, async (req, res) => {
   const user = await User.findById(req.user);
 
   await Promise.all(user.websites.map( async websiteId => {
-    await user.deleteWebsite(websiteId, res);
+    await user.deleteWebsite(websiteId, res, user);
   }));
   await User.findByIdAndRemove(req.user);
 
