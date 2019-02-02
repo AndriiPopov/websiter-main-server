@@ -116,7 +116,7 @@ const blankPageContent = {
       children: [],
       parent: 'element_4',
       styles: [],
-      textContent: '{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","leaves":[{"object":"leaf","text":"A line of tsdfdsfsdfdsds;lkfsd;kfsd;lfk.","marks":[]}]}]}]}}'
+      textContent: {object:"value",document:{object:"document",data:{},nodes:[{object:"block",type:"paragraph",data:{},nodes:[{object:"text",leaves:[{object:"leaf",text:"A line of tsdfdsfsdfdsds;lkfsd;kfsd;lfk.",marks:[]}]}]}]}}
   }
 }
 
