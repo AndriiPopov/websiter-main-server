@@ -45,8 +45,8 @@ userSchema.methods.deleteWebsite = async (_id, res) => {
   const website = await Website.findById(_id);
   if (!website) return res.status(404).send('The website with the given ID was not found.');
 
-  await Promise.all(website.pages.map( async page => {
-    await Page.findByIdAndRemove(page)
+  await Promise.all(website.pagesStructure.map( async item => {
+    await Page.findByIdAndRemove(item.id)
   }));
   await Website.findByIdAndRemove(_id);
   const index = this.websites.indexOf(_id);
