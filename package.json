@@ -4,15 +4,12 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "npm run clean && npm run build-babel",
-        "start": "npm run build && node ./build/index.js",
+        "start": "node index.js",
         "test": "jest --watchAll --verbose --runInBand",
         "serve": "node dist/server.js",
         "flow": "flow",
         "flow:check": "flow check ./src/",
-        "lint": "eslint ./src",
-        "build-babel": "babel -d ./build ./src -s",
-        "clean": "rm -rf build && mkdir build"
+        "lint": "eslint ./src"
     },
     "engines": {
         "node": "10.15.1"
