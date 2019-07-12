@@ -4,13 +4,15 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "babel src/*.js -d dist",
-        "start": "node ./dist/index.js",
         "test": "jest --watchAll --verbose --runInBand",
         "serve": "node dist/server.js",
         "flow": "flow",
         "flow:check": "flow check ./src/",
-        "lint": "eslint ./src"
+        "lint": "eslint ./src",
+        "clean": "rm -rf build && mkdir build",
+        "build-server": "babel -d ./build ./server -s",
+        "build": "npm run clean && npm run build-css && npm run build-server",
+        "start": "node ./build/index.js"
     },
     "engines": {
         "node": "10.15.1"
