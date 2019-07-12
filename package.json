@@ -12,7 +12,9 @@
         "flow:check": "flow check ./src/",
         "lint": "eslint ./src",
         "build-babel": "babel -d ./build ./src -s",
-        "clean": "mkdir build"
+        "clean": "mkdir build",
+        "devstart": "babel-node .src/index.js",
+        "heroku-postbuild": "cd client && npm install && npm run build"
     },
     "engines": {
         "node": "10.15.1"
