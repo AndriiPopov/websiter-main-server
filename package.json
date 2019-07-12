@@ -4,15 +4,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "npm run clean && npm run build-babel",
-        "start": "node ./build/index.js",
+        "build": "babel build/*.js -d dist",
+        "start": "node ./dist/build/index.js",
         "test": "jest --watchAll --verbose --runInBand",
         "serve": "node dist/server.js",
         "flow": "flow",
         "flow:check": "flow check ./src/",
         "lint": "eslint ./src",
-        "build-babel": "babel -d ./build ./src -s",
-        "clean": "mkdir build",
         "devstart": "babel-node .src/index.js"
     },
     "engines": {
