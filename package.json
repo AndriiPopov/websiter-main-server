@@ -11,7 +11,8 @@
         "flow": "flow",
         "flow:check": "flow check ./src/",
         "lint": "eslint ./src",
-        "build-babel": "babel -d ./build ./src -s"
+        "build-babel": "babel -d ./build ./src -s",
+        "clean": "rm -rf build && mkdir build"
     },
     "engines": {
         "node": "10.15.1"
