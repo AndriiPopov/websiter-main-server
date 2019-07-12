@@ -1,0 +1,9 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["plugin:flowtype/recommended", "airbnb/base", "prettier"],
+    "plugins": ["flowtype", "prettier"],
+    "rules": {
+        "flowtype/no-types-missing-file-annotation": 0,
+        "prettier/prettier": "error"
+    }
+}

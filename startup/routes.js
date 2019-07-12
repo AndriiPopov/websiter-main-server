@@ -1,32 +1,32 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
+import express from 'express'
+import cors from 'cors'
+import path from 'path'
 
-const websites = require('../routes/websites');
-const pages = require('../routes/pages');
-const users = require('../routes/users');
-const live = require('../routes/live');
+import websites from '../routes/websites'
+import pages from '../routes/pages'
+import users from '../routes/users'
+import live from '../routes/live'
+import auth from '../routes/auth'
+import error from '../middleware/error'
+import type { $Application, $Response, $Request, NextFunction } from 'express'
 
-const auth = require('../routes/auth');
-const error = require('../middleware/error');
-
-module.exports = function(app) {
-  app.all('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    //res.header("Access-Control-Expose-Headers", "X-Auth-Token");
-    next();
-  });
-  app.use(express.static(path.join(__dirname, '/../client/build')));
-  app.use(cors());
-  app.use(express.json());
-  app.use('/api/websites', websites);
-  app.use('/api/pages', pages);
-  app.use('/api/users', users);
-  app.use('/api/auth', auth);
-  app.use('/live/*', live);
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/../client/build/index.html'));
-  });
-  app.use(error);
+export default function(app: $Application) {
+    app.all('/', function(req: $Request, res: $Response, next: NextFunction) {
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        //res.header("Access-Control-Expose-Headers", "X-Auth-Token");
+        next()
+    })
+    app.use(express.static(path.join(__dirname, '/../client/build')))
+    app.use(cors())
+    app.use(express.json())
+    app.use('/api/websites', websites)
+    app.use('/api/pages', pages)
+    app.use('/api/users', users)
+    app.use('/api/auth', auth)
+    app.use('/live/*', live)
+    app.get('*', (req: $Request, res: $Response) => {
+        res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+    })
+    app.use(error)
 }

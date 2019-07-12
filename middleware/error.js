@@ -1,14 +1,20 @@
-const winston = require('winston');
+import winston from 'winston'
+import type { $Request, $Response, NextFunction, Middleware } from 'express'
 
-module.exports = function(err, req, res, next){
-  winston.error(err.message, err);
+export default (function(
+    err: { message: string },
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+) {
+    winston.error(err.message, err)
 
-  // error
-  // warn
-  // info
-  // verbose
-  // debug 
-  // silly
+    // error
+    // warn
+    // info
+    // verbose
+    // debug
+    // silly
 
-  res.status(500).send('Something failed.');
-}
+    res.status(500).send('Something failed.')
+}: Middleware)

@@ -1,9 +1,10 @@
+import type { $Request, $Response, NextFunction, Middleware } from 'express'
 
-module.exports = function (req, res, next) { 
-  // 401 Unauthorized
-  // 403 Forbidden 
-  
-  //if (!req.user.isAdmin) return res.status(403).send('Access denied.');
+export default (function(req: $Request, res: $Response, next: NextFunction) {
+    // 401 Unauthorized
+    // 403 Forbidden
 
-  next();
-}
+    //if (!req.user.isAdmin) return res.status(403).send('Access denied.');
+
+    next()
+}: Middleware)

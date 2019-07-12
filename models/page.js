@@ -1,61 +1,51 @@
-const Joi = require('joi');
-const mongoose = require('mongoose');
+import Joi from 'joi'
+import mongoose from 'mongoose'
 
-module.exports.Page = mongoose.model('Page', new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true, 
-    minlength: 1,
-    maxlength: 50
-  },
-  title: {
-    type: String,
-    trim: true, 
-    maxlength: 255
-  },
-  description: {
-    type: String,
-    trim: true,
-    maxlength: 2000
-  },
-  url: {
-    type: String,
-    trim: true, 
-    maxlength: 255
-  },
-  website: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Websites'
-  },
-  content: {},
-  isHidden: Boolean,
-  publishedVersion: {}
-}));
+export const Page = mongoose.model(
+    'Page',
+    new mongoose.Schema({
+        website: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Websites',
+        },
+        content: {},
+        publishedVersion: {},
+    })
+)
 
-module.exports.validatePage = page => {
-  const schema = {
-    name: Joi.string().min(1).max(50).required(),
-    title: Joi.string().max(255),
-    description: Joi.string().max(2000),
-    url: Joi.string().max(255),
-    website: Joi.objectId().required(),
-    content: Joi.object(),
-    isVisible: Joi.bool(),
-    publishedVersion: Joi.object(),
-  };
+export const validatePageCreate = (data: {}) => {
+    const schema = {
+        currentPageId: Joi.objectId(),
+        websiteId: Joi.objectId().required(),
+        duplicate: Joi.boolean(),
+    }
+    return Joi.validate(data, schema)
+}
 
-  return Joi.validate(page, schema);
-};
+export const validatePageSave = (data: {}) => {
+    const schema = {
+        pagesStructure: Joi.array(),
+        content: Joi.object(),
+    }
+    return Joi.validate(data, schema)
+}
 
-module.exports.validatePageUpdate = page => {
-  const schema = {
-    title: Joi.string().min(1).max(50),
-    website: Joi.objectId(),
-    content: Joi.object(),
-    isVisible: Joi.bool(),
-    publishedVersion: Joi.object(),
-  };
+export const validatePagePublishRevert = (data: {}) => {
+    const schema = {
+        currentPageId: Joi.objectId().required(),
+        websiteId: Joi.objectId().required(),
+        pagesStructure: Joi.array().required(),
+        publishOne: Joi.boolean(),
+    }
+    return Joi.validate(data, schema)
+}
 
-  return Joi.validate(page, schema);
-};
+// export const validatePageUpdate = page => {
+//     const schema = {
+//         website: Joi.objectId(),
+//         content: Joi.object(),
+//         publishedVersion: Joi.object(),
+//     }
+
+//     return Joi.validate(page, schema)
+// }

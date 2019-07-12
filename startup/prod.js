@@ -1,7 +1,8 @@
-const helmet = require('helmet');
-const compression = require('compression');
+import helmet from 'helmet'
+import compression from 'compression'
+import type { $Application } from 'express'
 
-module.exports = function(app) {
-    app.use(helmet());
-    app.use(compression());
+export default function(app: $Application) {
+    app.use(helmet())
+    app.use(compression())
 }

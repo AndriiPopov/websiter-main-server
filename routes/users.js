@@ -1,91 +1,135 @@
-const auth = require('../middleware/auth');
-const bcrypt = require('bcryptjs');
-const _ = require('lodash');
-const { Page } = require('../models/page');
-const { Website } = require('../models/website');
-const { User, validateUser } = require('../models/user');
-const express = require('express');
-const router = express.Router();
+import auth from '../middleware/auth'
+import bcrypt from 'bcryptjs'
+import _ from 'lodash'
+import { Page } from '../models/page'
+import { Website } from '../models/website'
+import { User, validateUser } from '../models/user'
+import express from 'express'
+import type { $Request, $Response } from 'express'
+import action from '../middleware/action'
+import type { userReqType } from '../custom-flow-types'
 
-router.get('/', auth, async (req, res) => {
-  const user = await User.findById(req.user._id);
-  if (!user) {
-    return res.status(400).send('User is not registered.');
-  }
-  const websites = await Promise.all(user.websites.map( async id => {
-    const website = await Website.findById(id);
-    return _.pick(website, ['_id', 'domain', 'title']);
-  }));
+const router = express.Router()
 
-  const website = await Website.findById(websites[0]._id);
+type getReqType = userReqType & $Request
 
-  const pagesObjects = {};
-  await Promise.all(website.pagesStructure.map( async item => {
-    pagesObjects[item.id] = await Page.findById(item.id);
-  }));
+router.get('/', auth, async (req: getReqType, res: $Response) => {
+    const user = req.user
+    const websites = await Promise.all(
+        user.websites.map(async id => {
+            const website = await Website.findById(id)
+            return _.pick(website, ['_id', 'domain', 'title'])
+        })
+    )
 
-  res.send({
-      email: user.email,
-      expiresIn: 3600000,
-      website,
-      websites,
-      pagesObjects
-    });
-});
+    let website
+    if (user.currentWebsite) {
+        website = await Website.findById(user.currentWebsite)
+    }
 
-router.post('/', async (req, res) => {
-  const { error } = validateUser(req.body); 
-  if (error) { return res.status(400).send(error.details[0].message); } 
+    if (!website && user.websites.length > 0) {
+        website = await Website.findById(user.websites[0])
+        user.currentWebsite = website
+        await user.save()
+    }
 
-  let user = await User.findOne({ email: req.body.email });
-  
-  if (user) {
-    return res.status(400).send('User already registered.');
-  } 
+    const pagesObjects = {}
+    if (website) {
+        await Promise.all(
+            website.pagesStructure.map(async item => {
+                pagesObjects[item.id] = await Page.findById(item.id)
+            })
+        )
+    } else {
+        website = {}
+    }
 
-  user = new User(_.pick(req.body, ['email', 'password']));
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
-  
-  const website = await user.createWebsite();
+    res.send({
+        email: user.email,
+        website,
+        websites,
+        pagesObjects,
+        currentAction: user.currentAction,
+    })
+})
 
-  const pagesObjects = {};
-  await Promise.all(website.pagesStructure.map( async item => {
-    pagesObjects[item.id] = await Page.findById(item.id);
-  }));
+type postReqType = {
+    body: {
+        email: string,
+        password: string,
+    },
+} & userReqType &
+    $Request
 
-  user.websites.push(website._id);
-  const websites = await Promise.all(user.websites.map( async id => {
-    const website = await Website.findById(id);
-    return _.pick(website, ['_id', 'domain', 'title']);
-  }));
+router.post('/', async (req: postReqType, res: $Response) => {
+    const { error } = validateUser(req.body)
+    if (error) {
+        return res.status(400).send(error.details[0].message)
+    }
 
-  await user.save();
+    let user = await User.findOne({ email: req.body.email })
 
-  const token = user.generateAuthToken();
-  res
-    .header('X-Auth-Token', token)
-    .send({
-      ..._.pick(user, ['_id', 'email']) ,
-      token, 
-      expiresIn: 3600000,
-      website,
-      websites,
-      pagesObjects
-    });
-});
+    if (user) {
+        return res.status(400).send('User already registered.')
+    }
 
-router.delete('/', auth, async (req, res) => {
-  const user = await User.findById(req.user);
+    user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        currentAction: 0,
+    })
 
-  await Promise.all(user.websites.map( async websiteId => {
-    await user.deleteWebsite(websiteId, res, user);
-  }));
-  await User.findByIdAndRemove(req.user);
+    const salt = await bcrypt.genSalt(10)
+    user.password = await bcrypt.hash(user.password, salt)
 
-  res.send({
-    status: true
-  });
-});
+    const website = await user.createWebsite(user)
 
-module.exports = router; 
+    const pagesObjects = {}
+    await Promise.all(
+        website.pagesStructure.map(async item => {
+            pagesObjects[item.id] = await Page.findById(item.id)
+        })
+    )
+
+    user.websites.push(website._id)
+    const websites = await Promise.all(
+        user.websites.map(async id => {
+            const website = await Website.findById(id)
+            return _.pick(website, ['_id', 'domain', 'title'])
+        })
+    )
+
+    await user.save()
+
+    req.user = user
+
+    const token = user.generateAuthToken()
+    res.set({
+        'X-Auth-Token': token,
+    }).send({
+        ..._.pick(user, ['_id', 'email']),
+        token,
+        website,
+        websites,
+        pagesObjects,
+        currentAction: user.currentAction,
+    })
+})
+
+type delReqType = userReqType & $Request
+
+router.delete('/', auth, action, async (req: delReqType, res: $Response) => {
+    const user = req.user
+    await Promise.all(
+        user.websites.map(async websiteId => {
+            await user.deleteWebsite(websiteId, res)
+        })
+    )
+    await User.findByIdAndRemove(user._id)
+
+    res.send({
+        status: true,
+    })
+})
+
+export default router

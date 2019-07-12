@@ -1,22 +1,19 @@
-const winston = require('winston');
-const mongoose = require('mongoose');
-const config = require('config');
+import winston from 'winston'
+import mongoose from 'mongoose'
+import config from 'config'
 
-const { Page } = require('../models/page');
+import { Page } from '../models/page'
+import { User } from '../models/user'
 
-module.exports = function() {
-  const db = config.get('db');
-  mongoose.connect(db)
-    .then(
-      
-      () => {
-        Page.update(
-          {},
-          {isHidden: false},
-          {multi:true}, 
-             function(err, numberAffected){  
-               console.log(numberAffected);
-             });
-        winston.info(`Connected to ${db}`)}
-    );
+export default function() {
+    const db = config.get('db')
+    mongoose.connect(db).then(() => {
+        // User.update({}, { currentAction: 0 }, { multi: true }, function(
+        //     err,
+        //     numberAffected
+        // ) {
+        //     console.log(numberAffected)
+        // })
+        winston.info(`Connected to ${db}`)
+    })
 }
