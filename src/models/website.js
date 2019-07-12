@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import mongoose from 'mongoose'
-import { Page } from '../models/page'
+import { Page } from './page'
 import { findDescendants } from '../utils/pagesStructure'
 import JoiObjectId from 'joi-objectid'
 Joi.objectId = JoiObjectId(Joi)

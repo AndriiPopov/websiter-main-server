@@ -2,8 +2,8 @@ import config from 'config'
 import jwt from 'jsonwebtoken'
 import Joi from 'joi'
 import mongoose from 'mongoose'
-import { Website } from '../models/website'
-import { Page } from '../models/page'
+import { Website } from './website'
+import { Page } from './page'
 import JoiObjectId from 'joi-objectid'
 Joi.objectId = JoiObjectId(Joi)
 
