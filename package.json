@@ -1,7 +1,7 @@
 {
     "name": "websiter_server",
     "version": "1.0.0",
-    "description": "",
+    "description": "test",
     "main": "index.js",
     "scripts": {
         "test": "jest --watchAll --verbose --runInBand",
@@ -10,9 +10,9 @@
         "flow:check": "flow check ./src/",
         "lint": "eslint ./src",
         "clean": "rm -rf build && mkdir build",
-        "build-server": "babel src/index.js -d build",
-        "build": "npm run clean && npm run build-server",
-        "start": "node build/index.js"
+        "build-babel": "babel -d ./build ./src -s",
+        "build": "npm run clean && npm run build-babel",
+        "start": "npm run build && node ./build/index.js"
     },
     "engines": {
         "node": "10.15.1"
