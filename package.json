@@ -10,9 +10,9 @@
         "flow:check": "flow check ./src/",
         "lint": "eslint ./src",
         "clean": "rm -rf build && mkdir build",
-        "build-server": "babel ./src/index.js -d ./build",
+        "build-server": "babel src/index.js -d build",
         "build": "npm run clean && npm run build-server",
-        "start": "node ./build/index.js"
+        "start": "node build/index.js"
     },
     "engines": {
         "node": "10.15.1"
