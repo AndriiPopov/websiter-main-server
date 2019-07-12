@@ -11,7 +11,7 @@
         "lint": "eslint ./src",
         "clean": "rm -rf build && mkdir build",
         "build-server": "babel -d ./build ./src -s",
-        "build": "npm run clean && npm run build-css && npm run build-server",
+        "build": "npm run clean && npm run build-server",
         "start": "node ./build/index.js"
     },
     "engines": {
