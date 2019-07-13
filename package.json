@@ -4,7 +4,6 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "babel src --out-dir dist",
         "test": "jest --watchAll --verbose --runInBand",
         "start": "nodemon index.js",
         "serve": "node dist/server.js",
