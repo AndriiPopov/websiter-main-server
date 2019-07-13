@@ -1,18 +1,14 @@
 {
     "name": "websiter_server",
     "version": "1.0.0",
-    "description": "test",
+    "description": "",
     "main": "index.js",
     "scripts": {
+        "build": "babel src --out-dir dist",
         "test": "jest --watchAll --verbose --runInBand",
+        "start": "nodemon index.js",
         "serve": "node dist/server.js",
-        "flow": "flow",
-        "flow:check": "flow check ./src/",
-        "lint": "eslint ./src",
-        "clean": "rm -rf build && mkdir build",
-        "build-babel": "babel -d ./build ./src -s",
-        "build": "npm run clean && npm run build-babel",
-        "start": "npm run build && node ./build/index.js"
+        "lint": "eslint ./src"
     },
     "engines": {
         "node": "10.15.1"
@@ -40,15 +36,7 @@
         "lodash": "^4.17.4",
         "mongoose": "^5.0.2",
         "winston": "^2.4.0",
-        "winston-mongodb": "^3.0.0",
-        "@babel/cli": "^7.4.3",
-        "@babel/core": "^7.4.3",
-        "@babel/node": "^7.2.2",
-        "@babel/plugin-transform-runtime": "^7.4.3",
-        "@babel/preset-env": "^7.4.3",
-        "@babel/preset-flow": "^7.0.0",
-        "babel-eslint": "^10.0.1",
-        "babel-preset-env": "^1.7.0"
+        "winston-mongodb": "^3.0.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.3",
