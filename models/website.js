@@ -74,14 +74,16 @@ const blankPageContent = {
         itemsList: [
             {
                 id: '0',
-                key: '0',
-                name: 'Home',
+                name: 'All pages',
                 type: 'page',
+                all: true,
                 newTab: false,
                 hidden: false,
                 path: [],
+                pageId: '',
             },
         ],
+        currentMenuId: 0,
     },
     element_2: {
         type: 'box',
@@ -169,9 +171,10 @@ const blankPageContent = {
 
 websiteSchema.methods.createPage = async function(currentPage, duplicate) {
     const generateNewPageName = (name, attr, divider, i) => {
-        while (this.pagesStructure.some(item => item[attr] === name)) {
+        let currentName = name
+        while (this.pagesStructure.some(item => item[attr] === currentName)) {
             i++
-            name = name + divider + i
+            currentName = name + divider + i
         }
         return i
     }
@@ -272,7 +275,7 @@ websiteSchema.methods.createPage = async function(currentPage, duplicate) {
     let newPageStructureElement
     if (!currentPage) {
         this.pagesStructure.push({
-            id: page._id,
+            id: page._id.toString(),
             path: [],
             ...pageData,
         })
@@ -289,7 +292,7 @@ websiteSchema.methods.createPage = async function(currentPage, duplicate) {
                 currentPageObject.id
             )
             newPageStructureElement = {
-                id: page._id,
+                id: page._id.toString(),
                 path: [...currentPageObject.path],
                 ...pageData,
             }
@@ -300,7 +303,7 @@ websiteSchema.methods.createPage = async function(currentPage, duplicate) {
             )
         } else {
             this.pagesStructure.push({
-                id: page._id,
+                id: page._id.toString(),
                 path: [],
                 ...pageData,
             })

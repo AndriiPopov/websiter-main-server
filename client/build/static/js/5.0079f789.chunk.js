@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{747:function(e,n,t){"use strict";t.r(n);var a=t(0),r=t.n(a),u=t(7),c=t(6),l=t(105),i=t(19),o=t(91);n.default=Object(u.b)(function(e){return{loading:e.auth.loading}},function(e){return{deleteUser:function(){return e(c.v())}}})(function(e){return r.a.createElement(i.a,null,e.loading?r.a.createElement(o.a,null):r.a.createElement(l.a,{datatestid:"deleteAccount",clicked:function(){return e.deleteUser()},btnType:"Danger"},"DELETE MY ACCOUNT"))})}}]);
+//# sourceMappingURL=5.0079f789.chunk.js.map
