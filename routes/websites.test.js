@@ -49,7 +49,7 @@ describe('/api/websites', () => {
             const res = await request(server)
                 .post('/api/websites')
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
 
             const result = JSON.parse(res.text)
             const structure = await getDBStructure()
@@ -101,7 +101,7 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .put(`/api/websites/${structure[1].websites[2]._id}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     title: 1,
                 })
@@ -110,7 +110,7 @@ describe('/api/websites', () => {
             res = await request(server)
                 .put(`/api/websites/dskfdjslkwelkj`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send({
                     title: 1,
                 })
@@ -119,7 +119,7 @@ describe('/api/websites', () => {
             res = await request(server)
                 .put(`/api/websites/${structure[1].websites[2]._id}`)
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send({
                     title: 'Updated',
                 })
@@ -131,7 +131,7 @@ describe('/api/websites', () => {
             res = await request(server)
                 .put(`/api/websites/${structure[1].websites[2]._id}`)
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     pagesStructure: [
                         ...pagesStructure,
@@ -162,7 +162,7 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .put(`/api/websites/${oldStructure[1].websites[2]._id}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Content-Type', 'application/json')
                 .send({
                     title: 'Updated',
@@ -211,7 +211,7 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .put(`/api/websites/${oldStructure[1].websites[2]._id}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Content-Type', 'application/json')
                 .send({
                     title: 'Updated',
@@ -258,7 +258,7 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .put(`/api/websites/${oldStructure[1].websites[2]._id}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Content-Type', 'application/json')
                 .send({
                     title: 'Updated',
@@ -308,7 +308,7 @@ describe('/api/websites', () => {
                     `/api/websites/currentpage/${structure[1].websites[2]._id}`
                 )
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     title: 1,
                 })
@@ -317,7 +317,7 @@ describe('/api/websites', () => {
             res = await request(server)
                 .put(`/api/websites/currentpage/dskfdjslkwelkj`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send({
                     title: 1,
                 })
@@ -328,7 +328,7 @@ describe('/api/websites', () => {
                     `/api/websites/currentpage/${structure[1].websites[2]._id}`
                 )
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send({
                     title: 'Updated',
                 })
@@ -356,7 +356,7 @@ describe('/api/websites', () => {
                     }`
                 )
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Content-Type', 'application/json')
                 .send({
                     currentPage: oldStructure[1].websites[2].pages[2],
@@ -404,7 +404,7 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .get(`/api/websites/${structure[1].websites[2]._id}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
             expect(res.status).toBe(404)
         })
 
@@ -430,7 +430,7 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .get(`/api/websites/${structure[1].websites[2]._id}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Content-Type', 'application/json')
             expect(res.status).toBe(200)
 
@@ -465,13 +465,13 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .delete(`/api/websites/dskfdjslkwelkj`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
             expect(res.status).toBe(404)
 
             res = await request(server)
                 .delete(`/api/websites/${structure[1].websites[2]._id}`)
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
             expect(res.status).toBe(404)
         })
 
@@ -487,7 +487,7 @@ describe('/api/websites', () => {
             let res = await request(server)
                 .delete(`/api/websites/${oldStructure[1].websites[0]._id}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
             expect(res.status).toBe(200)
 
             const result = JSON.parse(res.text)
@@ -516,7 +516,7 @@ describe('/api/websites', () => {
             res = await request(server)
                 .delete(`/api/websites/${user.currentWebsite}`)
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
             expect(res.status).toBe(200)
 
             const newResult = JSON.parse(res.text)

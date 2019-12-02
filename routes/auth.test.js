@@ -1,14 +1,17 @@
-import _ from 'lodash'
-import serverObj from '../index'
-import request from 'supertest'
-import { User } from '../models/user'
-import { Website } from '../models/website'
-import { Page } from '../models/page'
-import {
+const _ = require('lodash')
+const { Page } = require('../models/page')
+const { File } = require('../models/file')
+const { Plugin } = require('../models/plugin')
+const { Website } = require('../models/website')
+const { User } = require('../models/user')
+
+const serverObj = require('../index')
+const request = require('supertest')
+const {
     getDBStructure,
     populateTestDB,
     pure,
-} from '../utils/testPopulateDBandReadStructure'
+} = require('../utils/testPopulateDBandReadStructure')
 
 let server
 
@@ -91,7 +94,7 @@ describe('/api/auth', () => {
 
             const resNew = await request(server)
                 .get('/api/users')
-                .set('X-Auth-Token', result.token)
+                .set('x-auth-token', result.token)
             expect(resNew.status).toBe(200)
         })
 
@@ -129,7 +132,7 @@ describe('/api/auth', () => {
 
             const resNew = await request(server)
                 .get('/api/users')
-                .set('X-Auth-Token', result.token)
+                .set('x-auth-token', result.token)
             expect(resNew.status).toBe(200)
         })
 
@@ -166,7 +169,7 @@ describe('/api/auth', () => {
 
             const resNew = await request(server)
                 .get('/api/users')
-                .set('X-Auth-Token', result.token)
+                .set('x-auth-token', result.token)
             expect(resNew.status).toBe(200)
         })
     })

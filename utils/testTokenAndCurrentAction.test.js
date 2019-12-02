@@ -16,7 +16,7 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
         case 'get': {
             res0 = await request(server)
                 .get(`/api/${url}`)
-                .set('X-Auth-Token', 'fail_token')
+                .set('x-auth-token', 'fail_token')
                 .set('Current-Action', '10')
 
             res1 = await request(server)
@@ -25,11 +25,11 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
 
             res2 = await request(server)
                 .get(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
 
             res3 = await request(server)
                 .get(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Current-Action', '1')
             break
         }
@@ -37,7 +37,7 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
         case 'post': {
             res0 = await request(server)
                 .post(`/api/${url}`)
-                .set('X-Auth-Token', 'fail_token')
+                .set('x-auth-token', 'fail_token')
                 .set('Current-Action', '10')
 
             res1 = await request(server)
@@ -46,11 +46,11 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
 
             res2 = await request(server)
                 .post(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
 
             res3 = await request(server)
                 .post(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Current-Action', '1')
             break
         }
@@ -58,7 +58,7 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
         case 'put': {
             res0 = await request(server)
                 .put(`/api/${url}`)
-                .set('X-Auth-Token', 'fail_token')
+                .set('x-auth-token', 'fail_token')
                 .set('Current-Action', '10')
 
             res1 = await request(server)
@@ -67,11 +67,11 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
 
             res2 = await request(server)
                 .put(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
 
             res3 = await request(server)
                 .put(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Current-Action', '1')
             break
         }
@@ -79,7 +79,7 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
         case 'delete': {
             res0 = await request(server)
                 .delete(`/api/${url}`)
-                .set('X-Auth-Token', 'fail_token')
+                .set('x-auth-token', 'fail_token')
                 .set('Current-Action', '10')
 
             res1 = await request(server)
@@ -88,11 +88,11 @@ export const testTokenAndCurrentAction = async (server: {}, method, url) => {
 
             res2 = await request(server)
                 .delete(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
 
             res3 = await request(server)
                 .delete(`/api/${url}`)
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .set('Current-Action', '1')
             break
         }

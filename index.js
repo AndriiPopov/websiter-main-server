@@ -6,17 +6,27 @@ const db = require('./startup/db')
 const config = require('./startup/config')
 const validation = require('./startup/validation')
 const prod = require('./startup/prod')
+const aws = require('aws-sdk')
+const passport = require('passport')
+const sslRedirect = require('heroku-ssl-redirect')
 
 const app = express()
+
+app.use(sslRedirect())
+
+aws.config.region = 'us-east-2'
+app.use(passport.initialize())
 
 logging()
 routes(app)
 db()
-config()
+// config()
 validation()
 prod(app)
+app.engine('html', require('ejs').renderFile)
+app.use(express.static('./public'))
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT
 const server = app.listen(port, () =>
     winston.info(`Listening on port ${port}...`)
 )

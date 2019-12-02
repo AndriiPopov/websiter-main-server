@@ -1,4 +1,14 @@
 {
-  "jwtPrivateKey": "websiter_jwtPrivateKey",
-  "db": "mongodb://localhost/websiter"
+    "jwtPrivateKey": "websiter_jwtPrivateKey",
+    "db": "mongodb://localhost/websiter",
+    "AWSAccessKeyId": "AKIAYRJEHVZTDUBDXJ5E",
+    "AWSSecretKey": "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",
+    "S3_BUCKET": "websiter",
+    "AWSMaxStorage": "1000000000",
+    "GoogleClientID": "133635339058-cfp2f94k755o9ap5n7a5u4j4v27dbejt.apps.googleusercontent.com",
+    "GoogleClientSecret": "MHrc1BH6sz8m14CWdT5KA4Eb",
+    "FBClientID": "521067938445710",
+    "FBClientSecret": "000093dd2c60eb13901db33261466346",
+    "TwitterClientID": "nuurRF9E9zQUXTVOpG08JBOoW",
+    "TwitterClientSecret": "ZY30Q0tLZoSLKYcMtZKdY5EDQhtR11EpOpnkqxKrIAUqSiQxz9"
 }

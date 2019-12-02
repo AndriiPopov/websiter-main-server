@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
-const { User } = require('../models/user')
-const { Website } = require('../models/website')
-const { Page } = require('../models/page')
+// const { User } = require('../models/user')
+// const { Website } = require('../models/website')
+// const { Page } = require('../models/page')
 
 module.exports.populateTestDB = async settings => {
     const tokens = []
@@ -20,22 +20,8 @@ module.exports.populateTestDB = async settings => {
                 websiteCount++
             ) {
                 let website = new Website({
-                    title: `User_${userCount} Website ${websiteCount}`,
-                    header: {
-                        content: `User_${userCount} Website ${websiteCount}_header`,
-                    },
-                    footer: {
-                        content: `User_${userCount} Website ${websiteCount}_footer`,
-                    },
+                    name: `User_${userCount} Website ${websiteCount}`,
                     domain: `User_${userCount} Website ${websiteCount}_domain`,
-                    bufferElements: [
-                        {
-                            element_1: `User_${userCount} Website ${websiteCount}_bufferElement_1`,
-                        },
-                        {
-                            element_2: `User_${userCount} Website ${websiteCount}_bufferElement_2`,
-                        },
-                    ],
                 })
 
                 if (websiteCount !== settings.websites) {

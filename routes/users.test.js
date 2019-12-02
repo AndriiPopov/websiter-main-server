@@ -47,7 +47,7 @@ describe('/api/users', () => {
             const res = await request(server)
                 .get('/api/users')
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
 
             const result = JSON.parse(res.text)
             const structure = await getDBStructure()
@@ -83,7 +83,7 @@ describe('/api/users', () => {
 
             const res = await request(server)
                 .get('/api/users')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .set('Current-Action', '10')
 
             const result = JSON.parse(res.text)
@@ -114,7 +114,7 @@ describe('/api/users', () => {
 
             const res = await request(server)
                 .get('/api/users')
-                .set('X-Auth-Token', tokens[2])
+                .set('x-auth-token', tokens[2])
                 .set('Current-Action', '10')
 
             const result = JSON.parse(res.text)
@@ -225,7 +225,7 @@ describe('/api/users', () => {
             let res = await request(server)
                 .delete('/api/users')
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
             expect(res.status).toBe(200)
 
             const newStructure = await getDBStructure()
@@ -235,7 +235,7 @@ describe('/api/users', () => {
             res = await request(server)
                 .delete('/api/users')
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
             expect(res.status).toBe(400)
         })
     })

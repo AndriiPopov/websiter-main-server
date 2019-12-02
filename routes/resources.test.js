@@ -50,7 +50,7 @@ describe('/api/pages', () => {
             let res = await request(server)
                 .post('/api/pages}')
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: structure[1].websites[2]._id,
@@ -61,7 +61,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: 'dsdfds',
                     websiteId: structure[1].websites[2]._id,
@@ -72,7 +72,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: 'structure[1].websites[2]._id',
@@ -83,7 +83,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '12')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: structure[1].websites[2]._id,
@@ -94,7 +94,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '13')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[0].websites[2].pages[0],
                     websiteId: structure[1].websites[2]._id,
@@ -105,7 +105,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '14')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[1].pages[0],
                     websiteId: structure[1].websites[2]._id,
@@ -116,7 +116,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '15')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: structure[1].websites[1]._id,
@@ -139,7 +139,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: oldStructure[1].websites[2].pages[0],
                     websiteId: oldStructure[1].websites[2]._id,
@@ -177,7 +177,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .post('/api/pages')
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: oldStructure[1].websites[2].pages[0],
                     websiteId: oldStructure[1].websites[2]._id,
@@ -229,7 +229,7 @@ describe('/api/pages', () => {
             let res = await request(server)
                 .put(`/api/pages/${structure[1].websites[2].pages[0]}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send({
                     content: { content: 'is new' },
                     pagesStructure: pagesStructure,
@@ -239,7 +239,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .put(`/api/pages/${structure[1].websites[2].pages[0]}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     content: 'asdasdasd',
                     pagesStructure: pagesStructure,
@@ -249,7 +249,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .put(`/api/pages/${structure[1].websites[2].pages[0]}`)
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     content: { content: 'is new' },
                     pagesStructure: 'pagesStructure',
@@ -259,7 +259,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .put(`/api/pages/${structure[1].websites[2].pages[0]}`)
                 .set('Current-Action', '12')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     content: { content: 'is new' },
                     pagesStructure: [
@@ -293,7 +293,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .put(`/api/pages/${structure[1].websites[2].pages[0]}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     content: { content: 'is new' },
                     pagesStructure: pagesStructure,
@@ -337,7 +337,7 @@ describe('/api/pages', () => {
             let res = await request(server)
                 .delete(`/api/pages/${structure[1].websites[2].pages[0]}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
             expect(res.status).toBe(404)
         })
 
@@ -362,7 +362,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .delete(`/api/pages/${structure[1].websites[2].pages[0]}`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
             expect(res.status).toBe(200)
 
             const result = JSON.parse(res.text)
@@ -415,14 +415,14 @@ describe('/api/pages', () => {
             let res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send(sampleData)
             expect(res.status).toBe(404)
 
             res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     currentPage: structure[1].websites[1].pages[0],
@@ -432,7 +432,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     currentPage: structure[0].websites[1].pages[0],
@@ -442,7 +442,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '12')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     websiteId: structure[1].websites[1]._id,
@@ -457,7 +457,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '13')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     pagesStructure: updatedPagesStructure,
@@ -467,7 +467,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '14')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     publishOne: 'one',
@@ -510,7 +510,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: structure[1].websites[2]._id,
@@ -587,7 +587,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .post(`/api/pages/publish`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: structure[1].websites[2]._id,
@@ -662,14 +662,14 @@ describe('/api/pages', () => {
             let res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[0])
+                .set('x-auth-token', tokens[0])
                 .send(sampleData)
             expect(res.status).toBe(404)
 
             res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     currentPage: structure[1].websites[1].pages[0],
@@ -679,7 +679,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '11')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     currentPage: structure[0].websites[1].pages[0],
@@ -689,7 +689,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '12')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     websiteId: structure[1].websites[1]._id,
@@ -704,7 +704,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '13')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     pagesStructure: updatedPagesStructure,
@@ -714,7 +714,7 @@ describe('/api/pages', () => {
             res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '14')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     ...sampleData,
                     publishOne: 'one',
@@ -757,7 +757,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: structure[1].websites[2]._id,
@@ -839,7 +839,7 @@ describe('/api/pages', () => {
             const res = await request(server)
                 .post(`/api/pages/revert`)
                 .set('Current-Action', '10')
-                .set('X-Auth-Token', tokens[1])
+                .set('x-auth-token', tokens[1])
                 .send({
                     currentPageId: structure[1].websites[2].pages[0],
                     websiteId: structure[1].websites[2]._id,

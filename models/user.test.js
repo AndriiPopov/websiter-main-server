@@ -10,7 +10,7 @@ describe('user.generateAuthToken', () => {
         }
         const user = new User(payload)
         const token = user.generateAuthToken()
-        const decoded = jwt.verify(token, config.get('jwtPrivateKey'))
+        const decoded = jwt.verify(token, process.env.jwtPrivateKey)
         expect(decoded).toMatchObject(payload)
     })
 })

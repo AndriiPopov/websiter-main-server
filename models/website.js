@@ -1,19 +1,18 @@
 const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
 const mongoose = require('mongoose')
-const { Page } = require('../models/page')
-const { findDescendants } = require('../utils/pagesStructure')
+const { Resource } = require('./resource')
+const { findDescendants } = require('../utils/resourcesStructure')
+const { structureType, currentType } = require('../utils/resourceTypeIndex')
 
 const websiteSchema = new mongoose.Schema({
-    title: {
+    name: {
         type: String,
         required: true,
         trim: true,
         minlength: 1,
         maxlength: 255,
     },
-    header: {},
-    footer: {},
     domain: {
         type: String,
         minlength: 1,
@@ -23,180 +22,104 @@ const websiteSchema = new mongoose.Schema({
         unique: true,
         sparse: true,
     },
-    bufferElements: {
-        type: String,
-        minlength: 1,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
     },
     pagesStructure: [],
+    filesStructure: [],
+    pluginsStructure: [],
     currentPage: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pages',
     },
 })
 
 const blankPageContent = {
-    sectionsOnPage: ['element_0', 'element_4'],
-    currentId: 6,
-    element_0: {
-        type: 'section',
-        height: 200,
-        space: 50,
-        background: 'rgba(200, 100, 30)',
-        header: false,
-        footer: false,
-        allPages: false,
-        children: ['element_3', 'element_1', 'element_6'],
-        styles: [],
-    },
-    element_1: {
-        type: 'box',
-        height: 100,
-        width: 100,
-        left: 200,
-        top: 100,
-        background: 'rgba(100, 0, 80)',
-        zIndex: 0,
-        children: ['element_2'],
-        parent: 'element_0',
-        styles: ['element_1_element_0_hover'],
-    },
-    element_6: {
-        type: 'menu',
-        height: 50,
-        width: 300,
-        left: 500,
-        top: 100,
-        background: 'rgba(100, 0, 80)',
-        zIndex: 0,
-        children: [],
-        parent: 'element_0',
-        styles: [],
-        itemsList: [
-            {
-                id: '0',
-                name: 'All pages',
-                type: 'page',
-                all: true,
-                newTab: false,
-                hidden: false,
-                path: [],
-                pageId: '',
-            },
-        ],
-        currentMenuId: 0,
-    },
-    element_2: {
-        type: 'box',
-        height: 50,
-        width: 50,
-        left: 100,
-        top: 200,
-        background: 'rgba(10, 200, 90)',
-        zIndex: 0,
-        children: [],
-        parent: 'element_1',
-        styles: [],
-    },
-    element_3: {
-        type: 'box',
-        height: 50,
-        width: 50,
-        left: 200,
-        top: 200,
-        background: 'rgba(170, 100, 200)',
-        zIndex: 1,
-        children: [],
-        parent: 'element_0',
-        styles: [],
-    },
-    element_1_element_0_hover: {
-        type: 'hover',
-        influencer: 'element_0',
-        left: 0,
-        top: 0,
-    },
-    element_4: {
-        type: 'section',
-        height: 500,
-        space: 50,
-        background: 'rgba(200, 100, 30)',
-        backgroundOn: true,
-        header: false,
-        footer: false,
-        allPages: false,
-        children: ['element_5'],
-        styles: [],
-    },
-    element_5: {
-        type: 'text',
-        height: 400,
-        width: 400,
-        left: 500,
-        top: 40,
-        background: 'rgba(170, 100, 200)',
-        backgroundOn: true,
-        zIndex: 1,
-        children: [],
-        parent: 'element_4',
-        styles: [],
-        textContent: {
-            object: 'value',
-            document: {
-                object: 'document',
-                data: {},
-                nodes: [
-                    {
-                        object: 'block',
-                        type: 'paragraph',
-                        data: {},
-                        nodes: [
-                            {
-                                object: 'text',
-                                leaves: [
-                                    {
-                                        object: 'leaf',
-                                        text:
-                                            'A line of tsdfdsfsdfdsds;lkfsd;kfsd;lfk.',
-                                        marks: [],
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                ],
-            },
+    currentId: 5,
+    structure: [
+        {
+            id: 'element_-1',
+            path: [],
+            tag: 'html',
+            properties: {},
+            style: '',
         },
-    },
+        {
+            id: 'element_0',
+            path: ['element_-1'],
+            tag: 'head',
+            properties: {},
+            style: '',
+        },
+        {
+            id: 'element_1',
+            path: ['element_-1'],
+            tag: 'body',
+            properties: {},
+            style: '',
+        },
+        {
+            id: 'element_2',
+            path: ['element_-1', 'element_1'],
+            tag: 'div',
+            properties: {},
+            style:
+                'height: 100px;width: 100px;left: 200px;top: 100px;z-index: 0;background: rgba(100, 0, 80);',
+        },
+        {
+            id: 'element_4',
+            path: ['element_-1', 'element_1'],
+            tag: 'section',
+            properties: {},
+            style: 'height: 200px; background:rgba(200, 100, 30);',
+        },
+        {
+            id: 'element_3',
+            path: ['element_-1', 'element_1', 'element_4'],
+            tag: 'div',
+            properties: {},
+            style:
+                'height: 100px;width: 100px;left: 200px;top: 100px;z-index: 0;background: rgba(0, 0, 80);',
+        },
+    ],
 }
 
-websiteSchema.methods.createPage = async function(currentPage, duplicate) {
-    const generateNewPageName = (name, attr, divider, i) => {
+const blankPluginContent = {
+    currentId: 1,
+    structure: [
+        {
+            id: 'element_0',
+            path: [],
+            tag: 'Main element',
+            properties: {},
+        },
+    ],
+}
+
+websiteSchema.methods.createResource = async function(
+    currentResource,
+    type,
+    duplicate,
+    resourceData
+) {
+    const generateNewName = (name, attr, divider, i) => {
         let currentName = name
-        while (this.pagesStructure.some(item => item[attr] === currentName)) {
+        while (
+            this[structureType[type]].some(item => item[attr] === currentName)
+        ) {
             i++
             currentName = name + divider + i
         }
         return i
     }
 
-    const prepareDataCreteNewPage = async () => {
-        let page = new Page()
-        page.website = this
-        page.publishedVersion = {}
-        page.content = blankPageContent
-        page.markModified('content')
-        page.markModified('publishedVersion')
-        page = await page.save()
-
-        this.currentPage = page
-        const pageData = {}
-
+    const getNewNameAndUrl = (name, url) => {
         let max = 0,
             nameIndex = 0,
             urlIndex = 0
         do {
-            nameIndex = generateNewPageName('New page', 'name', ' ', max)
-            urlIndex = generateNewPageName('new-page', 'url', '-', max)
+            nameIndex = generateNewName(name, 'name', ' ', max)
+            urlIndex = generateNewName(url, 'url', '-', max)
             max = Math.max(nameIndex, urlIndex)
         } while (nameIndex !== urlIndex)
 
@@ -206,165 +129,225 @@ websiteSchema.methods.createPage = async function(currentPage, duplicate) {
             nameAdd = ' ' + max
             urlAdd = '-' + max
         }
+        return { nameAdd, urlAdd }
+    }
 
-        pageData.name = 'New page' + nameAdd
-        pageData.url = 'new-page' + urlAdd
-        pageData.isHidden = false
-        pageData.title = 'New page on my website'
-        pageData.description = 'This my new page description'
+    const prepareDataCreteNewResource = async () => {
+        let resource = new Resource()
+        resource.website = this
+        resource.draft = {}
+        if (!resourceData) {
+            resource.published =
+                type === 'page'
+                    ? blankPageContent
+                    : type === 'plugin'
+                    ? blankPluginContent
+                    : {}
+        } else {
+            resource.published = resourceData
+        }
+        resource.markModified('draft')
+        resource.markModified('published')
+        resource = await resource.save()
 
-        return { page, pageData }
+        this[currentType[type]] = resource
+        let data = {}
+        if (type === 'page') {
+            let { nameAdd, urlAdd } = getNewNameAndUrl('New page', 'new-page')
+            data.name = 'New page' + nameAdd
+            data.url = 'new-page' + urlAdd
+            data.isHidden = true
+            return { resource, data }
+        }
+        if (type === 'file' || type === 'plugin') {
+            const nameIndex = generateNewName('New ' + type, 'name', ' ', 0)
+
+            let nameAdd = ''
+            if (nameIndex > 0) {
+                nameAdd = ' ' + nameIndex
+            }
+
+            data.name = 'New ' + type + nameAdd
+            return { resource, data }
+        }
     }
     const prepareDataDuplicate = async () => {
-        const currentPageObject = await Page.findById(currentPage)
-        const currentPageDataArray = this.pagesStructure.filter(
-            item => item.id.toString() === currentPage
+        const currentResourceObject = await Resource.findById(currentResource)
+        const currentResourceDataArray = this[structureType[type]].filter(
+            item => item.id.toString() === currentResource
         )
-        if (!currentPageObject || currentPageDataArray.length !== 1) {
-            return { page: null, pageData: null }
+        if (!currentResourceObject || currentResourceDataArray.length !== 1) {
+            return { resource: null, data: null }
         }
-        let currentPageData
-        currentPageData = currentPageDataArray[0]
+        let currentResourceData
+        currentResourceData = currentResourceDataArray[0]
 
-        let page = new Page()
-        page.website = this
-        page.publishedVersion = currentPageObject.publishedVersion
-        page.content = currentPageObject.content
-        page.markModified('content')
-        page.markModified('publishedVersion')
-        page = await page.save()
+        let resource = new Resource()
+        resource.website = this
+        resource.published = currentResourceObject.published
+        resource.draft = currentResourceObject.draft
+        resource.markModified('draft')
+        resource.markModified('published')
+        resource = await resource.save()
 
-        this.currentPage = page
-        const pageData = {}
+        this[currentType[type]] = resource
 
-        let max = 0,
-            nameIndex = 0,
-            urlIndex = 0
-        do {
-            nameIndex = generateNewPageName(
-                currentPageData.name,
+        let data = {}
+        if (type === 'page') {
+            let { nameAdd, urlAdd } = getNewNameAndUrl(
+                currentResourceData.name,
+                currentResourceData.url
+            )
+            data.name = currentResourceData.name + nameAdd
+            data.url = currentResourceData.url + urlAdd
+            data.isHidden = true
+            return { resource, data }
+        }
+        if (type === 'file' || type === 'plugin') {
+            const nameIndex = generateNewName(
+                currentResourceData.name,
                 'name',
                 ' ',
-                max
+                0
             )
-            urlIndex = generateNewPageName(currentPageData.url, 'url', '-', max)
-            max = Math.max(nameIndex, urlIndex)
-        } while (nameIndex !== urlIndex)
 
-        pageData.name = currentPageData.name + ' ' + max
-        pageData.url = currentPageData.url + '-' + max
-        pageData.isHidden = currentPageData.isHidden
-        pageData.title = currentPageData.title
-        pageData.description = currentPageData.description
+            let nameAdd = ''
+            if (nameIndex > 0) {
+                nameAdd = ' ' + nameIndex
+            }
 
-        return { page, pageData }
+            data.name = currentResourceData.name + nameAdd
+            return { resource, data }
+        }
     }
-
-    const { page, pageData } = duplicate
+    const { resource, data } = duplicate
         ? await prepareDataDuplicate()
-        : await prepareDataCreteNewPage()
+        : await prepareDataCreteNewResource()
 
-    if (!page || !pageData) return
-
-    if (this.pagesStructure.length > 0) {
-        pageData.isHomePage = false
-    } else {
-        pageData.isHomePage = true
+    if (!resource || !data) return
+    if (type === 'page') {
+        if (this.pagesStructure.length > 0) {
+            data.homepage = false
+        } else {
+            data.homepage = true
+        }
     }
-
-    let newPageStructureElement
-    if (!currentPage) {
-        this.pagesStructure.push({
-            id: page._id.toString(),
+    let newResourceStructureElement
+    if (!currentResource) {
+        this[structureType[type]].push({
+            id: resource._id.toString(),
             path: [],
-            ...pageData,
+            ...data,
         })
     } else {
-        const currentPageObjectArray = this.pagesStructure.filter(
-            page => page.id.toString() === currentPage.toString()
+        const currentResourceObjectArray = this[structureType[type]].filter(
+            resource => resource.id.toString() === currentResource.toString()
         )
-        if (currentPageObjectArray.length > 0) {
-            const currentPageObject = currentPageObjectArray[0]
-            const currentIndex = this.pagesStructure.indexOf(currentPageObject)
+        if (currentResourceObjectArray.length > 0) {
+            const currentResourceObject = currentResourceObjectArray[0]
+            const currentIndex = this[structureType[type]].indexOf(
+                currentResourceObject
+            )
 
             const descendants = findDescendants(
-                this.pagesStructure,
-                currentPageObject.id
+                this[structureType[type]],
+                currentResourceObject.id
             )
-            newPageStructureElement = {
-                id: page._id.toString(),
-                path: [...currentPageObject.path],
-                ...pageData,
+            newResourceStructureElement = {
+                id: resource._id.toString(),
+                path: [...currentResourceObject.path],
+                ...data,
             }
-            this.pagesStructure.splice(
+            this[structureType[type]].splice(
                 currentIndex + descendants.length + 1,
                 0,
-                newPageStructureElement
+                newResourceStructureElement
             )
         } else {
-            this.pagesStructure.push({
-                id: page._id.toString(),
+            this[structureType[type]].push({
+                id: resource._id.toString(),
                 path: [],
-                ...pageData,
+                ...data,
             })
         }
     }
-    this.markModified('pagesStructure')
+
+    this.markModified(structureType[type])
     return {
-        page,
-        pagesStructure: this.pagesStructure,
+        resource,
+        data,
     }
 }
 
-websiteSchema.methods.deletePage = async function(pageId) {
-    const descedants = findDescendants(this.pagesStructure, pageId).map(
-        item => item.id
-    )
-    descedants.push(pageId)
+websiteSchema.methods.deleteResource = async function(resourceId, type) {
+    const descedants = findDescendants(
+        this[structureType[type]],
+        resourceId
+    ).map(item => item.id)
+    descedants.push(resourceId)
 
     await Promise.all(
         descedants.map(async id => {
-            this.pagesStructure = this.pagesStructure.filter(
+            this[structureType[type]] = this[structureType[type]].filter(
                 item => item.id.toString() != id.toString()
             )
-            await Page.findByIdAndRemove(id)
+            await Resource.findByIdAndRemove(id)
         })
     )
 
-    if (!this.pagesStructure.some(item => item.isHomePage)) {
-        if (this.pagesStructure.length > 0) {
-            this.pagesStructure[0].isHomePage = true
+    if (type === 'page') {
+        if (!this.pagesStructure.some(item => item.isHomePage)) {
+            if (this.pagesStructure.length > 0) {
+                this.pagesStructure[0].isHomePage = true
+            }
         }
     }
-
     if (
-        descedants.some(page => page.toString() === this.currentPage.toString())
+        descedants.some(
+            resource => resource.toString() === resourceId.toString()
+        )
     ) {
-        if (this.pagesStructure.length > 0) {
-            this.currentPage = this.pagesStructure[0].id
+        if (this[structureType[type]].length > 0) {
+            this[currentType[type]] = this[structureType[type]][0].id
         } else {
-            this.currentPage = null
+            this[currentType[type]] = null
         }
     }
 
-    this.markModified('pagesStructure')
+    this.markModified(structureType[type])
+    return descedants
 }
 
 module.exports.Website = mongoose.model('Website', websiteSchema)
 
 module.exports.validateWebsite = website => {
     const schema = {
-        title: Joi.string()
+        name: Joi.string()
             .min(1)
-            .max(50),
-        header: Joi.string().min(1),
-        footer: Joi.string().min(1),
+            .max(50)
+            .optional(),
         domain: Joi.string()
             .min(1)
-            .max(255),
-        bufferElements: Joi.string(),
-        pagesStructure: Joi.array(),
-        currentPage: Joi.objectId(),
+            .max(255)
+            .optional(),
+    }
+
+    return Joi.validate(website, schema)
+}
+
+module.exports.validateWebsiteStructure = website => {
+    const schema = {
+        structurePatch: Joi.object(),
+        type: Joi.string(),
+    }
+
+    return Joi.validate(website, schema)
+}
+
+module.exports.validateCreateWebsite = website => {
+    const schema = {
+        duplicate: Joi.boolean().optional(),
+        currentWebsite: Joi.string().optional(),
     }
 
     return Joi.validate(website, schema)

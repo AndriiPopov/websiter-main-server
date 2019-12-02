@@ -4,31 +4,39 @@ const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
 const mongoose = require('mongoose')
 const { Website } = require('../models/website')
-const { Page } = require('../models/page')
+const { Resource } = require('./resource')
+const { System } = require('../models/system')
+const { generateWebsiteId } = require('./system')
 
 const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 255,
-        unique: true,
-        lowercase: true,
-        trim: true,
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 1024,
-    },
+    // email: {
+    //     type: String,
+    //     // required: true,
+    //     minlength: 5,
+    //     maxlength: 255,
+    //     unique: true,
+    //     lowercase: true,
+    //     trim: true,
+    // },
+    // password: {
+    //     type: String,
+    //     // required: true,
+    //     minlength: 5,
+    //     maxlength: 1024,
+    // },
     websites: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Website',
         },
     ],
-    currentWebsite: {
+    images: [],
+    storage: {
+        type: Number,
+        required: true,
+        min: 0,
+    },
+    loadedWebsite: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Websites',
     },
@@ -36,23 +44,39 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    barSizes: {},
+    userid: {
+        type: String,
+        required: true,
+    },
+    platformId: {
+        type: String,
+        required: true,
+    },
+    logoutAllDate: {
+        type: Date,
+        default: '',
+    },
 })
 
 userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign(
-        { _id: this._id, isAdmin: this.isAdmin },
-        config.get('jwtPrivateKey')
-    )
+    const token = jwt.sign({ _id: this._id }, process.env.jwtPrivateKey, {
+        expiresIn: '1d',
+    })
     return token
 }
 
 userSchema.methods.createWebsite = async function() {
+    const domainId = await generateWebsiteId()
     let website = new Website({
-        title: 'New website',
+        name: 'New website',
+        domain: 'new-website-' + domainId,
+        user: this,
     })
-    await website.createPage(website)
+
+    await website.createResource('', 'page')
     website = await website.save()
-    this.currentWebsite = website
+    this.loadedWebsite = website
     await this.save()
     return website
 }
@@ -66,16 +90,29 @@ userSchema.methods.deleteWebsite = async function(_id, res) {
 
     await Promise.all(
         website.pagesStructure.map(async item => {
-            await Page.findByIdAndRemove(item.id)
+            await Resource.findByIdAndRemove(item.id)
         })
     )
+
+    await Promise.all(
+        website.filesStructure.map(async item => {
+            await Resource.findByIdAndRemove(item.id)
+        })
+    )
+
+    await Promise.all(
+        website.pluginsStructure.map(async item => {
+            await Resource.findByIdAndRemove(item.id)
+        })
+    )
+
     await Website.findByIdAndRemove(_id)
     const index = this.websites.indexOf(_id)
     this.websites.splice(index, 1)
     if (this.websites.length > 0) {
-        this.currentWebsite = this.websites[0]
+        this.loadedWebsite = this.websites[0]
     } else {
-        this.currentWebsite = null
+        this.loadedWebsite = null
     }
 }
 
@@ -92,6 +129,37 @@ module.exports.validateUser = user => {
             .min(5)
             .max(255)
             .required(),
+    }
+
+    return Joi.validate(user, schema)
+}
+
+module.exports.validateToken = user => {
+    const schema = {
+        token: Joi.string().required(),
+    }
+
+    return Joi.validate(user, schema)
+}
+
+module.exports.validateUserData = user => {
+    const schema = {
+        storage: Joi.number()
+            .min(0)
+            .optional(),
+        images: Joi.array()
+            .items(
+                Joi.object().keys({
+                    url: Joi.string().required(),
+                    name: Joi.string().required(),
+                    label: Joi.string().required(),
+                    size: Joi.number()
+                        .min(0)
+                        .required(),
+                })
+            )
+            .optional(),
+        barSizes: Joi.object().optional(),
     }
 
     return Joi.validate(user, schema)

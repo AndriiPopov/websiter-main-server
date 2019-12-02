@@ -1,9 +1,15 @@
 const { User } = require('../models/user')
 const { Website } = require('../models/website')
-const { Page } = require('../models/page')
+const { Resource } = require('../models/resource')
 const { pure } = require('./testPopulateDBandReadStructure')
+const { structureType } = require('./resourceTypeIndex')
 
-module.exports.pageIsInWebsite = async (pageId, websiteId, res) => {
+module.exports.resourceIsInWebsite = async (
+    resourceId,
+    websiteId,
+    res,
+    type
+) => {
     const website = await Website.findById(websiteId)
     if (!website) {
         return res
@@ -11,23 +17,27 @@ module.exports.pageIsInWebsite = async (pageId, websiteId, res) => {
             .send('The website with the given ID was not found.')
     } else {
         if (
-            !website.pagesStructure.some(page => page.id.toString() === pageId)
+            !website[structureType[type]].some(
+                resource => resource.id.toString() === resourceId
+            )
         ) {
             return res
                 .status(404)
-                .send('The page with the given ID was not found.')
+                .send('The resource with the given ID was not found.')
         }
     }
 }
 
-module.exports.pageIsInUser = async (pageId, user, res) => {
-    const page = await Page.findById(pageId)
+module.exports.resourceIsInUser = async (resourceId, user, res) => {
+    const resource = await Resource.findById(resourceId)
     if (
         !user.websites.some(
-            website => website.toString() === page.website.toString()
+            website => website.toString() === resource.website.toString()
         )
     ) {
-        return res.status(404).send('The page with the given ID was not found.')
+        return res
+            .status(404)
+            .send('The resource with the given ID was not found.')
     }
 }
 
@@ -39,22 +49,17 @@ module.exports.websiteIsInUser = async (websiteId, user, res) => {
     }
 }
 
-module.exports.pagesStructureIsRight = async (
-    pagesStructure,
-    websiteId,
-    res
-) => {
+module.exports.structureIsWrong = async (structure, websiteId, res, type) => {
     const website = await Website.findById(websiteId)
-
-    const oldPagesStructure = pure(website.pagesStructure)
+    const oldStructure = pure(website[structureType[type]])
     if (
-        pagesStructure.some(
-            page =>
-                !oldPagesStructure.some(
-                    item => item.id.toString() === page.id.toString()
+        structure.some(
+            resource =>
+                !oldStructure.some(
+                    item => item.id.toString() === resource.id.toString()
                 )
         )
     ) {
-        return res.status(404).send('The pages in the pageStructure are wrong.')
+        return res.status(404).send('The resources in the structure are wrong.')
     }
 }
