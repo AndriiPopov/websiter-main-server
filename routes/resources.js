@@ -253,6 +253,14 @@ router.post('/live', async (req, res) => {
         structure: website.pagesStructure,
         pluginsStructure: website.pluginsStructure,
         filesStructure: website.filesStructure,
+        baseUrl:
+            req.hostname !== 'live.websiter.dev'
+                ? 'https://live.websiter.dev' +
+                  (req.originalUrl.split('/').length > 0
+                      ? req.originalUrl.split('/')[0]
+                      : '') +
+                  '/'
+                : false,
     })
 })
 

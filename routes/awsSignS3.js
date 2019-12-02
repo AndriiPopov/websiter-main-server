@@ -2,7 +2,6 @@ const express = require('express')
 const auth = require('../middleware/auth')
 const action = require('../middleware/action')
 const aws = require('aws-sdk')
-const config = require('config')
 
 const S3_BUCKET = process.env.S3_BUCKET
 const AWS_S3_KEY = process.env.AWSAccessKeyId

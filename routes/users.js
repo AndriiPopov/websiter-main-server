@@ -11,7 +11,6 @@ const {
 const express = require('express')
 const action = require('../middleware/action')
 const aws = require('aws-sdk')
-const config = require('config')
 const { pickResourcesObjects } = require('../utils/pickResourcesObjects')
 
 const S3_BUCKET = process.env.S3_BUCKET

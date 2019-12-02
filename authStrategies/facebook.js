@@ -1,6 +1,5 @@
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
-const config = require('config')
 const { User } = require('../models/user')
 const { Website } = require('../models/website')
 

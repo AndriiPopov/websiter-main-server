@@ -2,7 +2,6 @@ const express = require('express')
 const auth = require('../middleware/auth')
 const action = require('../middleware/action')
 const aws = require('aws-sdk')
-const config = require('config')
 const { User } = require('../models/user')
 
 const S3_BUCKET = process.env.S3_BUCKET

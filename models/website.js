@@ -22,6 +22,15 @@ const websiteSchema = new mongoose.Schema({
         unique: true,
         sparse: true,
     },
+    customDomain: {
+        type: String,
+        minlength: 1,
+        maxlength: 255,
+        lowercase: true,
+        trim: true,
+        unique: true,
+        sparse: true,
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
@@ -327,6 +336,10 @@ module.exports.validateWebsite = website => {
             .max(50)
             .optional(),
         domain: Joi.string()
+            .min(1)
+            .max(255)
+            .optional(),
+        customDomain: Joi.string()
             .min(1)
             .max(255)
             .optional(),

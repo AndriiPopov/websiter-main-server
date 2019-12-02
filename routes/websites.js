@@ -7,6 +7,7 @@ const { structureIsWrong } = require('../utils/checkDescedant')
 const { User } = require('../models/user')
 const { Resource } = require('../models/resource')
 const mongoose = require('mongoose')
+const axios = require('axios')
 const {
     Website,
     validateWebsite,
@@ -134,7 +135,7 @@ router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
             return res.send({ domainNotOk: true })
         }
 
-        const websiteWithThisUrl = await Website.findOne({
+        let websiteWithThisUrl = await Website.findOne({
             domain: req.body.domain,
         })
         if (websiteWithThisUrl) {
@@ -143,6 +144,29 @@ router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
             ) {
                 return res.send({ domainNotOk: true })
             }
+        }
+    }
+
+    if (req.body.customDomain) {
+        websiteWithThisUrl = await Website.findOne({
+            domain: req.body.customDomain,
+        })
+        if (websiteWithThisUrl) {
+            if (
+                websiteWithThisUrl._id.toString() !== req.params.id.toString()
+            ) {
+                return res.send({ customDomainNotOk: true })
+            }
+        }
+        const customDomainRegistered = await axios.post(
+            'https://router.websiter.dev/newdomain',
+            {
+                url: req.body.customDomain,
+            }
+        )
+
+        if (!customDomainRegistered.data.success) {
+            if (error) return res.status(400).send('Try again')
         }
     }
 
