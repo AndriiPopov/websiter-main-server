@@ -31,6 +31,11 @@ const websiteSchema = new mongoose.Schema({
         unique: true,
         sparse: true,
     },
+    customDomainApp: {
+        type: String,
+        minlength: 1,
+        maxlength: 255,
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',

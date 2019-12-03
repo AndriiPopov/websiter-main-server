@@ -7,7 +7,8 @@ const { structureIsWrong } = require('../utils/checkDescedant')
 const { User } = require('../models/user')
 const { Resource } = require('../models/resource')
 const mongoose = require('mongoose')
-const axios = require('axios')
+const Heroku = require('heroku-client')
+const heroku = new Heroku({ token: process.env.HEROKU_API_TOKEN })
 const {
     Website,
     validateWebsite,
@@ -126,6 +127,7 @@ router.post('/', [auth, action], async (req, res) => {
 router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
     const user = req.user
     const { error } = validateWebsite(req.body)
+    let website
     if (error) return res.status(400).send(error.details[0].message)
 
     if (await websiteIsInUser(req.params.id, req.user, res)) return
@@ -148,29 +150,71 @@ router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
     }
 
     if (req.body.customDomain) {
-        websiteWithThisUrl = await Website.findOne({
-            domain: req.body.customDomain,
-        })
-        if (websiteWithThisUrl) {
-            if (
-                websiteWithThisUrl._id.toString() !== req.params.id.toString()
-            ) {
+        if (req.body.customDomain !== '__delete__') {
+            if (req.body.customDomain === 'wildcard') {
                 return res.send({ customDomainNotOk: true })
             }
-        }
-        const customDomainRegistered = await axios.post(
-            'https://router.websiter.dev/newdomain',
-            {
-                url: req.body.customDomain,
+            const customDomain = req.body.customDomain.trim()
+            if (customDomain.indexOf('wildcard') > -1) {
+                return res.send({ customDomainNotOk: true })
             }
-        )
+            const pat = /(?:\w+\.)+\w+/gm
+            if (!pat.test(customDomain)) {
+                return res.send({ customDomainNotOk: true })
+            }
+            websiteWithThisUrl = await Website.findOne({
+                customDomain,
+            })
+            if (websiteWithThisUrl) {
+                if (
+                    websiteWithThisUrl._id.toString() !==
+                    req.params.id.toString()
+                ) {
+                    return res.send({ customDomainNotOk: true })
+                }
+            }
 
-        if (!customDomainRegistered.data.success) {
-            if (error) return res.status(400).send('Try again')
+            website = await Website.findById(req.params.id)
+            if (website) {
+                if (website.customDomain && website.customDomainApp) {
+                    await heroku.delete(
+                        '/apps/' +
+                            website.customDomainApp +
+                            '/domains/' +
+                            website.customDomain
+                    )
+                }
+            }
+
+            const customDomainRegistered = await heroku.post(
+                '/apps/' + process.env.HEROKU_CUSTOM_DOMAIN_APP + '/domains',
+                { body: { hostname: customDomain } }
+            )
+            req.body.customDomainApp = process.env.HEROKU_CUSTOM_DOMAIN_APP
+            req.body.customDomain = customDomain
+
+            if (!customDomainRegistered.data.success) {
+                if (error) return res.status(400).send('Try again')
+            }
+        } else {
+            // delete domain
+            website = await Website.findById(req.params.id)
+            if (website) {
+                if (website.customDomain && website.customDomainApp) {
+                    await heroku.delete(
+                        '/apps/' +
+                            website.customDomainApp +
+                            '/domains/' +
+                            website.customDomain
+                    )
+                }
+                req.body.customDomainApp = ''
+                req.body.customDomain = ''
+            }
         }
     }
 
-    const website = await Website.findByIdAndUpdate(req.params.id, {
+    website = await Website.findByIdAndUpdate(req.params.id, {
         ...req.body,
     })
 
