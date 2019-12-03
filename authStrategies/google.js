@@ -18,6 +18,8 @@ passport.use(
                 userid: profile.id,
                 platformId: 'google',
             })
+            console.log('user')
+            console.log(user)
 
             if (!user) {
                 user = new User({
@@ -29,9 +31,14 @@ passport.use(
                     platformId: 'google',
                     logoutAllDate: Date.now(),
                 })
+                console.log('user2')
+                console.log(user)
                 const website = await user.createWebsite(user)
+                console.log('website')
+                console.log(website)
                 user.websites.push(website._id)
                 await user.save()
+                console.log(user)
             }
             return done(null, user)
         }
