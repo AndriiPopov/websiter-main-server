@@ -18,6 +18,8 @@ module.exports = function(app) {
         app.use(cors())
         app.use(express.json())
         console.log(req.subdomains)
+        console.log(req.host)
+        console.log(req)
 
         if (req.subdomains.length === 1) {
             if (req.subdomains[0] === 'my') {
