@@ -2,7 +2,7 @@ const winston = require('winston')
 const mongoose = require('mongoose')
 
 module.exports = function() {
-    const db = process.env.db
+    const db = process.env.websiter_db
     mongoose.connect(db).then(() => {
         // User.update({}, { currentAction: 0 }, { multi: true }, function(
         //     err,
