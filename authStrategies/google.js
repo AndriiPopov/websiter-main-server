@@ -6,7 +6,7 @@ const { Website } = require('../models/website')
 const passportConfig = {
     clientID: process.env.GoogleClientID,
     clientSecret: process.env.GoogleClientSecret,
-    callbackURL: 'https://api.websiter.dev/api/auth/google/redirect',
+    callbackURL: 'https://my.websiter.dev/api/auth/google/redirect',
 }
 
 passport.use(

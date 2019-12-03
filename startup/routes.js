@@ -24,7 +24,7 @@ module.exports = function(app) {
                         path.join(__dirname, '/../client/build_editor')
                     )
                 )
-
+                app.use('/api/auth', auth)
                 app.get('*', (req, res) => {
                     res.sendFile(
                         path.join(

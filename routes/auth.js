@@ -84,6 +84,7 @@ router.get(
     '/google/redirect',
     passport.authenticate('google', { session: false }),
     async (req, res) => {
+        console.log('user is done, redirect')
         const token = req.user.generateAuthToken()
         res.cookie('auth_token', token).redirect(
             'https://my.websiter.dev/login'
