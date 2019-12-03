@@ -20,6 +20,7 @@ module.exports = function(app) {
         console.log(req.subdomains)
         console.log(req.host)
         console.log(req.hostname)
+        console.log(req.url)
         //console.log(req)
 
         if (req.subdomains.length === 1) {
