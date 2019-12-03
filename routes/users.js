@@ -24,7 +24,7 @@ router.get('/', auth, async (req, res) => {
     const websites = await Promise.all(
         user.websites.map(async id => {
             const website = await Website.findById(id)
-            return _.pick(website, ['_id', 'domain', 'name'])
+            return _.pick(website, ['_id', 'domain', 'customDomain', 'name'])
         })
     )
 

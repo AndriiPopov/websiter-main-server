@@ -40,6 +40,7 @@ router.post('/', [auth, action], async (req, res) => {
         website.name = 'New website'
         const domainId = await generateWebsiteId()
         website.domain = 'new-website-' + domainId
+        website.customDomain = ''
         website.currentPage = null
         website.currentFile = null
         website.currentPlugin = null
@@ -97,7 +98,7 @@ router.post('/', [auth, action], async (req, res) => {
     const websites = await Promise.all(
         user.websites.map(async id => {
             const website = await Website.findById(id)
-            return _.pick(website, ['_id', 'domain', 'name'])
+            return _.pick(website, ['_id', 'domain', 'customDomain', 'name'])
         })
     )
 
@@ -221,7 +222,7 @@ router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
     const websites = await Promise.all(
         user.websites.map(async id => {
             const website = await Website.findById(id)
-            return _.pick(website, ['_id', 'domain', 'name'])
+            return _.pick(website, ['_id', 'domain', 'customDomain', 'name'])
         })
     )
     res.send({
@@ -311,7 +312,12 @@ router.delete(
         const websites = await Promise.all(
             user.websites.map(async id => {
                 const website = await Website.findById(id)
-                return _.pick(website, ['_id', 'domain', 'name'])
+                return _.pick(website, [
+                    '_id',
+                    'domain',
+                    'customDomain',
+                    'name',
+                ])
             })
         )
 
