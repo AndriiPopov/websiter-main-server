@@ -33,6 +33,7 @@ module.exports = function(app) {
                     )
                 })
             } else if (req.subdomains[0] === 'api') {
+                console.log('in api')
                 app.use('/api/websites', websites)
                 app.use('/api/resources', resources)
                 app.use('/api/users', users)
