@@ -186,37 +186,32 @@ router.post('/live', async (req, res) => {
     const url = new Url(req.body.url)
 
     const hostParts = url.hostname.split('.')
-    let website
+    let website, pathname
 
     if (hostParts.length < 2)
         return res.status(400).send(error.details[0].message)
-    if (
-        hostParts[hostParts.length - 1] === 'com' &&
-        hostParts[hostParts.length - 2] === 'logision'
-    ) {
-        if (hostParts.length === 2) {
-            // our website
-        } else {
-            if (hostParts[hostParts.length - 3] === 'www') {
-                // our website
-            } else {
-                website = await Website.findOne({
-                    domain: hostParts[hostParts.length - 3],
-                })
-            }
+    if (url.hostname === 'live.websiter.dev') {
+        const pathArray = url.pathname.split('/')
+        if (pathArray.length === 0) {
+            return res.status(400).send('Wrong page')
         }
-    } else {
-        const dnsTxtRecords = await dns.resolveTxt(url.hostname)
-        const logisionRecord = dnsTxtRecords.find(record => {
-            if (record.length > 0) {
-                const fields = record[0].split('=')
-                if (fields.length > 1) {
-                    if (fields[0] === 'logision-verification-code') return true
-                }
-            }
+        website = await Website.findOne({
+            domain: pathArray[0],
         })
+        pathname = pathArray.shift().join('/')
+    } else {
+        // const dnsTxtRecords = await dns.resolveTxt(url.hostname)
+        // const logisionRecord = dnsTxtRecords.find(record => {
+        //     if (record.length > 0) {
+        //         const fields = record[0].split('=')
+        //         if (fields.length > 1) {
+        //             if (fields[0] === 'logision-verification-code') return true
+        //         }
+        //     }
+        // })
 
-        website = await Website.findById(logisionRecord.split('=')[1])
+        website = await Website.findOne({ customDomain: url.hostname })
+        pathname = url.pathname
     }
 
     if (!website) return res.status(400).send(error.details[0].message)
@@ -254,13 +249,9 @@ router.post('/live', async (req, res) => {
         pluginsStructure: website.pluginsStructure,
         filesStructure: website.filesStructure,
         baseUrl:
-            req.hostname !== 'live.websiter.dev'
-                ? 'https://live.websiter.dev' +
-                  (req.originalUrl.split('/').length > 0
-                      ? req.originalUrl.split('/')[0]
-                      : '') +
-                  '/'
-                : false,
+            rurl.hostname !== 'live.websiter.dev'
+                ? 'https://live.websiter.dev/' + website.domain + '/'
+                : '',
     })
 })
 
