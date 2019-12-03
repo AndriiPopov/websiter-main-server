@@ -17,6 +17,8 @@ module.exports = function(app) {
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         app.use(cors())
         app.use(express.json())
+        console.log(req.subdomains)
+
         if (req.subdomains.length === 1) {
             if (req.subdomains[0] === 'my') {
                 app.use(
