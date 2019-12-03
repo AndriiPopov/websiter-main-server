@@ -71,8 +71,6 @@ userSchema.methods.createWebsite = async function() {
         name: 'New website',
         domain: 'new-website-' + domainId,
         user: this,
-        customDomain: '',
-        customDomainApp: '',
     })
 
     await website.createResource('', 'page')

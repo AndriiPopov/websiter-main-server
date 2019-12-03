@@ -28,7 +28,6 @@ const websiteSchema = new mongoose.Schema({
         maxlength: 255,
         lowercase: true,
         trim: true,
-        unique: true,
         sparse: true,
     },
     customDomainApp: {
