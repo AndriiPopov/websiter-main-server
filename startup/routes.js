@@ -19,7 +19,13 @@ module.exports = function(app) {
         app.use(express.json())
         if (req.subdomains.length === 1) {
             if (req.subdomains[0] === 'my') {
-                app.get('*', (req, res) => {
+                app.use(
+                    express.static(
+                        path.join(__dirname, '/../client/build_editor')
+                    )
+                )
+
+                app.get('/', (req, res) => {
                     res.sendFile(
                         path.join(
                             __dirname + '/../client/build_editor/index.html'
@@ -34,6 +40,12 @@ module.exports = function(app) {
                 app.use('/api/awsImage', awsImage)
                 app.use('/api/auth', auth)
             } else if (req.subdomains[0] === 'live') {
+                app.use(
+                    express.static(
+                        path.join(__dirname, '/../client/build_client_live')
+                    )
+                )
+
                 app.get('*', (req, res) => {
                     res.sendFile(
                         path.join(

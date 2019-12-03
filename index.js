@@ -22,8 +22,8 @@ db()
 validation()
 prod(app)
 app.engine('html', require('ejs').renderFile)
-//app.use(express.static('./public'))
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('./public'))
+//app.use(express.static(__dirname + '/public'))
 
 const port = process.env.PORT
 const server = app.listen(port, () =>
