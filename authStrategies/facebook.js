@@ -6,7 +6,7 @@ const { Website } = require('../models/website')
 const passportConfig = {
     clientID: process.env.FBClientID,
     clientSecret: process.env.FBClientSecret,
-    callbackURL: 'http://localhost:5000/api/auth/facebook/redirect',
+    callbackURL: 'https://api.websiter.dev/api/auth/facebook/redirect',
 }
 
 passport.use(

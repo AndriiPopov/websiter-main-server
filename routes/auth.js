@@ -85,7 +85,9 @@ router.get(
     passport.authenticate('google', { session: false }),
     async (req, res) => {
         const token = req.user.generateAuthToken()
-        res.cookie('auth_token', token).redirect('http://localhost:3000/login')
+        res.cookie('auth_token', token).redirect(
+            'https://my.websiter.dev/login'
+        )
     }
 )
 
@@ -102,7 +104,9 @@ router.get(
     passport.authenticate('facebook', { session: false }),
     async (req, res) => {
         const token = req.user.generateAuthToken()
-        res.cookie('auth_token', token).redirect('http://localhost:3000/login')
+        res.cookie('auth_token', token).redirect(
+            'https://my.websiter.dev/login'
+        )
     }
 )
 
@@ -119,7 +123,9 @@ router.get(
     passport.authenticate('twitter', { session: false }),
     async (req, res) => {
         const token = req.user.generateAuthToken()
-        res.cookie('auth_token', token).redirect('http://localhost:3000/login')
+        res.cookie('auth_token', token).redirect(
+            'https://my.websiter.dev/login'
+        )
     }
 )
 
