@@ -17,7 +17,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
 
-        app.use(express.json())
+        //app.use(express.json())
         next()
     })
 
@@ -52,6 +52,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         next()
     })
 
+    myApp.use(express.json())
     myApp.use(express.static(path.join(__dirname, '/../client/build_editor')))
     myApp.use('/api/auth', auth)
     myApp.get('*', (req, res) => {
@@ -60,6 +61,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         )
     })
 
+    apiApp.use(express.json())
     apiApp.use('/api/websites', websites)
     apiApp.use('/api/resources', resources)
     apiApp.use('/api/users', users)
@@ -67,6 +69,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
     apiApp.use('/api/awsImage', awsImage)
     apiApp.use('/api/auth', auth)
 
+    liveApp.use(express.json())
     liveApp.use(
         express.static(path.join(__dirname, '/../client/build_client_live'))
     )
