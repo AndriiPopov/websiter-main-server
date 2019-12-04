@@ -11,7 +11,7 @@ const awsImage = require('../routes/awsImage')
 const error = require('../middleware/error')
 const vhost = require('vhost')
 
-module.exports = function(app) {
+module.exports = function(app, myApp, liveApp, apiApp) {
     app.all('/', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', 'X-Requested-With')
@@ -20,44 +20,32 @@ module.exports = function(app) {
         app.use(express.json())
         next()
     })
-    app.use(
-        vhost('my.websiter.dev', (req, res, next) => {
-            app.use(
-                express.static(path.join(__dirname, '/../client/build_editor'))
-            )
-            app.use('/api/auth', auth)
-            app.get('*', (req, res) => {
-                res.sendFile(
-                    path.join(__dirname + '/../client/build_editor/index.html')
-                )
-            })
-        })
-    )
-    app.use(
-        vhost('api.websiter.dev', (req, res, next) => {
-            app.use('/api/websites', websites)
-            app.use('/api/resources', resources)
-            app.use('/api/users', users)
-            app.use('/api/sign-s3', awsSignS3)
-            app.use('/api/awsImage', awsImage)
-            app.use('/api/auth', auth)
-        })
-    )
-    app.use(
-        vhost('live.websiter.dev', (req, res, next) => {
-            app.use(
-                express.static(
-                    path.join(__dirname, '/../client/build_client_live')
-                )
-            )
-            app.get('*', (req, res) => {
-                res.sendFile(
-                    path.join(
-                        __dirname + '/../client/build_client_live/index.html'
-                    )
-                )
-            })
-        })
-    )
+    app.use(vhost('my.websiter.dev', myApp))
+    app.use(vhost('api.websiter.dev', apiApp))
+    app.use(vhost('live.websiter.dev', liveApp))
     app.use(error)
+
+    myApp.use(express.static(path.join(__dirname, '/../client/build_editor')))
+    myApp.use('/api/auth', auth)
+    myApp.get('*', (req, res) => {
+        res.sendFile(
+            path.join(__dirname + '/../client/build_editor/index.html')
+        )
+    })
+
+    apiApp.use('/api/websites', websites)
+    apiApp.use('/api/resources', resources)
+    apiApp.use('/api/users', users)
+    apiApp.use('/api/sign-s3', awsSignS3)
+    apiApp.use('/api/awsImage', awsImage)
+    apiApp.use('/api/auth', auth)
+
+    liveApp.use(
+        express.static(path.join(__dirname, '/../client/build_client_live'))
+    )
+    liveApp.get('*', (req, res) => {
+        res.sendFile(
+            path.join(__dirname + '/../client/build_client_live/index.html')
+        )
+    })
 }
