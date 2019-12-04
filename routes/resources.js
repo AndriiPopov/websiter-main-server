@@ -222,8 +222,12 @@ router.post('/live', async (req, res) => {
 
     if (!website) return res.status(400).send('No website')
     let page
-    if (pathname === '')
-        page = website.pagesStructure.find(page => page.homepage === true)
+    if (pathname === '') {
+        const homepages = website.pagesStructure.find(
+            page => page.homepage === true
+        )
+        if (homepages.length > 0) page = homepages[0]
+    }
     if (!page)
         page = website.pagesStructure.find(page => '/' + page.url === pathname)
 
