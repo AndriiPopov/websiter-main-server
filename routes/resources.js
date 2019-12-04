@@ -223,16 +223,25 @@ router.post('/live', async (req, res) => {
     if (!website) return res.status(400).send('No website')
     let page
     if (pathname === '') {
-        const homepages = website.pagesStructure.find(
-            page => page.homepage === true
-        )
-        if (homepages.length > 0) page = homepages[0]
+        console.log('pathname is ampty')
+        console.log(website.pagesStructure)
+        page = website.pagesStructure.find(page => page.homepage === true)
+        console.log(page)
     }
-    if (!page)
-        page = website.pagesStructure.find(page => '/' + page.url === pathname)
+    if (!page) {
+        console.log('pathname is not or no home')
+        console.log(website.pagesStructure)
+
+        page = website.pagesStructure.find(page => page.url === pathname)
+        console.log(page)
+    }
+    console.log(page)
 
     if (!page) return res.status(400).send('No page')
+    console.log('here')
+
     if (page.isHidden) return res.status(400).send('No page')
+    console.log('here2')
 
     const whitelist = []
     const pickConnectedResources = resource => {
