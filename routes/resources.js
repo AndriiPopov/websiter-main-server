@@ -194,12 +194,13 @@ router.post('/live', async (req, res) => {
     console.log(url.pathname)
     if (url.hostname === 'live.websiter.dev') {
         const pathArray = url.pathname.split('/')
-        if (pathArray.length === 0) {
+        if (pathArray.length < 2) {
             return res.status(400).send('Wrong page')
         }
         website = await Website.findOne({
-            domain: pathArray[0],
+            domain: pathArray[1],
         })
+        pathArray.shift()
         pathArray.shift()
         pathname = pathArray.join('/')
     } else {
