@@ -37,6 +37,7 @@
         "passport-google-oauth": "^2.0.0",
         "passport-twitter": "^1.0.4",
         "url-parse": "^1.4.7",
+        "vhost": "^3.0.2",
         "winston": "^2.4.0",
         "winston-mongodb": "^3.0.0"
     },

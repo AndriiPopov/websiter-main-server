@@ -9,6 +9,7 @@ const auth = require('../routes/auth')
 const awsSignS3 = require('../routes/awsSignS3')
 const awsImage = require('../routes/awsImage')
 const error = require('../middleware/error')
+const vhost = require('vhost')
 
 module.exports = function(app) {
     app.all('/', function(req, res, next) {
@@ -17,54 +18,40 @@ module.exports = function(app) {
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         app.use(cors())
         app.use(express.json())
-        console.log(req.subdomains)
-        console.log(req.host)
-        console.log(req.hostname)
-        console.log(req.url)
-        //console.log(req)
-
-        if (req.subdomains.length === 1) {
-            if (req.subdomains[0] === 'my') {
-                app.use(
-                    express.static(
-                        path.join(__dirname, '/../client/build_editor')
+        if (req.vhost.hostname === 'my.websiter.dev') {
+            app.use(
+                express.static(path.join(__dirname, '/../client/build_editor'))
+            )
+            app.use('/api/auth', auth)
+            app.get('*', (req, res) => {
+                res.sendFile(
+                    path.join(__dirname + '/../client/build_editor/index.html')
+                )
+            })
+        } else if (req.vhost.hostname === 'api.websiter.dev') {
+            app.use('/api/websites', websites)
+            app.use('/api/resources', resources)
+            app.use('/api/users', users)
+            app.use('/api/sign-s3', awsSignS3)
+            app.use('/api/awsImage', awsImage)
+            app.use('/api/auth', auth)
+        } else if (req.vhost.hostname === 'live.websiter.dev') {
+            app.use(
+                express.static(
+                    path.join(__dirname, '/../client/build_client_live')
+                )
+            )
+            app.get('*', (req, res) => {
+                res.sendFile(
+                    path.join(
+                        __dirname + '/../client/build_client_live/index.html'
                     )
                 )
-                app.use('/api/auth', auth)
-                app.get('*', (req, res) => {
-                    res.sendFile(
-                        path.join(
-                            __dirname + '/../client/build_editor/index.html'
-                        )
-                    )
-                })
-            } else if (req.subdomains[0] === 'api') {
-                console.log('in api')
-                app.use('/api/websites', websites)
-                app.use('/api/resources', resources)
-                app.use('/api/users', users)
-                app.use('/api/sign-s3', awsSignS3)
-                app.use('/api/awsImage', awsImage)
-                app.use('/api/auth', auth)
-            } else if (req.subdomains[0] === 'live') {
-                app.use(
-                    express.static(
-                        path.join(__dirname, '/../client/build_client_live')
-                    )
-                )
-
-                app.get('*', (req, res) => {
-                    res.sendFile(
-                        path.join(
-                            __dirname +
-                                '/../client/build_client_live/index.html'
-                        )
-                    )
-                })
-            } else {
-                return res.status(400).send('No page found')
-            }
+            })
+        } else {
+            return res.status(400).send('No page found')
         }
+
         next()
     })
     app.use(error)
