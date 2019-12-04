@@ -16,16 +16,20 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', 'X-Requested-With')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
-        app.use(cors())
+
         app.use(express.json())
         next()
     })
+
+    app.use(vhost('my.websiter.dev', myApp))
+    app.use(vhost('api.websiter.dev', apiApp))
+    app.use(vhost('live.websiter.dev', liveApp))
 
     myApp.all('/', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', 'X-Requested-With')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
-        app.use(cors())
+        app.use(cors({ origin: 'https://my.websiter.dev' }))
         app.use(express.json())
         next()
     })
@@ -34,7 +38,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', 'X-Requested-With')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
-        app.use(cors())
+        app.use(cors({ origin: 'https://api.websiter.dev' }))
         app.use(express.json())
         next()
     })
@@ -43,14 +47,11 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', 'X-Requested-With')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
-        app.use(cors())
+        app.use(cors({ origin: 'https://live.websiter.dev' }))
         app.use(express.json())
         next()
     })
 
-    app.use(vhost('my.websiter.dev', myApp))
-    app.use(vhost('api.websiter.dev', apiApp))
-    app.use(vhost('live.websiter.dev', liveApp))
     app.use(error)
 
     myApp.use(express.static(path.join(__dirname, '/../client/build_editor')))
