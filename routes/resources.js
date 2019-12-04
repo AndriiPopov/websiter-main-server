@@ -182,8 +182,10 @@ router.put('/publish/:id', [auth, action], async (req, res) => {
 router.post('/live', async (req, res) => {
     const { error } = validateResourceLive(req.body)
     if (error) return res.status(400).send(error.details[0].message)
+    console.log(req.body.url)
 
     const url = new Url(req.body.url)
+    console.log(url)
 
     const hostParts = url.hostname.split('.')
     let website, pathname
@@ -214,13 +216,13 @@ router.post('/live', async (req, res) => {
         pathname = url.pathname
     }
 
-    if (!website) return res.status(400).send(error.details[0].message)
+    if (!website) return res.status(400).send('No website')
 
     let page = website.pagesStructure.find(page => '/' + page.url === pathname)
     if (!page) page = website.pagesStructure.find(page => page.homepage)
 
-    if (!page) return res.status(400).send(error.details[0].message)
-    if (page.isHidden) return res.status(400).send(error.details[0].message)
+    if (!page) return res.status(400).send('No page')
+    if (page.isHidden) return res.status(400).send('No page')
 
     const whitelist = []
     const pickConnectedResources = resource => {
