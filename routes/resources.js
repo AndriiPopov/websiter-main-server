@@ -271,7 +271,7 @@ router.post('/live', async (req, res) => {
         pluginsStructure: website.pluginsStructure,
         filesStructure: website.filesStructure,
         baseUrl:
-            rurl.hostname !== 'live.websiter.dev'
+            url.hostname !== 'live.websiter.dev'
                 ? 'https://live.websiter.dev/' + website.domain + '/'
                 : '',
     })
