@@ -200,7 +200,8 @@ router.post('/live', async (req, res) => {
         website = await Website.findOne({
             domain: pathArray[0],
         })
-        pathname = pathArray.shift().join('/')
+        pathArray.shift()
+        pathname = pathArray.join('/')
     } else {
         // const dnsTxtRecords = await dns.resolveTxt(url.hostname)
         // const logisionRecord = dnsTxtRecords.find(record => {
