@@ -20,6 +20,34 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         app.use(express.json())
         next()
     })
+
+    myApp.all('/', (req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        //res.header("Access-Control-Expose-Headers", "x-auth-token");
+        app.use(cors())
+        app.use(express.json())
+        next()
+    })
+
+    apiApp.all('/', (req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        //res.header("Access-Control-Expose-Headers", "x-auth-token");
+        app.use(cors())
+        app.use(express.json())
+        next()
+    })
+
+    liveApp.all('/', (req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        //res.header("Access-Control-Expose-Headers", "x-auth-token");
+        app.use(cors())
+        app.use(express.json())
+        next()
+    })
+
     app.use(vhost('my.websiter.dev', myApp))
     app.use(vhost('api.websiter.dev', apiApp))
     app.use(vhost('live.websiter.dev', liveApp))
