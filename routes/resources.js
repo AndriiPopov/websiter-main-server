@@ -188,8 +188,8 @@ router.post('/live', async (req, res) => {
     const hostParts = url.hostname.split('.')
     let website, pathname
 
-    if (hostParts.length < 2)
-        return res.status(400).send(error.details[0].message)
+    console.log(url.hostname)
+    console.log(url.pathname)
     if (url.hostname === 'live.websiter.dev') {
         const pathArray = url.pathname.split('/')
         if (pathArray.length === 0) {
