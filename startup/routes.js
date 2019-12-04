@@ -12,13 +12,16 @@ const error = require('../middleware/error')
 const vhost = require('vhost')
 
 module.exports = function(app) {
-    app.all('/', function(req, res, next) {
+    app.all('/', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', 'X-Requested-With')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         app.use(cors())
         app.use(express.json())
-        if (req.vhost.hostname === 'my.websiter.dev') {
+        next()
+    })
+    app.use(
+        vhost('my.websiter.dev', (req, res, next) => {
             app.use(
                 express.static(path.join(__dirname, '/../client/build_editor'))
             )
@@ -28,14 +31,20 @@ module.exports = function(app) {
                     path.join(__dirname + '/../client/build_editor/index.html')
                 )
             })
-        } else if (req.vhost.hostname === 'api.websiter.dev') {
+        })
+    )
+    app.use(
+        vhost('api.websiter.dev', (req, res, next) => {
             app.use('/api/websites', websites)
             app.use('/api/resources', resources)
             app.use('/api/users', users)
             app.use('/api/sign-s3', awsSignS3)
             app.use('/api/awsImage', awsImage)
             app.use('/api/auth', auth)
-        } else if (req.vhost.hostname === 'live.websiter.dev') {
+        })
+    )
+    app.use(
+        vhost('live.websiter.dev', (req, res, next) => {
             app.use(
                 express.static(
                     path.join(__dirname, '/../client/build_client_live')
@@ -48,11 +57,7 @@ module.exports = function(app) {
                     )
                 )
             })
-        } else {
-            return res.status(400).send('No page found')
-        }
-
-        next()
-    })
+        })
+    )
     app.use(error)
 }
