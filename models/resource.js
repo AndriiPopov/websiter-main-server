@@ -49,7 +49,7 @@ module.exports.validateResourcePublishRevert = data => {
 
 module.exports.validateResourceLive = data => {
     const schema = {
-        url: Joi.string(),
+        url: Joi.string().required(),
     }
     return Joi.validate(data, schema)
 }

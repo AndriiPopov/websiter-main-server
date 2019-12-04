@@ -182,7 +182,7 @@ router.put('/publish/:id', [auth, action], async (req, res) => {
 router.post('/live', async (req, res) => {
     const { error } = validateResourceLive(req.body)
     if (error) return res.status(400).send(error.details[0].message)
-    console.log(req.body.url)
+    console.log(req.body)
 
     const url = new Url(req.body.url)
     console.log(url)
