@@ -218,10 +218,14 @@ router.post('/live', async (req, res) => {
         pathname = url.pathname
     }
 
-    if (!website) return res.status(400).send('No website')
+    console.log(pathname)
 
-    let page = website.pagesStructure.find(page => '/' + page.url === pathname)
-    if (!page) page = website.pagesStructure.find(page => page.homepage)
+    if (!website) return res.status(400).send('No website')
+    let page
+    if (pathname === '')
+        page = website.pagesStructure.find(page => page.homepage === true)
+    if (!page)
+        page = website.pagesStructure.find(page => '/' + page.url === pathname)
 
     if (!page) return res.status(400).send('No page')
     if (page.isHidden) return res.status(400).send('No page')
