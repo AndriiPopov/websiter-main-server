@@ -263,15 +263,16 @@ router.post('/live', async (req, res) => {
             })
     }
     pickConnectedResources(page)
+    console.log(whitelist)
     const resourcesObjects = pickResourcesObjectsLive(website, whitelist)
     res.send({
         resourcesObjects,
         page: page.id,
-        structure: website.pagesStructure,
+        pagesStructure: website.pagesStructure,
         pluginsStructure: website.pluginsStructure,
         filesStructure: website.filesStructure,
         baseUrl:
-            url.hostname !== 'live.websiter.dev'
+            url.hostname === 'live.websiter.dev'
                 ? 'https://live.websiter.dev/' + website.domain + '/'
                 : '',
     })
