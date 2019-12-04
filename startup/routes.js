@@ -12,9 +12,9 @@ const error = require('../middleware/error')
 const vhost = require('vhost')
 
 module.exports = function(app, myApp, liveApp, apiApp) {
-    app.all('/', (req, res, next) => {
+    app.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
 
         app.use(express.json())
@@ -25,27 +25,27 @@ module.exports = function(app, myApp, liveApp, apiApp) {
     app.use(vhost('api.websiter.dev', apiApp))
     app.use(vhost('live.websiter.dev', liveApp))
 
-    myApp.all('/', (req, res, next) => {
+    myApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://my.websiter.dev' }))
         app.use(express.json())
         next()
     })
 
-    apiApp.all('/', (req, res, next) => {
+    apiApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://api.websiter.dev' }))
         app.use(express.json())
         next()
     })
 
-    liveApp.all('/', (req, res, next) => {
+    liveApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+        res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://live.websiter.dev' }))
         app.use(express.json())
