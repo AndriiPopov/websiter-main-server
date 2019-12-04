@@ -169,7 +169,7 @@ websiteSchema.methods.createResource = async function(
             let { nameAdd, urlAdd } = getNewNameAndUrl('New page', 'new-page')
             data.name = 'New page' + nameAdd
             data.url = 'new-page' + urlAdd
-            data.isHidden = true
+            data.hidden = true
             return { resource, data }
         }
         if (type === 'file' || type === 'plugin') {
@@ -213,7 +213,7 @@ websiteSchema.methods.createResource = async function(
             )
             data.name = currentResourceData.name + nameAdd
             data.url = currentResourceData.url + urlAdd
-            data.isHidden = true
+            data.hidden = true
             return { resource, data }
         }
         if (type === 'file' || type === 'plugin') {

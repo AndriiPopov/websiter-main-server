@@ -240,7 +240,7 @@ router.post('/live', async (req, res) => {
     if (!page) return res.status(400).send('No page')
     console.log('here')
 
-    if (page.isHidden) return res.status(400).send('No page')
+    if (page.hidden) return res.status(400).send('No page')
     console.log('here2')
 
     const whitelist = []
