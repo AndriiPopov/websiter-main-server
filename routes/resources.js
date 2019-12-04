@@ -246,20 +246,21 @@ router.post('/live', async (req, res) => {
     const whitelist = []
     const pickConnectedResources = resource => {
         whitelist.push(resource.id)
-        resource.connectedResources.forEach(id => {
-            let nextResource = website.pagesStructure.find(
-                item => item.id === id
-            )
-            if (!nextResource)
-                nextResource = website.pluginsStructure.find(
+        if (resource.connectedResources)
+            resource.connectedResources.forEach(id => {
+                let nextResource = website.pagesStructure.find(
                     item => item.id === id
                 )
-            if (!nextResource)
-                nextResource = website.filesStructure.find(
-                    item => item.id === id
-                )
-            if (nextResource) pickConnectedResources(nextResource)
-        })
+                if (!nextResource)
+                    nextResource = website.pluginsStructure.find(
+                        item => item.id === id
+                    )
+                if (!nextResource)
+                    nextResource = website.filesStructure.find(
+                        item => item.id === id
+                    )
+                if (nextResource) pickConnectedResources(nextResource)
+            })
     }
     pickConnectedResources(page)
     const resourcesObjects = pickResourcesObjectsLive(website, whitelist)
