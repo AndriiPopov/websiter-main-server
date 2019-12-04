@@ -30,7 +30,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://my.websiter.dev' }))
-        app.use(express.json())
+        // app.use(express.json())
         next()
     })
 
@@ -39,7 +39,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://api.websiter.dev' }))
-        app.use(express.json())
+        // app.use(express.json())
         next()
     })
 
@@ -48,11 +48,9 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Headers', '*')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://live.websiter.dev' }))
-        app.use(express.json())
+        // app.use(express.json())
         next()
     })
-
-    app.use(error)
 
     myApp.use(express.static(path.join(__dirname, '/../client/build_editor')))
     myApp.use('/api/auth', auth)
@@ -77,4 +75,5 @@ module.exports = function(app, myApp, liveApp, apiApp) {
             path.join(__dirname + '/../client/build_client_live/index.html')
         )
     })
+    app.use(error)
 }
