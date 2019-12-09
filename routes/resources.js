@@ -231,18 +231,17 @@ router.post('/live', async (req, res) => {
     const pickConnectedResources = resource => {
         whitelist.push(resource.id)
         if (resource.connectedResources)
-            resource.connectedResources.forEach(id => {
-                let nextResource = website.pagesStructure.find(
-                    item => item.id === id
-                )
-                if (!nextResource)
+            resource.connectedResources.forEach(connectedResource => {
+                let nextResource
+                if (connectedResource.type === 'plugin') {
                     nextResource = website.pluginsStructure.find(
-                        item => item.id === id
+                        item => item.name === connectedResource.name
                     )
-                if (!nextResource)
+                } else if (connectedResource.type === 'file') {
                     nextResource = website.filesStructure.find(
-                        item => item.id === id
+                        item => item.name === connectedResource.name
                     )
+                }
                 if (nextResource) pickConnectedResources(nextResource)
             })
     }
