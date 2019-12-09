@@ -39,19 +39,15 @@ module.exports.pickResourcesObjectsLive = async (website, whitelist) => {
         ...website.pluginsStructure,
     ]
 
-    if (website) {
-        await Promise.all(
-            resourcesArray.map(async item => {
-                if (whitelist.includes(item.id)) {
-                    const resourceObject = await Resource.findById(item.id)
-                    if (resourceObject) {
-                        result[item.id] = resourceObject.published
-                    }
+    await Promise.all(
+        resourcesArray.map(async item => {
+            if (whitelist.includes(item.id)) {
+                const resourceObject = await Resource.findById(item.id)
+                if (resourceObject) {
+                    result[item.id] = resourceObject.published
                 }
-            })
-        )
-    } else {
-        website = {}
-    }
+            }
+        })
+    )
     return result
 }

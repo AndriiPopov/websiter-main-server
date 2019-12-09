@@ -182,16 +182,12 @@ router.put('/publish/:id', [auth, action], async (req, res) => {
 router.post('/live', async (req, res) => {
     const { error } = validateResourceLive(req.body)
     if (error) return res.status(400).send(error.details[0].message)
-    console.log(req.body)
 
     const url = new Url(req.body.url)
-    console.log(url)
 
     const hostParts = url.hostname.split('.')
     let website, pathname
 
-    console.log(url.hostname)
-    console.log(url.pathname)
     if (url.hostname === 'live.websiter.dev') {
         const pathArray = url.pathname.split('/')
         if (pathArray.length < 2) {
@@ -218,30 +214,18 @@ router.post('/live', async (req, res) => {
         pathname = url.pathname
     }
 
-    console.log(pathname)
-
     if (!website) return res.status(400).send('No website')
     let page
     if (pathname === '') {
-        console.log('pathname is ampty')
-        console.log(website.pagesStructure)
         page = website.pagesStructure.find(page => page.homepage === true)
-        console.log(page)
     }
     if (!page) {
-        console.log('pathname is not or no home')
-        console.log(website.pagesStructure)
-
         page = website.pagesStructure.find(page => page.url === pathname)
-        console.log(page)
     }
-    console.log(page)
 
     if (!page) return res.status(400).send('No page')
-    console.log('here')
 
     if (page.hidden) return res.status(400).send('No page')
-    console.log('here2')
 
     const whitelist = []
     const pickConnectedResources = resource => {
@@ -264,7 +248,7 @@ router.post('/live', async (req, res) => {
     }
     pickConnectedResources(page)
     console.log(whitelist)
-    const resourcesObjects = pickResourcesObjectsLive(website, whitelist)
+    const resourcesObjects = await pickResourcesObjectsLive(website, whitelist)
     res.send({
         resourcesObjects,
         page: page.id,
