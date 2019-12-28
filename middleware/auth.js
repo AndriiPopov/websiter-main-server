@@ -40,7 +40,9 @@ module.exports = async (req, res, next) => {
                                             }
                                         }
                                         const newToken = req.user.generateAuthToken()
-                                        res.cookie('auth_token', token)
+                                        res.cookie('auth_token', token, {
+                                            expires: new Date(253402300000000),
+                                        })
                                         res.set({
                                             'Access-Control-Expose-Headers':
                                                 'x-auth-token',

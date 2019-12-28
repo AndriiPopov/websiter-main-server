@@ -9,6 +9,7 @@ const express = require('express')
 const router = express.Router()
 const { pickResourcesObjects } = require('../utils/pickResourcesObjects')
 const passport = require('passport')
+const { getWebsites } = require('../utils/lists')
 require('../authStrategies/google')
 require('../authStrategies/facebook')
 require('../authStrategies/twitter')
@@ -23,12 +24,7 @@ router.post('/', async (req, res) => {
     if (!validPassword)
         return res.status(400).send('Invalid email or password.')
 
-    const websites = await Promise.all(
-        user.websites.map(async id => {
-            const website = await Website.findById(id)
-            return _.pick(website, ['_id', 'domain', 'customDomain', 'name'])
-        })
-    )
+    const websites = await getWebsites(user)
 
     let website
     if (user.loadedWebsite) {
@@ -47,13 +43,20 @@ router.post('/', async (req, res) => {
     res.set({
         'x-auth-token': token,
     }).send({
-        ..._.pick(user, ['_id', 'email', 'storage', 'images', 'barSizes']),
+        ..._.pick(user, [
+            '_id',
+            'email',
+            'storage',
+            'images',
+            'barSizes',
+            'tooltipsOn',
+        ]),
         token: token,
         ..._.pick(website, [
             'pagesStructure',
-            'filesStructure',
             'pluginsStructure',
             'currentPage',
+            'currentPlugin',
         ]),
         websites,
         resourcesObjects,
@@ -74,6 +77,10 @@ router.post('/logoutall', [auth, action], async (req, res) => {
 // GOOGLE
 router.get(
     '/google/start',
+    function(req, res, next) {
+        res.cookie('rememberme', req.query.rememberme)
+        next()
+    },
     passport.authenticate('google', {
         session: false,
         scope: ['openid', 'profile', 'email'],
@@ -84,10 +91,13 @@ router.get(
     '/google/redirect',
     passport.authenticate('google', { session: false }),
     async (req, res) => {
-        console.log('user is done, redirect')
         const token = req.user.generateAuthToken()
-        res.cookie('auth_token', token).redirect(
-            'https://my.websiter.dev/login'
+        res.cookie('auth_token', token, {
+            expires: new Date(253402300000000),
+        }).redirect(
+            process.env.NODE_ENV === 'production'
+                ? 'https://my.websiter.dev/login'
+                : 'http://my.websiter.dev:3000/login'
         )
     }
 )
@@ -95,6 +105,10 @@ router.get(
 // FACEBOOK
 router.get(
     '/facebook/start',
+    function(req, res, next) {
+        res.cookie('rememberme', req.query.rememberme)
+        next()
+    },
     passport.authenticate('facebook', {
         session: false,
     })
@@ -105,8 +119,12 @@ router.get(
     passport.authenticate('facebook', { session: false }),
     async (req, res) => {
         const token = req.user.generateAuthToken()
-        res.cookie('auth_token', token).redirect(
-            'https://my.websiter.dev/login'
+        res.cookie('auth_token', token, {
+            expires: new Date(253402300000000),
+        }).redirect(
+            process.env.NODE_ENV === 'production'
+                ? 'https://my.websiter.dev/login'
+                : 'http://my.websiter.dev:3000/login'
         )
     }
 )
@@ -114,6 +132,10 @@ router.get(
 // TWITTER
 router.get(
     '/twitter/start',
+    function(req, res, next) {
+        res.cookie('rememberme', req.query.rememberme)
+        next()
+    },
     passport.authenticate('twitter', {
         session: false,
     })
@@ -124,8 +146,12 @@ router.get(
     passport.authenticate('twitter', { session: false }),
     async (req, res) => {
         const token = req.user.generateAuthToken()
-        res.cookie('auth_token', token).redirect(
-            'https://my.websiter.dev/login'
+        res.cookie('auth_token', token, {
+            expires: new Date(253402300000000),
+        }).redirect(
+            process.env.NODE_ENV === 'production'
+                ? 'https://my.websiter.dev/login'
+                : 'http://my.websiter.dev:3000/login'
         )
     }
 )

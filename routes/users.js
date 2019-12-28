@@ -1,6 +1,6 @@
 const auth = require('../middleware/auth')
 const bcrypt = require('bcryptjs')
-const _ = require('lodash')
+const { pick, omit } = require('lodash')
 const { Website } = require('../models/website')
 const {
     User,
@@ -12,6 +12,7 @@ const express = require('express')
 const action = require('../middleware/action')
 const aws = require('aws-sdk')
 const { pickResourcesObjects } = require('../utils/pickResourcesObjects')
+const { getWebsites } = require('../utils/lists')
 
 const S3_BUCKET = process.env.S3_BUCKET
 const AWS_S3_KEY = process.env.AWSAccessKeyId
@@ -21,12 +22,7 @@ const router = express.Router()
 
 router.get('/', auth, async (req, res) => {
     const user = req.user
-    const websites = await Promise.all(
-        user.websites.map(async id => {
-            const website = await Website.findById(id)
-            return _.pick(website, ['_id', 'domain', 'customDomain', 'name'])
-        })
-    )
+    const websites = await getWebsites(user)
 
     let website
     if (user.loadedWebsite) {
@@ -41,87 +37,43 @@ router.get('/', auth, async (req, res) => {
 
     const resourcesObjects = await pickResourcesObjects(website)
     res.send({
-        ..._.pick(user, [
+        ...pick(user, [
             'email',
             'storage',
             'images',
             'loadedWebsite',
             'currentAction',
             'barSizes',
+            'tooltipsOn',
         ]),
-        ..._.pick(website, [
+        ...pick(website, [
             'pagesStructure',
-            'filesStructure',
             'pluginsStructure',
             'currentPage',
+            'currentPlugin',
         ]),
         websites,
         resourcesObjects,
     })
 })
 
-// router.post('/', async (req, res) => {
-//     const { error } = validateUser(req.body)
-//     if (error) {
-//         return res.status(400).send(error.details[0].message)
-//     }
-
-//     let user = await User.findOne({ email: req.body.email })
-
-//     if (user) {
-//         return res.status(400).send('User already registered.')
-//     }
-
-//     user = new User({
-//         email: req.body.email,
-//         password: req.body.password,
-//         currentAction: 0,
-//         images: [],
-//         storage: 0,
-//         loadedWebsite: '',
-//     })
-
-//     const salt = await bcrypt.genSalt(10)
-//     user.password = await bcrypt.hash(user.password, salt)
-
-//     const website = await user.createWebsite(user)
-
-//     const resourcesObjects = await pickResourcesObjects(website)
-//     user.websites.push(website._id)
-//     const websites = await Promise.all(
-//         user.websites.map(async id => {
-//             const website = await Website.findById(id)
-//             return _.pick(website, ['_id', 'domain', 'name'])
-//         })
-//     )
-//     await user.save()
-//     req.user = user
-//     const token = user.generateAuthToken()
-//     res.set({
-//         'x-auth-token': token,
-//     }).send({
-//         ..._.pick(user, ['_id', 'email', 'storage', 'images', 'loadedWebsite']),
-//         token,
-//         ..._.pick(website, [
-//             'pagesStructure',
-//             'filesStructure',
-//             'pluginsStructure',
-//             'currentPage',
-//         ]),
-//         websites,
-//         resourcesObjects,
-//         currentAction: user.currentAction,
-//         barSizes: user.barSizes,
-//     })
-// })
-
 router.put('/', auth, async (req, res) => {
     const user = req.user
     const { error } = validateUserData(req.body)
     if (error) return res.status(400).send(error.details[0].message)
     await User.findByIdAndUpdate(user._id, {
-        ...req.body,
+        ...omit(req.body, ['currentPage', 'currentPlugin']),
     })
+
+    if (
+        (req.body.currentPage || req.body.currentPlugin) &&
+        user.loadedWebsite
+    ) {
+        await Website.findByIdAndUpdate(user.loadedWebsite, {
+            currentPage: req.body.currentPage,
+            currentPlugin: req.body.currentPlugin,
+        })
+    }
 
     res.send({
         status: true,

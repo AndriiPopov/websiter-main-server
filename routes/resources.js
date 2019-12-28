@@ -163,12 +163,16 @@ router.put('/publish/:id', [auth, action], async (req, res) => {
         return
     }
     if (!req.body.revert) {
-        resource.published = cloneDeep(resource.draft)
+        if (!isEmpty(resource.draft)) {
+            resource.published = { ...resource.draft }
+        }
     }
+
     resource.draft = {}
     resource.markModified('draft')
     resource.markModified('published')
     await resource.save()
+
     await Website.findByIdAndUpdate(resource.website, {
         [structureType[req.body.type]]: req.body.structure,
     })
@@ -210,7 +214,15 @@ router.post('/live', async (req, res) => {
         //     }
         // })
 
-        website = await Website.findOne({ customDomain: url.hostname })
+        website = await Website.findOne({
+            customDomain: url.hostname,
+            customDomainVerified: true,
+        })
+        if (!website) {
+            website = await Website.findOne({
+                customDomain: url.hostname,
+            })
+        }
         pathname = url.pathname
     }
 
@@ -237,26 +249,24 @@ router.post('/live', async (req, res) => {
                     nextResource = website.pluginsStructure.find(
                         item => item.name === connectedResource.name
                     )
-                } else if (connectedResource.type === 'file') {
-                    nextResource = website.filesStructure.find(
-                        item => item.name === connectedResource.name
-                    )
                 }
                 if (nextResource) pickConnectedResources(nextResource)
             })
     }
     pickConnectedResources(page)
-    console.log(whitelist)
     const resourcesObjects = await pickResourcesObjectsLive(website, whitelist)
     res.send({
         resourcesObjects,
         page: page.id,
         pagesStructure: website.pagesStructure,
         pluginsStructure: website.pluginsStructure,
-        filesStructure: website.filesStructure,
         baseUrl:
             url.hostname === 'live.websiter.dev'
-                ? 'https://live.websiter.dev/' + website.domain + '/'
+                ? (process.env.NODE_ENV === 'production'
+                      ? 'https://live.websiter.dev/'
+                      : 'http://live.websiter.dev:4000/') +
+                  website.domain +
+                  '/'
                 : '',
     })
 })

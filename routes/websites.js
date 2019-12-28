@@ -22,6 +22,8 @@ const diffpatcher = require('jsondiffpatch/dist/jsondiffpatch.umd.js').create({
 })
 const { websiteIsInUser } = require('../utils/checkDescedant')
 const { generateWebsiteId } = require('../models/system')
+const dns = require('dns')
+const { getWebsites } = require('../utils/lists')
 
 const router = express.Router()
 
@@ -41,14 +43,14 @@ router.post('/', [auth, action], async (req, res) => {
         const domainId = await generateWebsiteId()
         website.domain = 'new-website-' + domainId
         website.customDomain = ''
+        website.domainHidden = false
+        website.customDomainHidden = false
         website.currentPage = null
-        website.currentFile = null
         website.currentPlugin = null
         website = await website.save()
 
         const oldResourcesArray = [
             ...website.pagesStructure,
-            ...website.filesStructure,
             ...website.pluginsStructure,
         ]
         const newResourcesIds = []
@@ -75,16 +77,12 @@ router.post('/', [auth, action], async (req, res) => {
             })
         }
         updateStructure(website.pagesStructure)
-        updateStructure(website.filesStructure)
         updateStructure(website.pluginsStructure)
         website.markModified('pagesStructure')
-        website.markModified('filesStructure')
         website.markModified('pluginsStructure')
 
         if (website.pagesStructure.length > 0)
             website.currentPage = website.pagesStructure[0].id
-        if (website.filesStructure.length > 0)
-            website.currentFile = website.filesStructure[0].id
         if (website.pluginsStructure.length > 0)
             website.currentPlugin = website.pluginsStructure[0].id
 
@@ -95,12 +93,7 @@ router.post('/', [auth, action], async (req, res) => {
 
     user.websites.push(website._id)
 
-    const websites = await Promise.all(
-        user.websites.map(async id => {
-            const website = await Website.findById(id)
-            return _.pick(website, ['_id', 'domain', 'customDomain', 'name'])
-        })
-    )
+    const websites = await getWebsites(user)
 
     let websiteData = {}
     if (user.websites.length === 1) {
@@ -109,9 +102,9 @@ router.post('/', [auth, action], async (req, res) => {
         websiteData = {
             ..._.pick(website, [
                 'pagesStructure',
-                'filesStructure',
                 'pluginsStructure',
                 'currentPage',
+                'currentPlugin',
             ]),
             resourcesObjects,
         }
@@ -125,13 +118,65 @@ router.post('/', [auth, action], async (req, res) => {
     })
 })
 
+router.post(
+    '/verify/:id',
+    [auth, action, websiteUserDescedant],
+    async (req, res) => {
+        const user = req.user
+
+        const website = await Website.findById(req.params.id)
+        if (!website.customDomain || !website.verifyCode || !website.cname)
+            return res.status(400).send('No custom domain')
+
+        const records = await new Promise((resolve, reject) => {
+            dns.resolveAny(website.customDomain, (err, records) => {
+                if (err) reject(err)
+                resolve(records)
+            })
+        })
+
+        let cnameVerified, txtVerified
+        records.forEach(record => {
+            if (record.type === 'CNAME') {
+                if (record.value === website.cname) {
+                    cnameVerified = true
+                }
+            }
+            if (record.type === 'TXT') {
+                const txtArray = record.entries.split('=')
+                if (txtArray.length === 2) {
+                    if (txtArray[0] === 'websiter_verification') {
+                        if (txtArray[0] === website.verifyCode) {
+                            txtVerified = true
+                        }
+                    }
+                }
+            }
+        })
+
+        if (txtVerified && cnameVerified) {
+            await Website.updateMany(
+                { customDomain: website.customDomain },
+                { customDomainVerified: false }
+            )
+            website.customDomainVerified = true
+            await website.save()
+
+            const websites = await getWebsites(user)
+            res.send({
+                websites,
+            })
+        } else {
+            res.status(400).send('Wrong records')
+        }
+    }
+)
+
 router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
     const user = req.user
     const { error } = validateWebsite(req.body)
     let website
     if (error) return res.status(400).send(error.details[0].message)
-
-    if (await websiteIsInUser(req.params.id, req.user, res)) return
 
     if (req.body.domain) {
         if (req.body.domain.includes('new-website-')) {
@@ -191,11 +236,16 @@ router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
                 '/apps/' + process.env.HEROKU_CUSTOM_DOMAIN_APP + '/domains',
                 { body: { hostname: customDomain } }
             )
-            req.body.customDomainApp = process.env.HEROKU_CUSTOM_DOMAIN_APP
-            req.body.customDomain = customDomain
 
-            if (!customDomainRegistered.data.success) {
+            if (!customDomainRegistered) {
                 if (error) return res.status(400).send('Try again')
+            } else {
+                req.body.customDomainApp = process.env.HEROKU_CUSTOM_DOMAIN_APP
+                req.body.customDomain = customDomain
+                req.body.cname = customDomainRegistered.cname
+                req.body.customDomainVerified = false
+                req.body.verifyCode =
+                    req.params.id + Math.floor(Math.random() * 100000)
             }
         } else {
             // delete domain
@@ -219,12 +269,7 @@ router.put('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
         ...req.body,
     })
 
-    const websites = await Promise.all(
-        user.websites.map(async id => {
-            const website = await Website.findById(id)
-            return _.pick(website, ['_id', 'domain', 'customDomain', 'name'])
-        })
-    )
+    const websites = await getWebsites(user)
     res.send({
         websites,
     })
@@ -309,35 +354,25 @@ router.delete(
         await user.deleteWebsite(req.params.id, res)
         await user.save()
 
-        const websites = await Promise.all(
-            user.websites.map(async id => {
-                const website = await Website.findById(id)
-                return _.pick(website, [
-                    '_id',
-                    'domain',
-                    'customDomain',
-                    'name',
-                ])
-            })
-        )
+        const websites = await getWebsites(user)
 
         let website = await Website.findById(user.loadedWebsite)
         const resourcesObjects = await pickResourcesObjects(website)
         if (!website) {
             website = {
                 pagesStructure: [],
-                filesStructure: [],
                 pluginsStructure: [],
                 currentPage: '',
+                currentPlugin: '',
             }
         }
 
         res.send({
             ..._.pick(website, [
                 'pagesStructure',
-                'filesStructure',
                 'pluginsStructure',
                 'currentPage',
+                'currentPlugin',
             ]),
             websites,
             resourcesObjects,
@@ -368,9 +403,9 @@ router.get('/:id', [auth, action, websiteUserDescedant], async (req, res) => {
     res.send({
         ..._.pick(website, [
             'pagesStructure',
-            'filesStructure',
             'pluginsStructure',
             'currentPage',
+            'currentPlugin',
         ]),
         resourcesObjects,
         loadedWebsite: user.loadedWebsite,

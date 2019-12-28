@@ -6,20 +6,20 @@ const { Website } = require('../models/website')
 const passportConfig = {
     clientID: process.env.GoogleClientID,
     clientSecret: process.env.GoogleClientSecret,
-    callbackURL: 'https://my.websiter.dev/api/auth/google/redirect',
+    callbackURL:
+        process.env.NODE_ENV === 'production'
+            ? 'https://my.websiter.dev/api/auth/google/redirect'
+            : 'http://my.websiter.dev:5000/api/auth/google/redirect',
 }
 
 passport.use(
     new passportGoogle(
         passportConfig,
         async (request, accessToken, refreshToken, profile, done) => {
-            console.log('google')
             let user = await User.findOne({
                 userid: profile.id,
                 platformId: 'google',
             })
-            console.log('user')
-            console.log(user)
 
             if (!user) {
                 user = new User({
@@ -31,14 +31,9 @@ passport.use(
                     platformId: 'google',
                     logoutAllDate: Date.now(),
                 })
-                console.log('user2')
-                console.log(user)
                 const website = await user.createWebsite(user)
-                console.log('website')
-                console.log(website)
                 user.websites.push(website._id)
                 await user.save()
-                console.log(user)
             }
             return done(null, user)
         }

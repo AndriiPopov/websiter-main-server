@@ -22,6 +22,12 @@ const websiteSchema = new mongoose.Schema({
         unique: true,
         sparse: true,
     },
+    domainHidden: {
+        type: Boolean,
+    },
+    customDomainHidden: {
+        type: Boolean,
+    },
     customDomain: {
         type: String,
         minlength: 1,
@@ -35,14 +41,25 @@ const websiteSchema = new mongoose.Schema({
         minlength: 1,
         maxlength: 255,
     },
+    customDomainVerified: {
+        type: Boolean,
+    },
+    cname: {
+        type: String,
+    },
+    verifyCode: {
+        type: String,
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
     },
     pagesStructure: [],
-    filesStructure: [],
     pluginsStructure: [],
     currentPage: {
+        type: mongoose.Schema.Types.ObjectId,
+    },
+    currentPlugin: {
         type: mongoose.Schema.Types.ObjectId,
     },
 })
@@ -172,7 +189,7 @@ websiteSchema.methods.createResource = async function(
             data.hidden = true
             return { resource, data }
         }
-        if (type === 'file' || type === 'plugin') {
+        if (type === 'plugin') {
             const nameIndex = generateNewName('New ' + type, 'name', ' ', 0)
 
             let nameAdd = ''
@@ -216,7 +233,7 @@ websiteSchema.methods.createResource = async function(
             data.hidden = true
             return { resource, data }
         }
-        if (type === 'file' || type === 'plugin') {
+        if (type === 'plugin') {
             const nameIndex = generateNewName(
                 currentResourceData.name,
                 'name',
@@ -347,6 +364,8 @@ module.exports.validateWebsite = website => {
             .min(1)
             .max(255)
             .optional(),
+        domainHidden: Joi.boolean().optional(),
+        customDomainHidden: Joi.boolean().optional(),
     }
 
     return Joi.validate(website, schema)

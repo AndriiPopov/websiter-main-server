@@ -5,7 +5,6 @@ module.exports.pickResourcesObjects = async website => {
     const result = {}
     const resourcesArray = [
         ...website.pagesStructure,
-        ...website.filesStructure,
         ...website.pluginsStructure,
     ]
 
@@ -35,7 +34,6 @@ module.exports.pickResourcesObjectsLive = async (website, whitelist) => {
     const result = {}
     const resourcesArray = [
         ...website.pagesStructure,
-        ...website.filesStructure,
         ...website.pluginsStructure,
     ]
 

@@ -1073,3 +1073,414 @@
 {"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-02T13:21:45.632Z"}
 {"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-02T13:24:05.676Z"}
 {"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-02T13:24:05.752Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-10T17:21:58.618Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-10T17:22:21.684Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:38:26.377Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:39:22.096Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:46:15.215Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:46:45.557Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:47:50.608Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:52:48.844Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:53:00.646Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:59:35.345Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T08:59:40.241Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:00:13.358Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:00:19.617Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:00:23.180Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:00:27.525Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:04:27.116Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:04:27.189Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:09:46.697Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:09:46.716Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:09:53.005Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:09:53.027Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:15:53.336Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:15:53.354Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:15:56.206Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:15:56.229Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:16:25.233Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:16:25.258Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:18:23.904Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:18:23.928Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:19:35.080Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:19:35.097Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:21:21.555Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:21:21.574Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-11T09:47:54.303Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-11T09:47:54.320Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-12T11:41:17.972Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-12T11:41:18.195Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-12T11:42:01.804Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-12T11:42:01.842Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-12T11:45:13.651Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-12T11:45:13.688Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-12T11:45:20.246Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-12T11:45:20.273Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T08:38:04.421Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T08:38:04.490Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T08:52:28.943Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T08:52:28.966Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T08:52:46.281Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T08:52:46.300Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T08:53:18.135Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T08:53:18.171Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T08:55:58.873Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T08:55:58.891Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T08:56:47.231Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T08:56:47.255Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T09:00:19.474Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T09:00:19.496Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T09:33:26.720Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T09:33:26.739Z"}
+{"message":"Cannot set property 'rememberme' of undefined","stack":"TypeError: Cannot set property 'rememberme' of undefined\n    at router.get.passport.authenticate.session (/home/ndjs/websiter_main_server/routes/auth.js:85:32)\n    at /home/ndjs/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/ndjs/websiter_main_server/node_modules/express/lib/router/route.js:137:13)\n    at Route.dispatch (/home/ndjs/websiter_main_server/node_modules/express/lib/router/route.js:112:3)\n    at /home/ndjs/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at /home/ndjs/websiter_main_server/node_modules/express/lib/router/index.js:281:22\n    at Function.process_params (/home/ndjs/websiter_main_server/node_modules/express/lib/router/index.js:335:12)\n    at next (/home/ndjs/websiter_main_server/node_modules/express/lib/router/index.js:275:10)\n    at Function.handle (/home/ndjs/websiter_main_server/node_modules/express/lib/router/index.js:174:3)\n    at router (/home/ndjs/websiter_main_server/node_modules/express/lib/router/index.js:47:12)\n    at /home/ndjs/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/ndjs/websiter_main_server/node_modules/express/lib/router/index.js:317:13)\n    at /home/ndjs/websiter_main_server/node_modules/express/lib/router/index.js:284:7","level":"error","timestamp":"2019-12-13T09:33:50.542Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T09:37:04.705Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T09:37:04.759Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T09:37:10.362Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T09:37:10.380Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T09:41:51.845Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T09:41:51.864Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T09:53:45.291Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T09:53:45.327Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T09:56:47.596Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T09:56:47.626Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-13T10:02:50.950Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-13T10:02:50.968Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-17T12:30:14.997Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-17T12:30:15.062Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-19T13:16:13.644Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-19T13:16:13.875Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:20.748Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:25.840Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:26.636Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:27.970Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:28.206Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:28.516Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:34.045Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:36.332Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:36.588Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:36.851Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:37.186Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:37.419Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:37.643Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:37.911Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:38.501Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:43:39.080Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:44:50.816Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:44:53.241Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:44:54.000Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:44:54.263Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:44:54.509Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:45:11.386Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:45:12.122Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:45:12.365Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:45:15.328Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:45:16.011Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:45:29.184Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:46:55.555Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:46:58.750Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:46:59.826Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1161:11)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T21:47:00.654Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-20T22:24:25.724Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-20T22:24:25.797Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-20T22:26:04.495Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-20T22:26:04.561Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1146:30)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T22:34:15.628Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1146:30)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T22:34:17.989Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1146:30)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T22:35:49.482Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1146:30)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T22:35:50.020Z"}
+{"message":"Cannot read property 'splice' of undefined","stack":"TypeError: Cannot read property 'splice' of undefined\n    at nestedPatchFilter (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:1146:30)\n    at Pipe.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:272:9)\n    at Processor.process (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:233:18)\n    at DiffPatcher.patch (/home/ndjs/websiter/websiter_main_server/node_modules/jsondiffpatch/dist/jsondiffpatch.umd.js:3616:29)\n    at router.put (/home/ndjs/websiter/websiter_main_server/routes/resources.js:102:34)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","level":"error","timestamp":"2019-12-20T22:35:50.269Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-20T22:37:57.651Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-20T22:37:57.706Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-20T22:38:08.908Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-20T22:38:08.960Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-21T22:35:28.294Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-21T22:35:28.321Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-21T23:13:45.830Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-21T23:13:45.857Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-21T23:14:24.051Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-21T23:14:24.078Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-21T23:15:12.390Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-21T23:15:12.420Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-21T23:15:24.159Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-21T23:15:24.189Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T21:41:14.446Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T21:41:14.552Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T22:42:17.877Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T22:42:17.993Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T22:44:42.457Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T22:44:42.487Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T22:47:39.276Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T22:47:39.305Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T22:50:14.873Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T22:50:14.908Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T22:53:42.486Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T22:53:42.516Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T22:58:11.816Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T22:58:11.849Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:00:29.285Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:00:29.315Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:00:49.085Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:00:49.116Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:01:00.280Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:01:00.314Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:01:14.799Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:01:14.829Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:01:58.008Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:01:58.043Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:02:26.177Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:02:26.208Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:02:41.218Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:02:41.249Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:08:09.624Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:08:09.653Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:08:26.158Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:08:26.185Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:09:32.690Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:09:32.712Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:10:15.254Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:10:15.281Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:10:18.108Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:10:18.134Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:10:37.682Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:10:37.713Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:12:27.842Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:12:27.870Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-22T23:21:57.530Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-22T23:21:57.576Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-24T08:30:06.043Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-24T08:30:06.094Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T05:42:37.034Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T05:42:37.182Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T05:43:44.886Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T05:43:44.924Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T05:49:01.202Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T05:49:01.247Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T05:49:43.534Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T05:49:43.573Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T05:51:55.906Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T05:51:55.940Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T05:56:22.366Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T05:56:22.408Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T05:57:31.830Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T05:57:31.870Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T06:05:47.144Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T06:05:47.174Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T16:35:31.432Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T16:35:31.510Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T16:35:37.008Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T16:35:37.055Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T16:35:45.834Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T16:35:45.864Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T16:36:47.662Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T16:36:47.699Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T16:41:18.112Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T16:41:18.148Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T16:41:20.465Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T16:41:20.499Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:34:29.811Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:34:29.849Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:39:27.453Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:39:27.490Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:39:58.695Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:39:58.735Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:42:53.267Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:42:53.311Z"}
+{"message":"Expected response to be successful, got 401","stack":"Error: Expected response to be successful, got 401\n    at Request.handleFailure (/home/ndjs/websiter/websiter_main_server/node_modules/heroku-client/lib/request.js:255:11)\n    at concat.then (/home/ndjs/websiter/websiter_main_server/node_modules/heroku-client/lib/request.js:148:16)\n    at process._tickCallback (internal/process/next_tick.js:68:7)","statusCode":401,"body":{"id":"unauthorized","message":"Invalid credentials provided."},"level":"error","timestamp":"2019-12-25T17:43:16.617Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:43:47.403Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:43:47.445Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:45:32.637Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:45:32.670Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:45:46.193Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:45:46.223Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:47:01.961Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:47:01.997Z"}
+{"message":"The \"rrtype\" argument must be of type string. Received type undefined","stack":"TypeError [ERR_INVALID_ARG_TYPE]: The \"rrtype\" argument must be of type string. Received type undefined\n    at Resolver.resolve (dns.js:252:11)\n    at module.exports (/home/ndjs/websiter/websiter_main_server/middleware/auth.js:5:34)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:137:13)\n    at Route.dispatch (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:112:3)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:281:22\n    at Function.process_params (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:335:12)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:275:10)\n    at Function.handle (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:174:3)\n    at router (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:47:12)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:317:13)","level":"error","timestamp":"2019-12-25T17:47:07.042Z"}
+{"message":"The \"rrtype\" argument must be of type string. Received type undefined","stack":"TypeError [ERR_INVALID_ARG_TYPE]: The \"rrtype\" argument must be of type string. Received type undefined\n    at Resolver.resolve (dns.js:252:11)\n    at module.exports (/home/ndjs/websiter/websiter_main_server/middleware/auth.js:5:34)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:137:13)\n    at Route.dispatch (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:112:3)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:281:22\n    at Function.process_params (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:335:12)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:275:10)\n    at Function.handle (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:174:3)\n    at router (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:47:12)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:317:13)","level":"error","timestamp":"2019-12-25T17:47:07.565Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:48:40.150Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:48:40.187Z"}
+{"message":"The \"rrtype\" argument must be of type string. Received type object","stack":"TypeError [ERR_INVALID_ARG_TYPE]: The \"rrtype\" argument must be of type string. Received type object\n    at Resolver.resolve (dns.js:252:11)\n    at module.exports (/home/ndjs/websiter/websiter_main_server/middleware/auth.js:5:34)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:137:13)\n    at Route.dispatch (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:112:3)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:281:22\n    at Function.process_params (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:335:12)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:275:10)\n    at Function.handle (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:174:3)\n    at router (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:47:12)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:317:13)","level":"error","timestamp":"2019-12-25T17:48:44.740Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:48:55.623Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:48:55.655Z"}
+{"message":"The \"rrtype\" argument must be of type string. Received type object","stack":"TypeError [ERR_INVALID_ARG_TYPE]: The \"rrtype\" argument must be of type string. Received type object\n    at Resolver.resolve (dns.js:252:11)\n    at module.exports (/home/ndjs/websiter/websiter_main_server/middleware/auth.js:5:34)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:137:13)\n    at Route.dispatch (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:112:3)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:281:22\n    at Function.process_params (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:335:12)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:275:10)\n    at Function.handle (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:174:3)\n    at router (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:47:12)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:317:13)","level":"error","timestamp":"2019-12-25T17:48:58.460Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:50:00.301Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:50:00.339Z"}
+{"message":"Callback must be a function","stack":"TypeError [ERR_INVALID_CALLBACK]: Callback must be a function\n    at Resolver.queryA [as resolve4] (dns.js:211:13)\n    at module.exports (/home/ndjs/websiter/websiter_main_server/middleware/auth.js:5:34)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:137:13)\n    at Route.dispatch (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/route.js:112:3)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:281:22\n    at Function.process_params (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:335:12)\n    at next (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:275:10)\n    at Function.handle (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:174:3)\n    at router (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:47:12)\n    at /home/ndjs/websiter/websiter_main_server/node_modules/express-async-errors/index.js:17:17\n    at Layer.handle [as handle_request] (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/layer.js:95:5)\n    at trim_prefix (/home/ndjs/websiter/websiter_main_server/node_modules/express/lib/router/index.js:317:13)","level":"error","timestamp":"2019-12-25T17:50:04.304Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:53:49.436Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:53:49.475Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:54:29.391Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:54:29.424Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:54:33.747Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:54:33.776Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:55:05.751Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:55:05.788Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:55:16.393Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:55:16.427Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:55:50.006Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:55:50.044Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:57:01.356Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:57:01.397Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:57:52.510Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:57:52.543Z"}
+{"message":"queryA ENOTFOUND https://websiter.dev","stack":"Error: queryA ENOTFOUND https://websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"queryA","hostname":"https://websiter.dev","level":"error","timestamp":"2019-12-25T17:57:56.342Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:58:22.420Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:58:22.457Z"}
+{"message":"queryA ENOTFOUND https://websiter.dev","stack":"Error: queryA ENOTFOUND https://websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"queryA","hostname":"https://websiter.dev","level":"error","timestamp":"2019-12-25T17:58:24.757Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T17:58:37.045Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T17:58:37.083Z"}
+{"message":"queryA ENOTFOUND https://websiter.dev","stack":"Error: queryA ENOTFOUND https://websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"queryA","hostname":"https://websiter.dev","level":"error","timestamp":"2019-12-25T17:58:39.292Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:00:11.196Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:00:11.239Z"}
+{"message":"queryA ENOTFOUND https://www.websiter.dev","stack":"Error: queryA ENOTFOUND https://www.websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"queryA","hostname":"https://www.websiter.dev","level":"error","timestamp":"2019-12-25T18:00:14.747Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:02:10.170Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:02:10.212Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:02:42.095Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:02:42.134Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:03:28.138Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:03:28.170Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:03:47.476Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:03:47.516Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:17:56.871Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:17:56.911Z"}
+{"message":"queryCname ENODATA websiter.dev","stack":"Error: queryCname ENODATA websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENODATA","code":"ENODATA","syscall":"queryCname","hostname":"websiter.dev","level":"error","timestamp":"2019-12-25T18:18:03.257Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:19:32.190Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:19:32.224Z"}
+{"message":"queryCname ENODATA websiter.dev","stack":"Error: queryCname ENODATA websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENODATA","code":"ENODATA","syscall":"queryCname","hostname":"websiter.dev","level":"error","timestamp":"2019-12-25T18:19:37.116Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:19:50.225Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:19:50.265Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:20:18.547Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:20:18.584Z"}
+{"message":"queryCname ENODATA websiter.dev","stack":"Error: queryCname ENODATA websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENODATA","code":"ENODATA","syscall":"queryCname","hostname":"websiter.dev","level":"error","timestamp":"2019-12-25T18:20:23.534Z"}
+{"message":"queryCname ENODATA websiter.dev","stack":"Error: queryCname ENODATA websiter.dev\n    at QueryReqWrap.onresolve [as oncomplete] (dns.js:196:19)","errno":"ENODATA","code":"ENODATA","syscall":"queryCname","hostname":"websiter.dev","level":"error","timestamp":"2019-12-25T18:20:24.025Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:22:32.523Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:22:32.551Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:24:07.831Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:24:07.866Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T18:25:28.766Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T18:25:28.802Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:10:57.975Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:10:58.037Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:15:54.415Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:15:54.446Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:16:55.206Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:16:55.247Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:17:07.750Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:17:07.786Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:17:23.813Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:17:23.869Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:21:36.694Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:21:36.732Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:23:00.339Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:23:00.385Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:25:10.754Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:25:10.788Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:27:37.528Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:27:37.568Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:27:43.490Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:27:43.519Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:29:42.115Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:29:42.147Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:29:44.547Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:29:44.595Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:29:57.583Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:29:57.616Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:29:59.287Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:29:59.326Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:30:06.091Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:30:06.129Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:31:56.322Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:31:56.356Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:32:06.739Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:32:06.799Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:33:40.967Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:33:41.000Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:33:47.791Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:33:47.826Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:33:54.046Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:33:54.082Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:34:17.802Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:34:17.831Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:34:31.426Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:34:31.466Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:34:37.435Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:34:37.467Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:35:33.513Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:35:33.552Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:35:51.692Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:35:51.742Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:35:57.182Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:35:57.211Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:36:15.127Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:36:15.162Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:36:20.050Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:36:20.086Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:39:31.377Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:39:31.412Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:39:34.748Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:39:34.784Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:39:35.779Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:39:35.816Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:40:31.874Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:40:31.912Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:40:35.093Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:40:35.129Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:40:54.075Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:40:54.109Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:41:54.657Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:41:54.687Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:42:03.563Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:42:03.602Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:42:05.471Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:42:05.505Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:42:12.002Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:42:12.031Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:42:13.613Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:42:13.643Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:42:20.647Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:42:20.680Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:44:05.776Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:44:05.839Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:45:17.027Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:45:17.063Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:46:12.303Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:46:12.342Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:46:36.110Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:46:36.145Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:47:36.037Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:47:36.072Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T19:47:59.253Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T19:47:59.289Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:05:05.886Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:05:05.996Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:06:05.551Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:06:05.589Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:09:11.747Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:09:11.789Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:10:33.407Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:10:33.513Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:11:09.965Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:11:09.999Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:11:47.894Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:11:47.938Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:11:49.109Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:11:49.148Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:18:11.047Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:18:11.083Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:18:50.954Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:18:50.988Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:18:58.802Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:18:58.833Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:19:13.589Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:19:13.626Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:33:00.536Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:33:00.575Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:33:27.181Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:33:27.215Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:41:36.823Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:41:36.856Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-25T20:41:44.964Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-25T20:41:44.998Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-26T17:25:46.896Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-27T11:30:10.302Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-27T11:30:10.375Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-27T13:02:15.060Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-27T13:02:15.135Z"}

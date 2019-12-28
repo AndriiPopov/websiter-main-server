@@ -6,23 +6,10 @@ const { Website } = require('../models/website')
 const { Resource } = require('./resource')
 const { System } = require('../models/system')
 const { generateWebsiteId } = require('./system')
+const Heroku = require('heroku-client')
+const heroku = new Heroku({ token: process.env.HEROKU_API_TOKEN })
 
 const userSchema = new mongoose.Schema({
-    // email: {
-    //     type: String,
-    //     // required: true,
-    //     minlength: 5,
-    //     maxlength: 255,
-    //     unique: true,
-    //     lowercase: true,
-    //     trim: true,
-    // },
-    // password: {
-    //     type: String,
-    //     // required: true,
-    //     minlength: 5,
-    //     maxlength: 1024,
-    // },
     websites: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -44,6 +31,9 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     barSizes: {},
+    tooltipsOn: {
+        type: Boolean,
+    },
     userid: {
         type: String,
         required: true,
@@ -87,14 +77,17 @@ userSchema.methods.deleteWebsite = async function(_id, res) {
             .status(404)
             .send('The website with the given ID was not found.')
 
-    await Promise.all(
-        website.pagesStructure.map(async item => {
-            await Resource.findByIdAndRemove(item.id)
-        })
-    )
+    if (website.customDomain && website.customDomainApp) {
+        await heroku.delete(
+            '/apps/' +
+                website.customDomainApp +
+                '/domains/' +
+                website.customDomain
+        )
+    }
 
     await Promise.all(
-        website.filesStructure.map(async item => {
+        website.pagesStructure.map(async item => {
             await Resource.findByIdAndRemove(item.id)
         })
     )
@@ -159,6 +152,10 @@ module.exports.validateUserData = user => {
             )
             .optional(),
         barSizes: Joi.object().optional(),
+        tooltipsOn: Joi.boolean().optional(),
+        currentPage: Joi.string().optional(),
+        currentPlugin: Joi.string().optional(),
+        loadedWebsite: Joi.string().optional(),
     }
 
     return Joi.validate(user, schema)
