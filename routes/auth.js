@@ -14,56 +14,56 @@ require('../authStrategies/google')
 require('../authStrategies/facebook')
 require('../authStrategies/twitter')
 
-router.post('/', async (req, res) => {
-    const { error } = validateUser(req.body)
-    if (error) return res.status(400).send(error.details[0].message)
-    let user = await User.findOne({ email: req.body.email })
-    if (!user) return res.status(400).send('Invalid email or password.')
+// router.post('/', async (req, res) => {
+//     const { error } = validateUser(req.body)
+//     if (error) return res.status(400).send(error.details[0].message)
+//     let user = await User.findOne({ email: req.body.email })
+//     if (!user) return res.status(400).send('Invalid email or password.')
 
-    const validPassword = await bcrypt.compare(req.body.password, user.password)
-    if (!validPassword)
-        return res.status(400).send('Invalid email or password.')
+//     const validPassword = await bcrypt.compare(req.body.password, user.password)
+//     if (!validPassword)
+//         return res.status(400).send('Invalid email or password.')
 
-    const websites = await getWebsites(user)
+//     const websites = await getWebsites(user)
 
-    let website
-    if (user.loadedWebsite) {
-        website = await Website.findById(user.loadedWebsite)
-    }
+//     let website
+//     if (user.loadedWebsite) {
+//         website = await Website.findById(user.loadedWebsite)
+//     }
 
-    if (!website && user.websites.length > 0) {
-        website = await Website.findById(user.websites[0])
-        user.loadedWebsite = website
-        await user.save()
-    }
+//     if (!website && user.websites.length > 0) {
+//         website = await Website.findById(user.websites[0])
+//         user.loadedWebsite = website
+//         await user.save()
+//     }
 
-    const resourcesObjects = await pickResourcesObjects(website)
+//     const resourcesObjects = await pickResourcesObjects(website)
 
-    const token = user.generateAuthToken()
-    res.set({
-        'x-auth-token': token,
-    }).send({
-        ..._.pick(user, [
-            '_id',
-            'email',
-            'storage',
-            'images',
-            'barSizes',
-            'tooltipsOn',
-        ]),
-        token: token,
-        ..._.pick(website, [
-            'pagesStructure',
-            'pluginsStructure',
-            'currentPage',
-            'currentPlugin',
-        ]),
-        websites,
-        resourcesObjects,
-        loadedWebsite: user.loadedWebsite,
-        currentAction: user.currentAction,
-    })
-})
+//     const token = user.generateAuthToken()
+//     res.set({
+//         'x-auth-token': token,
+//     }).send({
+//         ..._.pick(user, [
+//             '_id',
+//             'email',
+//             'storage',
+//             'images',
+//             'barSizes',
+//             'tooltipsOn',
+//         ]),
+//         token: token,
+//         ..._.pick(website, [
+//             'pagesStructure',
+//             'pluginsStructure',
+//             'currentPage',
+//             'currentPlugin',
+//         ]),
+//         websites,
+//         resourcesObjects,
+//         loadedWebsite: user.loadedWebsite,
+//         currentAction: user.currentAction,
+//     })
+// })
 
 router.post('/logoutall', [auth, action], async (req, res) => {
     req.user.logoutAllDate = Date.now()

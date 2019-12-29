@@ -20,7 +20,7 @@ const AWS_S3_SECRET = process.env.AWSSecretKey
 
 const router = express.Router()
 
-router.get('/', auth, async (req, res) => {
+router.get('/', [auth, action], async (req, res) => {
     const user = req.user
     const websites = await getWebsites(user)
 
@@ -42,7 +42,7 @@ router.get('/', auth, async (req, res) => {
             'storage',
             'images',
             'loadedWebsite',
-            'currentAction',
+            // 'currentAction',
             'barSizes',
             'tooltipsOn',
         ]),
@@ -80,7 +80,7 @@ router.put('/', auth, async (req, res) => {
     })
 })
 
-router.delete('/', auth, action, async (req, res) => {
+router.delete('/', [auth, action], async (req, res) => {
     const user = req.user
 
     // Delete all objects with the user prefix on AWS S3

@@ -3,7 +3,6 @@ const { User } = require('../models/user')
 
 module.exports = async (req, res, next) => {
     const token = req.header('x-auth-token')
-    const currentAction = req.header('Current-Action')
     if (!token) return res.status(412).send('Access denied. No token provided.')
     await jwt.verify(
         token,

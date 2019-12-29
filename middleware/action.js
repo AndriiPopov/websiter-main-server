@@ -3,15 +3,15 @@ const { User } = require('../models/user')
 
 module.exports = async (req, res, next) => {
     const currentAction = req.header('currentAction')
-    try {
-        if (parseInt(currentAction) !== req.user.currentAction) {
-            res.status(412).send('Wrong action count')
-        } else {
-            req.user.currentAction = req.user.currentAction + 1
-            await req.user.save()
-            next()
-        }
-    } catch (ex) {
-        res.status(412).send('Wrong action count')
+    if (parseInt(currentAction) !== req.user.currentAction) {
+        const newCurrentAction = req.user.currentAction + 1
+        req.user.currentAction = newCurrentAction
+        await user.save()
+        res.send({
+            currentAction: newCurrentAction,
+            reload: true,
+        })
+    } else {
+        next()
     }
 }
