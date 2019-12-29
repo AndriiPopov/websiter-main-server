@@ -6,7 +6,7 @@ module.exports = async (req, res, next) => {
     if (parseInt(currentAction) !== req.user.currentAction) {
         const newCurrentAction = req.user.currentAction + 1
         req.user.currentAction = newCurrentAction
-        await user.save()
+        await req.user.save()
         res.send({
             currentAction: newCurrentAction,
             reload: true,
