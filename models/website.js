@@ -283,6 +283,12 @@ websiteSchema.methods.createResource = async function(
                 this[structureType[type]],
                 currentResourceObject.id
             )
+            if (duplicate) {
+                data.connectedResources = [
+                    ...currentResourceObject.connectedResources,
+                ]
+            }
+
             newResourceStructureElement = {
                 id: resource._id.toString(),
                 path: [...currentResourceObject.path],
