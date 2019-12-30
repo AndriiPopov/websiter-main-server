@@ -1494,3 +1494,5 @@
 {"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-29T22:21:18.304Z"}
 {"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-29T22:21:42.682Z"}
 {"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-29T22:21:42.715Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2019-12-30T12:27:20.394Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2019-12-30T12:27:20.632Z"}
