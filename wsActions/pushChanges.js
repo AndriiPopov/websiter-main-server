@@ -28,6 +28,7 @@ module.exports.pushChanges = wss => {
             pushChange(data, 'user')
         )
 
+        console.log(1)
         const pushChange = (data, type) => {
             try {
                 if (
