@@ -1,4 +1,3 @@
-const redis = require('redis')
 const { RateLimiterMemory } = require('rate-limiter-flexible')
 
 const rateLimiter = new RateLimiterMemory({
