@@ -61,7 +61,7 @@ mongoose.connect(db).then(async () => {
     const port = process.env.PORT
     const server = await app.listen(port, () => {
         winston.info(`Listening on port ${port}...`)
-        const wss = new WebSocket.Server({ server })
-        connectSocket(wss)
     })
+    const wss = new WebSocket.Server({ server })
+    connectSocket(wss)
 })
