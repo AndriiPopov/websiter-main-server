@@ -33,7 +33,7 @@ const connectSocket = server => {
     try {
         const wss = new Server({ server })
         console.log('start push')
-        pushChanges(wss)
+        setTimeout(() => pushChanges(wss), 5000)
         console.log('stop push')
 
         wss.on('connection', function connection(ws) {
