@@ -1,4 +1,3 @@
-const WebSocket = require('ws')
 const {
     addResource,
     updateResource,
@@ -29,10 +28,8 @@ const rateLimiter = new RateLimiterMemory({
     duration: 1,
 })
 
-const connectSocket = server => {
+const connectSocket = wss => {
     try {
-        const wss = new WebSocket.Server({ server })
-
         pushChanges(wss)
 
         wss.on('connection', function connection(ws) {

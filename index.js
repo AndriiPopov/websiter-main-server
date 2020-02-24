@@ -11,6 +11,7 @@ const sslRedirect = require('heroku-ssl-redirect')
 const connectSocket = require('./startup/connectSocket')
 const rateLimiterMiddleware = require('./middleware/rateLimiter')
 const mongoose = require('mongoose')
+const WebSocket = require('ws')
 
 const app = express()
 app.use(rateLimiterMiddleware)
@@ -60,7 +61,7 @@ mongoose.connect(db).then(async () => {
     const port = process.env.PORT
     const server = await app.listen(port, () => {
         winston.info(`Listening on port ${port}...`)
-        module.exports = server
+        const wss = new WebSocket.Server({ server })
+        connectSocket(wss)
     })
-    connectSocket(server)
 })
