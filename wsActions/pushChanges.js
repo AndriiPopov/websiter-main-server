@@ -28,7 +28,6 @@ module.exports.pushChanges = wss => {
             pushChange(data, 'user')
         )
 
-        console.log(1)
         const pushChange = (data, type) => {
             try {
                 if (
@@ -46,13 +45,13 @@ module.exports.pushChanges = wss => {
                                         data.documentKey._id.toString()
                                     )
                                 ) {
-                                    console.log('update')
-                                    console.log({
-                                        messageCode: data.operationType + type,
-                                        type,
-                                        resourceId: data.documentKey._id,
-                                        resource: data.fullDocument,
-                                    })
+                                    // console.log('update')
+                                    // console.log({
+                                    //     messageCode: data.operationType + type,
+                                    //     type,
+                                    //     resourceId: data.documentKey._id,
+                                    //     resource: data.fullDocument,
+                                    // })
                                     client.send(
                                         JSON.stringify({
                                             messageCode:

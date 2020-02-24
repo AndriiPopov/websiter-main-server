@@ -62,5 +62,5 @@ mongoose.connect(db).then(async () => {
         winston.info(`Listening on port ${port}...`)
     )
     module.exports = server
-    connectSocket()
+    connectSocket(server)
 })
