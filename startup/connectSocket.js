@@ -22,14 +22,16 @@ const { requestResource } = require('../wsActions/requestResource')
 const { saveUserSettings } = require('../wsActions/saveUserSettings')
 const { RateLimiterMemory } = require('rate-limiter-flexible')
 const { sendError } = require('../wsActions/error')
+const { Server } = require('ws')
 
 const rateLimiter = new RateLimiterMemory({
     points: 4,
     duration: 1,
 })
 
-const connectSocket = wss => {
+const connectSocket = server => {
     try {
+        const wss = new Server({ server })
         console.log(wss)
         // pushChanges(wss)
 

@@ -6,28 +6,7 @@ const { sendError } = require('./error')
 
 module.exports.pushChanges = wss => {
     try {
-        const pipe = [
-            {
-                $project: {
-                    'fullDocument.__patch__': 1,
-                    'fullDocument.__v': 1,
-                    'fullDocument._id': 1,
-                    documentKey: 1,
-                    operationType: 1,
-                },
-            },
-        ]
-        Resource.watch(pipe, {
-            fullDocument: 'updateLookup',
-        }).on('change', data => pushChange(data, 'resource'))
-        Website.watch(pipe, { fullDocument: 'updateLookup' }).on(
-            'change',
-            data => pushChange(data, 'website')
-        )
-        User.watch(pipe, { fullDocument: 'updateLookup' }).on('change', data =>
-            pushChange(data, 'user')
-        )
-
+        console.log('pash')
         const pushChange = (data, type) => {
             try {
                 if (
@@ -77,5 +56,27 @@ module.exports.pushChanges = wss => {
                 }
             } catch (ex) {}
         }
+
+        const pipe = [
+            {
+                $project: {
+                    'fullDocument.__patch__': 1,
+                    'fullDocument.__v': 1,
+                    'fullDocument._id': 1,
+                    documentKey: 1,
+                    operationType: 1,
+                },
+            },
+        ]
+        Resource.watch(pipe, {
+            fullDocument: 'updateLookup',
+        }).on('change', data => pushChange(data, 'resource'))
+        Website.watch(pipe, { fullDocument: 'updateLookup' }).on(
+            'change',
+            data => pushChange(data, 'website')
+        )
+        User.watch(pipe, { fullDocument: 'updateLookup' }).on('change', data =>
+            pushChange(data, 'user')
+        )
     } catch (ex) {}
 }
