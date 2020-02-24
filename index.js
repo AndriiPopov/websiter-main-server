@@ -28,7 +28,7 @@ aws.config.region = 'us-east-2'
 logging()
 routes(app, myApp, liveApp, apiApp)
 validation()
-db()
+// db()
 
 // prod(app)
 // prod(liveApp)
