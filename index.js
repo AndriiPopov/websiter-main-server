@@ -12,16 +12,16 @@ const connectSocket = require('./startup/connectSocket')
 const rateLimiterMiddleware = require('./middleware/rateLimiter')
 
 const app = express()
-// app.use(rateLimiterMiddleware)
-// app.use(sslRedirect())
+app.use(rateLimiterMiddleware)
+app.use(sslRedirect())
 
-// const apiApp = express()
-// apiApp.use(passport.initialize())
+const apiApp = express()
+apiApp.use(passport.initialize())
 
-// const liveApp = express()
+const liveApp = express()
 
-// const myApp = express()
-// myApp.use(passport.initialize())
+const myApp = express()
+myApp.use(passport.initialize())
 
 // aws.config.region = 'us-east-2'
 
