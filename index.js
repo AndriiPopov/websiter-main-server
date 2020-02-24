@@ -50,5 +50,5 @@ const port = process.env.PORT
 const server = app.listen(port, () =>
     winston.info(`Listening on port ${port}...`)
 )
-// connectSocket(server)
-// module.exports = server
+connectSocket(server)
+module.exports = server
