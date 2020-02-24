@@ -32,7 +32,9 @@ const rateLimiter = new RateLimiterMemory({
 const connectSocket = server => {
     try {
         const wss = new Server({ server })
+        console.log('start push')
         pushChanges(wss)
+        console.log('stop push')
 
         wss.on('connection', function connection(ws) {
             ws.resources = {}
@@ -119,6 +121,7 @@ const connectSocket = server => {
             })
             ws.on('close', async () => {})
         })
+        console.log('inter')
 
         const interval = setInterval(() => {
             wss.clients.forEach(async ws => {
@@ -133,6 +136,7 @@ const connectSocket = server => {
                 )
             })
         }, 30000)
+        console.log('interStop')
     } catch (ex) {}
 }
 
