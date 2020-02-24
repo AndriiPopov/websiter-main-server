@@ -4675,3 +4675,5 @@
 {"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T16:51:02.461Z"}
 {"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T16:52:07.823Z"}
 {"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T16:52:07.829Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2020-02-24T17:02:24.745Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T17:02:24.752Z"}
