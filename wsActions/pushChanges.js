@@ -72,16 +72,23 @@ module.exports.pushChanges = wss => {
             },
         ]
         console.log('resour')
-        console.log(Resource)
+        console.log(pipe)
+        console.log('watch')
+
         Resource.watch(pipe, {
             fullDocument: 'updateLookup',
         }).on('change', data => pushChange(data, 'resource'))
+        console.log('watch2')
+
         Website.watch(pipe, { fullDocument: 'updateLookup' }).on(
             'change',
             data => pushChange(data, 'website')
         )
+        console.log('watch3')
+
         User.watch(pipe, { fullDocument: 'updateLookup' }).on('change', data =>
             pushChange(data, 'user')
         )
+        console.log('watch3')
     } catch (ex) {}
 }
