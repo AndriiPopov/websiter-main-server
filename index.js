@@ -23,12 +23,12 @@ const liveApp = express()
 const myApp = express()
 myApp.use(passport.initialize())
 
-// aws.config.region = 'us-east-2'
+aws.config.region = 'us-east-2'
 
-// logging()
-// routes(app, myApp, liveApp, apiApp)
+logging()
+routes(app, myApp, liveApp, apiApp)
+validation()
 // db()
-// validation()
 
 // prod(app)
 // prod(liveApp)
