@@ -30,7 +30,8 @@ const rateLimiter = new RateLimiterMemory({
 
 const connectSocket = wss => {
     try {
-        pushChanges(wss)
+        console.log(wss)
+        // pushChanges(wss)
 
         wss.on('connection', function connection(ws) {
             ws.resources = {}
