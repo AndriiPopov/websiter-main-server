@@ -6,7 +6,8 @@ const { sendError } = require('./error')
 
 module.exports.pushChanges = wss => {
     try {
-        console.log('pash')
+        console.log('wss')
+        console.log(wss)
         const pushChange = (data, type) => {
             try {
                 if (
@@ -68,6 +69,8 @@ module.exports.pushChanges = wss => {
                 },
             },
         ]
+        console.log('resour')
+        console.log(Resource)
         Resource.watch(pipe, {
             fullDocument: 'updateLookup',
         }).on('change', data => pushChange(data, 'resource'))
