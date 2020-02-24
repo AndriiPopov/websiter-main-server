@@ -1,13 +1,11 @@
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
-const websites = require('../routes/websites')
-const resources = require('../routes/resources')
 const users = require('../routes/users')
-const live = require('../routes/live')
 const auth = require('../routes/auth')
+const resources = require('../routes/resources')
+const tryWebsiter = require('../routes/tryWebsiter')
 const awsSignS3 = require('../routes/awsSignS3')
-const awsImage = require('../routes/awsImage')
 const error = require('../middleware/error')
 const vhost = require('vhost')
 
@@ -27,6 +25,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
     app.use(vhost('my.websiter.dev', myApp))
     app.use(vhost('my.websiter.dev:5000', myApp))
     app.use(vhost('api.websiter.dev', apiApp))
+    app.use(vhost('api.websiter.dev:5000', apiApp))
     app.use(vhost('api.localwebsiter.dev', apiApp))
     app.use(vhost('live.websiter.dev', liveApp))
 
@@ -63,6 +62,8 @@ module.exports = function(app, myApp, liveApp, apiApp) {
     myApp.use(express.json())
     myApp.use(express.static(path.join(__dirname, '/../client/build_editor')))
     myApp.use('/api/auth', auth)
+    myApp.use('/try', tryWebsiter)
+
     myApp.get('*', (req, res) => {
         res.sendFile(
             path.join(__dirname + '/../client/build_editor/index.html')
@@ -70,12 +71,14 @@ module.exports = function(app, myApp, liveApp, apiApp) {
     })
 
     apiApp.use(express.json())
-    apiApp.use('/api/websites', websites)
-    apiApp.use('/api/resources', resources)
     apiApp.use('/api/users', users)
     apiApp.use('/api/sign-s3', awsSignS3)
-    apiApp.use('/api/awsImage', awsImage)
     apiApp.use('/api/auth', auth)
+    apiApp.use('/api/resources', resources)
+    app.use(express.static(path.join(__dirname, '/../client')))
+    // apiApp.get('/tinymce.zip', (req, res) => {
+    //     res.sendFile(path.join(__dirname + '/../client/tinymce.zip'))
+    // })
 
     liveApp.use(express.json())
     liveApp.use(

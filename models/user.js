@@ -1,162 +1,159 @@
 const jwt = require('jsonwebtoken')
-const Joi = require('joi')
-Joi.objectId = require('joi-objectid')(Joi)
 const mongoose = require('mongoose')
+const { updateIfCurrentPlugin } = require('mongoose-update-if-current')
 const { Website } = require('../models/website')
 const { Resource } = require('./resource')
 const { System } = require('../models/system')
 const { generateWebsiteId } = require('./system')
+const aws = require('aws-sdk')
+const S3_BUCKET = process.env.S3_BUCKET
+const AWS_S3_KEY = process.env.AWSAccessKeyId
+const AWS_S3_SECRET = process.env.AWSSecretKey
+
 const Heroku = require('heroku-client')
 const heroku = new Heroku({ token: process.env.HEROKU_API_TOKEN })
 
-const userSchema = new mongoose.Schema({
-    websites: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Website',
+const userSchema = new mongoose.Schema(
+    {
+        websites: [{}],
+        settings: {
+            type: mongoose.Schema.Types.Mixed,
+            default: {
+                websites: {},
+            },
         },
-    ],
-    images: [],
-    storage: {
-        type: Number,
-        required: true,
-        min: 0,
+        userid: {
+            type: String,
+            required: true,
+        },
+        accountInfo: {},
+        platformId: {
+            type: String,
+            required: true,
+        },
+        logoutAllDate: {
+            type: Number,
+            default: 0,
+        },
+        __patch__: {},
     },
-    loadedWebsite: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Websites',
-    },
-    currentAction: {
-        type: Number,
-        required: true,
-    },
-    barSizes: {},
-    tooltipsOn: {
-        type: Boolean,
-    },
-    userid: {
-        type: String,
-        required: true,
-    },
-    platformId: {
-        type: String,
-        required: true,
-    },
-    logoutAllDate: {
-        type: Date,
-        default: '',
-    },
-})
+    { minimize: false }
+)
+userSchema.plugin(updateIfCurrentPlugin)
 
 userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({ _id: this._id }, process.env.jwtPrivateKey, {
-        expiresIn: '1d',
-    })
-    return token
+    try {
+        const token = jwt.sign(
+            { _id: this._id, issued: new Date().getTime() },
+            process.env.jwtPrivateKey,
+            {
+                expiresIn: '350d',
+            }
+        )
+        return token
+    } catch (ex) {}
 }
 
 userSchema.methods.createWebsite = async function() {
-    const domainId = await generateWebsiteId()
-    let website = new Website({
-        name: 'New website',
-        domain: 'new-website-' + domainId,
-        user: this,
-    })
+    try {
+        const domainId = await generateWebsiteId()
+        let website = new Website({
+            name: 'New website',
+            domain: 'new-website-' + domainId,
+            user: this._id.toString(),
+            storage: 0,
+            sharing: [
+                {
+                    userId: this._id.toString(),
+                    rights: ['owner', 'admin', 'developer', 'content'],
+                    accountInfo: this.accountInfo,
+                },
+            ],
+        })
+        await website.createResource('', 'page')
 
-    await website.createResource('', 'page')
-    website = await website.save()
-    this.loadedWebsite = website
-    await this.save()
-    return website
+        website = await website.save()
+        return website
+    } catch (ex) {
+        console.log('Create website failed.')
+    }
 }
 
-userSchema.methods.deleteWebsite = async function(_id, res) {
-    const website = await Website.findById(_id)
-    if (!website)
-        return res
-            .status(404)
-            .send('The website with the given ID was not found.')
+userSchema.methods.deleteWebsite = async function(_id) {
+    try {
+        const website = await Website.findById(_id)
+        if (!website) return
+        const websiteObject = website.toObject()
+        if (websiteObject.user.toString() === this._id.toString()) {
+            // Delete all objects with the user prefix on AWS S3
 
-    if (website.customDomain && website.customDomainApp) {
-        await heroku.delete(
-            '/apps/' +
-                website.customDomainApp +
-                '/domains/' +
-                website.customDomain
+            const s3Files = websiteObject.images.map(image => ({
+                Key: image.name,
+            }))
+
+            const s3 = new aws.S3({
+                accessKeyId: AWS_S3_KEY,
+                secretAccessKey: AWS_S3_SECRET,
+            })
+
+            const emptyS3Directory = async (bucket, dir) => {
+                const listParams = {
+                    Bucket: bucket,
+                    Prefix: dir,
+                }
+
+                const listedObjects = await s3
+                    .listObjectsV2(listParams)
+                    .promise()
+
+                if (listedObjects.Contents.length === 0) return
+
+                const deleteParams = {
+                    Bucket: S3_BUCKET,
+                    Delete: { Objects: [] },
+                }
+
+                listedObjects.Contents.forEach(({ Key }) => {
+                    deleteParams.Delete.Objects.push({ Key })
+                })
+
+                await s3.deleteObjects(deleteParams).promise()
+
+                if (listedObjects.IsTruncated)
+                    await emptyS3Directory(bucket, dir)
+            }
+
+            await emptyS3Directory(S3_BUCKET, websiteObject._id + '/')
+            if (websiteObject.customDomain && websiteObject.customDomainApp) {
+                await heroku.delete(
+                    '/apps/' +
+                        websiteObject.customDomainApp +
+                        '/domains/' +
+                        websiteObject.customDomain
+                )
+            }
+
+            for (let item of websiteObject.pagesStructure) {
+                await Resource.remove({ _id: item.id })
+            }
+
+            for (let item of websiteObject.pluginsStructure) {
+                await Resource.remove({ _id: item.id })
+            }
+
+            for (let item of websiteObject.templatesStructure) {
+                await Resource.remove({ _id: item.id })
+            }
+
+            await Website.remove({ _id: _id })
+        }
+        const index = this.websites.findIndex(
+            item => item.id.toString() === _id.toString()
         )
-    }
-
-    await Promise.all(
-        website.pagesStructure.map(async item => {
-            await Resource.findByIdAndRemove(item.id)
-        })
-    )
-
-    await Promise.all(
-        website.pluginsStructure.map(async item => {
-            await Resource.findByIdAndRemove(item.id)
-        })
-    )
-
-    await Website.findByIdAndRemove(_id)
-    const index = this.websites.indexOf(_id)
-    this.websites.splice(index, 1)
-    if (this.websites.length > 0) {
-        this.loadedWebsite = this.websites[0]
-    } else {
-        this.loadedWebsite = null
+        if (index >= 0) this.websites.splice(index, 1)
+    } catch (ex) {
+        console.log('Delete website failed.')
     }
 }
 
 module.exports.User = mongoose.model('User', userSchema)
-
-module.exports.validateUser = user => {
-    const schema = {
-        email: Joi.string()
-            .min(5)
-            .max(255)
-            .required()
-            .email({ minDomainAtoms: 2 }),
-        password: Joi.string()
-            .min(5)
-            .max(255)
-            .required(),
-    }
-
-    return Joi.validate(user, schema)
-}
-
-module.exports.validateToken = user => {
-    const schema = {
-        token: Joi.string().required(),
-    }
-
-    return Joi.validate(user, schema)
-}
-
-module.exports.validateUserData = user => {
-    const schema = {
-        storage: Joi.number()
-            .min(0)
-            .optional(),
-        images: Joi.array()
-            .items(
-                Joi.object().keys({
-                    url: Joi.string().required(),
-                    name: Joi.string().required(),
-                    label: Joi.string().required(),
-                    size: Joi.number()
-                        .min(0)
-                        .required(),
-                })
-            )
-            .optional(),
-        barSizes: Joi.object().optional(),
-        tooltipsOn: Joi.boolean().optional(),
-        currentPage: Joi.string().optional(),
-        currentPlugin: Joi.string().optional(),
-        loadedWebsite: Joi.string().optional(),
-    }
-
-    return Joi.validate(user, schema)
-}

@@ -13,25 +13,31 @@ passport.use(
     new TwitterStrategy(
         passportConfig,
         async (request, accessToken, refreshToken, profile, done) => {
-            let user = await User.findOne({
-                userid: profile.id,
-                platformId: 'twitter',
-            })
-            if (!user) {
-                user = new User({
-                    currentAction: 0,
-                    images: [],
-                    storage: 0,
-                    loadedWebsite: '',
+            try {
+                let user = await User.findOne({
                     userid: profile.id,
                     platformId: 'twitter',
-                    logoutAllDate: Date.now(),
                 })
-                const website = await user.createWebsite(user)
-                user.websites.push(website._id)
-                await user.save()
+                if (!user) {
+                    user = new User({
+                        userid: profile.id,
+                        platformId: 'twitter',
+                        logoutAllDate: new Date().getTime() - 10 * 60 * 1000,
+                        accountInfo: {
+                            displayName: profile.displayName,
+                            emails: propfile.emails,
+                            photos: profile.photos,
+                        },
+                    })
+                    user.markModified('accountInfo')
+                    const website = await user.createWebsite(user)
+                    user.websites.push({ id: website._id.toString() })
+                    await user.save()
+                }
+                return done(null, user)
+            } catch {
+                console.log('Create user failed.')
             }
-            return done(null, user)
         }
     )
 )

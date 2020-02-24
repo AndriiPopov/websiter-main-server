@@ -16,19 +16,23 @@ const System = mongoose.model('System', systemSchema)
 module.exports.System = System
 
 module.exports.generateWebsiteId = async () => {
-    let system = await System.findOne({ name: 'system' })
-    if (!system) {
-        system = new System({
-            currentWebsiteId: 0,
-            name: 'system',
-        })
+    try {
+        let system = await System.findOne({ name: 'system' })
+        if (!system) {
+            system = new System({
+                currentWebsiteId: 0,
+                name: 'system',
+            })
+            await system.save()
+        }
+
+        const id = system.currentWebsiteId
+
+        system.currentWebsiteId = system.currentWebsiteId + 1
         await system.save()
+
+        return id
+    } catch (ex) {
+        console.log('Generate website id failed.')
     }
-
-    const id = system.currentWebsiteId
-
-    system.currentWebsiteId = system.currentWebsiteId + 1
-    await system.save()
-
-    return id
 }

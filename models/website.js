@@ -1,117 +1,136 @@
-const Joi = require('joi')
-Joi.objectId = require('joi-objectid')(Joi)
+const { updateIfCurrentPlugin } = require('mongoose-update-if-current')
 const mongoose = require('mongoose')
 const { Resource } = require('./resource')
 const { findDescendants } = require('../utils/resourcesStructure')
 const { structureType, currentType } = require('../utils/resourceTypeIndex')
 
-const websiteSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 1,
-        maxlength: 255,
+const websiteSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+            minlength: 1,
+            maxlength: 255,
+        },
+        domain: {
+            type: String,
+            minlength: 1,
+            maxlength: 255,
+            lowercase: true,
+            trim: true,
+            unique: true,
+            sparse: true,
+        },
+        images: [],
+        sharing: [],
+        domainHidden: {
+            type: Boolean,
+        },
+        domainNoIndex: {
+            type: Boolean,
+        },
+        customDomainHidden: {
+            type: Boolean,
+        },
+        customDomain: {
+            type: String,
+            minlength: 1,
+            maxlength: 255,
+            lowercase: true,
+            trim: true,
+            sparse: true,
+        },
+        customDomainApp: {
+            type: String,
+            minlength: 1,
+            maxlength: 255,
+        },
+        customDomainVerified: {
+            type: Boolean,
+        },
+        cname: {
+            type: String,
+        },
+        verifyCode: {
+            type: String,
+        },
+        user: {
+            type: String,
+        },
+        pagesStructure: [],
+        pluginsStructure: [],
+        templatesStructure: [],
+        storage: {
+            type: Number,
+            required: true,
+            min: 0,
+        },
+        __patch__: {},
     },
-    domain: {
-        type: String,
-        minlength: 1,
-        maxlength: 255,
-        lowercase: true,
-        trim: true,
-        unique: true,
-        sparse: true,
-    },
-    domainHidden: {
-        type: Boolean,
-    },
-    customDomainHidden: {
-        type: Boolean,
-    },
-    customDomain: {
-        type: String,
-        minlength: 1,
-        maxlength: 255,
-        lowercase: true,
-        trim: true,
-        sparse: true,
-    },
-    customDomainApp: {
-        type: String,
-        minlength: 1,
-        maxlength: 255,
-    },
-    customDomainVerified: {
-        type: Boolean,
-    },
-    cname: {
-        type: String,
-    },
-    verifyCode: {
-        type: String,
-    },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users',
-    },
-    pagesStructure: [],
-    pluginsStructure: [],
-    currentPage: {
-        type: mongoose.Schema.Types.ObjectId,
-    },
-    currentPlugin: {
-        type: mongoose.Schema.Types.ObjectId,
-    },
-})
+    { minimize: false }
+)
+websiteSchema.plugin(updateIfCurrentPlugin)
 
-const blankPageContent = {
-    currentId: 5,
+const blankTemplateContent = {
+    currentId: 3,
     structure: [
         {
-            id: 'element_-1',
+            id: 'element_02',
+            path: [],
+            tag: 'CMS variables',
+        },
+        {
+            id: 'element_01',
             path: [],
             tag: 'html',
-            properties: {},
-            style: '',
         },
         {
             id: 'element_0',
-            path: ['element_-1'],
+            path: ['element_01'],
             tag: 'head',
-            properties: {},
-            style: '',
         },
         {
             id: 'element_1',
-            path: ['element_-1'],
+            path: ['element_01'],
             tag: 'body',
-            properties: {},
-            style: '',
         },
         {
             id: 'element_2',
-            path: ['element_-1', 'element_1'],
+            path: ['element_01', 'element_1'],
             tag: 'div',
+        },
+    ],
+    values: {
+        element_02: {
+            properties: {},
+            style: '',
+        },
+        element_01: {
+            properties: {},
+            style: '',
+        },
+        element_0: {
+            properties: {},
+            style: '',
+        },
+        element_1: {
+            properties: {},
+            style: '',
+        },
+        element_2: {
             properties: {},
             style:
                 'height: 100px;width: 100px;left: 200px;top: 100px;z-index: 0;background: rgba(100, 0, 80);',
         },
-        {
-            id: 'element_4',
-            path: ['element_-1', 'element_1'],
-            tag: 'section',
-            properties: {},
-            style: 'height: 200px; background:rgba(200, 100, 30);',
-        },
-        {
-            id: 'element_3',
-            path: ['element_-1', 'element_1', 'element_4'],
-            tag: 'div',
-            properties: {},
-            style:
-                'height: 100px;width: 100px;left: 200px;top: 100px;z-index: 0;background: rgba(0, 0, 80);',
-        },
-    ],
+    },
+    connectedResources: [],
+}
+
+const blankPageContent = {
+    structure: [],
+    values: {},
+    connectedResources: [],
 }
 
 const blankPluginContent = {
@@ -121,19 +140,25 @@ const blankPluginContent = {
             id: 'element_0',
             path: [],
             tag: 'Main element',
-            properties: {},
         },
     ],
+    values: {
+        element_0: {
+            properties: {},
+        },
+    },
+    connectedResources: [],
 }
 
 websiteSchema.methods.createResource = async function(
     currentResource,
     type,
     duplicate,
-    resourceData
+    resourceData,
+    newResourceName
 ) {
     const generateNewName = (name, attr, divider, i) => {
-        let currentName = name
+        let currentName = i ? name + divider + i : name
         while (
             this[structureType[type]].some(item => item[attr] === currentName)
         ) {
@@ -164,7 +189,7 @@ websiteSchema.methods.createResource = async function(
 
     const prepareDataCreteNewResource = async () => {
         let resource = new Resource()
-        resource.website = this
+        resource.website = this._id.toString()
         resource.draft = {}
         if (!resourceData) {
             resource.published =
@@ -172,15 +197,14 @@ websiteSchema.methods.createResource = async function(
                     ? blankPageContent
                     : type === 'plugin'
                     ? blankPluginContent
-                    : {}
+                    : blankTemplateContent
         } else {
             resource.published = resourceData
         }
         resource.markModified('draft')
         resource.markModified('published')
         resource = await resource.save()
-
-        this[currentType[type]] = resource
+        this[currentType[type]] = resource._id.toString()
         let data = {}
         if (type === 'page') {
             let { nameAdd, urlAdd } = getNewNameAndUrl('New page', 'new-page')
@@ -188,16 +212,13 @@ websiteSchema.methods.createResource = async function(
             data.url = 'new-page' + urlAdd
             data.hidden = true
             return { resource, data }
-        }
-        if (type === 'plugin') {
+        } else {
             const nameIndex = generateNewName('New ' + type, 'name', ' ', 0)
-
             let nameAdd = ''
             if (nameIndex > 0) {
                 nameAdd = ' ' + nameIndex
             }
-
-            data.name = 'New ' + type + nameAdd
+            data.name = newResourceName || 'New ' + type + nameAdd
             return { resource, data }
         }
     }
@@ -213,14 +234,14 @@ websiteSchema.methods.createResource = async function(
         currentResourceData = currentResourceDataArray[0]
 
         let resource = new Resource()
-        resource.website = this
+        resource.website = this._id.toString()
         resource.published = currentResourceObject.published
         resource.draft = currentResourceObject.draft
         resource.markModified('draft')
         resource.markModified('published')
         resource = await resource.save()
 
-        this[currentType[type]] = resource
+        this[currentType[type]] = resource._id.toString()
 
         let data = {}
         if (type === 'page') {
@@ -232,8 +253,7 @@ websiteSchema.methods.createResource = async function(
             data.url = currentResourceData.url + urlAdd
             data.hidden = true
             return { resource, data }
-        }
-        if (type === 'plugin') {
+        } else {
             const nameIndex = generateNewName(
                 currentResourceData.name,
                 'name',
@@ -255,6 +275,7 @@ websiteSchema.methods.createResource = async function(
         : await prepareDataCreteNewResource()
 
     if (!resource || !data) return
+    data.published = true
     if (type === 'page') {
         if (this.pagesStructure.length > 0) {
             data.homepage = false
@@ -283,10 +304,9 @@ websiteSchema.methods.createResource = async function(
                 this[structureType[type]],
                 currentResourceObject.id
             )
-            if (duplicate) {
-                data.connectedResources = [
-                    ...currentResourceObject.connectedResources,
-                ]
+            if (duplicate && currentResourceObject.connectedResources) {
+                data.connectedResources =
+                    currentResourceObject.connectedResources
             }
 
             newResourceStructureElement = {
@@ -321,76 +341,88 @@ websiteSchema.methods.deleteResource = async function(resourceId, type) {
         resourceId
     ).map(item => item.id)
     descedants.push(resourceId)
-
-    await Promise.all(
-        descedants.map(async id => {
-            this[structureType[type]] = this[structureType[type]].filter(
-                item => item.id.toString() != id.toString()
-            )
-            await Resource.findByIdAndRemove(id)
-        })
-    )
-
+    const thisObject = this.toObject()
+    for (let id of descedants) {
+        this[structureType[type]] = thisObject[structureType[type]].filter(
+            item => item.id.toString() !== id.toString()
+        )
+        await Resource.findByIdAndRemove(id)
+    }
     if (type === 'page') {
         if (!this.pagesStructure.some(item => item.isHomePage)) {
             if (this.pagesStructure.length > 0) {
                 this.pagesStructure[0].isHomePage = true
             }
         }
+        this.markModified('pagesStructure')
     }
-    if (
-        descedants.some(
-            resource => resource.toString() === resourceId.toString()
-        )
-    ) {
-        if (this[structureType[type]].length > 0) {
-            this[currentType[type]] = this[structureType[type]][0].id
-        } else {
-            this[currentType[type]] = null
-        }
-    }
-
     this.markModified(structureType[type])
-    return descedants
 }
 
 module.exports.Website = mongoose.model('Website', websiteSchema)
 
-module.exports.validateWebsite = website => {
-    const schema = {
-        name: Joi.string()
-            .min(1)
-            .max(50)
-            .optional(),
-        domain: Joi.string()
-            .min(1)
-            .max(255)
-            .optional(),
-        customDomain: Joi.string()
-            .min(1)
-            .max(255)
-            .optional(),
-        domainHidden: Joi.boolean().optional(),
-        customDomainHidden: Joi.boolean().optional(),
-    }
+// module.exports.validateWebsite = website => {
+//     const schema = {
+//         name: Joi.string()
+//             .min(1)
+//             .max(50)
+//             .optional(),
+//         domain: Joi.string()
+//             .min(1)
+//             .max(255)
+//             .optional(),
+//         customDomain: Joi.string()
+//             .min(1)
+//             .max(255)
+//             .optional(),
+//         domainHidden: Joi.boolean().optional(),
+//         customDomainHidden: Joi.boolean().optional(),
+//         domainNoIndex: Joi.boolean().optional(),
+//         sharing: Joi.array().optional(),
+//         images: Joi.array()
+//             .items(
+//                 Joi.object().keys({
+//                     url: Joi.string().required(),
+//                     name: Joi.string().required(),
+//                     label: Joi.string().required(),
+//                     size: Joi.number()
+//                         .min(0)
+//                         .required(),
+//                 })
+//             )
+//             .optional(),
 
-    return Joi.validate(website, schema)
-}
+//         storage: Joi.number()
+//             .min(0)
+//             .optional(),
+//     }
 
-module.exports.validateWebsiteStructure = website => {
-    const schema = {
-        structurePatch: Joi.object(),
-        type: Joi.string(),
-    }
+//     return Joi.validate(website, schema)
+// }
 
-    return Joi.validate(website, schema)
-}
+// module.exports.validateWebsiteStructure = website => {
+//     const schema = {
+//         structurePatch: Joi.object(),
+//         type: Joi.string(),
+//     }
 
-module.exports.validateCreateWebsite = website => {
-    const schema = {
-        duplicate: Joi.boolean().optional(),
-        currentWebsite: Joi.string().optional(),
-    }
+//     return Joi.validate(website, schema)
+// }
 
-    return Joi.validate(website, schema)
-}
+// module.exports.validateCreateWebsite = website => {
+//     const schema = {
+//         duplicate: Joi.boolean().optional(),
+//         currentWebsite: Joi.string().optional(),
+//     }
+
+//     return Joi.validate(website, schema)
+// }
+
+// module.exports.validateWebsiteSharing = website => {
+//     const schema = {
+//         type: Joi.string(),
+//         id: Joi.string(),
+//     }
+
+//     return Joi.validate(website, schema)
+// }

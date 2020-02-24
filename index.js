@@ -8,8 +8,11 @@ const prod = require('./startup/prod')
 const aws = require('aws-sdk')
 const passport = require('passport')
 const sslRedirect = require('heroku-ssl-redirect')
+const connectSocket = require('./startup/connectSocket')
+const rateLimiterMiddleware = require('./middleware/rateLimiter')
 
 const app = express()
+app.use(rateLimiterMiddleware)
 app.use(sslRedirect())
 
 const apiApp = express()
@@ -47,5 +50,5 @@ const port = process.env.PORT
 const server = app.listen(port, () =>
     winston.info(`Listening on port ${port}...`)
 )
-
+connectSocket(server)
 module.exports = server
