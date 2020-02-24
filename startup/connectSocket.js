@@ -29,7 +29,7 @@ const rateLimiter = new RateLimiterMemory({
     duration: 1,
 })
 
-const connectSocket = s => {
+const connectSocket = server => {
     try {
         const wss = new WebSocket.Server({ server })
 
