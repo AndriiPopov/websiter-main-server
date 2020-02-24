@@ -12,7 +12,7 @@ const connectSocket = require('./startup/connectSocket')
 const rateLimiterMiddleware = require('./middleware/rateLimiter')
 
 const app = express()
-app.use(rateLimiterMiddleware)
+// app.use(rateLimiterMiddleware)
 app.use(sslRedirect())
 
 const apiApp = express()
