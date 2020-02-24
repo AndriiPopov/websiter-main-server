@@ -32,15 +32,19 @@ const rateLimiter = new RateLimiterMemory({
 const connectSocket = server => {
     try {
         const wss = new WebSocket.Server({ server })
+
         pushChanges(wss)
+
         wss.on('connection', function connection(ws) {
             ws.resources = {}
             ws.isAlive = true
             ws.createdTime = Date.now()
+
             ws.on('message', async message => {
                 try {
                     if (ws.createdTime + 5000 < Date.now())
                         await rateLimiter.consume(ws.user)
+
                     const data = JSON.parse(message)
                     switch (data.messageCode) {
                         case 'heartbeat':
@@ -103,6 +107,7 @@ const connectSocket = server => {
                         case 'addImage':
                             addImage(data, ws)
                             break
+
                         default:
                             break
                     }
@@ -115,6 +120,7 @@ const connectSocket = server => {
             })
             ws.on('close', async () => {})
         })
+
         const interval = setInterval(() => {
             wss.clients.forEach(async ws => {
                 if (ws.isAlive === false) {

@@ -58,9 +58,9 @@ mongoose.connect(db).then(async () => {
     //app.use(express.static(__dirname + '/public'))
 
     const port = process.env.PORT
-    const server = await app.listen(port, () =>
+    const server = await app.listen(port, () => {
         winston.info(`Listening on port ${port}...`)
-    )
-    module.exports = server
+        module.exports = server
+    })
     connectSocket(server)
 })
