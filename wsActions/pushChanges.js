@@ -7,9 +7,11 @@ const { sendError } = require('./error')
 module.exports.pushChanges = wss => {
     try {
         console.log('wss')
-        console.log(wss)
+
         const pushChange = (data, type) => {
             try {
+                console.log('fdgdf')
+
                 if (
                     data.operationType === 'update' ||
                     data.operationType === 'delete'
@@ -57,7 +59,7 @@ module.exports.pushChanges = wss => {
                 }
             } catch (ex) {}
         }
-
+        console.log('YYYYYYYYYYYYYYYYYYY')
         const pipe = [
             {
                 $project: {
