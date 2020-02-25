@@ -2,7 +2,7 @@ const winston = require('winston')
 const express = require('express')
 const logging = require('./startup/logging')
 const routes = require('./startup/routes')
-// const db = require('./startup/db')
+const db = require('./startup/db')
 const validation = require('./startup/validation')
 const prod = require('./startup/prod')
 const aws = require('aws-sdk')
@@ -10,7 +10,6 @@ const passport = require('passport')
 const sslRedirect = require('heroku-ssl-redirect')
 const connectSocket = require('./startup/connectSocket')
 const rateLimiterMiddleware = require('./middleware/rateLimiter')
-const mongoose = require('mongoose')
 
 const app = express()
 app.use(rateLimiterMiddleware)
@@ -28,39 +27,28 @@ aws.config.region = 'us-east-2'
 
 logging()
 routes(app, myApp, liveApp, apiApp)
+db()
 validation()
-//db()
-const db = process.env.websiter_db
-// const db =
-//     'mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819'
-mongoose.connect(db).then(async () => {
-    // User.update({}, { currentAction: 0 }, { multi: true }, function(
-    //     err,
-    //     numberAffected
-    // ) {
-    //     console.log(numberAffected)
-    // })
-    winston.info(`Connected to ${db}`)
-    prod(app)
-    prod(liveApp)
-    prod(apiApp)
-    prod(myApp)
 
-    app.engine('html', require('ejs').renderFile)
-    liveApp.engine('html', require('ejs').renderFile)
-    apiApp.engine('html', require('ejs').renderFile)
-    myApp.engine('html', require('ejs').renderFile)
+prod(app)
+prod(liveApp)
+prod(apiApp)
+prod(myApp)
 
-    app.use(express.static('./public'))
-    liveApp.use(express.static('./public'))
-    apiApp.use(express.static('./public'))
-    myApp.use(express.static('./public'))
-    //app.use(express.static(__dirname + '/public'))
+app.engine('html', require('ejs').renderFile)
+liveApp.engine('html', require('ejs').renderFile)
+apiApp.engine('html', require('ejs').renderFile)
+myApp.engine('html', require('ejs').renderFile)
 
-    const port = process.env.PORT
-    const server = await app.listen(port, () => {
-        winston.info(`Listening on port ${port}...`)
-    })
+app.use(express.static('./public'))
+liveApp.use(express.static('./public'))
+apiApp.use(express.static('./public'))
+myApp.use(express.static('./public'))
+//app.use(express.static(__dirname + '/public'))
 
-    connectSocket(server)
-})
+const port = process.env.PORT
+const server = app.listen(port, () =>
+    winston.info(`Listening on port ${port}...`)
+)
+connectSocket(server)
+module.exports = server

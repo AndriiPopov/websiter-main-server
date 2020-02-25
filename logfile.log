@@ -4701,3 +4701,35 @@
 {"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T19:14:03.824Z"}
 {"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2020-02-24T19:14:21.651Z"}
 {"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T19:14:21.659Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:00:59.663Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:00:59.672Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:13:25.400Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:13:25.408Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:13:57.422Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:13:57.431Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:17:59.853Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:17:59.859Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:25:56.879Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:25:56.885Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:26:46.892Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:26:46.897Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:41:59.338Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:41:59.344Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:42:26.118Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:42:26.126Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T20:46:40.397Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T20:46:40.403Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T21:56:00.412Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T21:56:00.459Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T21:57:14.773Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T21:57:14.785Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T22:02:37.241Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T22:02:37.248Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-24T22:03:09.441Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-24T22:03:09.447Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-25T09:14:41.226Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2020-02-25T09:14:41.412Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-25T09:15:01.774Z"}
+{"level":"info","message":"Connected to mongodb://mainServer:20websiter20@ds321819-a0.mlab.com:21819,ds321819-a1.mlab.com:21819/websiter?replicaSet=rs-ds321819","timestamp":"2020-02-25T09:15:02.938Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-02-25T09:16:20.953Z"}
+{"level":"info","message":"Connected to mongodb+srv://mainServer:20websiter20@websiter-3sxrn.mongodb.net/test?retryWrites=true&w=majority","timestamp":"2020-02-25T09:16:22.571Z"}

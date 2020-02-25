@@ -6,12 +6,8 @@ const { sendError } = require('./error')
 
 module.exports.pushChanges = wss => {
     try {
-        console.log('wss')
-
         const pushChange = (data, type) => {
             try {
-                console.log('fdgdf')
-
                 if (
                     data.operationType === 'update' ||
                     data.operationType === 'delete'
@@ -59,7 +55,6 @@ module.exports.pushChanges = wss => {
                 }
             } catch (ex) {}
         }
-        console.log('YYYYYYYYYYYYYYYYYYY')
         const pipe = [
             {
                 $project: {
@@ -71,24 +66,20 @@ module.exports.pushChanges = wss => {
                 },
             },
         ]
-        console.log('resour')
-        console.log(pipe)
-        console.log('watch')
-
+        try {
+            Resource.watch()
+        } catch (ex) {}
         Resource.watch(pipe, {
             fullDocument: 'updateLookup',
         }).on('change', data => pushChange(data, 'resource'))
-        console.log('watch2')
 
         Website.watch(pipe, { fullDocument: 'updateLookup' }).on(
             'change',
             data => pushChange(data, 'website')
         )
-        console.log('watch3')
 
         User.watch(pipe, { fullDocument: 'updateLookup' }).on('change', data =>
             pushChange(data, 'user')
         )
-        console.log('watch3')
     } catch (ex) {}
 }
