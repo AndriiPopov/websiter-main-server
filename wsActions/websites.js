@@ -6,6 +6,8 @@ const diffpatcher = require('jsondiffpatch/dist/jsondiffpatch.umd.js').create({
     objectHash: obj => obj.id,
     propertyFilter: (name, context) => name !== '__patch__',
 })
+const Heroku = require('heroku-client')
+const heroku = new Heroku({ token: process.env.HEROKU_API_TOKEN })
 const { getUserRights } = require('../utils/getUserRights')
 const { generateWebsiteId } = require('../models/system')
 const dns = require('dns')
@@ -155,6 +157,74 @@ module.exports.deleteWebsite = async (data, ws) => {
         sendError(ws)
     }
 }
+
+//  if (req.body.customDomain !== '__delete__') {
+//             if (req.body.customDomain === 'wildcard') {
+//                 return res.send({ customDomainNotOk: true })
+//             }
+//             const customDomain = req.body.customDomain.trim()
+//             if (customDomain.indexOf('wildcard') > -1) {
+//                 return res.send({ customDomainNotOk: true })
+//             }
+//             const pat = /(?:\w+\.)+\w+/gm
+//             if (!pat.test(customDomain)) {
+//                 return res.send({ customDomainNotOk: true })
+//             }
+//             websiteWithThisUrl = await Website.findOne({
+//                 customDomain,
+//             })
+//             if (websiteWithThisUrl) {
+//                 if (
+//                     websiteWithThisUrl._id.toString() !==
+//                     req.params.id.toString()
+//                 ) {
+//                     return res.send({ customDomainNotOk: true })
+//                 }
+//             }
+
+//             website = await Website.findById(req.params.id)
+//             if (website) {
+//                 if (website.customDomain && website.customDomainApp) {
+//                     await heroku.delete(
+//                         '/apps/' +
+//                             website.customDomainApp +
+//                             '/domains/' +
+//                             website.customDomain
+//                     )
+//                 }
+//             }
+
+//             const customDomainRegistered = await heroku.post(
+//                 '/apps/' + process.env.HEROKU_CUSTOM_DOMAIN_APP + '/domains',
+//                 { body: { hostname: customDomain } }
+//             )
+
+//             if (!customDomainRegistered) {
+//                 if (error) return res.status(400).send('Try again')
+//             } else {
+//                 req.body.customDomainApp = process.env.HEROKU_CUSTOM_DOMAIN_APP
+//                 req.body.customDomain = customDomain
+//                 req.body.cname = customDomainRegistered.cname
+//                 req.body.customDomainVerified = false
+//                 req.body.verifyCode =
+//                     req.params.id + Math.floor(Math.random() * 100000)
+//             }
+//         } else {
+//             // delete domain
+//             website = await Website.findById(req.params.id)
+//             if (website) {
+//                 if (website.customDomain && website.customDomainApp) {
+//                     await heroku.delete(
+//                         '/apps/' +
+//                             website.customDomainApp +
+//                             '/domains/' +
+//                             website.customDomain
+//                     )
+//                 }
+//                 req.body.customDomainApp = ''
+//                 req.body.customDomain = ''
+//             }
+//         }
 
 module.exports.verifyCustomDomain = async (data, ws) => {
     try {
@@ -479,11 +549,11 @@ module.exports.saveDomainName = async (data, ws) => {
             ))
         )
             return
-        const websitesWithThisDomain = await Website.find({
-            domain: data.name.trim(),
-        })
 
         if (data.type === 'domain') {
+            const websitesWithThisDomain = await Website.find({
+                domain: data.name.trim(),
+            })
             if (websitesWithThisDomain.length > 0) {
                 sendError(ws, 'This name is taken. Please try another name.')
                 return

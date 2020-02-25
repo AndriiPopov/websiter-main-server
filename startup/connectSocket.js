@@ -25,7 +25,7 @@ const { sendError } = require('../wsActions/error')
 const { Server } = require('ws')
 
 const rateLimiter = new RateLimiterMemory({
-    points: 4,
+    points: 8,
     duration: 1,
 })
 
@@ -45,6 +45,7 @@ const connectSocket = server => {
                         await rateLimiter.consume(ws.user)
 
                     const data = JSON.parse(message)
+                    // console.log(data)
                     switch (data.messageCode) {
                         case 'heartbeat':
                             heartbeat(ws, data)

@@ -52,20 +52,22 @@ module.exports.auth = async (ws, data) => {
     try {
         let user = await authenticate(data, ws)
         if (user) {
-            const userObject = user.toObject()
-            if (data.tryWebsiter) userObject._id = 'try'
+            if (!data.noRequest) {
+                const userObject = user.toObject()
+                if (data.tryWebsiter) userObject._id = 'try'
 
-            ws.send(
-                JSON.stringify({
-                    messageCode: 'addResource',
-                    resource: userObject,
-                })
-            )
-            if (data.tryWebsiter) {
-                ws.tryWebsiter = true
+                ws.send(
+                    JSON.stringify({
+                        messageCode: 'addResource',
+                        resource: userObject,
+                    })
+                )
+                if (data.tryWebsiter) {
+                    ws.tryWebsiter = true
+                }
+                ws.user = user._id.toString()
+                ws.resources[user._id.toString()] = user.__v
             }
-            ws.user = user._id.toString()
-            ws.resources[user._id.toString()] = user.__v
         } else {
             sendError(ws, 'Login error.4', true)
         }

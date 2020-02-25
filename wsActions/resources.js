@@ -112,8 +112,8 @@ const newWebsiteSchema = Joi.object({
                 path: Joi.array()
                     .items(Joi.objectId())
                     .required(),
-                name: Joi.string(),
-                url: Joi.string(),
+                name: Joi.string().allow(''),
+                url: Joi.string().allow(''),
                 template: Joi.string(),
                 homepage: Joi.boolean(),
                 hidden: Joi.boolean(),
@@ -128,7 +128,7 @@ const newWebsiteSchema = Joi.object({
                 path: Joi.array()
                     .items(Joi.objectId())
                     .required(),
-                name: Joi.string(),
+                name: Joi.string().allow(''),
                 hidden: Joi.boolean(),
                 notPublished: Joi.boolean(),
             }).unknown()
@@ -141,7 +141,7 @@ const newWebsiteSchema = Joi.object({
                 path: Joi.array()
                     .items(Joi.objectId())
                     .required(),
-                name: Joi.string(),
+                name: Joi.string().allow(''),
                 hidden: Joi.boolean(),
                 notPublished: Joi.boolean(),
             }).unknown()
