@@ -10,7 +10,7 @@ const authenticate = async (data, ws) => {
         const tryWebsiter = data.tryWebsiter
         if (tryWebsiter) {
             user = await User.findById(process.env.websiterUserId)
-            console.log(process.env.websiterUserId)
+
             if (!user) {
                 sendError(
                     ws,
