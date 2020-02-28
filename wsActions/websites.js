@@ -565,14 +565,20 @@ module.exports.saveDomainName = async (data, ws) => {
             if (!website.customDomainApp || website.customDomainApp === '') {
                 website.customDomainApp = process.env.websiter
             } else {
-                if (website.customDomain)
-                    await heroku.delete(
-                        '/apps/' +
-                            website.customDomainApp +
-                            '/domains/' +
-                            website.customDomain
-                    )
+                if (website.customDomain) {
+                    console.log('MMMMMMMMMMMMM')
+
+                    try {
+                        await heroku.delete(
+                            '/apps/' +
+                                website.customDomainApp +
+                                '/domains/' +
+                                website.customDomain
+                        )
+                    } catch (ex) {}
+                }
             }
+            console.log('yyyyyy')
             const addDomainData = await heroku.post(
                 '/apps/' +
                     website.customDomainApp +
