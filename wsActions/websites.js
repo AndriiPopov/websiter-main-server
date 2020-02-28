@@ -578,7 +578,9 @@ module.exports.saveDomainName = async (data, ws) => {
                     } catch (ex) {}
                 }
             }
-            console.log('yyyyyy')
+            console.log('website.customDomainApp')
+            console.log(website.customDomainApp)
+            console.log(website.customDomain)
             const addDomainData = await heroku.post(
                 '/apps/' + website.customDomainApp + '/domains/',
                 { body: { hostname: website.customDomain } }
