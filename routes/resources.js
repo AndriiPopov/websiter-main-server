@@ -22,6 +22,10 @@ router.post('/live', async (req, res) => {
         website = await Website.findOne({
             domain: pathArray[1],
         })
+        if (website)
+            if (website.domainHidden) {
+                return res.status(400).send('The website is not found')
+            }
         pathArray.shift()
         pathArray.shift()
         pathname = pathArray.join('/')
@@ -45,6 +49,10 @@ router.post('/live', async (req, res) => {
                 customDomain: url.hostname,
             })
         }
+        if (website)
+            if (website.customDomainHidden) {
+                return res.status(400).send('The website is not found')
+            }
         pathname = url.pathname
     }
 

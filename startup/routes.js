@@ -28,6 +28,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
     app.use(vhost('api.websiter.dev:5000', apiApp))
     app.use(vhost('api.localwebsiter.dev', apiApp))
     app.use(vhost('live.websiter.dev', liveApp))
+    app.use(vhost('*', liveApp))
 
     myApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')

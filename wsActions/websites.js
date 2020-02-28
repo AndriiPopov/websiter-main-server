@@ -283,7 +283,7 @@ module.exports.verifyCustomDomain = async (data, ws) => {
                 const txtArray = record.entries.split('=')
                 if (txtArray.length === 2) {
                     if (txtArray[0] === 'websiter_verification') {
-                        if (txtArray[0] === website.verifyCode) {
+                        if (txtArray[0].toString() === website._id.toString()) {
                             txtVerified = true
                         }
                     }
@@ -550,6 +550,9 @@ module.exports.saveDomainName = async (data, ws) => {
         )
             return
 
+        const oldWebsiteObject = website.toObject()
+        website[data.type] = data.name.trim()
+
         if (data.type === 'domain') {
             const websitesWithThisDomain = await Website.find({
                 domain: data.name.trim(),
@@ -558,10 +561,27 @@ module.exports.saveDomainName = async (data, ws) => {
                 sendError(ws, 'This name is taken. Please try another name.')
                 return
             }
+        } else {
+            if (!website.customDomainApp || website.customDomainApp === '') {
+                website.customDomainApp = process.env.websiter
+            } else {
+                if (website.customDomain)
+                    await heroku.delete(
+                        '/apps/' +
+                            website.customDomainApp +
+                            '/domains/' +
+                            website.customDomain
+                    )
+            }
+            const addDomainData = await heroku.post(
+                '/apps/' +
+                    website.customDomainApp +
+                    '/domains/' +
+                    website.customDomain,
+                { body: { hostname: website.customDomain } }
+            )
+            console.log(addDomainData)
         }
-        const oldWebsiteObject = website.toObject()
-
-        website[data.type] = data.name.trim()
 
         const newWebsiteObject = website.toObject()
         website.__patch__ = diffpatcher.diff(oldWebsiteObject, newWebsiteObject)
