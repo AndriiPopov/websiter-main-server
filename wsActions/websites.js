@@ -563,7 +563,7 @@ module.exports.saveDomainName = async (data, ws) => {
             }
         } else {
             if (!website.customDomainApp || website.customDomainApp === '') {
-                website.customDomainApp = process.env.websiter
+                website.customDomainApp = process.env.HEROKU_CUSTOM_DOMAIN_APP
             } else {
                 if (website.customDomain) {
                     console.log('MMMMMMMMMMMMM')
