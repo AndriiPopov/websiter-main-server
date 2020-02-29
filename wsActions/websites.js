@@ -158,74 +158,6 @@ module.exports.deleteWebsite = async (data, ws) => {
     }
 }
 
-//  if (req.body.customDomain !== '__delete__') {
-//             if (req.body.customDomain === 'wildcard') {
-//                 return res.send({ customDomainNotOk: true })
-//             }
-//             const customDomain = req.body.customDomain.trim()
-//             if (customDomain.indexOf('wildcard') > -1) {
-//                 return res.send({ customDomainNotOk: true })
-//             }
-//             const pat = /(?:\w+\.)+\w+/gm
-//             if (!pat.test(customDomain)) {
-//                 return res.send({ customDomainNotOk: true })
-//             }
-//             websiteWithThisUrl = await Website.findOne({
-//                 customDomain,
-//             })
-//             if (websiteWithThisUrl) {
-//                 if (
-//                     websiteWithThisUrl._id.toString() !==
-//                     req.params.id.toString()
-//                 ) {
-//                     return res.send({ customDomainNotOk: true })
-//                 }
-//             }
-
-//             website = await Website.findById(req.params.id)
-//             if (website) {
-//                 if (website.customDomain && website.customDomainApp) {
-//                     await heroku.delete(
-//                         '/apps/' +
-//                             website.customDomainApp +
-//                             '/domains/' +
-//                             website.customDomain
-//                     )
-//                 }
-//             }
-
-//             const customDomainRegistered = await heroku.post(
-//                 '/apps/' + process.env.HEROKU_CUSTOM_DOMAIN_APP + '/domains',
-//                 { body: { hostname: customDomain } }
-//             )
-
-//             if (!customDomainRegistered) {
-//                 if (error) return res.status(400).send('Try again')
-//             } else {
-//                 req.body.customDomainApp = process.env.HEROKU_CUSTOM_DOMAIN_APP
-//                 req.body.customDomain = customDomain
-//                 req.body.cname = customDomainRegistered.cname
-//                 req.body.customDomainVerified = false
-//                 req.body.verifyCode =
-//                     req.params.id + Math.floor(Math.random() * 100000)
-//             }
-//         } else {
-//             // delete domain
-//             website = await Website.findById(req.params.id)
-//             if (website) {
-//                 if (website.customDomain && website.customDomainApp) {
-//                     await heroku.delete(
-//                         '/apps/' +
-//                             website.customDomainApp +
-//                             '/domains/' +
-//                             website.customDomain
-//                     )
-//                 }
-//                 req.body.customDomainApp = ''
-//                 req.body.customDomain = ''
-//             }
-//         }
-
 module.exports.verifyCustomDomain = async (data, ws) => {
     try {
         if (ws.tryWebsiter) {
@@ -562,26 +494,61 @@ module.exports.saveDomainName = async (data, ws) => {
                 return
             }
         } else {
-            if (!website.customDomainApp || website.customDomainApp === '') {
-                website.customDomainApp = process.env.HEROKU_CUSTOM_DOMAIN_APP
-            } else {
-                if (website.customDomainId) {
-                    try {
-                        await heroku.delete(
-                            '/apps/' +
-                                website.customDomainApp +
-                                '/domains/' +
-                                website.customDomainId
-                        )
-                    } catch (ex) {}
+            if (website.customDomain !== oldWebsiteObject.customDomain) {
+                if (website.customDomain !== '__delete__') {
+                    if (website.customDomain.indexOf('wildcard') > -1) {
+                        sendError(ws, 'Domain name can not contain "wildcard".')
+                        return
+                    }
+                    const pat = /(?:\w+\.)+\w+/gm
+                    if (!pat.test(website.customDomain)) {
+                        sendError(ws, 'Domain name is not correct.')
+                        return
+                    }
+                    if (
+                        !website.customDomainApp ||
+                        website.customDomainApp === ''
+                    ) {
+                        website.customDomainApp =
+                            process.env.HEROKU_CUSTOM_DOMAIN_APP
+                    } else {
+                        if (website.customDomainId) {
+                            try {
+                                await heroku.delete(
+                                    '/apps/' +
+                                        website.customDomainApp +
+                                        '/domains/' +
+                                        website.customDomainId
+                                )
+                            } catch (ex) {}
+                        }
+                    }
+                    const addDomainData = await heroku.post(
+                        '/apps/' + website.customDomainApp + '/domains',
+                        { body: { hostname: website.customDomain } }
+                    )
+                    website.cname = addDomainData.cname
+                    website.customDomainId = addDomainData.id
+                    website.customDomainVerified = false
+                } else {
+                    // delete domain
+                    if (website.customDomainApp && website.customDomainId) {
+                        try {
+                            await heroku.delete(
+                                '/apps/' +
+                                    website.customDomainApp +
+                                    '/domains/' +
+                                    website.customDomainId
+                            )
+                        } catch (ex) {}
+                    }
+                    website.cname = ''
+                    website.customDomainId = ''
+                    website.customDomainVerified = false
+                    website.customDomainApp = ''
+                    website.customDomain = ''
                 }
             }
-            const addDomainData = await heroku.post(
-                '/apps/' + website.customDomainApp + '/domains',
-                { body: { hostname: website.customDomain } }
-            )
-            website.cname = addDomainData.cname
-            website.customDomainId = addDomainData.id
         }
 
         const newWebsiteObject = website.toObject()

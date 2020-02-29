@@ -129,7 +129,7 @@ userSchema.methods.deleteWebsite = async function(_id) {
                     '/apps/' +
                         websiteObject.customDomainApp +
                         '/domains/' +
-                        websiteObject.customDomain
+                        websiteObject.customDomainId
                 )
             }
 
