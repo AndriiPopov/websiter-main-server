@@ -49,7 +49,6 @@ router.post('/live', async (req, res) => {
                 customDomain: url.hostname,
             })
         }
-        console.log(website)
         console.log(url.hostname)
         console.log(url.hostname)
         if (website)
@@ -58,6 +57,8 @@ router.post('/live', async (req, res) => {
             }
         pathname = url.pathname
     }
+
+    console.log(pathname)
 
     if (!website) return res.status(400).send('No website')
     let page
