@@ -49,6 +49,9 @@ router.post('/live', async (req, res) => {
                 customDomain: url.hostname,
             })
         }
+        console.log(website)
+        console.log(url.hostname)
+        console.log(url.hostname)
         if (website)
             if (website.customDomainHidden) {
                 return res.status(400).send('The website is not found')
