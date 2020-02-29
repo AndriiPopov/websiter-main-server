@@ -49,6 +49,9 @@ const websiteSchema = new mongoose.Schema(
         customDomainVerified: {
             type: Boolean,
         },
+        customDomainId: {
+            type: String,
+        },
         cname: {
             type: String,
         },
