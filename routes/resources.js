@@ -28,7 +28,7 @@ router.post('/live', async (req, res) => {
             }
         pathArray.shift()
         pathArray.shift()
-        pathname = pathArray.join('/')
+        pathname = pathArray.join('/').trim()
     } else {
         // const dnsTxtRecords = await dns.resolveTxt(url.hostname)
         // const logisionRecord = dnsTxtRecords.find(record => {
@@ -49,20 +49,16 @@ router.post('/live', async (req, res) => {
                 customDomain: url.hostname,
             })
         }
-        console.log(url.hostname)
-        console.log(url.hostname)
         if (website)
             if (website.customDomainHidden) {
                 return res.status(400).send('The website is not found')
             }
-        pathname = url.pathname
+        pathname = url.pathname.trim()
     }
-
-    console.log(pathname)
 
     if (!website) return res.status(400).send('No website')
     let page
-    if (pathname === '') {
+    if (pathname === '' || pathname === '/') {
         page = website.pagesStructure.find(page => page.homepage === true)
     }
     if (!page) {
