@@ -14,7 +14,7 @@ const router = express.Router()
 router.get('/', async (req, res, next) => {
     const date = new Date()
     res.cookie('try_websiter', true, {
-        maxAge: 10,
+        maxAge: 10000,
     })
     next()
 })
