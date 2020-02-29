@@ -35,7 +35,6 @@ const websiteSchema = new mongoose.Schema(
         },
         customDomain: {
             type: String,
-            minlength: 1,
             maxlength: 255,
             lowercase: true,
             trim: true,
@@ -43,8 +42,7 @@ const websiteSchema = new mongoose.Schema(
         },
         customDomainApp: {
             type: String,
-            minlength: 1,
-            maxlength: 255,
+            maxlength: 1000,
         },
         customDomainVerified: {
             type: Boolean,

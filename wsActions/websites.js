@@ -483,7 +483,7 @@ module.exports.saveDomainName = async (data, ws) => {
             return
 
         const oldWebsiteObject = website.toObject()
-        website[data.type] = data.name.trim()
+        website[data.type] = data.name.toLowerCase().trim()
 
         if (data.type === 'domain') {
             const websitesWithThisDomain = await Website.find({
@@ -494,7 +494,10 @@ module.exports.saveDomainName = async (data, ws) => {
                 return
             }
         } else {
-            if (website.customDomain !== oldWebsiteObject.customDomain) {
+            if (
+                website.customDomain.toLowerCase() !==
+                oldWebsiteObject.customDomain.toLowerCase()
+            ) {
                 if (website.customDomain !== '__delete__') {
                     if (website.customDomain.indexOf('wildcard') > -1) {
                         sendError(ws, 'Domain name can not contain "wildcard".')
