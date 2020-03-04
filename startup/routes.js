@@ -12,7 +12,7 @@ const vhost = require('vhost')
 module.exports = function(app, myApp, liveApp, apiApp) {
     app.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', '*')
+        res.header('Access-Control-Allow-Headers', '')
         res.header('X-Frame-Options', 'deny')
         res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
@@ -35,6 +35,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', '*')
         res.header('X-Frame-Options', 'deny')
+        res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://my.websiter.dev' }))
         // app.use(express.json())
@@ -45,6 +46,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', '*')
         res.header('X-Frame-Options', 'deny')
+        res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://api.websiter.dev' }))
         // app.use(express.json())
@@ -55,6 +57,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('Access-Control-Allow-Headers', '*')
         res.header('X-Frame-Options', 'deny')
+        res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://live.websiter.dev' }))
         // app.use(express.json())
