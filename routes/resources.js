@@ -30,16 +30,6 @@ router.post('/live', async (req, res) => {
         pathArray.shift()
         pathname = pathArray.join('/').trim()
     } else {
-        // const dnsTxtRecords = await dns.resolveTxt(url.hostname)
-        // const logisionRecord = dnsTxtRecords.find(record => {
-        //     if (record.length > 0) {
-        //         const fields = record[0].split('=')
-        //         if (fields.length > 1) {
-        //             if (fields[0] === 'logision-verification-code') return true
-        //         }
-        //     }
-        // })
-
         website = await Website.findOne({
             customDomain: url.hostname,
             customDomainVerified: true,

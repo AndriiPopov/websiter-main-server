@@ -17,10 +17,13 @@ module.exports.heartbeat = async (ws, data) => {
                         .validate(item)
                     if (!error) {
                         let needToRequest
-                        if (data.versions[item] && ws.resources[item]) {
+                        if (item in data.versions && item in ws.resources) {
                             if (data.versions[item].__v !== ws.resources[item])
                                 needToRequest = true
-                        } else if (data.versions[item] && !ws.resources[item])
+                        } else if (
+                            item in data.versions &&
+                            !(item in ws.resources)
+                        )
                             needToRequest = true
                         if (needToRequest) {
                             requestResource(

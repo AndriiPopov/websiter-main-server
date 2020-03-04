@@ -12,7 +12,7 @@ const vhost = require('vhost')
 module.exports = function(app, myApp, liveApp, apiApp) {
     app.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', '')
+        res.header('Access-Control-Allow-Headers', 'Content-Type, x-auth-token')
         res.header('X-Frame-Options', 'deny')
         res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
@@ -33,7 +33,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
 
     myApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', '*')
+        res.header('Access-Control-Allow-Headers', 'Content-Type, x-auth-token')
         res.header('X-Frame-Options', 'deny')
         res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
@@ -44,7 +44,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
 
     apiApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'Content-Type')
+        res.header('Access-Control-Allow-Headers', 'Content-Type, x-auth-token')
         res.header('X-Frame-Options', 'deny')
         res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
@@ -55,7 +55,7 @@ module.exports = function(app, myApp, liveApp, apiApp) {
 
     liveApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', '*')
+        res.header('Access-Control-Allow-Headers', 'Content-Type, x-auth-token')
         res.header('X-Frame-Options', 'deny')
         res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
