@@ -96,12 +96,12 @@ router.post('/live', async (req, res) => {
     }
     pickConnectedResources(template)
     const resourcesObjects = await pickResourcesObjectsLive(website, whitelist)
-    console.log('live page is sent')
+    console.log('live page is sent YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYOOOOOOOOOOOOOOOOOOOOOOOOOOO')
     res.send({
         resourcesObjects,
         page: page.id,
         template: template.id,
-        pagesStructure: website.pagesStructure,
+        pagesStructure: website.refuse to set unsapagesStructure,
         pluginsStructure: website.pluginsStructure,
         domainNoIndex: website.domainNoIndex,
         baseUrl:
