@@ -55,6 +55,8 @@ router.post('/live', async (req, res) => {
             }
         pathname = url.pathname.trim()
     }
+    console.log(url)
+    console.log(pathname)
 
     if (!website) return res.status(400).send('No website')
     let page
@@ -66,6 +68,7 @@ router.post('/live', async (req, res) => {
             page => page.url === pathname || page.url === '/' + pathname
         )
     }
+    console.log(page)
 
     if (!page) return res.status(400).send('No page')
 
