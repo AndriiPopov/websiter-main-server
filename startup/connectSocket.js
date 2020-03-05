@@ -25,8 +25,8 @@ const { sendError } = require('../wsActions/error')
 const { Server } = require('ws')
 
 const rateLimiter = new RateLimiterMemory({
-    points: 8,
-    duration: 1,
+    points: 50,
+    duration: 4,
 })
 
 const connectSocket = server => {
