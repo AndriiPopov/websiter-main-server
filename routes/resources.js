@@ -120,7 +120,7 @@ router.post('/live', async (req, res) => {
                       : 'http://live.websiter.dev:4000/') +
                   website.domain +
                   '/'
-                : '',
+                : 'https://' + website.domain,
     })
 })
 
