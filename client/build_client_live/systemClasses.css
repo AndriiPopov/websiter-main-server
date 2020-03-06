@@ -16,6 +16,7 @@
     list-style: none;
     margin: 0px;
     padding: 0px;
+    outline: none;
 }
 .systemclass_menu-hidden {
     display: none;
