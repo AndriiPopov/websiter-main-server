@@ -102,6 +102,8 @@ router.post('/live', async (req, res) => {
         resourcesObjects,
         page: page.id,
         template: template.id,
+        globalSettingsPageId,
+        globalSettingsTemplateId,
         pagesStructure: website.pagesStructure,
         pluginsStructure: website.pluginsStructure,
         domainNoIndex: website.domainNoIndex,
