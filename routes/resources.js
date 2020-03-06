@@ -49,17 +49,21 @@ router.post('/live', async (req, res) => {
     if (!website) return res.status(400).send('No website')
     let page
     if (pathname === '' || pathname === '/') {
-        page = website.pagesStructure.find(page => page.homepage === true)
+        page = website.pagesStructure.find(
+            page =>
+                page.homepage === true && !page.generalSettings && !page.hidden
+        )
     }
     if (!page) {
         page = website.pagesStructure.find(
-            page => page.url === pathname || '/' + page.url === pathname
+            page =>
+                (page.url === pathname || '/' + page.url === pathname) &&
+                !page.generalSettings &&
+                !page.hidden
         )
     }
 
     if (!page) return res.status(400).send('No page')
-
-    if (page.hidden) return res.status(400).send('No page')
 
     let template = website.templatesStructure.find(
         template => template.name === page.template

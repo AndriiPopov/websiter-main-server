@@ -10,6 +10,7 @@ const passport = require('passport')
 const sslRedirect = require('heroku-ssl-redirect')
 const connectSocket = require('./startup/connectSocket')
 const rateLimiterMiddleware = require('./middleware/rateLimiter')
+const oneOffTask = require('./startup/oneOffTask')
 
 const app = express()
 app.use(rateLimiterMiddleware)
@@ -28,6 +29,7 @@ aws.config.region = 'us-east-2'
 logging()
 routes(app, myApp, liveApp, apiApp)
 db()
+setTimeout(oneOffTask, 10000)
 validation()
 
 prod(app)

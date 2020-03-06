@@ -128,6 +128,24 @@ const blankTemplateContent = {
     connectedResources: [],
 }
 
+const blankTemplateContentGlobal = {
+    currentId: 3,
+    structure: [
+        {
+            id: 'element_02',
+            path: [],
+            tag: 'CMS variables',
+        },
+    ],
+    values: {
+        element_02: {
+            properties: {},
+            style: '',
+        },
+    },
+    connectedResources: [],
+}
+
 const blankPageContent = {
     structure: [],
     values: {},
@@ -333,6 +351,35 @@ websiteSchema.methods.createResource = async function(
     return {
         resource,
         data,
+    }
+}
+
+websiteSchema.methods.createGlobalSettingsResource = async function(type) {
+    try {
+        let resource = new Resource()
+        resource.website = this._id.toString()
+        resource.draft = {}
+        resource.published =
+            type === 'page' ? blankPageContent : blankTemplateContentGlobal
+        resource.markModified('draft')
+        resource.markModified('published')
+        resource = await resource.save()
+        if (!resource) return
+        this[currentType[type]] = resource._id.toString()
+        this[structureType[type]].unshift({
+            id: resource._id.toString(),
+            name: 'Global website settings',
+            url: '__general__settings__',
+            hidden: true,
+            path: [],
+            published: true,
+            generalSettings: true,
+            ...(type === 'page' ? { template: 'Global website settings' } : {}),
+        })
+        this.markModified(structureType[type])
+        return resource
+    } catch (ex) {
+        console.log(ex)
     }
 }
 

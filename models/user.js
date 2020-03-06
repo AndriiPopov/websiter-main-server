@@ -70,7 +70,13 @@ userSchema.methods.createWebsite = async function() {
                 },
             ],
         })
-        await website.createResource('', 'page')
+        const globalSettingsPage = await website.createGlobalSettingsResource(
+            'page'
+        )
+        const globalSettingsTemplate = await website.createGlobalSettingsResource(
+            'template'
+        )
+        if (!globalSettingsPage || !globalSettingsTemplate) return
 
         website = await website.save()
         return website

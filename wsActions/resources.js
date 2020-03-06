@@ -202,6 +202,16 @@ module.exports.updateResource = async (data, ws) => {
                 return
             }
 
+            if (
+                !newWebsite.pagesStructure.find(item => item.generalSettings) ||
+                !newWebsite.templatesStructure.find(
+                    item => item.generalSettings
+                )
+            ) {
+                sendError(ws)
+                return
+            }
+
             for (let attr in newWebsite) {
                 if (
                     ![
