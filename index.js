@@ -29,7 +29,7 @@ aws.config.region = 'us-east-2'
 logging()
 routes(app, myApp, liveApp, apiApp)
 db()
-// sedtTimeout(oneOffTask, 10000)
+// sedtTimeout(oneOffTask, 3000)
 validation()
 
 prod(app)

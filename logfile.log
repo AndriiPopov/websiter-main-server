@@ -4770,3 +4770,7 @@
 {"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2020-03-06T07:42:13.603Z"}
 {"level":"info","message":"Listening on port 5000...","timestamp":"2020-03-06T07:45:44.146Z"}
 {"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2020-03-06T07:45:44.187Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-03-06T10:37:00.688Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2020-03-06T10:37:01.394Z"}
+{"level":"info","message":"Listening on port 5000...","timestamp":"2020-03-06T10:42:38.359Z"}
+{"level":"info","message":"Connected to mongodb://localhost/websiter","timestamp":"2020-03-06T10:42:38.397Z"}
