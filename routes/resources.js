@@ -73,12 +73,18 @@ router.post('/live', async (req, res) => {
 
     if (template.hidden) return res.status(400).send('No page')
 
-    const globalSettingsPageId = website.pagesStructure.find(
+    const globalSettingsPageItem = website.pagesStructure.find(
         item => item.generalSettings
     )
-    const globalSettingsTemplateId = website.templatesStructure.find(
+    const globalSettingsTemplateItem = website.templatesStructure.find(
         item => item.generalSettings
     )
+    let globalSettingsPageId = '',
+        globalSettingsTemplateId = ''
+    if (globalSettingsPageItem && globalSettingsTemplateItem) {
+        globalSettingsPageId = globalSettingsPageItem.id
+        globalSettingsTemplateId = globalSettingsTemplateItem.id
+    }
 
     const whitelist = [page.id, globalSettingsPageId, globalSettingsTemplateId]
 
