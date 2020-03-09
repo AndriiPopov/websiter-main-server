@@ -270,6 +270,7 @@ websiteSchema.methods.createResource = async function(
             )
             data.name = currentResourceData.name + nameAdd
             data.url = currentResourceData.url + urlAdd
+            data.template = currentResourceData.template
             data.hidden = true
             return { resource, data }
         } else {

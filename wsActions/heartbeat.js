@@ -23,8 +23,11 @@ module.exports.heartbeat = async (ws, data) => {
                         } else if (
                             item in data.versions &&
                             !(item in ws.resources)
-                        )
+                        ) {
+                            console.log('request because missing')
+                            console.log(item)
                             needToRequest = true
+                        }
                         if (needToRequest) {
                             requestResource(
                                 {
