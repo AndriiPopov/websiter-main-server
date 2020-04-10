@@ -4,7 +4,7 @@ const { getWebsiteAndPage } = require('../utils/getWebsiteAndPage')
 const resources = require('../utils/resources')
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import React from 'react'
-import Index from '../Components/pages/index.jsx'
+import Index from '../Components/pages/index.js'
 const https = require('https')
 const path = require('path')
 

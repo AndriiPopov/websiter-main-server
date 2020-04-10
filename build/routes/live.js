@@ -4,7 +4,7 @@ var _server = require("react-dom/server");
 
 var _react = _interopRequireDefault(require("react"));
 
-var _index = _interopRequireDefault(require("../Components/pages/index.jsx"));
+var _index = _interopRequireDefault(require("../Components/pages/index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
