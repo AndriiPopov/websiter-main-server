@@ -44,7 +44,7 @@ const Index = props => {
     const pageResult = !props.renderBody ? mD.structure.filter(itemInn => itemInn.id === 'element_01').map((itemInn, index) => {
       const result = /*#__PURE__*/React.createElement(_BuilderElement.default, {
         key: itemInn.id,
-        structure: mD.structure,
+        structure: mD.structure.filter(item => !item.path.includes('element_1')),
         element: itemInn,
         resourceDraft: mD.template ? mD.resourcesObjects[mD.template] : {},
         currentResource: mD.template,

@@ -53,9 +53,9 @@ router.get('/', async (req, res, next) => {
       const file = website.filesStructure.find(file => {
         const url = file.path.reduce((totalPath, fileId) => {
           const fileItem = website.filesStructure.find(fileInn => fileInn.id === fileId);
-          return totalPath + '/' + fileItem.name;
-        }, '') + '/' + file.name;
-        if (url === '/' + pathname) return true;
+          return totalPath + fileItem.name + '/';
+        }, '') + file.name;
+        if (url === pathname) return true;
       });
 
       if (file) {

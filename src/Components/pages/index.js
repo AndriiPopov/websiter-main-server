@@ -48,7 +48,9 @@ const Index = props => {
                       const result = (
                           <BuilderElement
                               key={itemInn.id}
-                              structure={mD.structure}
+                              structure={mD.structure.filter(
+                                  item => !item.path.includes('element_1')
+                              )}
                               element={itemInn}
                               resourceDraft={
                                   mD.template

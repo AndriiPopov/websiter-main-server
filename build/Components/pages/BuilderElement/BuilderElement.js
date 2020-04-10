@@ -225,7 +225,10 @@ const _BuilderElement = props => {
         });
       }
     } else {
-      const innerResult = props.element.id === 'element_1' && !props.renderBody ? null : [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
+      const innerResult = // props.element.id === 'element_1' && !props.renderBody
+      //     ? null
+      //     :
+      [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
         key: item.id,
         structure: props.structure,
         element: item,
@@ -238,7 +241,7 @@ const _BuilderElement = props => {
         pageInStructure: props.pageInStructure,
         mD: props.mD,
         renderBody: props.renderBody
-      })), props.element.id === 'element_0' ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("link", {
+      })), props.element.id === 'element_0' && !props.renderBody ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("link", {
         rel: "stylesheet",
         type: "text/css",
         href: "https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
@@ -246,12 +249,6 @@ const _BuilderElement = props => {
         dangerouslySetInnerHTML: {
           __html: ` window.__MD__ = ${serialize(props.mD)};`
         }
-      })) : null, props.element.id === 'element_1' ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("script", {
-        src: "/index.js",
-        charset: "utf-8"
-      }), /*#__PURE__*/_react.default.createElement("script", {
-        src: "/vendor.js",
-        charset: "utf-8"
       })) : null];
       Tag = Tag.replace(/[^a-z]/g, '');
       Tag = Tag.trim();
