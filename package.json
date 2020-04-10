@@ -12,7 +12,7 @@
         "dev": "nodemon --exec babel-node src/index.js",
         "clean": "rm -rf build && mkdir build",
         "build-server": "babel src -d ./build",
-        "build": "webpack --mode production && npm run clean &&  npm run build-server"
+        "build-app": "webpack --mode production && npm run clean &&  npm run build-server"
     },
     "engines": {
         "node": "10.15.1"

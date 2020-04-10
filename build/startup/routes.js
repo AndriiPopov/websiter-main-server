@@ -71,11 +71,11 @@ module.exports = function (app, myApp, liveApp, apiApp) {
     next();
   });
   myApp.use(express.json());
-  myApp.use(express.static(path.join(__dirname, '/../client')));
+  myApp.use(express.static(path.join(__dirname, '/../../client')));
   myApp.use('/api/auth', auth);
   myApp.use('/try', tryWebsiter);
   myApp.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/../client/index.html'));
+    res.sendFile(path.join(__dirname + '/../../client/index.html'));
   });
   apiApp.use(express.json());
   apiApp.use('/api/users', users);
