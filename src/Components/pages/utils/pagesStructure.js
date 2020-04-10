@@ -1,21 +1,13 @@
 import isEqual from 'lodash/isEqual'
 import omit from 'lodash/omit'
 
-import type { pagesStructureType } from '../../flowTypes'
-
-export const findDecedants = (
-    items: pagesStructureType,
-    id: string
-): pagesStructureType => {
+export const findDecedants = (items, id) => {
     return items.filter(item =>
         item.path.some(element => element.toString() === id.toString())
     )
 }
 
-export const findDirectChildren = (
-    items: pagesStructureType,
-    id: string
-): pagesStructureType => {
+export const findDirectChildren = (items, id) => {
     const elements = items.filter(item => item.id === id)
     if (elements.length !== 1) {
         return []
@@ -25,17 +17,9 @@ export const findDirectChildren = (
         )
     }
 }
-type child = {
-    children: Array<child>,
-    id: string,
-}
 
-export const buildItems = (
-    children: Array<child>,
-    path: Array<string>,
-    result: Array<{}>
-) => {
-    const doBuildItems = (children: Array<child>, path: Array<string>) => {
+export const buildItems = (children, path, result) => {
+    const doBuildItems = (children, path) => {
         children.forEach(element => {
             result.push({
                 ...omit(element, [

@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const { updateIfCurrentPlugin } = require('mongoose-update-if-current')
-const { Website } = require('../models/website')
+const { Website } = require('./website')
 const { Resource } = require('./resource')
-const { System } = require('../models/system')
+const { System } = require('./system')
 const { generateWebsiteId } = require('./system')
 const aws = require('aws-sdk')
 const S3_BUCKET = process.env.S3_BUCKET

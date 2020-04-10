@@ -3,7 +3,7 @@ const path = require('path')
 const config = {
     entry: {
         vendor: ['@babel/polyfill', 'react'], // Third party libraries
-        index: ['./Components/entrypoints/index.jsx'],
+        index: ['./src/Components/entrypoints/index.jsx'],
         /// Every pages entry point should be mentioned here
     },
     output: {
