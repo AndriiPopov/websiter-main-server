@@ -258,9 +258,7 @@ const _BuilderElement = props => {
 
       if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {
         const attributes = (0, _useEffect.setBoxProperties)(ownRefinedProperties, props, elementValues);
-        result = /*#__PURE__*/_react.default.createElement(Tag, {
-          attributes: true
-        });
+        result = /*#__PURE__*/_react.default.createElement(Tag, attributes);
       } else {
         const attributes = (0, _useEffect.setBoxProperties)(ownRefinedProperties, props, elementValues);
         result = /*#__PURE__*/_react.default.createElement(Tag, attributes, innerResult);

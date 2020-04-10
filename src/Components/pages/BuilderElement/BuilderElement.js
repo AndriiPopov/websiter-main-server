@@ -365,7 +365,7 @@ const _BuilderElement = props => {
                     props,
                     elementValues
                 )
-                result = <Tag attributes />
+                result = <Tag {...attributes} />
             } else {
                 const attributes = setBoxProperties(
                     ownRefinedProperties,
