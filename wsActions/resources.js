@@ -73,12 +73,19 @@ module.exports.addResource = async (data, ws) => {
             data.resourceData,
             data.name
         )
+        if (!result) {
+            sendError(
+                ws,
+                'New resource has not been created. Note, that you can not duplicate global settings resources.'
+            )
+            return
+        }
         const newWebsiteObject = website.toObject()
         website.__patch__ = diffpatcher.diff(oldWebsiteObject, newWebsiteObject)
         website.markModified('__patch__')
         website.save()
     } catch (ex) {
-        sendError(ws, 'here')
+        sendError(ws)
     }
 }
 
@@ -114,7 +121,7 @@ const newWebsiteSchema = Joi.object({
                     .required(),
                 name: Joi.string().allow(''),
                 url: Joi.string().allow(''),
-                template: Joi.string(),
+                template: Joi.string().allow(''),
                 homepage: Joi.boolean(),
                 hidden: Joi.boolean(),
                 notPublished: Joi.boolean(),
@@ -217,7 +224,6 @@ module.exports.updateResource = async (data, ws) => {
                     ![
                         'id',
                         'domain',
-                        'images',
                         'customDomain',
                         'customDomainApp',
                         'customDomainVerified',
@@ -481,7 +487,14 @@ module.exports.deleteResource = async (data, ws) => {
             return
 
         const oldWebsiteObject = website.toObject()
-        await website.deleteResource(resource._id, type)
+        const result = await website.deleteResource(resource._id, type)
+        if (!result) {
+            sendError(
+                ws,
+                'New resource has not been created. Note, that you can not delete global settings resources.'
+            )
+            return
+        }
         const newWebsiteObject = website.toObject()
         website.__patch__ = diffpatcher.diff(oldWebsiteObject, newWebsiteObject)
         website.markModified('__patch__')

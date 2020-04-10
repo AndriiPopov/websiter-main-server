@@ -93,7 +93,7 @@ userSchema.methods.deleteWebsite = async function(_id) {
         if (websiteObject.user.toString() === this._id.toString()) {
             // Delete all objects with the user prefix on AWS S3
 
-            const s3Files = websiteObject.images.map(image => ({
+            const s3Files = websiteObject.filesStructure.map(image => ({
                 Key: image.name,
             }))
 

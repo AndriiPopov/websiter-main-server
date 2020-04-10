@@ -22,17 +22,10 @@ const websiteSchema = new mongoose.Schema(
             unique: true,
             sparse: true,
         },
-        images: [],
         sharing: [],
-        domainHidden: {
-            type: Boolean,
-        },
-        domainNoIndex: {
-            type: Boolean,
-        },
-        customDomainHidden: {
-            type: Boolean,
-        },
+        domainHidden: { type: Boolean },
+        domainNoIndex: { type: Boolean },
+        customDomainHidden: { type: Boolean },
         customDomain: {
             type: String,
             maxlength: 255,
@@ -44,21 +37,13 @@ const websiteSchema = new mongoose.Schema(
             type: String,
             maxlength: 1000,
         },
-        customDomainVerified: {
-            type: Boolean,
-        },
-        customDomainId: {
-            type: String,
-        },
-        cname: {
-            type: String,
-        },
-        verifyCode: {
-            type: String,
-        },
-        user: {
-            type: String,
-        },
+        customDomainVerified: { type: Boolean },
+        customDomainId: { type: String },
+        cname: { type: String },
+        verifyCode: { type: String },
+        user: { type: String },
+        nextFileId: { type: Number },
+        filesStructure: [],
         pagesStructure: [],
         pluginsStructure: [],
         templatesStructure: [],
@@ -249,8 +234,12 @@ websiteSchema.methods.createResource = async function(
         if (!currentResourceObject || currentResourceDataArray.length !== 1) {
             return { resource: null, data: null }
         }
+
         let currentResourceData
         currentResourceData = currentResourceDataArray[0]
+
+        if (currentResourceData.generalSettings)
+            return { resource: null, data: null }
 
         let resource = new Resource()
         resource.website = this._id.toString()
@@ -268,9 +257,11 @@ websiteSchema.methods.createResource = async function(
                 currentResourceData.name,
                 currentResourceData.url
             )
-            data.name = currentResourceData.name + nameAdd
-            data.url = currentResourceData.url + urlAdd
-            data.template = currentResourceData.template
+            if (currentResourceData.name)
+                data.name = currentResourceData.name + nameAdd
+            if (currentResourceData.url)
+                data.url = currentResourceData.url + urlAdd
+            data.template = currentResourceData.template || ''
             data.hidden = true
             return { resource, data }
         } else {
@@ -385,6 +376,12 @@ websiteSchema.methods.createGlobalSettingsResource = async function(type) {
 }
 
 websiteSchema.methods.deleteResource = async function(resourceId, type) {
+    const itemInStructure = this[structureType[type]].find(
+        item => item.id.toString() === resourceId.toString()
+    )
+    if (!itemInStructure) return
+    if (itemInStructure.generalSettings) return
+
     const descedants = findDescendants(
         this[structureType[type]],
         resourceId
@@ -406,6 +403,7 @@ websiteSchema.methods.deleteResource = async function(resourceId, type) {
         this.markModified('pagesStructure')
     }
     this.markModified(structureType[type])
+    return true
 }
 
 module.exports.Website = mongoose.model('Website', websiteSchema)
@@ -428,7 +426,7 @@ module.exports.Website = mongoose.model('Website', websiteSchema)
 //         customDomainHidden: Joi.boolean().optional(),
 //         domainNoIndex: Joi.boolean().optional(),
 //         sharing: Joi.array().optional(),
-//         images: Joi.array()
+//         filesStructure: Joi.array()
 //             .items(
 //                 Joi.object().keys({
 //                     url: Joi.string().required(),

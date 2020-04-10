@@ -41,10 +41,10 @@ module.exports.addWebsite = async (data, ws) => {
         //     website.customDomain = ''
         //     website.domainHidden = false
         //     website.customDomainHidden = false
-        //     website.images = []
+        //     website.filesStructure = []
         //     website.sharing = []
         //     website.storage = 0
-        //     website.markModified('images')
+        //     website.markModified('filesStructure')
         //     website.markModified('sharing')
 
         //     website = await website.save()
@@ -486,6 +486,18 @@ module.exports.saveDomainName = async (data, ws) => {
         website[data.type] = data.name.toLowerCase().trim()
 
         if (data.type === 'domain') {
+            if (data.name.trim().length < 5) {
+                sendError(ws, 'Domain cannot be less than 5 symbols long.')
+                return
+            }
+            if (data.name.trim().length < 5) {
+                sendError(ws, 'Domain cannot be less than 5 symbols long.')
+                return
+            }
+            if (data.name.trim().indexOf('new-website') >= 0) {
+                sendError(ws, 'Domain cannot contain "new-website".')
+                return
+            }
             const websitesWithThisDomain = await Website.find({
                 domain: data.name.trim(),
             })

@@ -5,9 +5,12 @@
     "main": "index.js",
     "scripts": {
         "test": "jest --watchAll --verbose --runInBand",
-        "start": "node index.js",
+        "start": "node --exec babel-node index.js",
         "serve": "node dist/server.js",
-        "lint": "eslint ./src"
+        "lint": "eslint ./src",
+        "webpack": "webpack -wd",
+        "build": "webpack --mode production",
+        "dev": "nodemon --exec babel-node index.js"
     },
     "engines": {
         "node": "10.15.1"
@@ -19,14 +22,15 @@
         "@hapi/joi": "^17.1.0",
         "aws-sdk": "^2.625.0",
         "bcryptjs": "^2.4.3",
+        "camelcase": "^5.3.1",
         "compression": "^1.7.4",
-        "cors": "^2.8.5",
-        "ejs": "^2.7.4",
         "express": "^4.17.1",
         "express-async-errors": "^2.1.2",
         "helmet": "^3.21.2",
         "heroku-client": "^3.1.0",
         "heroku-ssl-redirect": "0.0.4",
+        "html-entities": "^1.2.1",
+        "html-react-parser": "^0.10.3",
         "joi-objectid": "^3.0.1",
         "jsondiffpatch": "^0.3.11",
         "jsonwebtoken": "^8.5.1",
@@ -38,14 +42,29 @@
         "passport-google-oauth": "^2.0.0",
         "passport-twitter": "^1.0.4",
         "rate-limiter-flexible": "^2.0.0",
+        "rc-menu": "^8.0.3",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "sanitize-html": "^1.22.1",
+        "serialize-javascript": "^3.0.0",
+        "style-to-object": "^0.3.0",
         "url-parse": "^1.4.7",
         "vhost": "^3.0.2",
-        "winston": "^2.4.4",
+        "webpack-dev-server": "^3.10.3",
+        "winston": "^3.2.1",
         "winston-mongodb": "^3.0.2",
         "ws": "^7.2.1"
     },
     "devDependencies": {
         "babel-eslint": "^10.0.3",
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.9.0",
+        "@babel/node": "^7.8.7",
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@babel/polyfill": "^7.8.7",
+        "@babel/preset-env": "^7.9.0",
+        "@babel/preset-react": "^7.9.4",
+        "babel-loader": "^8.0.6",
         "eslint": "^5.16.0",
         "eslint-config-airbnb-base": "^13.2.0",
         "eslint-config-prettier": "^4.3.0",
@@ -54,6 +73,8 @@
         "jest": "^24.9.0",
         "nodemon": "^2.0.2",
         "prettier": "1.17.0",
-        "supertest": "^4.0.2"
+        "supertest": "^4.0.2",
+        "webpack": "^4.41.6",
+        "webpack-cli": "^3.3.11"
     }
 }

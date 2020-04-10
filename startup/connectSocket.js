@@ -13,7 +13,7 @@ const {
     transferWebsite,
     saveDomainName,
 } = require('../wsActions/websites')
-const { renameImage, deleteImage, addImage } = require('../wsActions/images')
+const { renameImage, deleteImage, addImage } = require('../wsActions/files')
 const { deleteUser, logoutAll } = require('../wsActions/user')
 const { pushChanges } = require('../wsActions/pushChanges')
 const { heartbeat } = require('../wsActions/heartbeat')
