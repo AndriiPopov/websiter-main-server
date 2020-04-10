@@ -14,7 +14,7 @@ export default (props, elementValues) => {
         )
         result[attribute] = inheritedPropertyName
             ? props.parentPluginProps[inheritedPropertyName]
-            : elementValues.properti    es[attribute]
+            : elementValues.properties[attribute]
         if (result[attribute])
             result[attribute] = JSON.parse(
                 JSON.stringify(result[attribute]).replace(
