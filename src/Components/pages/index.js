@@ -1,9 +1,6 @@
 var React = require('react')
-// var Layout = require('./layout')
 import BuilderElement from './BuilderElement/BuilderElement'
 import { refinePropertiesFromCMS } from './BuilderElement/methods/refineProperties'
-
-// Contrived example to show how one might use Flow type annotations
 
 const Index = props => {
     const mD = props.mD
@@ -49,7 +46,7 @@ const Index = props => {
                           <BuilderElement
                               key={itemInn.id}
                               structure={mD.structure.filter(
-                                  item => !item.path.includes('element_1')
+                                  item => !item.id === 'element_01'
                               )}
                               element={itemInn}
                               resourceDraft={
@@ -62,7 +59,6 @@ const Index = props => {
                               pageInStructure={currentPageItemInStructure}
                               parentPluginProps={refinedProperties}
                               mD={mD}
-                              renderBody={props.renderBody}
                           />
                       )
                       return result
@@ -71,8 +67,8 @@ const Index = props => {
                   ...mD.structure
                       .filter(
                           itemInn =>
-                              itemInn.path.length === 2 &&
-                              itemInn.path[1] === 'element_1'
+                              itemInn.path.length === 1 &&
+                              itemInn.path[0] === 'element_01'
                       )
                       .map((itemInn, index) => {
                           const result = (
@@ -90,13 +86,11 @@ const Index = props => {
                                   pageInStructure={currentPageItemInStructure}
                                   parentPluginProps={refinedProperties}
                                   mD={mD}
-                                  renderBody={props.renderBody}
+                                  renderBodyAndHead
                               />
                           )
                           return result
                       }),
-                  <script src="/index.js" charset="utf-8" />,
-                  <script src="/vendor.js" charset="utf-8" />,
               ]
         return pageResult
     } else {

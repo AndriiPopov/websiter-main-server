@@ -15,6 +15,7 @@ router.get('/', async (req, res, next) => {
     const { website, page, pathname, is120 } = websiteAndPageData
     if (page) {
         const mD = await resources(page, website)
+
         let reactComp = renderToStaticMarkup(
             <Index
                 mD={{
@@ -23,6 +24,7 @@ router.get('/', async (req, res, next) => {
                 }}
             />
         )
+
         const bodyComp = renderToString(
             <Index
                 mD={{
@@ -32,11 +34,12 @@ router.get('/', async (req, res, next) => {
                 renderBody={true}
             />
         )
+
         reactComp =
             '<!DOCTYPE html>' +
-            reactComp.slice(0, reactComp.length - 14) +
+            reactComp.slice(0, reactComp.length - 7) +
             bodyComp +
-            '</body></html>'
+            '</html>'
         res.status(200).send(reactComp)
     } else {
         if (website && !page) {

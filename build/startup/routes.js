@@ -80,69 +80,10 @@ module.exports = function (app, myApp, liveApp, apiApp) {
   apiApp.use(express.json());
   apiApp.use('/api/users', users);
   apiApp.use('/api/sign-s3', awsSignS3);
-  apiApp.use('/api/auth', auth); // apiApp.use('/api/resources', resources)
-  // app.use(express.static(path.join(__dirname, '/../client')))
-  // apiApp.get('/tinymce.zip', (req, res) => {
-  //     res.sendFile(path.join(__dirname + '/../client/tinymce.zip'))
-  // })
-
-  liveApp.use(express.json()); // liveApp.use(
-  //     express.static(path.join(__dirname, '/../client/build_client_live'))
-  // )
-
+  apiApp.use('/api/auth', auth);
+  liveApp.use(express.json());
   liveApp.use(express.static('./public'));
   liveApp.set('etag', 'strong');
-  liveApp.use('*', live); // liveApp.get('*', async (req, res, next) => {
-  //     const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
-  //     const websiteAndPageData = await getWebsiteAndPage(fullUrl, res)
-  //     if (!websiteAndPageData) return
-  //     const { website, page, pathname, is120 } = websiteAndPageData
-  //     console.log(websiteAndPageData)
-  //     if (page) {
-  //         res.sendFile(
-  //             path.join(__dirname + '/../client/build_client_live/index.html')
-  //         )
-  //     } else {
-  //         if (website && !page) {
-  //             const file = website.filesStructure.find(file => {
-  //                 const url =
-  //                     file.path.reduce((totalPath, fileId) => {
-  //                         fileItem = website.filesStructure.find(
-  //                             fileInn => fileInn.id === fileId
-  //                         )
-  //                         return totalPath + '/' + fileItem.name
-  //                     }, '') +
-  //                     '/' +
-  //                     file.name
-  //                 if (url === '/' + pathname) return true
-  //             })
-  //             if (file) {
-  //                 if (
-  //                     req.get('If-None-Match') &&
-  //                     (typeof file.v === 'string' ||
-  //                         typeof file.v === 'number')
-  //                 ) {
-  //                     if (
-  //                         req.get('If-None-Match').toString() ===
-  //                         file.v.toString()
-  //                     ) {
-  //                         res.status(304).send()
-  //                         return
-  //                     }
-  //                 }
-  //                 if (file.url) {
-  //                     res.set('etag', file.v)
-  //                     res.set('Cache-Control', 'max-age=20')
-  //                     https.get(file.url + (is120 ? '/120' : ''), function(
-  //                         proxyRes
-  //                     ) {
-  //                         proxyRes.pipe(res)
-  //                     })
-  //                 }
-  //             }
-  //         }
-  //     }
-  // })
-
+  liveApp.use('*', live);
   app.use(error);
 };

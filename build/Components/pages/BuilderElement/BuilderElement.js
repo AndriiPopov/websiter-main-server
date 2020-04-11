@@ -79,8 +79,7 @@ const _BuilderElement = props => {
           parentPluginProps: props.parentPluginProps,
           childrenForPlugin: props.childrenForPlugin,
           currentResource: props.currentResource,
-          mD: props.mD,
-          renderBody: props.renderBody
+          mD: props.mD
         }));
       }
 
@@ -116,8 +115,7 @@ const _BuilderElement = props => {
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
-        mD: props.mD,
-        renderBody: props.renderBody
+        mD: props.mD
       }));
     }
   } else if (props.element.isElementFromCMSVariable) {
@@ -169,8 +167,7 @@ const _BuilderElement = props => {
               },
               childrenForPlugin: childrenForPlugin,
               pageInStructure: props.pageInStructure,
-              mD: props.mD,
-              renderBody: props.renderBody
+              mD: props.mD
             });
           })) : null;
         } else {
@@ -193,8 +190,7 @@ const _BuilderElement = props => {
               parentPluginProps: refinedProperties,
               childrenForPlugin: childrenForPlugin,
               pageInStructure: props.pageInStructure,
-              mD: props.mD,
-              renderBody: props.renderBody
+              mD: props.mD
             });
           });
         }
@@ -209,8 +205,7 @@ const _BuilderElement = props => {
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
-        mD: props.mD,
-        renderBody: props.renderBody
+        mD: props.mD
       }, getModulePropertiesNodes(Tag))));
     } else if (Tag === 'richEditor') {
       return (0, _htmlReactParser.default)((0, _sanitizeHtml.default)(elementValues.textContent, {
@@ -219,16 +214,13 @@ const _BuilderElement = props => {
       }));
     } else if (props.element.text) {
       if (elementValues.textContent) {
-        result = elementValues.textContent.replace(/\$[^:;\$\s]*\$/g, match => {
+        result = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, elementValues.textContent.replace(/\$[^:;\$\s]*\$/g, match => {
           const inheritedPropertyName = (0, _basic.getInheritedPropertyName)(match);
           return inheritedPropertyName ? props.parentPluginProps[inheritedPropertyName] || '' : '';
-        });
+        }));
       }
     } else {
-      const innerResult = // props.element.id === 'element_1' && !props.renderBody
-      //     ? null
-      //     :
-      [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
+      const innerResult = [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
         key: item.id,
         structure: props.structure,
         element: item,
@@ -239,9 +231,8 @@ const _BuilderElement = props => {
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
-        mD: props.mD,
-        renderBody: props.renderBody
-      })), props.element.id === 'element_0' && !props.renderBody ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("link", {
+        mD: props.mD
+      })), props.element.id === 'element_0' && props.renderBodyAndHead ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("link", {
         rel: "stylesheet",
         type: "text/css",
         href: "https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
@@ -249,6 +240,12 @@ const _BuilderElement = props => {
         dangerouslySetInnerHTML: {
           __html: ` window.__MD__ = ${serialize(props.mD)};`
         }
+      })) : null, props.element.id === 'element_1' && props.renderBodyAndHead ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("script", {
+        src: "/index.js",
+        charset: "utf-8"
+      }), /*#__PURE__*/_react.default.createElement("script", {
+        src: "/vendor.js",
+        charset: "utf-8"
       })) : null];
       Tag = Tag.replace(/[^a-z]/g, '');
       Tag = Tag.trim();

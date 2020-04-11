@@ -66,7 +66,6 @@ const _BuilderElement = props => {
                             childrenForPlugin={props.childrenForPlugin}
                             currentResource={props.currentResource}
                             mD={props.mD}
-                            renderBody={props.renderBody}
                         />
                     ))
             }
@@ -113,7 +112,6 @@ const _BuilderElement = props => {
                         childrenForPlugin={props.childrenForPlugin}
                         pageInStructure={props.pageInStructure}
                         mD={props.mD}
-                        renderBody={props.renderBody}
                     />
                 ))
         }
@@ -200,7 +198,6 @@ const _BuilderElement = props => {
                                                   props.pageInStructure
                                               }
                                               mD={props.mD}
-                                              renderBody={props.renderBody}
                                           />
                                       )
                                   })
@@ -238,7 +235,6 @@ const _BuilderElement = props => {
                                     childrenForPlugin={childrenForPlugin}
                                     pageInStructure={props.pageInStructure}
                                     mD={props.mD}
-                                    renderBody={props.renderBody}
                                 />
                             )
                         })
@@ -261,7 +257,6 @@ const _BuilderElement = props => {
                         childrenForPlugin={props.childrenForPlugin}
                         pageInStructure={props.pageInStructure}
                         mD={props.mD}
-                        renderBody={props.renderBody}
                         {...getModulePropertiesNodes(Tag)}
                     />
                 </div>
@@ -275,60 +270,66 @@ const _BuilderElement = props => {
             )
         } else if (props.element.text) {
             if (elementValues.textContent) {
-                result = elementValues.textContent.replace(
-                    /\$[^:;\$\s]*\$/g,
-                    match => {
-                        const inheritedPropertyName = getInheritedPropertyName(
-                            match
-                        )
-                        return inheritedPropertyName
-                            ? props.parentPluginProps[inheritedPropertyName] ||
-                                  ''
-                            : ''
-                    }
+                result = (
+                    <>
+                        {elementValues.textContent.replace(
+                            /\$[^:;\$\s]*\$/g,
+                            match => {
+                                const inheritedPropertyName = getInheritedPropertyName(
+                                    match
+                                )
+                                return inheritedPropertyName
+                                    ? props.parentPluginProps[
+                                          inheritedPropertyName
+                                      ] || ''
+                                    : ''
+                            }
+                        )}
+                    </>
                 )
             }
         } else {
-            const innerResult =
-                // props.element.id === 'element_1' && !props.renderBody
-                //     ? null
-                //     :
-                [
-                    ...props.structure
-                        .filter(item => isEqual(item.path, currentPath))
-                        .map(item => (
-                            <BuilderElement
-                                key={item.id}
-                                structure={props.structure}
-                                element={item}
-                                pluginsPathArray={props.pluginsPathArray}
-                                sourcePlugin={props.sourcePlugin}
-                                routePlugin={props.routePlugin}
-                                currentResource={props.currentResource}
-                                parentPluginProps={props.parentPluginProps}
-                                childrenForPlugin={props.childrenForPlugin}
-                                pageInStructure={props.pageInStructure}
-                                mD={props.mD}
-                                renderBody={props.renderBody}
-                            />
-                        )),
-                    props.element.id === 'element_0' && !props.renderBody ? (
-                        <>
-                            <link
-                                rel="stylesheet"
-                                type="text/css"
-                                href="https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
-                            />
-                            <script
-                                dangerouslySetInnerHTML={{
-                                    __html: ` window.__MD__ = ${serialize(
-                                        props.mD
-                                    )};`,
-                                }}
-                            />
-                        </>
-                    ) : null,
-                ]
+            const innerResult = [
+                ...props.structure
+                    .filter(item => isEqual(item.path, currentPath))
+                    .map(item => (
+                        <BuilderElement
+                            key={item.id}
+                            structure={props.structure}
+                            element={item}
+                            pluginsPathArray={props.pluginsPathArray}
+                            sourcePlugin={props.sourcePlugin}
+                            routePlugin={props.routePlugin}
+                            currentResource={props.currentResource}
+                            parentPluginProps={props.parentPluginProps}
+                            childrenForPlugin={props.childrenForPlugin}
+                            pageInStructure={props.pageInStructure}
+                            mD={props.mD}
+                        />
+                    )),
+                props.element.id === 'element_0' && props.renderBodyAndHead ? (
+                    <>
+                        <link
+                            rel="stylesheet"
+                            type="text/css"
+                            href="https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
+                        />
+                        <script
+                            dangerouslySetInnerHTML={{
+                                __html: ` window.__MD__ = ${serialize(
+                                    props.mD
+                                )};`,
+                            }}
+                        />
+                    </>
+                ) : null,
+                props.element.id === 'element_1' && props.renderBodyAndHead ? (
+                    <>
+                        <script src="/index.js" charset="utf-8" />
+                        <script src="/vendor.js" charset="utf-8" />
+                    </>
+                ) : null,
+            ]
 
             Tag = Tag.replace(/[^a-z]/g, '')
             Tag = Tag.trim()

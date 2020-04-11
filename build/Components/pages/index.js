@@ -11,10 +11,8 @@ var _refineProperties = require("./BuilderElement/methods/refineProperties");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var React = require('react'); // var Layout = require('./layout')
+var React = require('react');
 
-
-// Contrived example to show how one might use Flow type annotations
 const Index = props => {
   const mD = props.mD;
   const currentPageItemInStructure = mD.pagesStructure.find(item => item.id === mD.page);
@@ -44,18 +42,17 @@ const Index = props => {
     const pageResult = !props.renderBody ? mD.structure.filter(itemInn => itemInn.id === 'element_01').map((itemInn, index) => {
       const result = /*#__PURE__*/React.createElement(_BuilderElement.default, {
         key: itemInn.id,
-        structure: mD.structure.filter(item => !item.path.includes('element_1')),
+        structure: mD.structure.filter(item => !item.id === 'element_01'),
         element: itemInn,
         resourceDraft: mD.template ? mD.resourcesObjects[mD.template] : {},
         currentResource: mD.template,
         pluginsPathArray: [],
         pageInStructure: currentPageItemInStructure,
         parentPluginProps: refinedProperties,
-        mD: mD,
-        renderBody: props.renderBody
+        mD: mD
       });
       return result;
-    }) : [...mD.structure.filter(itemInn => itemInn.path.length === 2 && itemInn.path[1] === 'element_1').map((itemInn, index) => {
+    }) : [...mD.structure.filter(itemInn => itemInn.path.length === 1 && itemInn.path[0] === 'element_01').map((itemInn, index) => {
       const result = /*#__PURE__*/React.createElement(_BuilderElement.default, {
         key: itemInn.id,
         structure: mD.structure,
@@ -66,15 +63,9 @@ const Index = props => {
         pageInStructure: currentPageItemInStructure,
         parentPluginProps: refinedProperties,
         mD: mD,
-        renderBody: props.renderBody
+        renderBodyAndHead: true
       });
       return result;
-    }), /*#__PURE__*/React.createElement("script", {
-      src: "/index.js",
-      charset: "utf-8"
-    }), /*#__PURE__*/React.createElement("script", {
-      src: "/vendor.js",
-      charset: "utf-8"
     })];
     return pageResult;
   } else {

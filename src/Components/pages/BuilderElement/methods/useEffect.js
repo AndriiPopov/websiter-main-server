@@ -8,6 +8,7 @@ const styleToCamelcase = style => {
     styleToObject(style, (name, value) => {
         result[camelCase(name)] = value
     })
+
     return result
 }
 
