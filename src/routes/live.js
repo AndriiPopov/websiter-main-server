@@ -35,12 +35,11 @@ router.get('/', async (req, res, next) => {
             />
         )
 
-        reactComp = unescape(
+        reactComp =
             '<!DOCTYPE html>' +
-                reactComp.slice(0, reactComp.length - 7) +
-                bodyComp +
-                '</html>'
-        )
+            reactComp.slice(0, reactComp.length - 7) +
+            bodyComp +
+            '</html>'
 
         res.status(200).send(reactComp)
     } else {

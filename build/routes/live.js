@@ -46,7 +46,7 @@ router.get('/', async (req, res, next) => {
       },
       renderBody: true
     }));
-    reactComp = unescape('<!DOCTYPE html>' + reactComp.slice(0, reactComp.length - 7) + bodyComp + '</html>');
+    reactComp = '<!DOCTYPE html>' + reactComp.slice(0, reactComp.length - 7) + bodyComp + '</html>';
     res.status(200).send(reactComp);
   } else {
     if (website && !page) {

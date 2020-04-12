@@ -286,7 +286,7 @@ const _BuilderElement = props => {
                             }
                         )}
                     </>
-                )
+                ).text()
             }
         } else {
             const innerResult = [

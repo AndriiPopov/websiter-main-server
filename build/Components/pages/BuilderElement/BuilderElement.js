@@ -217,7 +217,7 @@ const _BuilderElement = props => {
         result = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, elementValues.textContent.replace(/\$[^:;\$\s]*\$/g, match => {
           const inheritedPropertyName = (0, _basic.getInheritedPropertyName)(match);
           return inheritedPropertyName ? props.parentPluginProps[inheritedPropertyName] || '' : '';
-        }));
+        })).text();
       }
     } else {
       const innerResult = [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
