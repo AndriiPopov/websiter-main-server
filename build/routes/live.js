@@ -49,7 +49,7 @@ router.get('/', async (req, res, next) => {
       renderBody: true
     }));
     reactComp = '<!DOCTYPE html>' + reactComp.slice(0, reactComp.length - 7) + bodyComp + '</html>';
-    reactComp = ejs.render(reactComp);
+    reactComp = ejs.render('<%- reactComp %>');
     res.status(200).send(reactComp);
   } else {
     if (website && !page) {
