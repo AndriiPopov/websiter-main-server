@@ -42,7 +42,7 @@ router.get('/', async (req, res, next) => {
             bodyComp +
             '</html>'
 
-        reactComp = ejs.render('<%- reactComp %>')
+        reactComp = ejs.render('<%- reactComp %>', { reactComp: reactComp })
 
         res.status(200).send(reactComp)
     } else {
