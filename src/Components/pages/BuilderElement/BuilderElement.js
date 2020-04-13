@@ -9,11 +9,8 @@ import { renderToString } from 'react-dom/server'
 import { checkIfCapital, getInheritedPropertyName } from '../utils/basic'
 import { setBoxProperties } from './methods/useEffect'
 import refineProperties from './methods/refineProperties'
-import { AllHtmlEntities as Entities } from 'html-entities'
 import { modulesPropertyNodes } from '../utils/modulesIndex'
 var serialize = require('serialize-javascript')
-
-const entities = new Entities()
 
 const _BuilderElement = props => {
     const elementValues =

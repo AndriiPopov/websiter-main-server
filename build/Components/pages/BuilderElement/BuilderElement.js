@@ -25,8 +25,6 @@ var _useEffect = require("./methods/useEffect");
 
 var _refineProperties = _interopRequireDefault(require("./methods/refineProperties"));
 
-var _htmlEntities = require("html-entities");
-
 var _modulesIndex = require("../utils/modulesIndex");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -38,8 +36,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 var serialize = require('serialize-javascript');
-
-const entities = new _htmlEntities.AllHtmlEntities();
 
 const _BuilderElement = props => {
   const elementValues = props.mD.resourcesObjects[props.currentResource].values[props.element.id] || {};

@@ -6,6 +6,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _index = _interopRequireDefault(require("../Components/pages/index.js"));
 
+var _htmlEntities = require("html-entities");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const express = require('express');
@@ -24,6 +26,7 @@ const path = require('path');
 
 const ejs = require('ejs');
 
+const entities = new _htmlEntities.AllHtmlEntities();
 router.get('/', async (req, res, next) => {
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const websiteAndPageData = await getWebsiteAndPage(fullUrl, res);
@@ -52,6 +55,7 @@ router.get('/', async (req, res, next) => {
     reactComp = ejs.render('<%- reactComp %>', {
       reactComp: reactComp
     });
+    reactComp = entities.decode(reactComp);
     res.status(200).send(reactComp);
   } else {
     if (website && !page) {
