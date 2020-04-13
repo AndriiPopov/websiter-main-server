@@ -22,6 +22,8 @@ const https = require('https');
 
 const path = require('path');
 
+const ejs = require('ejs');
+
 router.get('/', async (req, res, next) => {
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const websiteAndPageData = await getWebsiteAndPage(fullUrl, res);
@@ -47,6 +49,7 @@ router.get('/', async (req, res, next) => {
       renderBody: true
     }));
     reactComp = '<!DOCTYPE html>' + reactComp.slice(0, reactComp.length - 7) + bodyComp + '</html>';
+    reactComp = ejs.render(reactComp);
     res.status(200).send(reactComp);
   } else {
     if (website && !page) {

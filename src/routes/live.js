@@ -7,6 +7,7 @@ import React from 'react'
 import Index from '../Components/pages/index.js'
 const https = require('https')
 const path = require('path')
+const ejs = require('ejs')
 
 router.get('/', async (req, res, next) => {
     const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
@@ -40,6 +41,8 @@ router.get('/', async (req, res, next) => {
             reactComp.slice(0, reactComp.length - 7) +
             bodyComp +
             '</html>'
+
+        reactComp = ejs.render(reactComp)
 
         res.status(200).send(reactComp)
     } else {
