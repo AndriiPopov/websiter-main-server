@@ -7,7 +7,6 @@ import React from 'react'
 import Index from '../Components/pages/index.js'
 const https = require('https')
 const path = require('path')
-const ejs = require('ejs')
 import { AllHtmlEntities as Entities } from 'html-entities'
 const entities = new Entities()
 
@@ -44,7 +43,6 @@ router.get('/', async (req, res, next) => {
             bodyComp +
             '</html>'
 
-        reactComp = ejs.render('<%- reactComp %>', { reactComp: reactComp })
         reactComp = entities.decode(reactComp)
         res.status(200).send(reactComp)
     } else {

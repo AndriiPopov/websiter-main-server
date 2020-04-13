@@ -24,8 +24,6 @@ const https = require('https');
 
 const path = require('path');
 
-const ejs = require('ejs');
-
 const entities = new _htmlEntities.AllHtmlEntities();
 router.get('/', async (req, res, next) => {
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -52,9 +50,6 @@ router.get('/', async (req, res, next) => {
       renderBody: true
     }));
     reactComp = '<!DOCTYPE html>' + reactComp.slice(0, reactComp.length - 7) + bodyComp + '</html>';
-    reactComp = ejs.render('<%- reactComp %>', {
-      reactComp: reactComp
-    });
     reactComp = entities.decode(reactComp);
     res.status(200).send(reactComp);
   } else {
