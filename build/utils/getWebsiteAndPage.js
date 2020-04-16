@@ -62,7 +62,7 @@ const getWebsiteAndPage = async (urlString, res) => {
   }
 
   if (!page) {
-    page = website.pagesStructure.find(page => (page.url === pathname || '/' + page.url === pathname) && !page.generalSettings && !page.hidden);
+    page = website.pagesStructure.find(page => (page.relUrl === pathname || '/' + page.relUrl === pathname) && !page.generalSettings && !page.hidden);
   }
 
   return {

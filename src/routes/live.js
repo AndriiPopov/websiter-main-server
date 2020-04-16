@@ -47,16 +47,19 @@ router.get('/', async (req, res, next) => {
         res.status(200).send(reactComp)
     } else {
         if (website && !page) {
-            const file = website.filesStructure.find(file => {
-                const url =
-                    file.path.reduce((totalPath, fileId) => {
-                        const fileItem = website.filesStructure.find(
-                            fileInn => fileInn.id === fileId
-                        )
-                        return totalPath + fileItem.name + '/'
-                    }, '') + file.name
-                if (url === pathname) return true
-            })
+            const file = website.filesStructure.find(
+                file => file.relUrl === pathname
+                // {
+                //     const url =
+                //         file.path.reduce((totalPath, fileId) => {
+                //             const fileItem = website.filesStructure.find(
+                //                 fileInn => fileInn.id === fileId
+                //             )
+                //             return totalPath + fileItem.name + '/'
+                //         }, '') + file.name
+                //     if (url === pathname) return true
+                // }
+            )
             if (file) {
                 if (
                     req.get('If-None-Match') &&
@@ -79,7 +82,7 @@ router.get('/', async (req, res, next) => {
                         proxyRes.pipe(res)
                     })
                 }
-            }
+            } else return res.status(404).send('Resource is not found')
         }
     }
 })
