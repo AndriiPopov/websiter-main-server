@@ -54,9 +54,7 @@ router.get('/', async (req, res, next) => {
     res.status(200).send(reactComp);
   } else {
     if (website && !page) {
-      console.log('pathname');
-      console.log(pathname);
-      const file = website.filesStructure.find(file => file.relUrl === pathname || file.relUrl === '/' + pathname // {
+      const file = website.filesStructure.find(file => file.relUrl === pathname || '/' + file.relUrl === pathname // {
       //     const url =
       //         file.path.reduce((totalPath, fileId) => {
       //             const fileItem = website.filesStructure.find(
