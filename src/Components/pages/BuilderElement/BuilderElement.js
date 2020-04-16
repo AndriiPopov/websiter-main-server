@@ -3,8 +3,13 @@ import isEqual from 'lodash/isEqual'
 import omit from 'lodash/omit'
 import parse from 'html-react-parser'
 import sanitize from 'sanitize-html'
-import Menu from '../Menu/Menu'
 import { renderToString } from 'react-dom/server'
+import Menu from '../Menu/Menu'
+import Drawer from '../Drawer/Drawer'
+// import 'rc-drawer/assets/index.css'
+// import 'slick-carousel/slick/slick.css'
+// import 'slick-carousel/slick/slick-theme.css'
+import Slider from 'react-slick'
 
 import { checkIfCapital, getInheritedPropertyName } from '../utils/basic'
 import { setBoxProperties } from './methods/useEffect'
@@ -62,6 +67,7 @@ const _BuilderElement = props => {
                             parentPluginProps={props.parentPluginProps}
                             childrenForPlugin={props.childrenForPlugin}
                             currentResource={props.currentResource}
+                            pageInStructure={props.pageInStructure}
                             mD={props.mD}
                         />
                     ))
@@ -256,6 +262,69 @@ const _BuilderElement = props => {
                         mD={props.mD}
                         {...getModulePropertiesNodes(Tag)}
                     />
+                </div>
+            )
+        } else if (Tag === 'websiterDrawer') {
+            return (
+                <div>
+                    <Drawer
+                        element={props.element}
+                        elementValues={elementValues}
+                        parentPluginProps={props.parentPluginProps}
+                        childrenForPlugin={props.childrenForPlugin}
+                        pageInStructure={props.pageInStructure}
+                        {...getModulePropertiesNodes(Tag)}
+                    />
+                </div>
+            )
+        } else if (Tag === 'websiterGallery') {
+            let items = refinedProperties.items || []
+            if (refinedProperties.originalClass) {
+                items = items.map(item => ({
+                    ...item,
+                    originalClass: refinedProperties.originalClass,
+                }))
+            }
+            const settings = {
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+            return (
+                <div>
+                    <Slider
+                        // element={props.element}
+                        // elementValues={props.elementValues}
+                        // document={props.document}
+                        // parentPluginProps={props.parentPluginProps}
+                        // childrenForPlugin={props.childrenForPlugin}
+                        {...settings}
+                        {...refinedProperties}
+                        {...getModulePropertiesNodes(Tag)}
+                    >
+                        <div>
+                            <div
+                                style={{
+                                    width: '100px',
+                                    height: '100px',
+                                    background: 'red',
+                                }}
+                            >
+                                sdfsdf
+                            </div>
+                        </div>
+                        {props.currentWebsiteObject && props.filesStructure
+                            ? items.map(item => {
+                                  return (
+                                      <div>
+                                          <img src={item.original} />
+                                      </div>
+                                  )
+                              })
+                            : null}
+                    </Slider>
                 </div>
             )
         } else if (Tag === 'richEditor') {

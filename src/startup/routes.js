@@ -24,10 +24,9 @@ module.exports = function(app, myApp, liveApp, apiApp) {
     })
 
     app.use(vhost('my.websiter.dev', myApp))
-    app.use(vhost('my.websiter.dev:5000', myApp))
+    app.use(vhost('my.websiter.test', myApp))
     app.use(vhost('api.websiter.dev', apiApp))
-    app.use(vhost('api.websiter.dev:5000', apiApp))
-    app.use(vhost('api.localwebsiter.dev', apiApp))
+    app.use(vhost('api.websiter.test', apiApp))
     app.use(liveApp)
 
     myApp.all('*', (req, res, next) => {

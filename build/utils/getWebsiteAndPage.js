@@ -13,7 +13,7 @@ const getWebsiteAndPage = async (urlString, res) => {
   const hostParts = url.hostname.split('.');
   let website, pathname;
 
-  if (url.hostname === 'live.websiter.dev') {
+  if (url.hostname === 'live.websiter.dev' || url.hostname === 'live.websiter.test') {
     const pathArray = url.pathname.split('/');
 
     if (pathArray.length < 2) {

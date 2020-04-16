@@ -15,9 +15,13 @@ var _htmlReactParser = _interopRequireDefault(require("html-react-parser"));
 
 var _sanitizeHtml = _interopRequireDefault(require("sanitize-html"));
 
+var _server = require("react-dom/server");
+
 var _Menu = _interopRequireDefault(require("../Menu/Menu"));
 
-var _server = require("react-dom/server");
+var _Drawer = _interopRequireDefault(require("../Drawer/Drawer"));
+
+var _reactSlick = _interopRequireDefault(require("react-slick"));
 
 var _basic = require("../utils/basic");
 
@@ -75,6 +79,7 @@ const _BuilderElement = props => {
           parentPluginProps: props.parentPluginProps,
           childrenForPlugin: props.childrenForPlugin,
           currentResource: props.currentResource,
+          pageInStructure: props.pageInStructure,
           mD: props.mD
         }));
       }
@@ -203,6 +208,46 @@ const _BuilderElement = props => {
         pageInStructure: props.pageInStructure,
         mD: props.mD
       }, getModulePropertiesNodes(Tag))));
+    } else if (Tag === 'websiterDrawer') {
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Drawer.default, _extends({
+        element: props.element,
+        elementValues: elementValues,
+        parentPluginProps: props.parentPluginProps,
+        childrenForPlugin: props.childrenForPlugin,
+        pageInStructure: props.pageInStructure
+      }, getModulePropertiesNodes(Tag))));
+    } else if (Tag === 'websiterGallery') {
+      let items = refinedProperties.items || [];
+
+      if (refinedProperties.originalClass) {
+        items = items.map(item => ({ ...item,
+          originalClass: refinedProperties.originalClass
+        }));
+      }
+
+      const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactSlick.default // element={props.element}
+      // elementValues={props.elementValues}
+      // document={props.document}
+      // parentPluginProps={props.parentPluginProps}
+      // childrenForPlugin={props.childrenForPlugin}
+      , _extends({}, settings, refinedProperties, getModulePropertiesNodes(Tag)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+        style: {
+          width: '100px',
+          height: '100px',
+          background: 'red'
+        }
+      }, "sdfsdf")), props.currentWebsiteObject && props.filesStructure ? items.map(item => {
+        return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+          src: item.original
+        }));
+      }) : null));
     } else if (Tag === 'richEditor') {
       return (0, _htmlReactParser.default)((0, _sanitizeHtml.default)(elementValues.textContent, {
         allowedTags: false,

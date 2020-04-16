@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.modulesPropertyNodes = exports.allModules = void 0;
-const allModules = ['websiterMenu'];
+const allModules = ['websiterMenu', 'parseHTML', 'websiterGallery', 'websiterDrawer'];
 exports.allModules = allModules;
 const modulesPropertyNodes = {
   websiterMenu: [{
@@ -13,6 +13,14 @@ const modulesPropertyNodes = {
   }, {
     tag: 'Expand icon',
     id: 'expandIcon'
-  }]
+  }],
+  websiterDrawer: [{
+    tag: 'Content',
+    id: 'content'
+  }, {
+    tag: 'Handler',
+    id: 'handler'
+  }],
+  websiterGallery: []
 };
 exports.modulesPropertyNodes = modulesPropertyNodes;

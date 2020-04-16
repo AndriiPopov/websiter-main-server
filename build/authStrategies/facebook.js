@@ -17,7 +17,7 @@ const passportConfig = {
   clientSecret: process.env.FBClientSecret,
   callbackURL: 'https://api.websiter.dev/api/auth/facebook/redirect'
 };
-passport.use(new FacebookStrategy(passportConfig, async (request, accessToken, refreshToken, profile, done) => {
+passport.use(new FacebookStrategy(passportConfig, async (accessToken, refreshToken, profile, done) => {
   try {
     let user = await User.findOne({
       userid: profile.id,

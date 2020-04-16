@@ -33,11 +33,12 @@ const MenuElement = props => {
   const builtItems = (0, _buildItemsForMenu.default)(props);
   activeKeys.length = 0;
   const innerItems = builtItems.map((item, index) => {
+    const key = item.id + '_' + index;
+
     if (item.children.length === 0) {
-      const key = item.id + '_' + index;
       if (item.url === props.mD.baseUrl + props.pageInStructure.url || item.url === props.mD.baseUrl && props.pageInStructure.homepage) activeKeys.push(key);
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
-        key: item.id + '_' + index,
+        key: key,
         className: item.properties ? item.properties.itemClass : ''
       }, /*#__PURE__*/_react.default.createElement("div", {
         style: {
@@ -49,7 +50,7 @@ const MenuElement = props => {
     } else {
       return /*#__PURE__*/_react.default.createElement(SubMenu1, {
         item: item,
-        key: item.id + '_' + index,
+        key: key,
         pageInStructure: props.pageInStructure,
         mD: props.mD
       });
@@ -79,8 +80,9 @@ const SubMenu1 = props => {
     title: props.item.name,
     mD: props.mD
   }), props.item.children.map((item, index) => {
+    const key = item.id + '_' + index;
+
     if (item.children.length === 0) {
-      const key = item.id + '_' + index;
       if (item.url === props.mD.baseUrl + props.pageInStructure.url || item.url === props.mD.baseUrl && props.pageInStructure.homepage) activeKeys.push(key);
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
         key: key
@@ -92,10 +94,9 @@ const SubMenu1 = props => {
         onClick: () => window.location = item.url
       }, item.name));
     } else {
-      return /*#__PURE__*/_react.default.createElement(SubMenu2, _extends({
-        item: item
-      }, other, {
-        key: item.id + '_' + index,
+      return /*#__PURE__*/_react.default.createElement(SubMenu2, _extends({}, other, {
+        item: item,
+        key: key,
         pageInStructure: props.pageInStructure,
         mD: props.mD
       }));

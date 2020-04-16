@@ -8,7 +8,10 @@ const getWebsiteAndPage = async (urlString, res) => {
     const is120 = url.query.thumbnail === '1'
     const hostParts = url.hostname.split('.')
     let website, pathname
-    if (url.hostname === 'live.websiter.dev') {
+    if (
+        url.hostname === 'live.websiter.dev' ||
+        url.hostname === 'live.websiter.test'
+    ) {
         const pathArray = url.pathname.split('/')
         if (pathArray.length < 2) {
             res.status(400).send('Wrong page')

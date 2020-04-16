@@ -19,6 +19,8 @@ const {
   currentType
 } = require('../utils/resourceTypeIndex');
 
+const buildRelUrls = require('../utils/buildRelUrls');
+
 const websiteSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -359,6 +361,7 @@ websiteSchema.methods.createResource = async function (currentResource, type, du
     }
   }
 
+  if (type === 'page') this[structureType[type]] = buildRelUrls(this[structureType[type]], true);
   this.markModified(structureType[type]);
   return {
     resource,
@@ -419,6 +422,7 @@ websiteSchema.methods.deleteResource = async function (resourceId, type) {
     this.markModified('pagesStructure');
   }
 
+  if (type === 'page') this[structureType[type]] = buildRelUrls(this[structureType[type]], true);
   this.markModified(structureType[type]);
   return true;
 };

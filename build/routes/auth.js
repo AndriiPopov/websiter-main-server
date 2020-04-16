@@ -29,7 +29,9 @@ require('../authStrategies/google');
 
 require('../authStrategies/facebook');
 
-require('../authStrategies/twitter'); // GOOGLE
+require('../authStrategies/twitter');
+
+require('../authStrategies/github'); // GOOGLE
 
 
 router.get('/google/start', function (req, res, next) {
@@ -45,7 +47,7 @@ router.get('/google/redirect', passport.authenticate('google', {
   const token = req.user.generateAuthToken();
   res.cookie('auth_token', token, {
     expires: new Date(new Date().getTime() + 300 * 24 * 60 * 60 * 1000)
-  }).redirect(process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/login' : 'http://my.websiter.dev:3000/login');
+  }).redirect(process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/login' : 'http://my.websiter.test:3000/login');
 }); // FACEBOOK
 
 router.get('/facebook/start', function (req, res, next) {
@@ -60,7 +62,7 @@ router.get('/facebook/redirect', passport.authenticate('facebook', {
   const token = req.user.generateAuthToken();
   res.cookie('auth_token', token, {
     expires: new Date(new Date().getTime() + 300 * 24 * 60 * 60 * 1000)
-  }).redirect(process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/login' : 'http://my.websiter.dev:3000/login');
+  }).redirect(process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/login' : 'http://my.websiter.test:3000/login');
 }); // TWITTER
 
 router.get('/twitter/start', function (req, res, next) {
@@ -75,6 +77,21 @@ router.get('/twitter/redirect', passport.authenticate('twitter', {
   const token = req.user.generateAuthToken();
   res.cookie('auth_token', token, {
     expires: new Date(new Date().getTime() + 300 * 24 * 60 * 60 * 1000)
-  }).redirect(process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/login' : 'http://my.websiter.dev:3000/login');
+  }).redirect(process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/login' : 'http://my.websiter.test:3000/login');
+}); // GITHUB
+
+router.get('/github/start', function (req, res, next) {
+  res.cookie('rememberme', req.query.rememberme);
+  next();
+}, passport.authenticate('github', {
+  session: false
+}));
+router.get('/github/redirect', passport.authenticate('github', {
+  session: false
+}), async (req, res) => {
+  const token = req.user.generateAuthToken();
+  res.cookie('auth_token', token, {
+    expires: new Date(new Date().getTime() + 300 * 24 * 60 * 60 * 1000)
+  }).redirect(process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/login' : 'http://my.websiter.test:3000/login');
 });
 module.exports = router;

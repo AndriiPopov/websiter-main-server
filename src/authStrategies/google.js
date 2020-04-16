@@ -9,13 +9,13 @@ const passportConfig = {
     callbackURL:
         process.env.NODE_ENV === 'production'
             ? 'https://my.websiter.dev/api/auth/google/redirect'
-            : 'http://my.websiter.dev:5000/api/auth/google/redirect',
+            : 'http://my.websiter.test:5000/api/auth/google/redirect',
 }
 
 passport.use(
     new passportGoogle(
         passportConfig,
-        async (request, accessToken, refreshToken, profile, done) => {
+        async (accessToken, refreshToken, profile, done) => {
             try {
                 let user = await User.findOne({
                     userid: profile.id,

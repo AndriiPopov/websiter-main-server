@@ -12,7 +12,7 @@ const passportConfig = {
 passport.use(
     new FacebookStrategy(
         passportConfig,
-        async (request, accessToken, refreshToken, profile, done) => {
+        async (accessToken, refreshToken, profile, done) => {
             try {
                 let user = await User.findOne({
                     userid: profile.id,

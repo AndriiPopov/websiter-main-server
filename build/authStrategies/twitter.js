@@ -17,7 +17,7 @@ const passportConfig = {
   consumerSecret: process.env.TwitterClientSecret,
   callbackURL: 'https://api.websiter.dev/api/auth/twitter/redirect'
 };
-passport.use(new TwitterStrategy(passportConfig, async (request, accessToken, refreshToken, profile, done) => {
+passport.use(new TwitterStrategy(passportConfig, async (accessToken, refreshToken, profile, done) => {
   try {
     let user = await User.findOne({
       userid: profile.id,

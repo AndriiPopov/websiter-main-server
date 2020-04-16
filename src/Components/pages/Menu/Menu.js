@@ -21,8 +21,8 @@ const MenuElement = props => {
 
     activeKeys.length = 0
     const innerItems = builtItems.map((item, index) => {
+        const key = item.id + '_' + index
         if (item.children.length === 0) {
-            const key = item.id + '_' + index
             if (
                 item.url === props.mD.baseUrl + props.pageInStructure.url ||
                 (item.url === props.mD.baseUrl &&
@@ -31,7 +31,7 @@ const MenuElement = props => {
                 activeKeys.push(key)
             return (
                 <MenuItem
-                    key={item.id + '_' + index}
+                    key={key}
                     className={item.properties ? item.properties.itemClass : ''}
                 >
                     <div
@@ -46,7 +46,7 @@ const MenuElement = props => {
             return (
                 <SubMenu1
                     item={item}
-                    key={item.id + '_' + index}
+                    key={key}
                     pageInStructure={props.pageInStructure}
                     mD={props.mD}
                 />
@@ -93,8 +93,8 @@ const SubMenu1 = props => {
     return (
         <SubMenu {...other} title={props.item.name} mD={props.mD}>
             {props.item.children.map((item, index) => {
+                const key = item.id + '_' + index
                 if (item.children.length === 0) {
-                    const key = item.id + '_' + index
                     if (
                         item.url ===
                             props.mD.baseUrl + props.pageInStructure.url ||
@@ -115,9 +115,9 @@ const SubMenu1 = props => {
                 } else {
                     return (
                         <SubMenu2
-                            item={item}
                             {...other}
-                            key={item.id + '_' + index}
+                            item={item}
+                            key={key}
                             pageInStructure={props.pageInStructure}
                             mD={props.mD}
                         />
