@@ -48,7 +48,8 @@ router.get('/', async (req, res, next) => {
     } else {
         if (website && !page) {
             const file = website.filesStructure.find(
-                file => file.relUrl === pathname
+                file =>
+                    file.relUrl === pathname || file.relUrl === '/' + pathname
                 // {
                 //     const url =
                 //         file.path.reduce((totalPath, fileId) => {
