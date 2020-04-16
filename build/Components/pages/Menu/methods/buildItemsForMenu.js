@@ -22,6 +22,8 @@ var _default = props => {
           structureAfterVariables.push(item);
         }
       });
+      console.log(structureAfterVariables);
+      console.log(structureAfterVariables.length);
       structureAfterVariables.forEach(item => {
         if (item.generatedFrom === 'all') {
           props.mD.pagesStructure.forEach(page => {
@@ -37,6 +39,10 @@ var _default = props => {
           });
         } else if (item.all) {
           props.mD.pagesStructure.forEach(page => {
+            console.log('item.generatedFrom');
+            console.log(item.generatedFrom);
+            console.log(page.hidden);
+
             if (page.path.includes(item.generatedFrom) && !page.hidden) {
               structure.push({
                 id: item.id + page.id,
@@ -71,6 +77,8 @@ var _default = props => {
       });
     }
 
+    console.log('structure');
+    console.log(structure);
     return structure;
   }; // const hiddenPages = []
   // props.mD.pagesStructure.forEach(page => {
