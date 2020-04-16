@@ -48,7 +48,7 @@ var _default = props => {
                 id: item.id + page.id,
                 name: page.name,
                 properties: item.properties,
-                path: [...item.path, ...page.path.slice(page.path.indexOf(item.generatedFrom) - 1).map(l => item.id + l)],
+                path: [...item.path, ...page.path.slice(page.path.indexOf(item.generatedFrom)).map(l => item.id + l)],
                 url: props.mD.baseUrl + page.url
               });
             }

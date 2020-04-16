@@ -55,7 +55,7 @@ export default props => {
                                         .slice(
                                             page.path.indexOf(
                                                 item.generatedFrom
-                                            ) - 1
+                                            )
                                         )
                                         .map(l => item.id + l),
                                 ],
