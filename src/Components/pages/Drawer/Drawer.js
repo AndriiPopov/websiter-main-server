@@ -20,7 +20,12 @@ const Drawer = props => {
                 handler={props.autoHandler}
                 level={null}
                 width="200px"
-                getContainer={() => document.body}
+                getContainer={() =>
+                    props.container
+                        ? document.getElementById(props.container) ||
+                          document.body
+                        : document.body
+                }
                 onHandleClick={onSwitch}
             >
                 {props.content}
