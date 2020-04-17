@@ -31,7 +31,7 @@ var _default = props => {
                 properties: item.properties,
                 id: item.id + page.id,
                 path: [...item.path, ...page.path.map(l => item.id + l)],
-                url: props.mD.baseUrl + page.url
+                url: page.relUrl
               });
             }
           });
@@ -43,7 +43,7 @@ var _default = props => {
                 name: page.name,
                 properties: item.properties,
                 path: [...item.path, ...page.path.slice(page.path.indexOf(item.generatedFrom) + 1).map(l => item.id + l)],
-                url: props.mD.baseUrl + page.url
+                url: page.relUrl
               });
             }
           });
@@ -55,7 +55,7 @@ var _default = props => {
                 name: item.name,
                 properties: item.properties,
                 path: item.path,
-                url: props.mD.baseUrl + page.url
+                url: page.relUrl
               });
             }
           });

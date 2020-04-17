@@ -30,7 +30,7 @@ export default props => {
                                     ...item.path,
                                     ...page.path.map(l => item.id + l),
                                 ],
-                                url: props.mD.baseUrl + page.url,
+                                url: page.relUrl,
                             })
                         }
                     })
@@ -54,7 +54,7 @@ export default props => {
                                         )
                                         .map(l => item.id + l),
                                 ],
-                                url: props.mD.baseUrl + page.url,
+                                url: page.relUrl,
                             })
                         }
                     })
@@ -66,7 +66,7 @@ export default props => {
                                 name: item.name,
                                 properties: item.properties,
                                 path: item.path,
-                                url: props.mD.baseUrl + page.url,
+                                url: page.relUrl,
                             })
                         }
                     })
