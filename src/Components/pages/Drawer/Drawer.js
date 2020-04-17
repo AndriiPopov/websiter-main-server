@@ -17,13 +17,14 @@ const Drawer = props => {
             <DrawerElement
                 open={state}
                 onClose={onTouchEnd}
-                handler={props.autoHandler}
+                handler={props.elementValues.autoHandler}
                 level={null}
                 width="200px"
                 getContainer={() =>
-                    props.container
-                        ? document.getElementById(props.container) ||
-                          document.body
+                    props.elementValues.container
+                        ? document.getElementById(
+                              props.elementValues.container
+                          ) || document.body
                         : document.body
                 }
                 onHandleClick={onSwitch}
