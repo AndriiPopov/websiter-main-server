@@ -17,13 +17,13 @@ const Drawer = props => {
             <DrawerElement
                 open={state}
                 onClose={onTouchEnd}
-                handler={props.elementValues.autoHandler}
+                handler={props.autoHandler}
                 level={null}
                 width="200px"
                 getContainer={() =>
-                    props.elementValues.container
+                    props.refinedProperties.container
                         ? document.getElementById(
-                              props.elementValues.container
+                              props.refinedProperties.container
                           ) || document.body
                         : document.body
                 }

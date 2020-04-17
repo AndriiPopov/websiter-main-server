@@ -59,15 +59,15 @@ const MenuElement = props => {
   return /*#__PURE__*/_react.default.createElement(_MenuModule.default, {
     prefixCls: 'systemclass_menu',
     getPopupContainer: () => document.getElementById('__menu__popup__container__'),
-    topMenuBlockClasses: props.elementValues.topMenuBlockClasses,
-    topMenuItemClasses: props.elementValues.topMenuItemClasses,
-    topMenuItemActiveClasses: props.elementValues.topMenuItemActiveClasses,
-    popupMenuBlockClasses: props.elementValues.popupMenuBlockClasses,
-    popupMenuItemClasses: props.elementValues.popupMenuItemClasses,
-    popupMenuItemActiveClasses: props.elementValues.popupMenuItemActiveClasses,
-    mode: props.elementValues.mode,
+    topMenuBlockClasses: props.refinedProperties.topMenuBlockClasses,
+    topMenuItemClasses: props.refinedProperties.topMenuItemClasses,
+    topMenuItemActiveClasses: props.refinedProperties.topMenuItemActiveClasses,
+    popupMenuBlockClasses: props.refinedProperties.popupMenuBlockClasses,
+    popupMenuItemClasses: props.refinedProperties.popupMenuItemClasses,
+    popupMenuItemActiveClasses: props.refinedProperties.popupMenuItemActiveClasses,
+    mode: props.refinedProperties.mode,
     selectable: false,
-    triggerSubMenuAction: props.elementValues.trigger,
+    triggerSubMenuAction: props.refinedProperties.trigger,
     activeKeys: activeKeys,
     overflowedIndicator: props.overflowIcon
   }, innerItems);

@@ -255,7 +255,8 @@ const _BuilderElement = props => {
                 <div {...attributes}>
                     <Menu
                         element={props.element}
-                        elementValues={refinedProperties}
+                        elementValues={elementValues}
+                        refinedProperties={refinedProperties}
                         parentPluginProps={props.parentPluginProps}
                         childrenForPlugin={props.childrenForPlugin}
                         pageInStructure={props.pageInStructure}
@@ -269,7 +270,7 @@ const _BuilderElement = props => {
                 <div>
                     <Drawer
                         element={props.element}
-                        elementValues={refinedProperties}
+                        refinedProperties={refinedProperties}
                         parentPluginProps={props.parentPluginProps}
                         childrenForPlugin={props.childrenForPlugin}
                         pageInStructure={props.pageInStructure}

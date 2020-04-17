@@ -59,19 +59,21 @@ const MenuElement = props => {
             getPopupContainer={() =>
                 document.getElementById('__menu__popup__container__')
             }
-            topMenuBlockClasses={props.elementValues.topMenuBlockClasses}
-            topMenuItemClasses={props.elementValues.topMenuItemClasses}
+            topMenuBlockClasses={props.refinedProperties.topMenuBlockClasses}
+            topMenuItemClasses={props.refinedProperties.topMenuItemClasses}
             topMenuItemActiveClasses={
-                props.elementValues.topMenuItemActiveClasses
+                props.refinedProperties.topMenuItemActiveClasses
             }
-            popupMenuBlockClasses={props.elementValues.popupMenuBlockClasses}
-            popupMenuItemClasses={props.elementValues.popupMenuItemClasses}
+            popupMenuBlockClasses={
+                props.refinedProperties.popupMenuBlockClasses
+            }
+            popupMenuItemClasses={props.refinedProperties.popupMenuItemClasses}
             popupMenuItemActiveClasses={
-                props.elementValues.popupMenuItemActiveClasses
+                props.refinedProperties.popupMenuItemActiveClasses
             }
-            mode={props.elementValues.mode}
+            mode={props.refinedProperties.mode}
             selectable={false}
-            triggerSubMenuAction={props.elementValues.trigger}
+            triggerSubMenuAction={props.refinedProperties.trigger}
             activeKeys={activeKeys}
             overflowedIndicator={props.overflowIcon}
         >

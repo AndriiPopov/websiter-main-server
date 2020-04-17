@@ -32,10 +32,10 @@ const Drawer = props => {
   }, props.handler), /*#__PURE__*/_react.default.createElement(_rcDrawer.default, {
     open: state,
     onClose: onTouchEnd,
-    handler: props.elementValues.autoHandler,
+    handler: props.autoHandler,
     level: null,
     width: "200px",
-    getContainer: () => props.elementValues.container ? document.getElementById(props.elementValues.container) || document.body : document.body,
+    getContainer: () => props.refinedProperties.container ? document.getElementById(props.refinedProperties.container) || document.body : document.body,
     onHandleClick: onSwitch
   }, props.content));
 };

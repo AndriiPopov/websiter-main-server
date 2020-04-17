@@ -202,7 +202,8 @@ const _BuilderElement = props => {
       const attributes = (0, _useEffect.setBoxProperties)(ownRefinedProperties, props, elementValues);
       result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
         element: props.element,
-        elementValues: refinedProperties,
+        elementValues: elementValues,
+        refinedProperties: refinedProperties,
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
@@ -211,7 +212,7 @@ const _BuilderElement = props => {
     } else if (Tag === 'websiterDrawer') {
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Drawer.default, _extends({
         element: props.element,
-        elementValues: refinedProperties,
+        refinedProperties: refinedProperties,
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure
