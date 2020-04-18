@@ -162,194 +162,223 @@ websiteSchema.methods.createResource = async function(
     resourceData,
     newResourceName
 ) {
-    const generateNewName = (name, attr, divider, i) => {
-        let currentName = i ? name + divider + i : name
-        while (
-            this[structureType[type]].some(item => item[attr] === currentName)
-        ) {
-            i++
-            currentName = name + divider + i
-        }
-        return i
-    }
-
-    const getNewNameAndUrl = (name, url) => {
-        let max = 0,
-            nameIndex = 0,
-            urlIndex = 0
-        do {
-            nameIndex = generateNewName(name, 'name', ' ', max)
-            urlIndex = generateNewName(url, 'url', '-', max)
-            max = Math.max(nameIndex, urlIndex)
-        } while (nameIndex !== urlIndex)
-
-        let nameAdd = ''
-        let urlAdd = ''
-        if (max > 0) {
-            nameAdd = ' ' + max
-            urlAdd = '-' + max
-        }
-        return { nameAdd, urlAdd }
-    }
-
-    const prepareDataCreteNewResource = async () => {
-        let resource = new Resource()
-        resource.website = this._id.toString()
-        resource.draft = {}
-        if (!resourceData) {
-            resource.published =
-                type === 'page'
-                    ? blankPageContent
-                    : type === 'plugin'
-                    ? blankPluginContent
-                    : blankTemplateContent
-        } else {
-            resource.published = resourceData
-        }
-        resource.markModified('draft')
-        resource.markModified('published')
-        resource = await resource.save()
-        this[currentType[type]] = resource._id.toString()
-        let data = {}
-        if (type === 'page') {
-            let { nameAdd, urlAdd } = getNewNameAndUrl('New page', 'new-page')
-            data.name = 'New page' + nameAdd
-            data.url = 'new-page' + urlAdd
-            data.hidden = true
-            return { resource, data }
-        } else {
-            const nameIndex = generateNewName('New ' + type, 'name', ' ', 0)
-            let nameAdd = ''
-            if (nameIndex > 0) {
-                nameAdd = ' ' + nameIndex
+    try {
+        const generateNewName = (name, attr, divider, i) => {
+            let currentName = i ? name + divider + i : name
+            while (
+                this[structureType[type]].some(
+                    item => item[attr] === currentName
+                )
+            ) {
+                i++
+                currentName = name + divider + i
             }
-            data.name = newResourceName || 'New ' + type + nameAdd
-            return { resource, data }
-        }
-    }
-    const prepareDataDuplicate = async () => {
-        const currentResourceObject = await Resource.findById(currentResource)
-        const currentResourceDataArray = this[structureType[type]].filter(
-            item => item.id.toString() === currentResource
-        )
-        if (!currentResourceObject || currentResourceDataArray.length !== 1) {
-            return { resource: null, data: null }
+            return i
         }
 
-        let currentResourceData
-        currentResourceData = currentResourceDataArray[0]
-
-        if (currentResourceData.generalSettings)
-            return { resource: null, data: null }
-
-        let resource = new Resource()
-        resource.website = this._id.toString()
-        resource.published = currentResourceObject.published
-        resource.draft = currentResourceObject.draft
-        resource.markModified('draft')
-        resource.markModified('published')
-        resource = await resource.save()
-
-        this[currentType[type]] = resource._id.toString()
-
-        let data = {}
-        if (type === 'page') {
-            let { nameAdd, urlAdd } = getNewNameAndUrl(
-                currentResourceData.name,
-                currentResourceData.url
-            )
-            if (currentResourceData.name)
-                data.name = currentResourceData.name + nameAdd
-            if (currentResourceData.url)
-                data.url = currentResourceData.url + urlAdd
-            data.template = currentResourceData.template || ''
-            data.hidden = true
-            return { resource, data }
-        } else {
-            const nameIndex = generateNewName(
-                currentResourceData.name,
-                'name',
-                ' ',
-                0
-            )
+        const getNewNameAndUrl = (name, url) => {
+            let max = 0,
+                nameIndex = 0,
+                urlIndex = 0
+            do {
+                nameIndex = generateNewName(name, 'name', ' ', max)
+                urlIndex = generateNewName(url, 'url', '-', max)
+                max = Math.max(nameIndex, urlIndex)
+            } while (nameIndex !== urlIndex)
 
             let nameAdd = ''
-            if (nameIndex > 0) {
-                nameAdd = ' ' + nameIndex
+            let urlAdd = ''
+            if (max > 0) {
+                nameAdd = ' ' + max
+                urlAdd = '-' + max
             }
-
-            data.name = currentResourceData.name + nameAdd
-            return { resource, data }
+            return { nameAdd, urlAdd }
         }
-    }
-    const { resource, data } = duplicate
-        ? await prepareDataDuplicate()
-        : await prepareDataCreteNewResource()
 
-    if (!resource || !data) return
-    data.published = true
-    if (type === 'page') {
-        if (this.pagesStructure.length > 0) {
-            data.homepage = false
-        } else {
-            data.homepage = true
+        const prepareDataCreteNewResource = async () => {
+            try {
+                let resource = new Resource()
+                resource.website = this._id.toString()
+                resource.draft = {}
+                if (!resourceData) {
+                    resource.published =
+                        type === 'page'
+                            ? blankPageContent
+                            : type === 'plugin'
+                            ? blankPluginContent
+                            : blankTemplateContent
+                } else {
+                    resource.published = resourceData
+                }
+                resource.markModified('draft')
+                resource.markModified('published')
+                resource = await resource.save()
+
+                this[currentType[type]] = resource._id.toString()
+                let data = {}
+                if (type === 'page') {
+                    let { nameAdd, urlAdd } = getNewNameAndUrl(
+                        'New page',
+                        'new-page'
+                    )
+                    data.name = 'New page' + nameAdd
+                    data.url = 'new-page' + urlAdd
+                    data.hidden = true
+                    return { resource, data }
+                } else {
+                    const nameIndex = generateNewName(
+                        'New ' + type,
+                        'name',
+                        ' ',
+                        0
+                    )
+                    let nameAdd = ''
+                    if (nameIndex > 0) {
+                        nameAdd = ' ' + nameIndex
+                    }
+                    data.name = newResourceName || 'New ' + type + nameAdd
+                    return { resource, data }
+                }
+            } catch (ex) {
+                return
+            }
         }
-    }
-    let newResourceStructureElement
-    if (!currentResource) {
-        this[structureType[type]].push({
-            id: resource._id.toString(),
-            path: [],
-            ...data,
-        })
-    } else {
-        const currentResourceObjectArray = this[structureType[type]].filter(
-            resource => resource.id.toString() === currentResource.toString()
-        )
-        if (currentResourceObjectArray.length > 0) {
-            const currentResourceObject = currentResourceObjectArray[0]
-            const currentIndex = this[structureType[type]].indexOf(
-                currentResourceObject
-            )
+        const prepareDataDuplicate = async () => {
+            try {
+                const currentResourceObject = await Resource.findById(
+                    currentResource
+                )
+                const currentResourceDataArray = this[
+                    structureType[type]
+                ].filter(item => item.id.toString() === currentResource)
+                if (
+                    !currentResourceObject ||
+                    currentResourceDataArray.length !== 1
+                ) {
+                    return { resource: null, data: null }
+                }
 
-            const descendants = findDescendants(
-                this[structureType[type]],
-                currentResourceObject.id
-            )
-            if (duplicate && currentResourceObject.connectedResources) {
-                data.connectedResources =
-                    currentResourceObject.connectedResources
-            }
+                let currentResourceData
+                currentResourceData = currentResourceDataArray[0]
 
-            newResourceStructureElement = {
-                id: resource._id.toString(),
-                path: [...currentResourceObject.path],
-                ...data,
+                if (currentResourceData.generalSettings)
+                    return { resource: null, data: null }
+
+                let resource = new Resource()
+                resource.website = this._id.toString()
+                resource.published = currentResourceObject.published
+                resource.draft = currentResourceObject.draft
+                resource.markModified('draft')
+                resource.markModified('published')
+                resource = await resource.save()
+
+                this[currentType[type]] = resource._id.toString()
+
+                let data = {}
+                if (type === 'page') {
+                    let { nameAdd, urlAdd } = getNewNameAndUrl(
+                        currentResourceData.name,
+                        currentResourceData.url
+                    )
+                    if (currentResourceData.name)
+                        data.name = currentResourceData.name + nameAdd
+                    if (currentResourceData.url)
+                        data.url = currentResourceData.url + urlAdd
+                    data.template = currentResourceData.template || ''
+                    data.hidden = true
+                    return { resource, data }
+                } else {
+                    const nameIndex = generateNewName(
+                        currentResourceData.name,
+                        'name',
+                        ' ',
+                        0
+                    )
+
+                    let nameAdd = ''
+                    if (nameIndex > 0) {
+                        nameAdd = ' ' + nameIndex
+                    }
+
+                    data.name = currentResourceData.name + nameAdd
+                    return { resource, data }
+                }
+            } catch (ex) {
+                return
             }
-            this[structureType[type]].splice(
-                currentIndex + descendants.length + 1,
-                0,
-                newResourceStructureElement
-            )
-        } else {
+        }
+        const { resource, data } = duplicate
+            ? await prepareDataDuplicate()
+            : await prepareDataCreteNewResource()
+
+        if (!resource || !data) return
+        data.published = true
+        if (type === 'page') {
+            if (this.pagesStructure.length > 0) {
+                data.homepage = false
+            } else {
+                data.homepage = true
+            }
+        }
+        let newResourceStructureElement
+        if (!currentResource) {
             this[structureType[type]].push({
                 id: resource._id.toString(),
                 path: [],
                 ...data,
             })
+        } else {
+            const currentResourceObjectArray = this[structureType[type]].filter(
+                resource =>
+                    resource.id.toString() === currentResource.toString()
+            )
+            if (currentResourceObjectArray.length > 0) {
+                const currentResourceObject = currentResourceObjectArray[0]
+                const currentIndex = this[structureType[type]].indexOf(
+                    currentResourceObject
+                )
+
+                const descendants = findDescendants(
+                    this[structureType[type]],
+                    currentResourceObject.id
+                )
+                if (duplicate && currentResourceObject.connectedResources) {
+                    data.connectedResources =
+                        currentResourceObject.connectedResources
+                }
+
+                newResourceStructureElement = {
+                    id: resource._id.toString(),
+                    path: [...currentResourceObject.path],
+                    ...data,
+                }
+                this[structureType[type]].splice(
+                    currentIndex + descendants.length + 1,
+                    0,
+                    newResourceStructureElement
+                )
+            } else {
+                this[structureType[type]].push({
+                    id: resource._id.toString(),
+                    path: [],
+                    ...data,
+                })
+            }
         }
-    }
 
-    if (type === 'page')
-        this[structureType[type]] = buildRelUrls(
-            this[structureType[type]],
-            true
-        )
+        if (type === 'page')
+            this[structureType[type]] = buildRelUrls(
+                this[structureType[type]],
+                true
+            )
 
-    this.markModified(structureType[type])
-    return {
-        resource,
-        data,
+        this.markModified(structureType[type])
+        return {
+            resource,
+            data,
+        }
+    } catch (ex) {
+        return
     }
 }
 
@@ -383,12 +412,9 @@ websiteSchema.methods.createGlobalSettingsResource = async function(type) {
 }
 
 websiteSchema.methods.deleteResource = async function(resourceId, type) {
-    console.log('start delete in model')
     const itemInStructure = this[structureType[type]].find(
         item => item.id.toString() === resourceId.toString()
     )
-    console.log('itemInStructure')
-    console.log(itemInStructure)
 
     if (!itemInStructure) return
     if (itemInStructure.generalSettings) return
@@ -398,32 +424,24 @@ websiteSchema.methods.deleteResource = async function(resourceId, type) {
         resourceId
     ).map(item => item.id)
     descedants.push(resourceId)
-    console.log(descedants)
 
     const thisObject = this.toObject()
     for (let id of descedants) {
-        console.log(id)
-
         this[structureType[type]] = thisObject[structureType[type]].filter(
             item => item.id.toString() !== id.toString()
         )
         await Resource.findByIdAndRemove(id)
     }
-    console.log(type)
     if (type === 'page') {
         if (!this.pagesStructure.some(item => item.isHomePage)) {
             if (this.pagesStructure.length > 0) {
                 this.pagesStructure[0].isHomePage = true
             }
         }
-        console.log('rel')
         this.pagesStructure = buildRelUrls(this.pagesStructure, true)
-        console.log('stop rel')
     }
 
     this.markModified(structureType[type])
-    console.log('finish delete in model')
-
     return true
 }
 

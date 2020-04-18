@@ -384,7 +384,8 @@ module.exports.revertResource = async (data, ws) => {
 
 const deleteResourceSchema = Joi.object({
   _id: Joi.objectId().required(),
-  type: Joi.string().valid('page', 'template', 'plugin')
+  type: Joi.string().valid('page', 'template', 'plugin'),
+  websiteId: Joi.objectId().required()
 }).unknown();
 
 module.exports.deleteResource = async (data, ws) => {
@@ -399,31 +400,26 @@ module.exports.deleteResource = async (data, ws) => {
     } = deleteResourceSchema.validate(data);
 
     if (error) {
-      console.log(error);
       sendError(ws);
       return;
-    }
+    } // const resource = await Resource.findById(data._id)
+    // if (!resource) {
+    //     sendError(ws)
+    //     return
+    // }
 
-    const resource = await Resource.findById(data._id);
-
-    if (!resource) {
-      console.log(data._id);
-      sendError(ws);
-      return;
-    }
 
     const type = data.type;
-    let website = await Website.findById(resource.website.toString());
+    let website = await Website.findById(data.websiteId);
 
     if (!website) {
-      console.log(resource.website.toString());
       sendError(ws);
       return;
     }
 
     if (!(await getUserRights(ws.user, website, type === 'page' ? 'content' : 'developer'))) return;
     const oldWebsiteObject = website.toObject();
-    const result = await website.deleteResource(resource._id, type);
+    const result = await website.deleteResource(data._id, type);
 
     if (!result) {
       sendError(ws, 'New resource has not been created. Note, that you can not delete global settings resources.');
