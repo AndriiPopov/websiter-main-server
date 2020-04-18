@@ -245,6 +245,10 @@
         transform: scale(0, 0);
     }
 }
+.systemclass_menu-submenu-inline > div {
+    white-space: normal;
+    padding-right: 30px;
+}
 .image-gallery-icon {
     color: #fff;
     transition: all 0.2s ease-out;
