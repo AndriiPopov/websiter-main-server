@@ -419,10 +419,9 @@ websiteSchema.methods.deleteResource = async function (resourceId, type) {
       }
     }
 
-    this.markModified('pagesStructure');
+    this.pagesStructure = buildRelUrls(this.pagesStructure, true);
   }
 
-  if (type === 'page') this[structureType[type]] = buildRelUrls(this[structureType[type]], true);
   this.markModified(structureType[type]);
   return true;
 };
