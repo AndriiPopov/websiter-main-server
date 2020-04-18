@@ -113,6 +113,8 @@ module.exports.addWebsite = async (data, ws) => {
 
 module.exports.deleteWebsite = async (data, ws) => {
     try {
+        console.log('start deleting')
+
         if (ws.tryWebsiter) {
             sendError(
                 ws,
@@ -124,10 +126,14 @@ module.exports.deleteWebsite = async (data, ws) => {
             .required()
             .validate(data._id)
         if (error) {
+            console.log(error)
+
             sendError(ws)
             return
         }
         const user = await User.findById(ws.user)
+        console.log(user)
+
         if (!user) {
             sendError(ws)
             return
@@ -154,6 +160,7 @@ module.exports.deleteWebsite = async (data, ws) => {
         user.markModified('__patch__')
         await user.save()
     } catch (ex) {
+        console.log(ex)
         sendError(ws)
     }
 }

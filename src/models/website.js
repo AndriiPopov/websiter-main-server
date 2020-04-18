@@ -383,9 +383,13 @@ websiteSchema.methods.createGlobalSettingsResource = async function(type) {
 }
 
 websiteSchema.methods.deleteResource = async function(resourceId, type) {
+    console.log('start delete in model')
     const itemInStructure = this[structureType[type]].find(
         item => item.id.toString() === resourceId.toString()
     )
+    console.log('itemInStructure')
+    console.log(itemInStructure)
+
     if (!itemInStructure) return
     if (itemInStructure.generalSettings) return
 
@@ -394,23 +398,32 @@ websiteSchema.methods.deleteResource = async function(resourceId, type) {
         resourceId
     ).map(item => item.id)
     descedants.push(resourceId)
+    console.log(descedants)
+
     const thisObject = this.toObject()
     for (let id of descedants) {
+        console.log(id)
+
         this[structureType[type]] = thisObject[structureType[type]].filter(
             item => item.id.toString() !== id.toString()
         )
         await Resource.findByIdAndRemove(id)
     }
+    console.log(type)
     if (type === 'page') {
         if (!this.pagesStructure.some(item => item.isHomePage)) {
             if (this.pagesStructure.length > 0) {
                 this.pagesStructure[0].isHomePage = true
             }
         }
+        console.log('rel')
         this.pagesStructure = buildRelUrls(this.pagesStructure, true)
+        console.log('stop rel')
     }
 
     this.markModified(structureType[type])
+    console.log('finish delete in model')
+
     return true
 }
 

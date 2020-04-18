@@ -130,6 +130,8 @@ module.exports.addWebsite = async (data, ws) => {
 
 module.exports.deleteWebsite = async (data, ws) => {
   try {
+    console.log('start deleting');
+
     if (ws.tryWebsiter) {
       sendError(ws, 'This action is not allowed in test mode. Please login or create a new account.');
       return;
@@ -140,11 +142,13 @@ module.exports.deleteWebsite = async (data, ws) => {
     } = Joi.objectId().required().validate(data._id);
 
     if (error) {
+      console.log(error);
       sendError(ws);
       return;
     }
 
     const user = await User.findById(ws.user);
+    console.log(user);
 
     if (!user) {
       sendError(ws);
@@ -160,6 +164,7 @@ module.exports.deleteWebsite = async (data, ws) => {
     user.markModified('__patch__');
     await user.save();
   } catch (ex) {
+    console.log(ex);
     sendError(ws);
   }
 };
