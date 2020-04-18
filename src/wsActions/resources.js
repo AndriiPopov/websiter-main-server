@@ -462,11 +462,13 @@ module.exports.deleteResource = async (data, ws) => {
         }
         let { error } = deleteResourceSchema.validate(data)
         if (error) {
+            console.log(error)
             sendError(ws)
             return
         }
         const resource = await Resource.findById(data._id)
         if (!resource) {
+            console.log(data._id)
             sendError(ws)
             return
         }
@@ -474,6 +476,7 @@ module.exports.deleteResource = async (data, ws) => {
         const type = data.type
         let website = await Website.findById(resource.website.toString())
         if (!website) {
+            console.log(resource.website.toString())
             sendError(ws)
             return
         }
