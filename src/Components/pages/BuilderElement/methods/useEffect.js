@@ -20,12 +20,15 @@ export const setBoxProperties = (
     const result = {}
 
     if (elementValues.style) {
-        const style = elementValues.style.replace(/\$[^:;\$\s]*\$/g, match => {
-            const inheritedPropertyName = getInheritedPropertyName(match)
-            return inheritedPropertyName
-                ? props.parentPluginProps[inheritedPropertyName] || ''
-                : ''
-        })
+        const style = elementValues.style.replace(
+            /\$[A-Za-z0-9_-]*\$/g,
+            match => {
+                const inheritedPropertyName = getInheritedPropertyName(match)
+                return inheritedPropertyName
+                    ? props.parentPluginProps[inheritedPropertyName] || ''
+                    : ''
+            }
+        )
         result.style = styleToCamelcase(style)
     }
 
@@ -42,16 +45,16 @@ export const setBoxProperties = (
             case 'for':
                 result.htmlFor = ownRefinedProperties.for
                 break
-            case 'href':
-                if (
-                    ownRefinedProperties[attr].indexOf('http://') > -1 ||
-                    ownRefinedProperties[attr].indexOf('https://') > -1
-                ) {
-                    result.href = ownRefinedProperties[attr]
-                } else {
-                    result.href = props.mD.baseUrl + ownRefinedProperties[attr]
-                }
-                break
+            // case 'href':
+            //     if (
+            //         ownRefinedProperties[attr].indexOf('http://') > -1 ||
+            //         ownRefinedProperties[attr].indexOf('https://') > -1
+            //     ) {
+            //         result.href = ownRefinedProperties[attr]
+            //     } else {
+            //         result.href = props.mD.baseUrl + ownRefinedProperties[attr]
+            //     }
+            //     break
             default:
                 result[attr] = ownRefinedProperties[attr]
                 break

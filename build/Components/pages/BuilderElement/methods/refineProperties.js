@@ -23,7 +23,7 @@ var _default = (props, elementValues) => {
     const inheritedPropertyName = (0, _basic.getInheritedPropertyName)(elementValues.properties[attribute]);
     result[attribute] = inheritedPropertyName ? props.parentPluginProps[inheritedPropertyName] : elementValues.properties[attribute];
     if (result[attribute]) result[attribute] = JSON.parse(JSON.stringify(result[attribute]).replace( // /\$[^:;\$\s]*\$/g,
-    /\$[A-Za-z0-9]*\$/g, match => {
+    /\$[A-Za-z0-9_-]*\$/g, match => {
       const inheritedPropertyName = (0, _basic.getInheritedPropertyName)(match);
       return inheritedPropertyName ? props.parentPluginProps[inheritedPropertyName] || '' : '';
     })); // if (attribute === 'src') {

@@ -25,7 +25,7 @@ const setBoxProperties = (ownRefinedProperties, props, elementValues) => {
   const result = {};
 
   if (elementValues.style) {
-    const style = elementValues.style.replace(/\$[^:;\$\s]*\$/g, match => {
+    const style = elementValues.style.replace(/\$[A-Za-z0-9_-]*\$/g, match => {
       const inheritedPropertyName = (0, _basic.getInheritedPropertyName)(match);
       return inheritedPropertyName ? props.parentPluginProps[inheritedPropertyName] || '' : '';
     });
@@ -49,15 +49,16 @@ const setBoxProperties = (ownRefinedProperties, props, elementValues) => {
       case 'for':
         result.htmlFor = ownRefinedProperties.for;
         break;
-
-      case 'href':
-        if (ownRefinedProperties[attr].indexOf('http://') > -1 || ownRefinedProperties[attr].indexOf('https://') > -1) {
-          result.href = ownRefinedProperties[attr];
-        } else {
-          result.href = props.mD.baseUrl + ownRefinedProperties[attr];
-        }
-
-        break;
+      // case 'href':
+      //     if (
+      //         ownRefinedProperties[attr].indexOf('http://') > -1 ||
+      //         ownRefinedProperties[attr].indexOf('https://') > -1
+      //     ) {
+      //         result.href = ownRefinedProperties[attr]
+      //     } else {
+      //         result.href = props.mD.baseUrl + ownRefinedProperties[attr]
+      //     }
+      //     break
 
       default:
         result[attr] = ownRefinedProperties[attr];

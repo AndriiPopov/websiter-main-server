@@ -19,7 +19,7 @@ export default (props, elementValues) => {
             result[attribute] = JSON.parse(
                 JSON.stringify(result[attribute]).replace(
                     // /\$[^:;\$\s]*\$/g,
-                    /\$[A-Za-z0-9]*\$/g,
+                    /\$[A-Za-z0-9_-]*\$/g,
                     match => {
                         const inheritedPropertyName = getInheritedPropertyName(
                             match

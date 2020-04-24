@@ -53,6 +53,7 @@ const _BuilderElement = props => {
     ownRefinedProperties
   } = (0, _refineProperties.default)({ ...props
   }, elementValues);
+  const attributes = (0, _useEffect.setBoxProperties)(ownRefinedProperties, props, elementValues);
   const currentPath = [...props.element.path, props.element.id];
   let Tag = props.element.tag || 'div';
   /* Tag = Tag.replace(/[^a-zA-Z]/g, '') */
@@ -199,7 +200,6 @@ const _BuilderElement = props => {
     }
   } else {
     if (Tag === 'websiterMenu') {
-      const attributes = (0, _useEffect.setBoxProperties)(ownRefinedProperties, props, elementValues);
       result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
         element: props.element,
         elementValues: elementValues,
@@ -293,10 +293,8 @@ const _BuilderElement = props => {
       Tag = Tag.trim();
 
       if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {
-        const attributes = (0, _useEffect.setBoxProperties)(ownRefinedProperties, props, elementValues);
         result = /*#__PURE__*/_react.default.createElement(Tag, attributes);
       } else {
-        const attributes = (0, _useEffect.setBoxProperties)(ownRefinedProperties, props, elementValues);
         result = /*#__PURE__*/_react.default.createElement(Tag, attributes, innerResult);
       } // }
 

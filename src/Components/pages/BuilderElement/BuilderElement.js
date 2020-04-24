@@ -31,6 +31,12 @@ const _BuilderElement = props => {
         elementValues
     )
 
+    const attributes = setBoxProperties(
+        ownRefinedProperties,
+        props,
+        elementValues
+    )
+
     const currentPath = [...props.element.path, props.element.id]
 
     let Tag = props.element.tag || 'div'
@@ -246,11 +252,6 @@ const _BuilderElement = props => {
         }
     } else {
         if (Tag === 'websiterMenu') {
-            const attributes = setBoxProperties(
-                ownRefinedProperties,
-                props,
-                elementValues
-            )
             result = (
                 <div {...attributes}>
                     <Menu
@@ -419,18 +420,8 @@ const _BuilderElement = props => {
                     'wbr',
                 ].includes(Tag)
             ) {
-                const attributes = setBoxProperties(
-                    ownRefinedProperties,
-                    props,
-                    elementValues
-                )
                 result = <Tag {...attributes} />
             } else {
-                const attributes = setBoxProperties(
-                    ownRefinedProperties,
-                    props,
-                    elementValues
-                )
                 result = <Tag {...attributes}>{innerResult}</Tag>
             }
             // }
