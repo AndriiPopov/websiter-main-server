@@ -146,9 +146,14 @@ export const refinePropertiesFromCMS = mD => {
                 )
                 for (let child of children) {
                     let propagatingItem = {}
+                    const innerChildPath = [...child.path, child.id]
+
                     const childVariables = currentPageDraft.structure
                         .filter(el =>
-                            isEqual([...child.path, child.id], el.path)
+                            isEqual(
+                                el.path.slice(0, innerChildPath.length),
+                                innerChildPath
+                            )
                         )
                         .filter(el =>
                             el.forPropagatingPlugin

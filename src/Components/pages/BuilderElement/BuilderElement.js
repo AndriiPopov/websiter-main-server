@@ -10,11 +10,13 @@ import Drawer from '../Drawer/Drawer'
 // import 'slick-carousel/slick/slick.css'
 // import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
+import { AllHtmlEntities as Entities } from 'html-entities'
 
 import { checkIfCapital, getInheritedPropertyName } from '../utils/basic'
 import { setBoxProperties } from './methods/useEffect'
 import refineProperties from './methods/refineProperties'
 import { modulesPropertyNodes } from '../utils/modulesIndex'
+const entities = new Entities()
 var serialize = require('serialize-javascript')
 
 const _BuilderElement = props => {
@@ -75,6 +77,7 @@ const _BuilderElement = props => {
                             currentResource={props.currentResource}
                             pageInStructure={props.pageInStructure}
                             mD={props.mD}
+                            isLocal={props.isLocal}
                         />
                     ))
             }
@@ -121,6 +124,7 @@ const _BuilderElement = props => {
                         childrenForPlugin={props.childrenForPlugin}
                         pageInStructure={props.pageInStructure}
                         mD={props.mD}
+                        isLocal={props.isLocal}
                     />
                 ))
         }
@@ -142,7 +146,9 @@ const _BuilderElement = props => {
             })
         )
     } else if (checkIfCapital(Tag.charAt(0))) {
-        const plugin = props.mD.pluginsStructure.find(item => item.name === Tag)
+        const plugin = props.mD.pluginsStructure.find(
+            item => item.name === Tag && !item.hidden
+        )
         if (plugin) {
             if (!plugin.hidden) {
                 const pluginResource = props.mD.resourcesObjects[plugin.id]
@@ -207,6 +213,7 @@ const _BuilderElement = props => {
                                                   props.pageInStructure
                                               }
                                               mD={props.mD}
+                                              isLocal={props.isLocal}
                                           />
                                       )
                                   })
@@ -244,6 +251,7 @@ const _BuilderElement = props => {
                                     childrenForPlugin={childrenForPlugin}
                                     pageInStructure={props.pageInStructure}
                                     mD={props.mD}
+                                    isLocal={props.isLocal}
                                 />
                             )
                         })
@@ -318,9 +326,9 @@ const _BuilderElement = props => {
                             </div>
                         </div>
                         {props.currentWebsiteObject && props.filesStructure
-                            ? items.map(item => {
+                            ? items.map((item, index) => {
                                   return (
-                                      <div>
+                                      <div key={index}>
                                           <img src={item.original} />
                                       </div>
                                   )
@@ -373,30 +381,44 @@ const _BuilderElement = props => {
                             childrenForPlugin={props.childrenForPlugin}
                             pageInStructure={props.pageInStructure}
                             mD={props.mD}
+                            isLocal={props.isLocal}
                         />
                     )),
-                props.element.id === 'element_0' && props.renderBodyAndHead ? (
-                    <>
-                        <link
-                            rel="stylesheet"
-                            type="text/css"
-                            href="https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
-                        />
-                        <script
-                            dangerouslySetInnerHTML={{
-                                __html: ` window.__MD__ = ${serialize(
-                                    props.mD
-                                )};`,
-                            }}
-                        />
-                    </>
-                ) : null,
-                props.element.id === 'element_1' && props.renderBodyAndHead ? (
-                    <>
-                        <script src="/index.js" charset="utf-8" />
-                        <script src="/vendor.js" charset="utf-8" />
-                    </>
-                ) : null,
+                ...(props.element.id === 'element_0' && props.renderBodyAndHead
+                    ? [
+                          props.isLocal ? (
+                              <meta
+                                  key="sys0"
+                                  name="robots"
+                                  content="noindex, follow"
+                              />
+                          ) : null,
+                          <link
+                              key="sys1"
+                              rel="stylesheet"
+                              type="text/css"
+                              href="https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
+                          />,
+                          <script
+                              key="sys2"
+                              dangerouslySetInnerHTML={{
+                                  __html: ` window.__MD__ = ${serialize(
+                                      props.mD
+                                  )};`,
+                              }}
+                          />,
+                      ]
+                    : []),
+                ...(props.element.id === 'element_1' && props.renderBodyAndHead
+                    ? [
+                          <script key="sys3" src="/index.js" charSet="utf-8" />,
+                          <script
+                              key="sys4"
+                              src="/vendor.js"
+                              charSet="utf-8"
+                          />,
+                      ]
+                    : []),
             ]
 
             Tag = Tag.replace(/[^a-z]/g, '')
@@ -421,6 +443,17 @@ const _BuilderElement = props => {
                 ].includes(Tag)
             ) {
                 result = <Tag {...attributes} />
+            } else if (Tag === 'style') {
+                result = (
+                    <Tag
+                        {...attributes}
+                        dangerouslySetInnerHTML={{
+                            __html: entities.decode(
+                                renderToString(innerResult)
+                            ),
+                        }}
+                    />
+                )
             } else {
                 result = <Tag {...attributes}>{innerResult}</Tag>
             }

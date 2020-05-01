@@ -2,6 +2,8 @@
 
 const Url = require('url-parse');
 
+const decodeUriComponent = require('decode-uri-component');
+
 const {
   Website
 } = require('../models/website');
@@ -10,10 +12,12 @@ const getWebsiteAndPage = async (urlString, res) => {
   if (!urlString) return res.status(400).send(error.details[0].message);
   const url = new Url(urlString, true);
   const is120 = url.query.thumbnail === '1';
+  let isLocal;
   const hostParts = url.hostname.split('.');
   let website, pathname;
 
   if (url.hostname === 'live.websiter.dev' || url.hostname === 'live.websiter.test') {
+    isLocal = true;
     const pathArray = url.pathname.split('/');
 
     if (pathArray.length < 2) {
@@ -50,6 +54,8 @@ const getWebsiteAndPage = async (urlString, res) => {
     pathname = url.pathname.trim();
   }
 
+  pathname = decodeUriComponent(pathname);
+
   if (!website) {
     res.status(400).send('No website');
     return;
@@ -70,7 +76,8 @@ const getWebsiteAndPage = async (urlString, res) => {
     page,
     url,
     pathname,
-    is120
+    is120,
+    isLocal
   };
 };
 

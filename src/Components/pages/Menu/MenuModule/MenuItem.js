@@ -353,13 +353,13 @@ export var MenuItem =
                         // className: className,
                         className: [
                             className,
-                            ...(props.isSub
+                            ...(props.isSub || props.mode === 'vertical-left'
                                 ? props.store.getState().popupMenuItemClasses
                                 : props.store.getState().topMenuItemClasses),
                             ...(props.store
                                 .getState()
                                 .activeKeys.includes(this.props.eventKey)
-                                ? props.isSub
+                                ? props.isSub || props.mode === 'vertical-left'
                                     ? props.store.getState()
                                           .popupMenuItemActiveClasses
                                     : props.store.getState()

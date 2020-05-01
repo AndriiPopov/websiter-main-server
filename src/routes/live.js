@@ -7,17 +7,14 @@ import React from 'react'
 import Index from '../Components/pages/index.js'
 const https = require('https')
 const path = require('path')
-// import { AllHtmlEntities as Entities } from 'html-entities'
-// const entities = new Entities()
 
 router.get('/', async (req, res, next) => {
     const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
     const websiteAndPageData = await getWebsiteAndPage(fullUrl, res)
     if (!websiteAndPageData) return
-    const { website, page, pathname, is120 } = websiteAndPageData
+    const { website, page, pathname, is120, isLocal } = websiteAndPageData
     if (page) {
         const mD = await resources(page, website)
-
         let reactComp = renderToStaticMarkup(
             <Index
                 mD={{
@@ -34,6 +31,7 @@ router.get('/', async (req, res, next) => {
                     structure: mD.resourcesObjects[mD.template].structure,
                 }}
                 renderBody={true}
+                isLocal={isLocal}
             />
         )
 
@@ -42,14 +40,16 @@ router.get('/', async (req, res, next) => {
             reactComp.slice(0, reactComp.length - 7) +
             bodyComp +
             '</html>'
-
-        // reactComp = entities.decode(reactComp)
         res.status(200).send(reactComp)
     } else {
         if (website && !page) {
             const file = website.filesStructure.find(
-                file =>
-                    file.relUrl === pathname || '/' + file.relUrl === pathname
+                file => {
+                    return (
+                        file.relUrl === pathname ||
+                        '/' + file.relUrl === pathname
+                    )
+                }
                 // {
                 //     const url =
                 //         file.path.reduce((totalPath, fileId) => {

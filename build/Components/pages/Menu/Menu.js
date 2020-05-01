@@ -36,7 +36,7 @@ const MenuElement = props => {
     const key = item.id + '_' + index;
 
     if (item.children.length === 0) {
-      if (item.url === props.mD.baseUrl + props.pageInStructure.url || item.url === props.mD.baseUrl && props.pageInStructure.homepage) activeKeys.push(key);
+      if (item.url === props.mD.baseUrl + props.pageInStructure.relUrl || item.url === props.mD.baseUrl && props.pageInStructure.homepage) activeKeys.push(key);
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
         key: key,
         className: item.properties ? item.properties.itemClass : ''
@@ -45,7 +45,7 @@ const MenuElement = props => {
           height: '100%',
           width: '100%'
         },
-        onClick: () => window.location = item.url
+        onClick: () => item.properties.newTab ? window.open(item.url, '_blank') : window.location = item.url
       }, item.name));
     } else {
       return /*#__PURE__*/_react.default.createElement(SubMenu1, {
@@ -83,7 +83,7 @@ const SubMenu1 = props => {
     const key = item.id + '_' + index;
 
     if (item.children.length === 0) {
-      if (item.url === props.mD.baseUrl + props.pageInStructure.url || item.url === props.mD.baseUrl && props.pageInStructure.homepage) activeKeys.push(key);
+      if (item.url === props.mD.baseUrl + props.pageInStructure.relUrl || item.url === props.mD.baseUrl && props.pageInStructure.homepage) activeKeys.push(key);
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
         key: key
       }, /*#__PURE__*/_react.default.createElement("div", {
@@ -91,7 +91,7 @@ const SubMenu1 = props => {
           height: '100%',
           width: '100%'
         },
-        onClick: () => window.location = item.url
+        onClick: () => item.properties.newTab ? window.open(item.url, '_blank') : window.location = item.url
       }, item.name));
     } else {
       return /*#__PURE__*/_react.default.createElement(SubMenu2, _extends({}, other, {

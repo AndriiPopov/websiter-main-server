@@ -42,9 +42,6 @@ const websiteSchema = new mongoose.Schema({
   domainHidden: {
     type: Boolean
   },
-  domainNoIndex: {
-    type: Boolean
-  },
   customDomainHidden: {
     type: Boolean
   },
@@ -438,60 +435,4 @@ websiteSchema.methods.deleteResource = async function (resourceId, type) {
   return true;
 };
 
-module.exports.Website = mongoose.model('Website', websiteSchema); // module.exports.validateWebsite = website => {
-//     const schema = {
-//         name: Joi.string()
-//             .min(1)
-//             .max(50)
-//             .optional(),
-//         domain: Joi.string()
-//             .min(1)
-//             .max(255)
-//             .optional(),
-//         customDomain: Joi.string()
-//             .min(1)
-//             .max(255)
-//             .optional(),
-//         domainHidden: Joi.boolean().optional(),
-//         customDomainHidden: Joi.boolean().optional(),
-//         domainNoIndex: Joi.boolean().optional(),
-//         sharing: Joi.array().optional(),
-//         filesStructure: Joi.array()
-//             .items(
-//                 Joi.object().keys({
-//                     url: Joi.string().required(),
-//                     name: Joi.string().required(),
-//                     label: Joi.string().required(),
-//                     size: Joi.number()
-//                         .min(0)
-//                         .required(),
-//                 })
-//             )
-//             .optional(),
-//         storage: Joi.number()
-//             .min(0)
-//             .optional(),
-//     }
-//     return Joi.validate(website, schema)
-// }
-// module.exports.validateWebsiteStructure = website => {
-//     const schema = {
-//         structurePatch: Joi.object(),
-//         type: Joi.string(),
-//     }
-//     return Joi.validate(website, schema)
-// }
-// module.exports.validateCreateWebsite = website => {
-//     const schema = {
-//         duplicate: Joi.boolean().optional(),
-//         currentWebsite: Joi.string().optional(),
-//     }
-//     return Joi.validate(website, schema)
-// }
-// module.exports.validateWebsiteSharing = website => {
-//     const schema = {
-//         type: Joi.string(),
-//         id: Joi.string(),
-//     }
-//     return Joi.validate(website, schema)
-// }
+module.exports.Website = mongoose.model('Website', websiteSchema);

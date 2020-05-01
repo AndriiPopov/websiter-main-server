@@ -249,6 +249,9 @@
     white-space: normal;
     padding-right: 30px;
 }
+.systemclass_menu-inline .systemclass_menu-item {
+    white-space: normal;
+}
 .image-gallery-icon {
     color: #fff;
     transition: all 0.2s ease-out;

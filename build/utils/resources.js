@@ -14,9 +14,8 @@ const {
 
 module.exports = async (page, website) => {
   if (!page) return;
-  let template = website.templatesStructure.find(template => template.name === page.template);
+  let template = website.templatesStructure.find(template => template.name === page.template && !template.hidden);
   if (!template) return;
-  if (template.hidden) return;
   const globalSettingsPageItem = website.pagesStructure.find(item => item.generalSettings);
   const globalSettingsTemplateItem = website.templatesStructure.find(item => item.generalSettings);
   let globalSettingsPageId = '',
@@ -35,7 +34,7 @@ module.exports = async (page, website) => {
       let nextResource;
 
       if (connectedResource.type === 'plugin') {
-        nextResource = website.pluginsStructure.find(item => item.name === connectedResource.name);
+        nextResource = website.pluginsStructure.find(item => item.name === connectedResource.name && !item.hidden);
       }
 
       if (nextResource) pickConnectedResources(nextResource);
@@ -52,7 +51,6 @@ module.exports = async (page, website) => {
     globalSettingsTemplateId,
     pagesStructure: website.pagesStructure,
     pluginsStructure: website.pluginsStructure,
-    domainNoIndex: website.domainNoIndex,
     baseUrl: 'https://' + website.customDomain + '/'
   };
 };

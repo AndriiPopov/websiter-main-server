@@ -39,7 +39,7 @@ const Index = props => {
       globalSettingsPageDraft: mD.resourcesObjects[mD.globalSettingsPageId],
       globalSettingsTemplateDraft: mD.resourcesObjects[mD.globalSettingsTemplateId]
     });
-    const pageResult = !props.renderBody ? mD.structure.filter(itemInn => itemInn.id === 'element_01').map((itemInn, index) => {
+    const pageResult = !props.renderBody ? mD.structure.filter(itemInn => itemInn.id === 'element_01').map(itemInn => {
       const result = /*#__PURE__*/React.createElement(_BuilderElement.default, {
         key: itemInn.id,
         structure: mD.structure.filter(item => !item.id === 'element_01'),
@@ -63,7 +63,8 @@ const Index = props => {
         pageInStructure: currentPageItemInStructure,
         parentPluginProps: refinedProperties,
         mD: mD,
-        renderBodyAndHead: true
+        renderBodyAndHead: true,
+        isLocal: props.isLocal
       });
       return result;
     })];

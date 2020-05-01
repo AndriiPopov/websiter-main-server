@@ -23,6 +23,8 @@ var _Drawer = _interopRequireDefault(require("../Drawer/Drawer"));
 
 var _reactSlick = _interopRequireDefault(require("react-slick"));
 
+var _htmlEntities = require("html-entities");
+
 var _basic = require("../utils/basic");
 
 var _useEffect = require("./methods/useEffect");
@@ -38,6 +40,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+const entities = new _htmlEntities.AllHtmlEntities();
 
 var serialize = require('serialize-javascript');
 
@@ -81,7 +85,8 @@ const _BuilderElement = props => {
           childrenForPlugin: props.childrenForPlugin,
           currentResource: props.currentResource,
           pageInStructure: props.pageInStructure,
-          mD: props.mD
+          mD: props.mD,
+          isLocal: props.isLocal
         }));
       }
 
@@ -117,7 +122,8 @@ const _BuilderElement = props => {
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
-        mD: props.mD
+        mD: props.mD,
+        isLocal: props.isLocal
       }));
     }
   } else if (props.element.isElementFromCMSVariable) {
@@ -135,7 +141,7 @@ const _BuilderElement = props => {
       allowedAttributes: false
     }));
   } else if ((0, _basic.checkIfCapital)(Tag.charAt(0))) {
-    const plugin = props.mD.pluginsStructure.find(item => item.name === Tag);
+    const plugin = props.mD.pluginsStructure.find(item => item.name === Tag && !item.hidden);
 
     if (plugin) {
       if (!plugin.hidden) {
@@ -169,7 +175,8 @@ const _BuilderElement = props => {
               },
               childrenForPlugin: childrenForPlugin,
               pageInStructure: props.pageInStructure,
-              mD: props.mD
+              mD: props.mD,
+              isLocal: props.isLocal
             });
           })) : null;
         } else {
@@ -192,7 +199,8 @@ const _BuilderElement = props => {
               parentPluginProps: refinedProperties,
               childrenForPlugin: childrenForPlugin,
               pageInStructure: props.pageInStructure,
-              mD: props.mD
+              mD: props.mD,
+              isLocal: props.isLocal
             });
           });
         }
@@ -244,8 +252,10 @@ const _BuilderElement = props => {
           height: '100px',
           background: 'red'
         }
-      }, "sdfsdf")), props.currentWebsiteObject && props.filesStructure ? items.map(item => {
-        return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+      }, "sdfsdf")), props.currentWebsiteObject && props.filesStructure ? items.map((item, index) => {
+        return /*#__PURE__*/_react.default.createElement("div", {
+          key: index
+        }, /*#__PURE__*/_react.default.createElement("img", {
           src: item.original
         }));
       }) : null));
@@ -273,27 +283,42 @@ const _BuilderElement = props => {
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
-        mD: props.mD
-      })), props.element.id === 'element_0' && props.renderBodyAndHead ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("link", {
+        mD: props.mD,
+        isLocal: props.isLocal
+      })), ...(props.element.id === 'element_0' && props.renderBodyAndHead ? [props.isLocal ? /*#__PURE__*/_react.default.createElement("meta", {
+        key: "sys0",
+        name: "robots",
+        content: "noindex, follow"
+      }) : null, /*#__PURE__*/_react.default.createElement("link", {
+        key: "sys1",
         rel: "stylesheet",
         type: "text/css",
         href: "https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
       }), /*#__PURE__*/_react.default.createElement("script", {
+        key: "sys2",
         dangerouslySetInnerHTML: {
           __html: ` window.__MD__ = ${serialize(props.mD)};`
         }
-      })) : null, props.element.id === 'element_1' && props.renderBodyAndHead ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("script", {
+      })] : []), ...(props.element.id === 'element_1' && props.renderBodyAndHead ? [/*#__PURE__*/_react.default.createElement("script", {
+        key: "sys3",
         src: "/index.js",
-        charset: "utf-8"
+        charSet: "utf-8"
       }), /*#__PURE__*/_react.default.createElement("script", {
+        key: "sys4",
         src: "/vendor.js",
-        charset: "utf-8"
-      })) : null];
+        charSet: "utf-8"
+      })] : [])];
       Tag = Tag.replace(/[^a-z]/g, '');
       Tag = Tag.trim();
 
       if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {
         result = /*#__PURE__*/_react.default.createElement(Tag, attributes);
+      } else if (Tag === 'style') {
+        result = /*#__PURE__*/_react.default.createElement(Tag, _extends({}, attributes, {
+          dangerouslySetInnerHTML: {
+            __html: entities.decode((0, _server.renderToString)(innerResult))
+          }
+        }));
       } else {
         result = /*#__PURE__*/_react.default.createElement(Tag, attributes, innerResult);
       } // }

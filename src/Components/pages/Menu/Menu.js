@@ -24,7 +24,7 @@ const MenuElement = props => {
         const key = item.id + '_' + index
         if (item.children.length === 0) {
             if (
-                item.url === props.mD.baseUrl + props.pageInStructure.url ||
+                item.url === props.mD.baseUrl + props.pageInStructure.relUrl ||
                 (item.url === props.mD.baseUrl &&
                     props.pageInStructure.homepage)
             )
@@ -36,7 +36,11 @@ const MenuElement = props => {
                 >
                     <div
                         style={{ height: '100%', width: '100%' }}
-                        onClick={() => (window.location = item.url)}
+                        onClick={() =>
+                            item.properties.newTab
+                                ? window.open(item.url, '_blank')
+                                : (window.location = item.url)
+                        }
                     >
                         {item.name}
                     </div>
@@ -91,7 +95,7 @@ const SubMenu1 = props => {
                 if (item.children.length === 0) {
                     if (
                         item.url ===
-                            props.mD.baseUrl + props.pageInStructure.url ||
+                            props.mD.baseUrl + props.pageInStructure.relUrl ||
                         (item.url === props.mD.baseUrl &&
                             props.pageInStructure.homepage)
                     )
@@ -100,7 +104,11 @@ const SubMenu1 = props => {
                         <MenuItem key={key}>
                             <div
                                 style={{ height: '100%', width: '100%' }}
-                                onClick={() => (window.location = item.url)}
+                                onClick={() =>
+                                    item.properties.newTab
+                                        ? window.open(item.url, '_blank')
+                                        : (window.location = item.url)
+                                }
                             >
                                 {item.name}
                             </div>

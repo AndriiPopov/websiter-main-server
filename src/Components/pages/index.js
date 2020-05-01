@@ -41,7 +41,7 @@ const Index = props => {
         const pageResult = !props.renderBody
             ? mD.structure
                   .filter(itemInn => itemInn.id === 'element_01')
-                  .map((itemInn, index) => {
+                  .map(itemInn => {
                       const result = (
                           <BuilderElement
                               key={itemInn.id}
@@ -87,6 +87,7 @@ const Index = props => {
                                   parentPluginProps={refinedProperties}
                                   mD={mD}
                                   renderBodyAndHead
+                                  isLocal={props.isLocal}
                               />
                           )
                           return result

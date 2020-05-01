@@ -4,7 +4,7 @@ module.exports = (structure, page) =>
         relUrl:
             item.path.reduce((totalPath, itemId) => {
                 const el = structure.find(itemInn => itemInn.id === itemId)
-                if (el && !el.hidden)
+                if (el && (!el.hidden || el.folderPage))
                     return totalPath + el[page ? 'url' : 'name'] + '/'
                 else {
                     return totalPath

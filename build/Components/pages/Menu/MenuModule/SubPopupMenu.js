@@ -431,7 +431,7 @@ var SubPopupMenu = /*#__PURE__*/function (_React$Component) {
       return _react.default.cloneElement(child, newChildProps);
     };
 
-    _this.renderMenuItem = function (c, i, subMenuKey) {
+    _this.renderMenuItem = function (c, i, subMenuKey, addProps) {
       /* istanbul ignore if */
       if (!c) {
         return null;
@@ -443,7 +443,8 @@ var SubPopupMenu = /*#__PURE__*/function (_React$Component) {
         openKeys: state.openKeys,
         selectedKeys: state.selectedKeys,
         triggerSubMenuAction: _this.props.triggerSubMenuAction,
-        subMenuKey: subMenuKey
+        subMenuKey: subMenuKey,
+        ...addProps
       };
       return _this.renderCommonMenuItem(c, i, extraProps);
     };

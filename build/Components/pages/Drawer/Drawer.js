@@ -26,7 +26,6 @@ const Drawer = props => {
     setState(!state);
   };
 
-  console.log(props);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, props.handler && /*#__PURE__*/_react.default.createElement("div", {
     onClick: onSwitch
   }, props.handler), /*#__PURE__*/_react.default.createElement(_rcDrawer.default, {

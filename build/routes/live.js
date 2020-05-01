@@ -6,8 +6,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _index = _interopRequireDefault(require("../Components/pages/index.js"));
 
-var _htmlEntities = require("html-entities");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const express = require('express');
@@ -24,7 +22,6 @@ const https = require('https');
 
 const path = require('path');
 
-const entities = new _htmlEntities.AllHtmlEntities();
 router.get('/', async (req, res, next) => {
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const websiteAndPageData = await getWebsiteAndPage(fullUrl, res);
@@ -33,7 +30,8 @@ router.get('/', async (req, res, next) => {
     website,
     page,
     pathname,
-    is120
+    is120,
+    isLocal
   } = websiteAndPageData;
 
   if (page) {
@@ -47,14 +45,16 @@ router.get('/', async (req, res, next) => {
       mD: { ...mD,
         structure: mD.resourcesObjects[mD.template].structure
       },
-      renderBody: true
+      renderBody: true,
+      isLocal: isLocal
     }));
-    reactComp = '<!DOCTYPE html>' + reactComp.slice(0, reactComp.length - 7) + bodyComp + '</html>'; // reactComp = entities.decode(reactComp)
-
+    reactComp = '<!DOCTYPE html>' + reactComp.slice(0, reactComp.length - 7) + bodyComp + '</html>';
     res.status(200).send(reactComp);
   } else {
     if (website && !page) {
-      const file = website.filesStructure.find(file => file.relUrl === pathname || '/' + file.relUrl === pathname // {
+      const file = website.filesStructure.find(file => {
+        return file.relUrl === pathname || '/' + file.relUrl === pathname;
+      } // {
       //     const url =
       //         file.path.reduce((totalPath, fileId) => {
       //             const fileItem = website.filesStructure.find(

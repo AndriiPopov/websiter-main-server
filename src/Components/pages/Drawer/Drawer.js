@@ -10,7 +10,6 @@ const Drawer = props => {
     const onSwitch = () => {
         setState(!state)
     }
-    console.log(props)
     return (
         <>
             {props.handler && <div onClick={onSwitch}>{props.handler}</div>}

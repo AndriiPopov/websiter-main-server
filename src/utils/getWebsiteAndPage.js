@@ -1,4 +1,5 @@
 const Url = require('url-parse')
+const decodeUriComponent = require('decode-uri-component')
 const { Website } = require('../models/website')
 
 const getWebsiteAndPage = async (urlString, res) => {
@@ -6,12 +7,14 @@ const getWebsiteAndPage = async (urlString, res) => {
 
     const url = new Url(urlString, true)
     const is120 = url.query.thumbnail === '1'
+    let isLocal
     const hostParts = url.hostname.split('.')
     let website, pathname
     if (
         url.hostname === 'live.websiter.dev' ||
         url.hostname === 'live.websiter.test'
     ) {
+        isLocal = true
         const pathArray = url.pathname.split('/')
         if (pathArray.length < 2) {
             res.status(400).send('Wrong page')
@@ -45,6 +48,7 @@ const getWebsiteAndPage = async (urlString, res) => {
             }
         pathname = url.pathname.trim()
     }
+    pathname = decodeUriComponent(pathname)
 
     if (!website) {
         res.status(400).send('No website')
@@ -66,7 +70,7 @@ const getWebsiteAndPage = async (urlString, res) => {
         )
     }
 
-    return { website, page, url, pathname, is120 }
+    return { website, page, url, pathname, is120, isLocal }
 }
 
 module.exports.getWebsiteAndPage = getWebsiteAndPage

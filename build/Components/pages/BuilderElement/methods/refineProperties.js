@@ -109,7 +109,8 @@ const refinePropertiesFromCMS = mD => {
 
       for (let child of children) {
         let propagatingItem = {};
-        const childVariables = currentPageDraft.structure.filter(el => (0, _isEqual.default)([...child.path, child.id], el.path)).filter(el => el.forPropagatingPlugin ? el.forPropagatingPlugin.pluginId === forPluginId : false);
+        const innerChildPath = [...child.path, child.id];
+        const childVariables = currentPageDraft.structure.filter(el => (0, _isEqual.default)(el.path.slice(0, innerChildPath.length), innerChildPath)).filter(el => el.forPropagatingPlugin ? el.forPropagatingPlugin.pluginId === forPluginId : false);
 
         for (let el of childVariables) {
           const value = addVariable(el, currentPageDraft, forPluginDraft, forPluginId);

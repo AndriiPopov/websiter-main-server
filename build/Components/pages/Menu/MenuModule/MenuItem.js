@@ -320,7 +320,7 @@ var MenuItem = /*#__PURE__*/function (_React$Component) {
       var attrs = _objectSpread({}, props.attribute, {
         title: props.title,
         // className: className,
-        className: [className, ...(props.isSub ? props.store.getState().popupMenuItemClasses : props.store.getState().topMenuItemClasses), ...(props.store.getState().activeKeys.includes(this.props.eventKey) ? props.isSub ? props.store.getState().popupMenuItemActiveClasses : props.store.getState().topMenuItemActiveClasses : [])].join(' '),
+        className: [className, ...(props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemClasses : props.store.getState().topMenuItemClasses), ...(props.store.getState().activeKeys.includes(this.props.eventKey) ? props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemActiveClasses : props.store.getState().topMenuItemActiveClasses : [])].join(' '),
         // set to menuitem by default
         role: props.role || 'menuitem',
         'aria-disabled': props.disabled

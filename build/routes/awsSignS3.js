@@ -26,10 +26,10 @@ const router = express.Router();
 const signFileSchema = Joi.object({
   websiteId: Joi.objectId().required(),
   fileName: Joi.string().required(),
-  fileType: Joi.string(),
+  fileType: Joi.string().allow(''),
   fileSize: Joi.number().required(),
   thumbnailName: Joi.string(),
-  thumbnailType: Joi.string(),
+  thumbnailType: Joi.string().allow(''),
   thumbnailSize: Joi.number()
 });
 router.post('/', auth, async (req, res) => {
@@ -37,7 +37,11 @@ router.post('/', auth, async (req, res) => {
     const {
       error
     } = signFileSchema.validate(req.body);
-    if (error) return res.status(400).send('Image upload failed. Wrong data.');
+
+    if (error) {
+      return res.status(400).send('Image upload failed. Wrong data.');
+    }
+
     const website = await Website.findById(req.body.websiteId);
     if (!website) return res.status(400).send('Image upload failed. Wrong data.');
     if (!(await getUserRights(req.user._id, website, ['content', 'developer'], res))) return;
