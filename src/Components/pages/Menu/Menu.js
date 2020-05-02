@@ -35,12 +35,18 @@ const MenuElement = props => {
                     className={item.properties ? item.properties.itemClass : ''}
                 >
                     <div
-                        style={{ height: '100%', width: '100%' }}
-                        onClick={() =>
-                            item.properties.newTab
-                                ? window.open(item.url, '_blank')
-                                : (window.location = item.url)
-                        }
+                        style={{
+                            height: '100%',
+                            width: '100%',
+                            display: 'block',
+                        }}
+                        href="item.url"
+                        target={item.properties.newTab ? '_blank' : '_self'}
+                        // onClick={() =>
+                        //     item.properties.newTab
+                        //         ? window.open(item.url, '_blank')
+                        //         : (window.location = item.url)
+                        // }
                     >
                         {item.name}
                     </div>
@@ -103,12 +109,20 @@ const SubMenu1 = props => {
                     return (
                         <MenuItem key={key}>
                             <div
-                                style={{ height: '100%', width: '100%' }}
-                                onClick={() =>
-                                    item.properties.newTab
-                                        ? window.open(item.url, '_blank')
-                                        : (window.location = item.url)
+                                style={{
+                                    height: '100%',
+                                    width: '100%',
+                                    display: 'block',
+                                }}
+                                href="item.url"
+                                target={
+                                    item.properties.newTab ? '_blank' : '_self'
                                 }
+                                // onClick={() =>
+                                //     item.properties.newTab
+                                //         ? window.open(item.url, '_blank')
+                                //         : (window.location = item.url)
+                                // }
                             >
                                 {item.name}
                             </div>

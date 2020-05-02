@@ -43,9 +43,16 @@ const MenuElement = props => {
       }, /*#__PURE__*/_react.default.createElement("div", {
         style: {
           height: '100%',
-          width: '100%'
+          width: '100%',
+          display: 'block'
         },
-        onClick: () => item.properties.newTab ? window.open(item.url, '_blank') : window.location = item.url
+        href: "item.url",
+        target: item.properties.newTab ? '_blank' : '_self' // onClick={() =>
+        //     item.properties.newTab
+        //         ? window.open(item.url, '_blank')
+        //         : (window.location = item.url)
+        // }
+
       }, item.name));
     } else {
       return /*#__PURE__*/_react.default.createElement(SubMenu1, {
@@ -89,9 +96,16 @@ const SubMenu1 = props => {
       }, /*#__PURE__*/_react.default.createElement("div", {
         style: {
           height: '100%',
-          width: '100%'
+          width: '100%',
+          display: 'block'
         },
-        onClick: () => item.properties.newTab ? window.open(item.url, '_blank') : window.location = item.url
+        href: "item.url",
+        target: item.properties.newTab ? '_blank' : '_self' // onClick={() =>
+        //     item.properties.newTab
+        //         ? window.open(item.url, '_blank')
+        //         : (window.location = item.url)
+        // }
+
       }, item.name));
     } else {
       return /*#__PURE__*/_react.default.createElement(SubMenu2, _extends({}, other, {
