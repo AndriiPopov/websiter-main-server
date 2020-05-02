@@ -34,7 +34,7 @@ const MenuElement = props => {
                     key={key}
                     className={item.properties ? item.properties.itemClass : ''}
                 >
-                    <div
+                    <a
                         style={{
                             height: '100%',
                             width: '100%',
@@ -49,7 +49,7 @@ const MenuElement = props => {
                         // }
                     >
                         {item.name}
-                    </div>
+                    </a>
                 </MenuItem>
             )
         } else {
@@ -108,7 +108,7 @@ const SubMenu1 = props => {
                         activeKeys.push(key)
                     return (
                         <MenuItem key={key}>
-                            <div
+                            <a
                                 style={{
                                     height: '100%',
                                     width: '100%',
@@ -125,7 +125,7 @@ const SubMenu1 = props => {
                                 // }
                             >
                                 {item.name}
-                            </div>
+                            </a>
                         </MenuItem>
                     )
                 } else {

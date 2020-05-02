@@ -40,7 +40,7 @@ const MenuElement = props => {
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
         key: key,
         className: item.properties ? item.properties.itemClass : ''
-      }, /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("a", {
         style: {
           height: '100%',
           width: '100%',
@@ -93,7 +93,7 @@ const SubMenu1 = props => {
       if (item.url === props.mD.baseUrl + props.pageInStructure.relUrl || item.url === props.mD.baseUrl && props.pageInStructure.homepage) activeKeys.push(key);
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
         key: key
-      }, /*#__PURE__*/_react.default.createElement("div", {
+      }, /*#__PURE__*/_react.default.createElement("a", {
         style: {
           height: '100%',
           width: '100%',
