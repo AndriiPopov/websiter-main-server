@@ -348,26 +348,32 @@ export var MenuItem =
                         ),
                         _classNames)
                     )
-                    var attrs = {}
-                    var itemAttrs = _objectSpread({}, props.attribute, {
-                        title: props.title,
-                        // className: className,
-                        className: [
-                            className,
-                            ...(props.isSub || props.mode === 'vertical-left'
-                                ? props.store.getState().popupMenuItemClasses
-                                : props.store.getState().topMenuItemClasses),
-                            ...(props.store
-                                .getState()
-                                .activeKeys.includes(this.props.eventKey)
-                                ? props.isSub || props.mode === 'vertical-left'
+                    var itemAttrs = _objectSpread(
+                        {},
+                        {
+                            className: [
+                                ...(props.isSub ||
+                                props.mode === 'vertical-left'
                                     ? props.store.getState()
-                                          .popupMenuItemActiveClasses
+                                          .popupMenuItemClasses
                                     : props.store.getState()
-                                          .topMenuItemActiveClasses
-                                : []),
-                        ].join(' '),
-
+                                          .topMenuItemClasses),
+                                ...(props.store
+                                    .getState()
+                                    .activeKeys.includes(this.props.eventKey)
+                                    ? props.isSub ||
+                                      props.mode === 'vertical-left'
+                                        ? props.store.getState()
+                                              .popupMenuItemActiveClasses
+                                        : props.store.getState()
+                                              .topMenuItemActiveClasses
+                                    : []),
+                            ].join(' '),
+                        }
+                    )
+                    var attrs = _objectSpread({}, props.attribute, {
+                        title: props.title,
+                        className: className,
                         // set to menuitem by default
                         role: props.role || 'menuitem',
                         'aria-disabled': props.disabled,
