@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
-var _KeyCode = _interopRequireDefault(require("rc-util/es/KeyCode"));
+var _KeyCode = _interopRequireDefault(require("rc-util/lib/KeyCode"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 

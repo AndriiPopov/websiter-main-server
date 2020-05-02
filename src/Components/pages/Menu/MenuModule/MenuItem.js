@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import KeyCode from 'rc-util/es/KeyCode'
+import KeyCode from 'rc-util/lib/KeyCode'
 import classNames from 'classnames'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import { connect } from 'mini-store'
