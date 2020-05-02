@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import KeyCode from 'rc-util/lib/KeyCode'
+import KeyCode from 'rc-util/es/KeyCode'
 import classNames from 'classnames'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import { connect } from 'mini-store'
@@ -348,7 +348,8 @@ export var MenuItem =
                         ),
                         _classNames)
                     )
-                    var attrs = _objectSpread({}, props.attribute, {
+                    var attrs = {}
+                    var itemAttrs = _objectSpread({}, props.attribute, {
                         title: props.title,
                         // className: className,
                         className: [
@@ -366,6 +367,7 @@ export var MenuItem =
                                           .topMenuItemActiveClasses
                                 : []),
                         ].join(' '),
+
                         // set to menuitem by default
                         role: props.role || 'menuitem',
                         'aria-disabled': props.disabled,
@@ -416,7 +418,13 @@ export var MenuItem =
                             this.props
                         )
                     }
+                    var aAttrs = _objectSpread(
+                        {},
+                        { href: props.href, target: props.target }
+                    )
                     delete props.isSub
+                    delete props.href
+                    delete props.target
 
                     return React.createElement(
                         'li',
@@ -424,7 +432,16 @@ export var MenuItem =
                             style: style,
                             ref: this.saveNode,
                         }),
-                        props.children,
+                        React.createElement(
+                            'a',
+                            Object.assign({}, aAttrs),
+                            React.createElement(
+                                'div',
+                                Object.assign({}, itemAttrs),
+                                props.children
+                            )
+                        ),
+
                         icon
                     )
                 },
