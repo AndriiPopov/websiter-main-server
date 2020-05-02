@@ -46,8 +46,8 @@ const MenuElement = props => {
           width: '100%',
           display: 'block'
         },
-        href: "item.url",
-        target: item.properties.newTab ? '_blank' : '_self' // onClick={() =>
+        href: item.url,
+        target: item.properties && (item.properties.newTab ? '_blank' : '_self') // onClick={() =>
         //     item.properties.newTab
         //         ? window.open(item.url, '_blank')
         //         : (window.location = item.url)
@@ -99,8 +99,8 @@ const SubMenu1 = props => {
           width: '100%',
           display: 'block'
         },
-        href: "item.url",
-        target: item.properties.newTab ? '_blank' : '_self' // onClick={() =>
+        href: item.url,
+        target: item.properties && (item.properties.newTab ? '_blank' : '_self') // onClick={() =>
         //     item.properties.newTab
         //         ? window.open(item.url, '_blank')
         //         : (window.location = item.url)
