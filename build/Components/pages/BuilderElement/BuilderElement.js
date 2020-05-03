@@ -308,7 +308,7 @@ const _BuilderElement = props => {
         src: "/vendor.js",
         charSet: "utf-8"
       })] : [])];
-      Tag = Tag.replace(/[^a-z]/g, '');
+      Tag = Tag.replace(/[a-zA-Z_][a-zA-Z0-9_]/g, '');
       Tag = Tag.trim();
 
       if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {

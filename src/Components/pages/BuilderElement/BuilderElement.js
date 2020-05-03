@@ -421,7 +421,7 @@ const _BuilderElement = props => {
                     : []),
             ]
 
-            Tag = Tag.replace(/[^a-z]/g, '')
+            Tag = Tag.replace(/[a-zA-Z_][a-zA-Z0-9_]/g, '')
             Tag = Tag.trim()
             if (
                 [
