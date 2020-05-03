@@ -24,7 +24,9 @@ const {
 
 const https = require('https');
 
-module.exports = function (app, myApp, liveApp, apiApp) {
+const redirectIndex = require('../utils/logisionRedirect');
+
+module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
   app.all('*', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type, x-auth-token');
@@ -39,6 +41,7 @@ module.exports = function (app, myApp, liveApp, apiApp) {
   app.use(vhost('my.websiter.test', myApp));
   app.use(vhost('api.websiter.dev', apiApp));
   app.use(vhost('api.websiter.test', apiApp));
+  app.use(vhost('logision.com', logisionApp));
   app.use(liveApp);
   myApp.all('*', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -84,5 +87,13 @@ module.exports = function (app, myApp, liveApp, apiApp) {
   liveApp.use(express.static('./public'));
   liveApp.set('etag', 'strong');
   liveApp.use('*', live);
+  logisionApp.all('*', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('X-Frame-Options', 'deny');
+    res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE');
+    const link = redirectIndex.find(item => item.old === req.originalUrl);
+    res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''));
+    next();
+  });
   app.use(error);
 };

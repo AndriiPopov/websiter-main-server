@@ -21,13 +21,15 @@ apiApp.use(passport.initialize())
 
 const liveApp = express()
 
+const logisionApp = express()
+
 const myApp = express()
 myApp.use(passport.initialize())
 
 aws.config.region = 'us-east-2'
 
 logging()
-routes(app, myApp, liveApp, apiApp)
+routes(app, myApp, liveApp, apiApp, logisionApp)
 db()
 // sedtTimeout(oneOffTask, 3000)
 validation()
@@ -36,6 +38,7 @@ prod(app)
 prod(liveApp)
 prod(apiApp)
 prod(myApp)
+prod(logisionApp)
 
 // app.engine('html', require('ejs').renderFile)
 // liveApp.engine('html', require('ejs').renderFile)

@@ -418,6 +418,9 @@ const _BuilderElement = props => {
                               src="/vendor.js"
                               charSet="utf-8"
                           />,
+                          <a style="transform: rotate(-90deg);color: white; position: fixed;right: 0px; bottom: 50px;z-index:2147483647;display:block;padding:5px 10px;border-radius:5px;">
+                              Created with Websiter.dev
+                          </a>,
                       ]
                     : []),
             ]

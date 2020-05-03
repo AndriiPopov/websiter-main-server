@@ -309,7 +309,9 @@ const _BuilderElement = props => {
         key: "sys4",
         src: "/vendor.js",
         charSet: "utf-8"
-      })] : [])]; // Tag = Tag.replace(/[^a-z0-9]/g, '')
+      }), /*#__PURE__*/_react.default.createElement("a", {
+        style: "transform: rotate(-90deg);color: white; position: fixed;right: 0px; bottom: 50px;z-index:2147483647;display:block;padding:5px 10px;border-radius:5px;"
+      }, "Created with Websiter.dev")] : [])]; // Tag = Tag.replace(/[^a-z0-9]/g, '')
 
       Tag = Tag.trim();
 
