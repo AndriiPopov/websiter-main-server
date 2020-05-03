@@ -410,7 +410,10 @@ const _BuilderElement = props => {
                           />,
                       ]
                     : []),
-                ...(props.element.id === 'element_1' && props.renderBodyAndHead
+
+                ...(props.element.id === 'element_1' &&
+                props.renderBodyAndHead &&
+                !props.inEntry
                     ? [
                           <script key="sys3" src="/index.js" charSet="utf-8" />,
                           <script
@@ -424,11 +427,13 @@ const _BuilderElement = props => {
                                   color: 'white',
                                   position: 'fixed',
                                   right: '0px',
-                                  bottom: '50px',
+                                  bottom: '300px',
                                   zIndex: '2147483647',
                                   display: 'block',
                                   padding: '5px 10px',
                                   borderRadius: '5px',
+                                  background: 'black',
+                                  transformOrigin: 'bottom right',
                               }}
                           >
                               Created with Websiter.dev

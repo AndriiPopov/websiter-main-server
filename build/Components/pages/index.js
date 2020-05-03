@@ -49,7 +49,8 @@ const Index = props => {
         pluginsPathArray: [],
         pageInStructure: currentPageItemInStructure,
         parentPluginProps: refinedProperties,
-        mD: mD
+        mD: mD,
+        inEntry: props.inEntry
       });
       return result;
     }) : [...mD.structure.filter(itemInn => itemInn.path.length === 1 && itemInn.path[0] === 'element_01').map((itemInn, index) => {
@@ -64,7 +65,8 @@ const Index = props => {
         parentPluginProps: refinedProperties,
         mD: mD,
         renderBodyAndHead: true,
-        isLocal: props.isLocal
+        isLocal: props.isLocal,
+        inEntry: props.inEntry
       });
       return result;
     })];

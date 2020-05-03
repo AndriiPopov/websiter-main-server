@@ -10,5 +10,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _reactDom.hydrate)( /*#__PURE__*/_react.default.createElement(_index.default, {
   mD: window.__MD__,
-  renderBody: true
+  renderBody: true,
+  inEntry: true
 }), document.documentElement);

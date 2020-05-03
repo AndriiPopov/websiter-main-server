@@ -59,6 +59,7 @@ const Index = props => {
                               pageInStructure={currentPageItemInStructure}
                               parentPluginProps={refinedProperties}
                               mD={mD}
+                              inEntry={props.inEntry}
                           />
                       )
                       return result
@@ -88,6 +89,7 @@ const Index = props => {
                                   mD={mD}
                                   renderBodyAndHead
                                   isLocal={props.isLocal}
+                                  inEntry={props.inEntry}
                               />
                           )
                           return result

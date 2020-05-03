@@ -301,7 +301,7 @@ const _BuilderElement = props => {
         dangerouslySetInnerHTML: {
           __html: ` window.__MD__ = ${serialize(props.mD)};`
         }
-      })] : []), ...(props.element.id === 'element_1' && props.renderBodyAndHead ? [/*#__PURE__*/_react.default.createElement("script", {
+      })] : []), ...(props.element.id === 'element_1' && props.renderBodyAndHead && !props.inEntry ? [/*#__PURE__*/_react.default.createElement("script", {
         key: "sys3",
         src: "/index.js",
         charSet: "utf-8"
@@ -315,11 +315,13 @@ const _BuilderElement = props => {
           color: 'white',
           position: 'fixed',
           right: '0px',
-          bottom: '50px',
+          bottom: '300px',
           zIndex: '2147483647',
           display: 'block',
           padding: '5px 10px',
-          borderRadius: '5px'
+          borderRadius: '5px',
+          background: 'black',
+          transformOrigin: 'bottom right'
         }
       }, "Created with Websiter.dev")] : [])]; // Tag = Tag.replace(/[^a-z0-9]/g, '')
 
