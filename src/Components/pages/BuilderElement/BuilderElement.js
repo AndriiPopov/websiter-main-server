@@ -421,41 +421,44 @@ const _BuilderElement = props => {
                     : []),
             ]
 
-            Tag = Tag.replace(/[a-zA-Z_][a-zA-Z0-9_]/g, '')
+            // Tag = Tag.replace(/[^a-z0-9]/g, '')
             Tag = Tag.trim()
-            if (
-                [
-                    'area',
-                    'base',
-                    'br',
-                    'col',
-                    'embed',
-                    'hr',
-                    'img',
-                    'input',
-                    'keygen',
-                    'link',
-                    'meta',
-                    'param',
-                    'source',
-                    'track',
-                    'wbr',
-                ].includes(Tag)
-            ) {
-                result = <Tag {...attributes} />
-            } else if (Tag === 'style') {
-                result = (
-                    <Tag
-                        {...attributes}
-                        dangerouslySetInnerHTML={{
-                            __html: entities.decode(
-                                renderToString(innerResult)
-                            ),
-                        }}
-                    />
-                )
-            } else {
-                result = <Tag {...attributes}>{innerResult}</Tag>
+
+            if (/^([a-zA-Z][a-zA-Z0-9]*)$/.test(Tag)) {
+                if (
+                    [
+                        'area',
+                        'base',
+                        'br',
+                        'col',
+                        'embed',
+                        'hr',
+                        'img',
+                        'input',
+                        'keygen',
+                        'link',
+                        'meta',
+                        'param',
+                        'source',
+                        'track',
+                        'wbr',
+                    ].includes(Tag)
+                ) {
+                    result = <Tag {...attributes} />
+                } else if (Tag === 'style') {
+                    result = (
+                        <Tag
+                            {...attributes}
+                            dangerouslySetInnerHTML={{
+                                __html: entities.decode(
+                                    renderToString(innerResult)
+                                ),
+                            }}
+                        />
+                    )
+                } else {
+                    result = <Tag {...attributes}>{innerResult}</Tag>
+                }
             }
             // }
         }

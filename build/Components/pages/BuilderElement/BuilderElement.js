@@ -307,20 +307,22 @@ const _BuilderElement = props => {
         key: "sys4",
         src: "/vendor.js",
         charSet: "utf-8"
-      })] : [])];
-      Tag = Tag.replace(/[a-zA-Z_][a-zA-Z0-9_]/g, '');
+      })] : [])]; // Tag = Tag.replace(/[^a-z0-9]/g, '')
+
       Tag = Tag.trim();
 
-      if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {
-        result = /*#__PURE__*/_react.default.createElement(Tag, attributes);
-      } else if (Tag === 'style') {
-        result = /*#__PURE__*/_react.default.createElement(Tag, _extends({}, attributes, {
-          dangerouslySetInnerHTML: {
-            __html: entities.decode((0, _server.renderToString)(innerResult))
-          }
-        }));
-      } else {
-        result = /*#__PURE__*/_react.default.createElement(Tag, attributes, innerResult);
+      if (/^([a-zA-Z][a-zA-Z0-9]*)$/.test(Tag)) {
+        if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {
+          result = /*#__PURE__*/_react.default.createElement(Tag, attributes);
+        } else if (Tag === 'style') {
+          result = /*#__PURE__*/_react.default.createElement(Tag, _extends({}, attributes, {
+            dangerouslySetInnerHTML: {
+              __html: entities.decode((0, _server.renderToString)(innerResult))
+            }
+          }));
+        } else {
+          result = /*#__PURE__*/_react.default.createElement(Tag, attributes, innerResult);
+        }
       } // }
 
     }
