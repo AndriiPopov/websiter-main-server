@@ -14,7 +14,7 @@ const getWebsiteAndPage = async (urlString, res) => {
   const is120 = url.query.thumbnail === '1';
   let isLocal;
   const hostParts = url.hostname.split('.');
-  let website, pathname;
+  let website, pathname, base;
 
   if (url.hostname === 'live.websiter.dev' || url.hostname === 'live.websiter.test') {
     isLocal = true;
@@ -25,6 +25,7 @@ const getWebsiteAndPage = async (urlString, res) => {
       return;
     }
 
+    base = 'https://' + url.hostname + '/' + pathArray[1] + '/';
     website = await Website.findOne({
       domain: pathArray[1]
     });
@@ -36,6 +37,7 @@ const getWebsiteAndPage = async (urlString, res) => {
     pathArray.shift();
     pathname = pathArray.join('/').trim();
   } else {
+    base = 'https://' + url.hostname + '/';
     website = await Website.findOne({
       customDomain: url.hostname,
       customDomainVerified: true
@@ -77,7 +79,8 @@ const getWebsiteAndPage = async (urlString, res) => {
     url,
     pathname,
     is120,
-    isLocal
+    isLocal,
+    base
   };
 };
 

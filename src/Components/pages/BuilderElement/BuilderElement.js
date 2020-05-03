@@ -393,6 +393,7 @@ const _BuilderElement = props => {
                                   content="noindex, follow"
                               />
                           ) : null,
+                          <base href={props.mD.base} />,
                           <link
                               key="sys1"
                               rel="stylesheet"

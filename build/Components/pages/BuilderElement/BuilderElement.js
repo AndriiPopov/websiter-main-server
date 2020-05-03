@@ -289,7 +289,9 @@ const _BuilderElement = props => {
         key: "sys0",
         name: "robots",
         content: "noindex, follow"
-      }) : null, /*#__PURE__*/_react.default.createElement("link", {
+      }) : null, /*#__PURE__*/_react.default.createElement("base", {
+        href: props.mD.base
+      }), /*#__PURE__*/_react.default.createElement("link", {
         key: "sys1",
         rel: "stylesheet",
         type: "text/css",

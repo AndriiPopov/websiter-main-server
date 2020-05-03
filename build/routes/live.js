@@ -31,19 +31,22 @@ router.get('/', async (req, res, next) => {
     page,
     pathname,
     is120,
-    isLocal
+    isLocal,
+    base
   } = websiteAndPageData;
 
   if (page) {
     const mD = await resources(page, website);
     let reactComp = (0, _server.renderToStaticMarkup)( /*#__PURE__*/_react.default.createElement(_index.default, {
       mD: { ...mD,
-        structure: mD.resourcesObjects[mD.template].structure
+        structure: mD.resourcesObjects[mD.template].structure,
+        base
       }
     }));
     const bodyComp = (0, _server.renderToString)( /*#__PURE__*/_react.default.createElement(_index.default, {
       mD: { ...mD,
-        structure: mD.resourcesObjects[mD.template].structure
+        structure: mD.resourcesObjects[mD.template].structure,
+        base
       },
       renderBody: true,
       isLocal: isLocal
