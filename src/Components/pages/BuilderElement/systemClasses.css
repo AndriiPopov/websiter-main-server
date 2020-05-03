@@ -55,6 +55,10 @@
     padding: 0px;
     white-space: nowrap;
 }
+.systemclass_menu-item > a,
+.systemclass_menu-submenu-title > a {
+    text-decoration: none;
+}
 .systemclass_menu-item.systemclass_menu-item-disabled,
 .systemclass_menu-submenu-title.systemclass_menu-item-disabled,
 .systemclass_menu-item.systemclass_menu-submenu-disabled,

@@ -21,7 +21,7 @@ export default props => {
             structureAfterVariables.forEach(item => {
                 if (item.generatedFrom === 'all') {
                     props.mD.pagesStructure.forEach(page => {
-                        if (!page.hidden) {
+                        if (!page.hidden || page.folderPage) {
                             structure.push({
                                 name: page.name,
                                 properties: item.properties,
@@ -38,7 +38,7 @@ export default props => {
                     props.mD.pagesStructure.forEach(page => {
                         if (
                             page.path.includes(item.generatedFrom) &&
-                            !page.hidden
+                            (!page.hidden || page.folderPage)
                         ) {
                             structure.push({
                                 id: item.id + page.id,
@@ -60,7 +60,10 @@ export default props => {
                     })
                 } else if (item.generatedFrom !== 'link') {
                     props.mD.pagesStructure.forEach(page => {
-                        if (page.id === item.generatedFrom && !page.hidden) {
+                        if (
+                            page.id === item.generatedFrom &&
+                            (!page.hidden || page.folderPage)
+                        ) {
                             structure.push({
                                 id: item.id,
                                 name: item.name,
