@@ -215,7 +215,9 @@ const _BuilderElement = props => {
       result = /*#__PURE__*/_react.default.createElement("div", _extends({}, attributes, {
         style: !props.inEntry ? {
           visibility: 'hidden'
-        } : {}
+        } : {
+          visibility: 'visible'
+        }
       }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
         element: props.element,
         elementValues: elementValues,

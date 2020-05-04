@@ -267,7 +267,11 @@ const _BuilderElement = props => {
             result = (
                 <div
                     {...attributes}
-                    style={!props.inEntry ? { visibility: 'hidden' } : {}}
+                    style={
+                        !props.inEntry
+                            ? { visibility: 'hidden' }
+                            : { visibility: 'visible' }
+                    }
                 >
                     <Menu
                         element={props.element}
