@@ -25,7 +25,7 @@ passport.use(
                         logoutAllDate: new Date().getTime() - 10 * 60 * 1000,
                         accountInfo: {
                             displayName: profile.displayName,
-                            emails: propfile.emails,
+                            emails: profile.emails,
                             photos: profile.photos,
                         },
                     })
