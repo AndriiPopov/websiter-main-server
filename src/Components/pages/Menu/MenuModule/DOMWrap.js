@@ -643,6 +643,10 @@ var DOMWrap =
                             'theme',
                         ])
 
+                    rest.style = !props.inEntry
+                        ? { visibility: 'hidden' }
+                        : { visibility: 'visible' }
+
                     var Tag = tag
                     return React.createElement(
                         Tag,

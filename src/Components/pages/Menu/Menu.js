@@ -37,6 +37,7 @@ const MenuElement = props => {
                         item.properties &&
                         (item.properties.newTab ? '_blank' : '_self')
                     }
+                    inEntry={props.inEntry}
                 >
                     {item.name}
                 </MenuItem>

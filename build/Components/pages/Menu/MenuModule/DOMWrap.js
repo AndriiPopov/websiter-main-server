@@ -542,6 +542,11 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
           theme = _this$props2.theme,
           rest = _objectWithoutProperties(_this$props2, ['visible', 'prefixCls', 'overflowedIndicator', 'mode', 'level', 'tag', 'children', 'theme']);
 
+      rest.style = !props.inEntry ? {
+        visibility: 'hidden'
+      } : {
+        visibility: 'visible'
+      };
       var Tag = tag;
       return _react.default.createElement(Tag, Object.assign({}, rest), this.renderChildren(children));
     }

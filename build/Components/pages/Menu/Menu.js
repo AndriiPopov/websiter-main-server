@@ -41,7 +41,8 @@ const MenuElement = props => {
         key: key,
         className: item.properties ? item.properties.class : '',
         href: item.url,
-        target: item.properties && (item.properties.newTab ? '_blank' : '_self')
+        target: item.properties && (item.properties.newTab ? '_blank' : '_self'),
+        inEntry: props.inEntry
       }, item.name);
     } else {
       return /*#__PURE__*/_react.default.createElement(SubMenu1, {

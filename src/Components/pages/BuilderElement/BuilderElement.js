@@ -265,14 +265,7 @@ const _BuilderElement = props => {
     } else {
         if (Tag === 'websiterMenu') {
             result = (
-                <div
-                    {...attributes}
-                    style={
-                        !props.inEntry
-                            ? { visibility: 'hidden' }
-                            : { visibility: 'visible' }
-                    }
-                >
+                <div {...attributes}>
                     <Menu
                         element={props.element}
                         elementValues={elementValues}
