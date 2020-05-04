@@ -310,18 +310,20 @@ const _BuilderElement = props => {
         src: "/vendor.js",
         charSet: "utf-8"
       }), /*#__PURE__*/_react.default.createElement("a", {
+        href: "https://websiter.dev",
         style: {
-          transform: 'rotate(-90deg)',
-          color: 'white',
-          position: 'fixed',
-          right: '0px',
-          bottom: '300px',
-          zIndex: '2147483647',
-          display: 'block',
-          padding: '5px 10px',
-          borderRadius: '5px',
-          background: 'black',
-          transformOrigin: 'bottom right'
+          transform: 'rotate(-90deg) !important',
+          color: 'white !important',
+          position: 'fixed !important',
+          right: '0px !important',
+          bottom: '300px !important',
+          zIndex: '2147483647 !important',
+          display: 'block !important',
+          padding: '5px 10px !important',
+          borderRadius: '5px !important',
+          background: 'black !important',
+          transformOrigin: 'bottom right !important',
+          cursor: 'pointer  !important'
         }
       }, "Created with Websiter.dev")] : [])]; // Tag = Tag.replace(/[^a-z0-9]/g, '')
 
