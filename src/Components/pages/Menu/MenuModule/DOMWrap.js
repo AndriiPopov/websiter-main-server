@@ -643,7 +643,7 @@ var DOMWrap =
                             'theme',
                         ])
 
-                    rest.style = !props.inEntry
+                    rest.style = !_this$props2.inEntry
                         ? { visibility: 'hidden' }
                         : { visibility: 'visible' }
 

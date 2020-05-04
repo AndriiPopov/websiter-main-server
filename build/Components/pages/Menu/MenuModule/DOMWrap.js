@@ -542,7 +542,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
           theme = _this$props2.theme,
           rest = _objectWithoutProperties(_this$props2, ['visible', 'prefixCls', 'overflowedIndicator', 'mode', 'level', 'tag', 'children', 'theme']);
 
-      rest.style = !props.inEntry ? {
+      rest.style = !_this$props2.inEntry ? {
         visibility: 'hidden'
       } : {
         visibility: 'visible'
