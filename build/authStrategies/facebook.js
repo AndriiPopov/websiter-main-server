@@ -44,7 +44,8 @@ passport.use(new FacebookStrategy(passportConfig, async (accessToken, refreshTok
     }
 
     return done(null, user);
-  } catch {
+  } catch (ex) {
     console.log('Create user failed.');
+    console.log(ex);
   }
 }));
