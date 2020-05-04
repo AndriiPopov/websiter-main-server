@@ -35,8 +35,9 @@ passport.use(
                     await user.save()
                 }
                 return done(null, user)
-            } catch {
+            } catch (ex) {
                 console.log('Create user failed.')
+                console.log(ex)
             }
         }
     )
