@@ -67,32 +67,32 @@ router.get(
     }
 )
 
-// TWITTER
-router.get(
-    '/twitter/start',
-    function(req, res, next) {
-        res.cookie('rememberme', req.query.rememberme)
-        next()
-    },
-    passport.authenticate('twitter', {
-        session: false,
-    })
-)
+// // TWITTER
+// router.get(
+//     '/twitter/start',
+//     function(req, res, next) {
+//         res.cookie('rememberme', req.query.rememberme)
+//         next()
+//     },
+//     passport.authenticate('twitter', {
+//         session: false,
+//     })
+// )
 
-router.get(
-    '/twitter/redirect',
-    passport.authenticate('twitter', { session: false }),
-    async (req, res) => {
-        const token = req.user.generateAuthToken()
-        res.cookie('auth_token', token, {
-            expires: new Date(new Date().getTime() + 300 * 24 * 60 * 60 * 1000),
-        }).redirect(
-            process.env.NODE_ENV === 'production'
-                ? 'https://my.websiter.dev/login'
-                : 'http://my.websiter.test:3000/login'
-        )
-    }
-)
+// router.get(
+//     '/twitter/redirect',
+//     passport.authenticate('twitter', { session: false }),
+//     async (req, res) => {
+//         const token = req.user.generateAuthToken()
+//         res.cookie('auth_token', token, {
+//             expires: new Date(new Date().getTime() + 300 * 24 * 60 * 60 * 1000),
+//         }).redirect(
+//             process.env.NODE_ENV === 'production'
+//                 ? 'https://my.websiter.dev/login'
+//                 : 'http://my.websiter.test:3000/login'
+//         )
+//     }
+// )
 
 // GITHUB
 router.get(
