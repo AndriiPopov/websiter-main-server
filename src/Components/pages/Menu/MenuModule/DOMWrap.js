@@ -559,6 +559,10 @@ var DOMWrap =
                                         {
                                             style: {
                                                 display: 'none',
+                                                visibility: !_this3.props
+                                                    .inEntry
+                                                    ? 'hidden'
+                                                    : 'visible',
                                             },
                                             eventKey: ''.concat(
                                                 childNode.props.eventKey,
@@ -642,10 +646,6 @@ var DOMWrap =
                             'children',
                             'theme',
                         ])
-
-                    rest.style = !_this$props2.inEntry
-                        ? { visibility: 'hidden' }
-                        : { visibility: 'visible' }
 
                     var Tag = tag
                     return React.createElement(

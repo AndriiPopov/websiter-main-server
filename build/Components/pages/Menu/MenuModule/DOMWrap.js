@@ -490,7 +490,8 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
               item = _react.default.cloneElement(childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
               {
                 style: {
-                  display: 'none'
+                  display: 'none',
+                  visibility: !_this3.props.inEntry ? 'hidden' : 'visible'
                 },
                 eventKey: ''.concat(childNode.props.eventKey, '-hidden'),
 
@@ -542,11 +543,6 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
           theme = _this$props2.theme,
           rest = _objectWithoutProperties(_this$props2, ['visible', 'prefixCls', 'overflowedIndicator', 'mode', 'level', 'tag', 'children', 'theme']);
 
-      rest.style = !_this$props2.inEntry ? {
-        visibility: 'hidden'
-      } : {
-        visibility: 'visible'
-      };
       var Tag = tag;
       return _react.default.createElement(Tag, Object.assign({}, rest), this.renderChildren(children));
     }
