@@ -480,7 +480,11 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
 
       var lastVisibleIndex = this.state.lastVisibleIndex;
       return (children || []).reduce(function (acc, childNode, index) {
-        var item = childNode;
+        var item = { ...childNode,
+          style: { ...childNode.style,
+            visibility: !_this3.props.inEntry ? 'hidden' : 'visible'
+          }
+        };
 
         if (_this3.props.mode === 'horizontal') {
           var overflowed = _this3.getOverflowedSubMenuItem(childNode.props.eventKey, []);
@@ -490,8 +494,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
               item = _react.default.cloneElement(childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
               {
                 style: {
-                  display: 'none',
-                  visibility: !_this3.props.inEntry ? 'hidden' : 'visible'
+                  display: 'none'
                 },
                 eventKey: ''.concat(childNode.props.eventKey, '-hidden'),
 

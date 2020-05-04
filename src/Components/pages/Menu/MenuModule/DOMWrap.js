@@ -539,7 +539,15 @@ var DOMWrap =
                         childNode,
                         index
                     ) {
-                        var item = childNode
+                        var item = {
+                            ...childNode,
+                            style: {
+                                ...childNode.style,
+                                visibility: !_this3.props.inEntry
+                                    ? 'hidden'
+                                    : 'visible',
+                            },
+                        }
 
                         if (_this3.props.mode === 'horizontal') {
                             var overflowed = _this3.getOverflowedSubMenuItem(
@@ -559,10 +567,6 @@ var DOMWrap =
                                         {
                                             style: {
                                                 display: 'none',
-                                                visibility: !_this3.props
-                                                    .inEntry
-                                                    ? 'hidden'
-                                                    : 'visible',
                                             },
                                             eventKey: ''.concat(
                                                 childNode.props.eventKey,
