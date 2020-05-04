@@ -86,7 +86,8 @@ const _BuilderElement = props => {
           currentResource: props.currentResource,
           pageInStructure: props.pageInStructure,
           mD: props.mD,
-          isLocal: props.isLocal
+          isLocal: props.isLocal,
+          inEntry: props.inEntry
         }));
       }
 
@@ -123,7 +124,8 @@ const _BuilderElement = props => {
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
         mD: props.mD,
-        isLocal: props.isLocal
+        isLocal: props.isLocal,
+        inEntry: props.inEntry
       }));
     }
   } else if (props.element.isElementFromCMSVariable) {
@@ -176,7 +178,8 @@ const _BuilderElement = props => {
               childrenForPlugin: childrenForPlugin,
               pageInStructure: props.pageInStructure,
               mD: props.mD,
-              isLocal: props.isLocal
+              isLocal: props.isLocal,
+              inEntry: props.inEntry
             });
           })) : null;
         } else {
@@ -200,7 +203,8 @@ const _BuilderElement = props => {
               childrenForPlugin: childrenForPlugin,
               pageInStructure: props.pageInStructure,
               mD: props.mD,
-              isLocal: props.isLocal
+              isLocal: props.isLocal,
+              inEntry: props.inEntry
             });
           });
         }
@@ -208,7 +212,11 @@ const _BuilderElement = props => {
     }
   } else {
     if (Tag === 'websiterMenu') {
-      result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
+      result = /*#__PURE__*/_react.default.createElement("div", _extends({}, attributes, {
+        style: !props.inEntry ? {
+          visibility: hidden
+        } : {}
+      }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
         element: props.element,
         elementValues: elementValues,
         refinedProperties: refinedProperties,
@@ -216,7 +224,9 @@ const _BuilderElement = props => {
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
         mD: props.mD
-      }, getModulePropertiesNodes(Tag))));
+      }, getModulePropertiesNodes(Tag), {
+        inEntry: props.inEntry
+      })));
     } else if (Tag === 'websiterDrawer') {
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Drawer.default, _extends({
         element: props.element,
@@ -224,7 +234,9 @@ const _BuilderElement = props => {
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure
-      }, getModulePropertiesNodes(Tag))));
+      }, getModulePropertiesNodes(Tag), {
+        inEntry: props.inEntry
+      })));
     } else if (Tag === 'websiterGallery') {
       let items = refinedProperties.items || [];
 
@@ -246,7 +258,9 @@ const _BuilderElement = props => {
       // document={props.document}
       // parentPluginProps={props.parentPluginProps}
       // childrenForPlugin={props.childrenForPlugin}
-      , _extends({}, settings, refinedProperties, getModulePropertiesNodes(Tag)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+      , _extends({}, settings, refinedProperties, getModulePropertiesNodes(Tag), {
+        inEntry: props.inEntry
+      }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
         style: {
           width: '100px',
           height: '100px',
@@ -284,7 +298,8 @@ const _BuilderElement = props => {
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
         mD: props.mD,
-        isLocal: props.isLocal
+        isLocal: props.isLocal,
+        inEntry: props.inEntry
       })), ...(props.element.id === 'element_0' && props.renderBodyAndHead ? [props.isLocal ? /*#__PURE__*/_react.default.createElement("meta", {
         key: "sys0",
         name: "robots",

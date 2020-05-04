@@ -75,6 +75,7 @@ const MenuElement = props => {
             triggerSubMenuAction={props.refinedProperties.trigger}
             activeKeys={activeKeys}
             overflowedIndicator={props.overflowIcon}
+            {...props.refinedProperties}
         >
             {innerItems}
         </Menu>

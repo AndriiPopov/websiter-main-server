@@ -78,6 +78,7 @@ const _BuilderElement = props => {
                             pageInStructure={props.pageInStructure}
                             mD={props.mD}
                             isLocal={props.isLocal}
+                            inEntry={props.inEntry}
                         />
                     ))
             }
@@ -125,6 +126,7 @@ const _BuilderElement = props => {
                         pageInStructure={props.pageInStructure}
                         mD={props.mD}
                         isLocal={props.isLocal}
+                        inEntry={props.inEntry}
                     />
                 ))
         }
@@ -214,6 +216,7 @@ const _BuilderElement = props => {
                                               }
                                               mD={props.mD}
                                               isLocal={props.isLocal}
+                                              inEntry={props.inEntry}
                                           />
                                       )
                                   })
@@ -252,6 +255,7 @@ const _BuilderElement = props => {
                                     pageInStructure={props.pageInStructure}
                                     mD={props.mD}
                                     isLocal={props.isLocal}
+                                    inEntry={props.inEntry}
                                 />
                             )
                         })
@@ -261,7 +265,10 @@ const _BuilderElement = props => {
     } else {
         if (Tag === 'websiterMenu') {
             result = (
-                <div {...attributes}>
+                <div
+                    {...attributes}
+                    style={!props.inEntry ? { visibility: hidden } : {}}
+                >
                     <Menu
                         element={props.element}
                         elementValues={elementValues}
@@ -271,6 +278,7 @@ const _BuilderElement = props => {
                         pageInStructure={props.pageInStructure}
                         mD={props.mD}
                         {...getModulePropertiesNodes(Tag)}
+                        inEntry={props.inEntry}
                     />
                 </div>
             )
@@ -284,6 +292,7 @@ const _BuilderElement = props => {
                         childrenForPlugin={props.childrenForPlugin}
                         pageInStructure={props.pageInStructure}
                         {...getModulePropertiesNodes(Tag)}
+                        inEntry={props.inEntry}
                     />
                 </div>
             )
@@ -313,6 +322,7 @@ const _BuilderElement = props => {
                         {...settings}
                         {...refinedProperties}
                         {...getModulePropertiesNodes(Tag)}
+                        inEntry={props.inEntry}
                     >
                         <div>
                             <div
@@ -382,6 +392,7 @@ const _BuilderElement = props => {
                             pageInStructure={props.pageInStructure}
                             mD={props.mD}
                             isLocal={props.isLocal}
+                            inEntry={props.inEntry}
                         />
                     )),
                 ...(props.element.id === 'element_0' && props.renderBodyAndHead

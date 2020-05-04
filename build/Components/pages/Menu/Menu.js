@@ -52,7 +52,7 @@ const MenuElement = props => {
       });
     }
   });
-  return /*#__PURE__*/_react.default.createElement(_MenuModule.default, {
+  return /*#__PURE__*/_react.default.createElement(_MenuModule.default, _extends({
     prefixCls: 'systemclass_menu',
     getPopupContainer: () => document.getElementById('__menu__popup__container__'),
     topMenuBlockClasses: props.refinedProperties.topMenuBlockClasses,
@@ -66,7 +66,7 @@ const MenuElement = props => {
     triggerSubMenuAction: props.refinedProperties.trigger,
     activeKeys: activeKeys,
     overflowedIndicator: props.overflowIcon
-  }, innerItems);
+  }, props.refinedProperties), innerItems);
 };
 
 const SubMenu1 = props => {
