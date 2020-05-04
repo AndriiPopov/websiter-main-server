@@ -214,7 +214,7 @@ const _BuilderElement = props => {
     if (Tag === 'websiterMenu') {
       result = /*#__PURE__*/_react.default.createElement("div", _extends({}, attributes, {
         style: !props.inEntry ? {
-          visibility: hidden
+          visibility: 'hidden'
         } : {}
       }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
         element: props.element,
