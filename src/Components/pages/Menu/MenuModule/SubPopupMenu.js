@@ -631,6 +631,7 @@ export var SubPopupMenu =
                                 theme: theme,
                                 visible: visible,
                                 overflowedIndicator: overflowedIndicator,
+                                style: { visibility: 'hidden' },
                             },
                             domProps
                         ),
