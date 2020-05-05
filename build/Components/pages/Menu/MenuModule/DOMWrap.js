@@ -415,8 +415,11 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
         });
       }
 
+      console.log(_this.props.inEntry);
+      console.log(_this.props.inEntry ? lastVisibleIndex : -1);
+
       _this.setState({
-        lastVisibleIndex: lastVisibleIndex
+        lastVisibleIndex: _this.props.inEntry ? lastVisibleIndex : -1
       });
     };
 
