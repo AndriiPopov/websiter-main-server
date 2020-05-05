@@ -554,7 +554,7 @@ var DOMWrap =
 
                         if (_this3.props.mode === 'horizontal') {
                             var overflowed = _this3.getOverflowedSubMenuItem(
-                                childNode.props.eventKey,
+                                item.props.eventKey,
                                 []
                             )
 
@@ -566,13 +566,13 @@ var DOMWrap =
                             ) {
                                 if (index > lastVisibleIndex) {
                                     item = React.cloneElement(
-                                        childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
+                                        item, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
                                         {
                                             style: {
                                                 display: 'none',
                                             },
                                             eventKey: ''.concat(
-                                                childNode.props.eventKey,
+                                                item.props.eventKey,
                                                 '-hidden'
                                             ),
 
@@ -601,7 +601,7 @@ var DOMWrap =
                                             )
                                         })
                                     overflowed = _this3.getOverflowedSubMenuItem(
-                                        childNode.props.eventKey,
+                                        item.props.eventKey,
                                         _this3.overflowedItems
                                     )
                                 }
@@ -616,7 +616,7 @@ var DOMWrap =
                                 // need a placeholder for calculating overflowed indicator width
                                 ret.push(
                                     _this3.getOverflowedSubMenuItem(
-                                        childNode.props.eventKey,
+                                        item.props.eventKey,
                                         [],
                                         true
                                     )

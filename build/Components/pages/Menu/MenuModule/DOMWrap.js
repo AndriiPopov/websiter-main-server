@@ -491,16 +491,16 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
         console.log(_this3.props.inEntry);
 
         if (_this3.props.mode === 'horizontal') {
-          var overflowed = _this3.getOverflowedSubMenuItem(childNode.props.eventKey, []);
+          var overflowed = _this3.getOverflowedSubMenuItem(item.props.eventKey, []);
 
           if (lastVisibleIndex !== undefined && _this3.props.className.indexOf(''.concat(_this3.props.prefixCls, '-root')) !== -1) {
             if (index > lastVisibleIndex) {
-              item = _react.default.cloneElement(childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
+              item = _react.default.cloneElement(item, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
               {
                 style: {
                   display: 'none'
                 },
-                eventKey: ''.concat(childNode.props.eventKey, '-hidden'),
+                eventKey: ''.concat(item.props.eventKey, '-hidden'),
 
                 /**
                  * Legacy code. Here `className` never used:
@@ -519,7 +519,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
                   mode: 'vertical-left'
                 });
               });
-              overflowed = _this3.getOverflowedSubMenuItem(childNode.props.eventKey, _this3.overflowedItems);
+              overflowed = _this3.getOverflowedSubMenuItem(item.props.eventKey, _this3.overflowedItems);
             }
           }
 
@@ -527,7 +527,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
 
           if (index === children.length - 1) {
             // need a placeholder for calculating overflowed indicator width
-            ret.push(_this3.getOverflowedSubMenuItem(childNode.props.eventKey, [], true));
+            ret.push(_this3.getOverflowedSubMenuItem(item.props.eventKey, [], true));
           }
 
           return ret;
