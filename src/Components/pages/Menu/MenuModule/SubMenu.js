@@ -795,8 +795,8 @@ export var SubMenu =
                             }
                         ),
                         React.createElement(
-                            'span',
-                            {},
+                            'div',
+                            { style: { display: 'inline-block' } },
                             React.createElement(
                                 'div',
                                 { className: className2 },

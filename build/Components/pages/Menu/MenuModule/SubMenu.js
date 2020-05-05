@@ -668,7 +668,11 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
       }, ariaOwns, {
         'aria-haspopup': 'true',
         title: typeof props.title === 'string' ? props.title : undefined
-      }), _react.default.createElement('span', {}, _react.default.createElement('div', {
+      }), _react.default.createElement('div', {
+        style: {
+          display: 'inline-block'
+        }
+      }, _react.default.createElement('div', {
         className: className2
       }, props.title)), icon || _react.default.createElement('i', {
         className: ''.concat(prefixCls, '-arrow')
