@@ -58,19 +58,6 @@ const MenuElement = props => {
             getPopupContainer={() =>
                 document.getElementById('__menu__popup__container__')
             }
-            topMenuBlockClasses={props.refinedProperties.topMenuBlockClasses}
-            topMenuItemClasses={props.refinedProperties.topMenuItemClasses}
-            topMenuItemActiveClasses={
-                props.refinedProperties.topMenuItemActiveClasses
-            }
-            popupMenuBlockClasses={
-                props.refinedProperties.popupMenuBlockClasses
-            }
-            popupMenuItemClasses={props.refinedProperties.popupMenuItemClasses}
-            popupMenuItemActiveClasses={
-                props.refinedProperties.popupMenuItemActiveClasses
-            }
-            mode={props.refinedProperties.mode}
             selectable={false}
             triggerSubMenuAction={props.refinedProperties.trigger}
             activeKeys={activeKeys}

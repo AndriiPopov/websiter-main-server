@@ -18,7 +18,6 @@ const Drawer = props => {
                 onClose={onTouchEnd}
                 handler={props.autoHandler}
                 level={null}
-                width="200px"
                 getContainer={() =>
                     props.refinedProperties.container
                         ? document.getElementById(
@@ -27,6 +26,7 @@ const Drawer = props => {
                         : document.body
                 }
                 onHandleClick={onSwitch}
+                {...props.refinedProperties}
             >
                 {props.content}
             </DrawerElement>

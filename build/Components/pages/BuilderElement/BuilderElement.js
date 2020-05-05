@@ -349,7 +349,7 @@ const _BuilderElement = props => {
             padding: '0px !important',
             margin: '0px !important',
             borderRadius: '5px !important',
-            background: 'black !important',
+            background: 'white !important',
             transformOrigin: 'bottom right !important',
             cursor: 'pointer  !important',
             fontSize: '14px !important',
