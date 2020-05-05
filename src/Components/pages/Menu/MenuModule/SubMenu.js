@@ -811,6 +811,20 @@ export var SubMenu =
                         return delete props[key]
                     }) // Set onClick to null, to ignore propagated onClick event
 
+                    var className2 = [
+                        ...(props.isSub || props.mode === 'vertical-left'
+                            ? props.store.getState().popupMenuItemClasses
+                            : props.store.getState().topMenuItemClasses),
+                        ...(props.store
+                            .getState()
+                            .activeKeys.includes(this.props.eventKey)
+                            ? props.isSub || props.mode === 'vertical-left'
+                                ? props.store.getState()
+                                      .popupMenuItemActiveClasses
+                                : props.store.getState()
+                                      .topMenuItemActiveClasses
+                            : []),
+                    ].join(' ')
                     delete props.onClick
                     delete props.isSub
                     var placement =
@@ -822,6 +836,7 @@ export var SubMenu =
                               )
                             : Object.assign({}, placements, builtinPlacements)
                     delete props.direction
+
                     return React.createElement(
                         'li',
                         Object.assign({}, props, mouseEvents, {
@@ -854,7 +869,11 @@ export var SubMenu =
                                         .onPopupVisibleChange,
                                     forceRender: forceSubMenuRender,
                                 },
-                                title
+                                React.createElement(
+                                    'div',
+                                    { className: className2 },
+                                    title
+                                )
                             )
                     )
                 },

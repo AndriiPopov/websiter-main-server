@@ -693,6 +693,7 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
       }); // Set onClick to null, to ignore propagated onClick event
 
 
+      var className2 = [...(props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemClasses : props.store.getState().topMenuItemClasses), ...(props.store.getState().activeKeys.includes(this.props.eventKey) ? props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemActiveClasses : props.store.getState().topMenuItemActiveClasses : [])].join(' ');
       delete props.onClick;
       delete props.isSub;
       var placement = direction === 'rtl' ? Object.assign({}, _placements.placementsRtl, builtinPlacements) : Object.assign({}, _placements.placements, builtinPlacements);
@@ -714,7 +715,9 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
         mouseLeaveDelay: subMenuCloseDelay,
         onPopupVisibleChange: this.onPopupVisibleChange,
         forceRender: forceSubMenuRender
-      }, title));
+      }, _react.default.createElement('div', {
+        className: className2
+      }, title)));
     }
   }]);
 
