@@ -690,6 +690,21 @@ export var SubMenu =
                             : props.store.getState().topMenuItemClasses,
                     ].join(' ')
 
+                    var className2 = [
+                        ...(props.isSub || props.mode === 'vertical-left'
+                            ? props.store.getState().popupMenuItemClasses
+                            : props.store.getState().topMenuItemClasses),
+                        ...(props.store
+                            .getState()
+                            .activeKeys.includes(this.props.eventKey)
+                            ? props.isSub || props.mode === 'vertical-left'
+                                ? props.store.getState()
+                                      .popupMenuItemActiveClasses
+                                : props.store.getState()
+                                      .topMenuItemActiveClasses
+                            : []),
+                    ].join(' ')
+
                     if (!this.internalMenuId) {
                         if (props.eventKey) {
                             this.internalMenuId = ''.concat(
@@ -811,20 +826,6 @@ export var SubMenu =
                         return delete props[key]
                     }) // Set onClick to null, to ignore propagated onClick event
 
-                    var className2 = [
-                        ...(props.isSub || props.mode === 'vertical-left'
-                            ? props.store.getState().popupMenuItemClasses
-                            : props.store.getState().topMenuItemClasses),
-                        ...(props.store
-                            .getState()
-                            .activeKeys.includes(this.props.eventKey)
-                            ? props.isSub || props.mode === 'vertical-left'
-                                ? props.store.getState()
-                                      .popupMenuItemActiveClasses
-                                : props.store.getState()
-                                      .topMenuItemActiveClasses
-                            : []),
-                    ].join(' ')
                     delete props.onClick
                     delete props.isSub
                     var placement =

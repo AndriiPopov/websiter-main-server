@@ -596,6 +596,7 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
       var isInlineMode = props.mode === 'inline';
       var className = (0, _classnames.default)(prefixCls, ''.concat(prefixCls, '-').concat(props.mode), (_classNames2 = {}, _defineProperty(_classNames2, props.className, !!props.className), _defineProperty(_classNames2, this.getOpenClassName(), isOpen), _defineProperty(_classNames2, this.getActiveClassName(), props.active || isOpen && !isInlineMode), _defineProperty(_classNames2, this.getDisabledClassName(), props.disabled), _defineProperty(_classNames2, this.getSelectedClassName(), this.isChildrenSelected()), _classNames2));
       className = [className, props.isSub ? props.store.getState().popupMenuItemClasses : props.store.getState().topMenuItemClasses].join(' ');
+      var className2 = [...(props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemClasses : props.store.getState().topMenuItemClasses), ...(props.store.getState().activeKeys.includes(this.props.eventKey) ? props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemActiveClasses : props.store.getState().topMenuItemActiveClasses : [])].join(' ');
 
       if (!this.internalMenuId) {
         if (props.eventKey) {
@@ -693,7 +694,6 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
       }); // Set onClick to null, to ignore propagated onClick event
 
 
-      var className2 = [...(props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemClasses : props.store.getState().topMenuItemClasses), ...(props.store.getState().activeKeys.includes(this.props.eventKey) ? props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemActiveClasses : props.store.getState().topMenuItemActiveClasses : [])].join(' ');
       delete props.onClick;
       delete props.isSub;
       var placement = direction === 'rtl' ? Object.assign({}, _placements.placementsRtl, builtinPlacements) : Object.assign({}, _placements.placements, builtinPlacements);
