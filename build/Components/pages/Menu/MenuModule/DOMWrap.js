@@ -396,6 +396,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
+      ul.style.visibility = _this.props.inEntry ? 'visible' : 'hidden';
       var width = _this.ulSizes.right - _this.ulSizes.left;
       _this.overflowedItems = [];
       var lastVisibleIndex; // float number comparison could be problematic

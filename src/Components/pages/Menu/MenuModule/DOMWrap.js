@@ -434,6 +434,8 @@ var DOMWrap =
                     return
                 }
 
+                ul.style.visibility = _this.props.inEntry ? 'visible' : 'hidden'
+
                 var width = _this.ulSizes.right - _this.ulSizes.left
                 _this.overflowedItems = []
 
