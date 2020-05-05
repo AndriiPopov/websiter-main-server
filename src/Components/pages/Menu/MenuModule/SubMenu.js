@@ -794,7 +794,11 @@ export var SubMenu =
                                         : undefined,
                             }
                         ),
-                        props.title,
+                        React.createElement(
+                            'div',
+                            { className: className2 },
+                            props.title
+                        ),
                         icon ||
                             React.createElement('i', {
                                 className: ''.concat(prefixCls, '-arrow'),
@@ -870,11 +874,7 @@ export var SubMenu =
                                         .onPopupVisibleChange,
                                     forceRender: forceSubMenuRender,
                                 },
-                                React.createElement(
-                                    'div',
-                                    { className: className2 },
-                                    title
-                                )
+                                title
                             )
                     )
                 },

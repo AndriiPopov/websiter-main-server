@@ -668,7 +668,9 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
       }, ariaOwns, {
         'aria-haspopup': 'true',
         title: typeof props.title === 'string' ? props.title : undefined
-      }), props.title, icon || _react.default.createElement('i', {
+      }), _react.default.createElement('div', {
+        className: className2
+      }, props.title), icon || _react.default.createElement('i', {
         className: ''.concat(prefixCls, '-arrow')
       }));
 
@@ -715,9 +717,7 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
         mouseLeaveDelay: subMenuCloseDelay,
         onPopupVisibleChange: this.onPopupVisibleChange,
         forceRender: forceSubMenuRender
-      }, _react.default.createElement('div', {
-        className: className2
-      }, title)));
+      }, title));
     }
   }]);
 
