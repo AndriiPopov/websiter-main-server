@@ -795,9 +795,13 @@ export var SubMenu =
                             }
                         ),
                         React.createElement(
-                            'div',
-                            { className: className2 },
-                            props.title
+                            'span',
+                            {},
+                            React.createElement(
+                                'div',
+                                { className: className2 },
+                                props.title
+                            )
                         ),
                         icon ||
                             React.createElement('i', {
