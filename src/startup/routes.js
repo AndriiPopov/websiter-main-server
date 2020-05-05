@@ -20,7 +20,6 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
 
         //app.use(express.json())
-        // console.log('here')
         next()
     })
 

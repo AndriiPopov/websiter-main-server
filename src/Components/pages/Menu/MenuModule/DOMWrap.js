@@ -455,8 +455,6 @@ var DOMWrap =
                         }
                     })
                 }
-                console.log(_this.props.inEntry)
-                console.log(_this.props.inEntry ? lastVisibleIndex : -1)
                 _this.setState({
                     lastVisibleIndex: _this.props.inEntry
                         ? lastVisibleIndex

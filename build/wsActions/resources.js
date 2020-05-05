@@ -299,7 +299,7 @@ module.exports.publishResource = async (data, ws) => {
     if (!(await getUserRights(ws.user, website, data.type === 'page' ? 'content' : 'developer', null, ws))) return;
 
     if (!resource.draft.structure) {
-      sendError(ws);
+      // sendError(ws)
       return;
     }
 

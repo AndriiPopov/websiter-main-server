@@ -362,11 +362,11 @@ module.exports.publishResource = async (data, ws) => {
             return
 
         if (!resource.draft.structure) {
-            sendError(ws)
+            // sendError(ws)
             return
         }
-
         resource.published = { ...resource.draft }
+
         resource.draft = {}
         resource.__patch__ = {}
 
