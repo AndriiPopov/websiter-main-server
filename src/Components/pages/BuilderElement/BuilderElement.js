@@ -293,58 +293,60 @@ const _BuilderElement = props => {
                     />
                 </div>
             )
-        } else if (Tag === 'websiterGallery') {
-            let items = refinedProperties.items || []
-            if (refinedProperties.originalClass) {
-                items = items.map(item => ({
-                    ...item,
-                    originalClass: refinedProperties.originalClass,
-                }))
-            }
-            const settings = {
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            }
-            return (
-                <div>
-                    <Slider
-                        // element={props.element}
-                        // elementValues={props.elementValues}
-                        // document={props.document}
-                        // parentPluginProps={props.parentPluginProps}
-                        // childrenForPlugin={props.childrenForPlugin}
-                        {...settings}
-                        {...refinedProperties}
-                        {...getModulePropertiesNodes(Tag)}
-                        inEntry={props.inEntry}
-                    >
-                        <div>
-                            <div
-                                style={{
-                                    width: '100px',
-                                    height: '100px',
-                                    background: 'red',
-                                }}
-                            >
-                                sdfsdf
-                            </div>
-                        </div>
-                        {props.currentWebsiteObject && props.filesStructure
-                            ? items.map((item, index) => {
-                                  return (
-                                      <div key={index}>
-                                          <img src={item.original} />
-                                      </div>
-                                  )
-                              })
-                            : null}
-                    </Slider>
-                </div>
-            )
-        } else if (Tag === 'richEditor') {
+        }
+        //  else if (Tag === 'websiterGallery') {
+        //     let items = refinedProperties.items || []
+        //     if (refinedProperties.originalClass) {
+        //         items = items.map(item => ({
+        //             ...item,
+        //             originalClass: refinedProperties.originalClass,
+        //         }))
+        //     }
+        //     const settings = {
+        //         dots: true,
+        //         infinite: true,
+        //         speed: 500,
+        //         slidesToShow: 1,
+        //         slidesToScroll: 1,
+        //     }
+        //     return (
+        //         <div>
+        //             <Slider
+        //                 // element={props.element}
+        //                 // elementValues={props.elementValues}
+        //                 // document={props.document}
+        //                 // parentPluginProps={props.parentPluginProps}
+        //                 // childrenForPlugin={props.childrenForPlugin}
+        //                 {...settings}
+        //                 {...refinedProperties}
+        //                 {...getModulePropertiesNodes(Tag)}
+        //                 inEntry={props.inEntry}
+        //             >
+        //                 <div>
+        //                     <div
+        //                         style={{
+        //                             width: '100px',
+        //                             height: '100px',
+        //                             background: 'red',
+        //                         }}
+        //                     >
+        //                         sdfsdf
+        //                     </div>
+        //                 </div>
+        //                 {props.currentWebsiteObject && props.filesStructure
+        //                     ? items.map((item, index) => {
+        //                           return (
+        //                               <div key={index}>
+        //                                   <img src={item.original} />
+        //                               </div>
+        //                           )
+        //                       })
+        //                     : null}
+        //             </Slider>
+        //         </div>
+        //     )
+        // }
+        else if (Tag === 'richEditor') {
             return parse(
                 sanitize(elementValues.textContent, {
                     allowedTags: false,
@@ -433,17 +435,21 @@ const _BuilderElement = props => {
                               href="https://websiter.dev"
                               style={{
                                   transform: 'rotate(-90deg) !important',
-                                  color: 'white !important',
+                                  color: '#3f00f9 !important',
                                   position: 'fixed !important',
                                   right: '0px !important',
-                                  bottom: '300px !important',
+                                  bottom: '210px !important',
                                   zIndex: '2147483647 !important',
                                   display: 'block !important',
-                                  padding: '5px 10px !important',
+                                  padding: '0px !important',
+                                  margin: '0px !important',
                                   borderRadius: '5px !important',
                                   background: 'black !important',
                                   transformOrigin: 'bottom right !important',
                                   cursor: 'pointer  !important',
+                                  fontSize: '14px !important',
+                                  textDecoration: 'none',
+                                  fontFamily: 'arial !important',
                               }}
                           >
                               Created with Websiter.dev

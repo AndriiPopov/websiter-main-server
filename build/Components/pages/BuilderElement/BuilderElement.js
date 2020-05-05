@@ -233,128 +233,148 @@ const _BuilderElement = props => {
       }, getModulePropertiesNodes(Tag), {
         inEntry: props.inEntry
       })));
-    } else if (Tag === 'websiterGallery') {
-      let items = refinedProperties.items || [];
-
-      if (refinedProperties.originalClass) {
-        items = items.map(item => ({ ...item,
-          originalClass: refinedProperties.originalClass
+    } //  else if (Tag === 'websiterGallery') {
+    //     let items = refinedProperties.items || []
+    //     if (refinedProperties.originalClass) {
+    //         items = items.map(item => ({
+    //             ...item,
+    //             originalClass: refinedProperties.originalClass,
+    //         }))
+    //     }
+    //     const settings = {
+    //         dots: true,
+    //         infinite: true,
+    //         speed: 500,
+    //         slidesToShow: 1,
+    //         slidesToScroll: 1,
+    //     }
+    //     return (
+    //         <div>
+    //             <Slider
+    //                 // element={props.element}
+    //                 // elementValues={props.elementValues}
+    //                 // document={props.document}
+    //                 // parentPluginProps={props.parentPluginProps}
+    //                 // childrenForPlugin={props.childrenForPlugin}
+    //                 {...settings}
+    //                 {...refinedProperties}
+    //                 {...getModulePropertiesNodes(Tag)}
+    //                 inEntry={props.inEntry}
+    //             >
+    //                 <div>
+    //                     <div
+    //                         style={{
+    //                             width: '100px',
+    //                             height: '100px',
+    //                             background: 'red',
+    //                         }}
+    //                     >
+    //                         sdfsdf
+    //                     </div>
+    //                 </div>
+    //                 {props.currentWebsiteObject && props.filesStructure
+    //                     ? items.map((item, index) => {
+    //                           return (
+    //                               <div key={index}>
+    //                                   <img src={item.original} />
+    //                               </div>
+    //                           )
+    //                       })
+    //                     : null}
+    //             </Slider>
+    //         </div>
+    //     )
+    // }
+    else if (Tag === 'richEditor') {
+        return (0, _htmlReactParser.default)((0, _sanitizeHtml.default)(elementValues.textContent, {
+          allowedTags: false,
+          allowedAttributes: false
         }));
-      }
-
-      const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_reactSlick.default // element={props.element}
-      // elementValues={props.elementValues}
-      // document={props.document}
-      // parentPluginProps={props.parentPluginProps}
-      // childrenForPlugin={props.childrenForPlugin}
-      , _extends({}, settings, refinedProperties, getModulePropertiesNodes(Tag), {
-        inEntry: props.inEntry
-      }), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
-        style: {
-          width: '100px',
-          height: '100px',
-          background: 'red'
-        }
-      }, "sdfsdf")), props.currentWebsiteObject && props.filesStructure ? items.map((item, index) => {
-        return /*#__PURE__*/_react.default.createElement("div", {
-          key: index
-        }, /*#__PURE__*/_react.default.createElement("img", {
-          src: item.original
-        }));
-      }) : null));
-    } else if (Tag === 'richEditor') {
-      return (0, _htmlReactParser.default)((0, _sanitizeHtml.default)(elementValues.textContent, {
-        allowedTags: false,
-        allowedAttributes: false
-      }));
-    } else if (props.element.text) {
-      if (elementValues.textContent) {
-        result = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, elementValues.textContent.replace(/\$[^:;\$\s]*\$/g, match => {
-          const inheritedPropertyName = (0, _basic.getInheritedPropertyName)(match);
-          return inheritedPropertyName ? props.parentPluginProps[inheritedPropertyName] || '' : '';
-        }));
-      }
-    } else {
-      const innerResult = [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
-        key: item.id,
-        structure: props.structure,
-        element: item,
-        pluginsPathArray: props.pluginsPathArray,
-        sourcePlugin: props.sourcePlugin,
-        routePlugin: props.routePlugin,
-        currentResource: props.currentResource,
-        parentPluginProps: props.parentPluginProps,
-        childrenForPlugin: props.childrenForPlugin,
-        pageInStructure: props.pageInStructure,
-        mD: props.mD,
-        isLocal: props.isLocal,
-        inEntry: props.inEntry
-      })), ...(props.element.id === 'element_0' && props.renderBodyAndHead ? [props.isLocal ? /*#__PURE__*/_react.default.createElement("meta", {
-        key: "sys0",
-        name: "robots",
-        content: "noindex, follow"
-      }) : null, /*#__PURE__*/_react.default.createElement("base", {
-        href: props.mD.base
-      }), /*#__PURE__*/_react.default.createElement("link", {
-        key: "sys1",
-        rel: "stylesheet",
-        type: "text/css",
-        href: "https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
-      }), /*#__PURE__*/_react.default.createElement("script", {
-        key: "sys2",
-        dangerouslySetInnerHTML: {
-          __html: ` window.__MD__ = ${serialize(props.mD)};`
-        }
-      })] : []), ...(props.element.id === 'element_1' && props.renderBodyAndHead && !props.inEntry ? [/*#__PURE__*/_react.default.createElement("script", {
-        key: "sys3",
-        src: "/index.js",
-        charSet: "utf-8"
-      }), /*#__PURE__*/_react.default.createElement("script", {
-        key: "sys4",
-        src: "/vendor.js",
-        charSet: "utf-8"
-      }), /*#__PURE__*/_react.default.createElement("a", {
-        href: "https://websiter.dev",
-        style: {
-          transform: 'rotate(-90deg) !important',
-          color: 'white !important',
-          position: 'fixed !important',
-          right: '0px !important',
-          bottom: '300px !important',
-          zIndex: '2147483647 !important',
-          display: 'block !important',
-          padding: '5px 10px !important',
-          borderRadius: '5px !important',
-          background: 'black !important',
-          transformOrigin: 'bottom right !important',
-          cursor: 'pointer  !important'
-        }
-      }, "Created with Websiter.dev")] : [])]; // Tag = Tag.replace(/[^a-z0-9]/g, '')
-
-      Tag = Tag.trim();
-
-      if (/^([a-zA-Z][a-zA-Z0-9]*)$/.test(Tag)) {
-        if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {
-          result = /*#__PURE__*/_react.default.createElement(Tag, attributes);
-        } else if (Tag === 'style') {
-          result = /*#__PURE__*/_react.default.createElement(Tag, _extends({}, attributes, {
-            dangerouslySetInnerHTML: {
-              __html: entities.decode((0, _server.renderToString)(innerResult))
-            }
+      } else if (props.element.text) {
+        if (elementValues.textContent) {
+          result = /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, elementValues.textContent.replace(/\$[^:;\$\s]*\$/g, match => {
+            const inheritedPropertyName = (0, _basic.getInheritedPropertyName)(match);
+            return inheritedPropertyName ? props.parentPluginProps[inheritedPropertyName] || '' : '';
           }));
-        } else {
-          result = /*#__PURE__*/_react.default.createElement(Tag, attributes, innerResult);
         }
-      } // }
+      } else {
+        const innerResult = [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
+          key: item.id,
+          structure: props.structure,
+          element: item,
+          pluginsPathArray: props.pluginsPathArray,
+          sourcePlugin: props.sourcePlugin,
+          routePlugin: props.routePlugin,
+          currentResource: props.currentResource,
+          parentPluginProps: props.parentPluginProps,
+          childrenForPlugin: props.childrenForPlugin,
+          pageInStructure: props.pageInStructure,
+          mD: props.mD,
+          isLocal: props.isLocal,
+          inEntry: props.inEntry
+        })), ...(props.element.id === 'element_0' && props.renderBodyAndHead ? [props.isLocal ? /*#__PURE__*/_react.default.createElement("meta", {
+          key: "sys0",
+          name: "robots",
+          content: "noindex, follow"
+        }) : null, /*#__PURE__*/_react.default.createElement("base", {
+          href: props.mD.base
+        }), /*#__PURE__*/_react.default.createElement("link", {
+          key: "sys1",
+          rel: "stylesheet",
+          type: "text/css",
+          href: "https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
+        }), /*#__PURE__*/_react.default.createElement("script", {
+          key: "sys2",
+          dangerouslySetInnerHTML: {
+            __html: ` window.__MD__ = ${serialize(props.mD)};`
+          }
+        })] : []), ...(props.element.id === 'element_1' && props.renderBodyAndHead && !props.inEntry ? [/*#__PURE__*/_react.default.createElement("script", {
+          key: "sys3",
+          src: "/index.js",
+          charSet: "utf-8"
+        }), /*#__PURE__*/_react.default.createElement("script", {
+          key: "sys4",
+          src: "/vendor.js",
+          charSet: "utf-8"
+        }), /*#__PURE__*/_react.default.createElement("a", {
+          href: "https://websiter.dev",
+          style: {
+            transform: 'rotate(-90deg) !important',
+            color: '#3f00f9 !important',
+            position: 'fixed !important',
+            right: '0px !important',
+            bottom: '210px !important',
+            zIndex: '2147483647 !important',
+            display: 'block !important',
+            padding: '0px !important',
+            margin: '0px !important',
+            borderRadius: '5px !important',
+            background: 'black !important',
+            transformOrigin: 'bottom right !important',
+            cursor: 'pointer  !important',
+            fontSize: '14px !important',
+            textDecoration: 'none',
+            fontFamily: 'arial !important'
+          }
+        }, "Created with Websiter.dev")] : [])]; // Tag = Tag.replace(/[^a-z0-9]/g, '')
 
-    }
+        Tag = Tag.trim();
+
+        if (/^([a-zA-Z][a-zA-Z0-9]*)$/.test(Tag)) {
+          if (['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'].includes(Tag)) {
+            result = /*#__PURE__*/_react.default.createElement(Tag, attributes);
+          } else if (Tag === 'style') {
+            result = /*#__PURE__*/_react.default.createElement(Tag, _extends({}, attributes, {
+              dangerouslySetInnerHTML: {
+                __html: entities.decode((0, _server.renderToString)(innerResult))
+              }
+            }));
+          } else {
+            result = /*#__PURE__*/_react.default.createElement(Tag, attributes, innerResult);
+          }
+        } // }
+
+      }
   }
 
   return result;
