@@ -41,8 +41,7 @@ const MenuElement = props => {
         key: key,
         className: item.properties ? item.properties.class : '',
         href: item.url,
-        target: item.properties && (item.properties.newTab ? '_blank' : '_self'),
-        inEntry: props.inEntry
+        target: item.properties && (item.properties.newTab ? '_blank' : '_self')
       }, item.name);
     } else {
       return /*#__PURE__*/_react.default.createElement(SubMenu1, {
@@ -67,7 +66,9 @@ const MenuElement = props => {
     triggerSubMenuAction: props.refinedProperties.trigger,
     activeKeys: activeKeys,
     overflowedIndicator: props.overflowIcon
-  }, props.refinedProperties), innerItems);
+  }, props.refinedProperties, {
+    inEntry: props.inEntry
+  }), innerItems);
 };
 
 const SubMenu1 = props => {
