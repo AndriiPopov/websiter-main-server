@@ -396,7 +396,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
-      var width = _this.ulSizes.right - _this.ulSizes.left;
+      var width = !_this.props.inEntry ? _this.ulSizes.right - _this.ulSizes.left : 0;
       _this.overflowedItems = [];
       var lastVisibleIndex; // float number comparison could be problematic
       // e.g. 0.1 + 0.2 > 0.3 =====> true
@@ -480,27 +480,19 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
 
       var lastVisibleIndex = this.state.lastVisibleIndex;
       return (children || []).reduce(function (acc, childNode, index) {
-        var item = _react.default.cloneElement(childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
-        {
-          style: {
-            visibility: !_this3.props.inEntry ? 'hidden' : 'visible'
-          }
-        });
-
-        console.log('oooooooooooooooooooo');
-        console.log(_this3.props.inEntry);
+        var item = childNode;
 
         if (_this3.props.mode === 'horizontal') {
-          var overflowed = _this3.getOverflowedSubMenuItem(item.props.eventKey, []);
+          var overflowed = _this3.getOverflowedSubMenuItem(childNode.props.eventKey, []);
 
           if (lastVisibleIndex !== undefined && _this3.props.className.indexOf(''.concat(_this3.props.prefixCls, '-root')) !== -1) {
             if (index > lastVisibleIndex) {
-              item = _react.default.cloneElement(item, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
+              item = _react.default.cloneElement(childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
               {
                 style: {
                   display: 'none'
                 },
-                eventKey: ''.concat(item.props.eventKey, '-hidden'),
+                eventKey: ''.concat(childNode.props.eventKey, '-hidden'),
 
                 /**
                  * Legacy code. Here `className` never used:
@@ -519,7 +511,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
                   mode: 'vertical-left'
                 });
               });
-              overflowed = _this3.getOverflowedSubMenuItem(item.props.eventKey, _this3.overflowedItems);
+              overflowed = _this3.getOverflowedSubMenuItem(childNode.props.eventKey, _this3.overflowedItems);
             }
           }
 
@@ -527,7 +519,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
 
           if (index === children.length - 1) {
             // need a placeholder for calculating overflowed indicator width
-            ret.push(_this3.getOverflowedSubMenuItem(item.props.eventKey, [], true));
+            ret.push(_this3.getOverflowedSubMenuItem(childNode.props.eventKey, [], true));
           }
 
           return ret;

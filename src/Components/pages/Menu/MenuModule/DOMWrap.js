@@ -434,7 +434,9 @@ var DOMWrap =
                     return
                 }
 
-                var width = _this.ulSizes.right - _this.ulSizes.left
+                var width = !_this.props.inEntry
+                    ? _this.ulSizes.right - _this.ulSizes.left
+                    : 0
                 _this.overflowedItems = []
 
                 var lastVisibleIndex // float number comparison could be problematic
@@ -539,22 +541,11 @@ var DOMWrap =
                         childNode,
                         index
                     ) {
-                        var item = React.cloneElement(
-                            childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
-                            {
-                                style: {
-                                    visibility: !_this3.props.inEntry
-                                        ? 'hidden'
-                                        : 'visible',
-                                },
-                            }
-                        )
-                        console.log('oooooooooooooooooooo')
-                        console.log(_this3.props.inEntry)
+                        var item = childNode
 
                         if (_this3.props.mode === 'horizontal') {
                             var overflowed = _this3.getOverflowedSubMenuItem(
-                                item.props.eventKey,
+                                childNode.props.eventKey,
                                 []
                             )
 
@@ -566,13 +557,13 @@ var DOMWrap =
                             ) {
                                 if (index > lastVisibleIndex) {
                                     item = React.cloneElement(
-                                        item, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
+                                        childNode, // 这里修改 eventKey 是为了防止隐藏状态下还会触发 openkeys 事件
                                         {
                                             style: {
                                                 display: 'none',
                                             },
                                             eventKey: ''.concat(
-                                                item.props.eventKey,
+                                                childNode.props.eventKey,
                                                 '-hidden'
                                             ),
 
@@ -601,7 +592,7 @@ var DOMWrap =
                                             )
                                         })
                                     overflowed = _this3.getOverflowedSubMenuItem(
-                                        item.props.eventKey,
+                                        childNode.props.eventKey,
                                         _this3.overflowedItems
                                     )
                                 }
@@ -616,7 +607,7 @@ var DOMWrap =
                                 // need a placeholder for calculating overflowed indicator width
                                 ret.push(
                                     _this3.getOverflowedSubMenuItem(
-                                        item.props.eventKey,
+                                        childNode.props.eventKey,
                                         [],
                                         true
                                     )
