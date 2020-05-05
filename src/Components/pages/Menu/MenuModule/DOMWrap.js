@@ -434,9 +434,7 @@ var DOMWrap =
                     return
                 }
 
-                var width = !_this.props.inEntry
-                    ? _this.ulSizes.right - _this.ulSizes.left
-                    : 0
+                var width = _this.ulSizes.right - _this.ulSizes.left
                 _this.overflowedItems = []
 
                 var lastVisibleIndex // float number comparison could be problematic
@@ -455,9 +453,12 @@ var DOMWrap =
                         }
                     })
                 }
-
+                console.log(_this.props.inEntry)
+                console.log(_this.props.inEntry ? lastVisibleIndex : -1)
                 _this.setState({
-                    lastVisibleIndex: lastVisibleIndex,
+                    lastVisibleIndex: _this.props.inEntry
+                        ? lastVisibleIndex
+                        : -1,
                 })
             }
 

@@ -396,7 +396,7 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
         return;
       }
 
-      var width = !_this.props.inEntry ? _this.ulSizes.right - _this.ulSizes.left : 0;
+      var width = _this.ulSizes.right - _this.ulSizes.left;
       _this.overflowedItems = [];
       var lastVisibleIndex; // float number comparison could be problematic
       // e.g. 0.1 + 0.2 > 0.3 =====> true
@@ -414,8 +414,11 @@ var DOMWrap = /*#__PURE__*/function (_React$Component) {
         });
       }
 
+      console.log(_this.props.inEntry);
+      console.log(_this.props.inEntry ? lastVisibleIndex : -1);
+
       _this.setState({
-        lastVisibleIndex: lastVisibleIndex
+        lastVisibleIndex: _this.props.inEntry ? lastVisibleIndex : -1
       });
     };
 
