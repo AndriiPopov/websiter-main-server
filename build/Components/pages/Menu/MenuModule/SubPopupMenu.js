@@ -541,10 +541,13 @@ var SubPopupMenu = /*#__PURE__*/function (_React$Component) {
         level: level,
         theme: theme,
         visible: visible,
-        overflowedIndicator: overflowedIndicator,
-        style: {
-          visibility: props.mode === 'horizontal' && props.level < 2 && 'hidden'
-        }
+        overflowedIndicator: overflowedIndicator // style: {
+        //     visibility:
+        //         props.mode === 'horizontal'
+        //             ? 'hidden'
+        //             : 'visible',
+        // },
+
       }, domProps), _react.default.Children.map(props.children, function (c, i) {
         return _this2.renderMenuItem(c, i, eventKey || '0-menu-', {
           isSub: level > 1

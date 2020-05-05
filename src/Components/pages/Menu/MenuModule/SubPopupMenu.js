@@ -631,12 +631,12 @@ export var SubPopupMenu =
                                 theme: theme,
                                 visible: visible,
                                 overflowedIndicator: overflowedIndicator,
-                                style: {
-                                    visibility:
-                                        props.mode === 'horizontal' &&
-                                        props.level < 2 &&
-                                        'hidden',
-                                },
+                                // style: {
+                                //     visibility:
+                                //         props.mode === 'horizontal'
+                                //             ? 'hidden'
+                                //             : 'visible',
+                                // },
                             },
                             domProps
                         ),
