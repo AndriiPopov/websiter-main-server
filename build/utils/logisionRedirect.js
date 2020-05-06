@@ -1,6 +1,12 @@
 "use strict";
 
 const redirectIndex = [{
+  old: '/ru/knowledge',
+  new: '/ru/blog'
+}, {
+  old: '/knowledge',
+  new: '/blog'
+}, {
   old: '/ru/knowledge/benefits-of-using-route-planning-software',
   new: '/ru/blog/benefits-of-using-route-planning-software'
 }, {
