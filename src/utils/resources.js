@@ -1,6 +1,5 @@
 const { Resource } = require('../models/resource')
 const { pickResourcesObjectsLive } = require('./pickResourcesObjects')
-const { getWebsiteAndPage } = require('./getWebsiteAndPage')
 
 module.exports = async (page, website) => {
     if (!page) return

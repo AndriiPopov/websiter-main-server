@@ -8,10 +8,6 @@ const {
   pickResourcesObjectsLive
 } = require('./pickResourcesObjects');
 
-const {
-  getWebsiteAndPage
-} = require('./getWebsiteAndPage');
-
 module.exports = async (page, website) => {
   if (!page) return;
   let template = website.templatesStructure.find(template => template.name === page.template && !template.hidden);

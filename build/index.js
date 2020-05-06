@@ -18,8 +18,6 @@ const aws = require('aws-sdk');
 
 const passport = require('passport');
 
-const sslRedirect = require('heroku-ssl-redirect');
-
 const connectSocket = require('./startup/connectSocket');
 
 const rateLimiterMiddleware = require('./middleware/rateLimiter');
@@ -28,7 +26,6 @@ const oneOffTask = require('./startup/oneOffTask');
 
 const app = express();
 app.use(rateLimiterMiddleware);
-app.use(sslRedirect());
 const apiApp = express();
 apiApp.use(passport.initialize());
 const liveApp = express();

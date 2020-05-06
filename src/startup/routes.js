@@ -7,9 +7,9 @@ const tryWebsiter = require('../routes/tryWebsiter')
 const awsSignS3 = require('../routes/awsSignS3')
 const error = require('../middleware/error')
 const vhost = require('vhost')
-const { getWebsiteAndPage } = require('../utils/getWebsiteAndPage')
 const https = require('https')
 const redirectIndex = require('../utils/logisionRedirect')
+const sslRedirect = require('heroku-ssl-redirect')
 
 module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
     app.all('*', (req, res, next) => {
@@ -28,7 +28,12 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
     app.use(vhost('api.websiter.dev', apiApp))
     app.use(vhost('api.websiter.test', apiApp))
     app.use(vhost('logision.com', logisionApp))
+    app.use(vhost('www.logision.com', logisionApp))
     app.use(liveApp)
+
+    myApp.use(sslRedirect())
+    apiApp.use(sslRedirect())
+    liveApp.use(sslRedirect())
 
     myApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
