@@ -154,4 +154,4 @@ const redirectIndex = [{
   old: '/img/knowledge/bad-signs-salesperson-career/bad-signs-for-salesperson-career.pdf',
   new: '/images/blog/bad-signs-for-salesperson-career.pdf'
 }];
-module.export = redirectIndex;
+module.exports = redirectIndex;

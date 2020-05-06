@@ -220,4 +220,4 @@ const redirectIndex = [
     },
 ]
 
-module.export = redirectIndex
+module.exports = redirectIndex
