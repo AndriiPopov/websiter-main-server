@@ -316,6 +316,9 @@ var MenuItem = /*#__PURE__*/function (_React$Component) {
       var props = _objectSpread({}, this.props);
 
       var className = (0, _classnames.default)(this.getPrefixCls(), props.className, (_classNames = {}, _defineProperty(_classNames, this.getActiveClassName(), !props.disabled && props.active), _defineProperty(_classNames, this.getSelectedClassName(), props.isSelected), _defineProperty(_classNames, this.getDisabledClassName(), props.disabled), _classNames));
+      console.log(props.store.getState().topMenuItemActiveClasses);
+      console.log(props.store.getState().activeKeys);
+      console.log(this.props.eventKey);
 
       var itemAttrs = _objectSpread({}, {
         className: [...(props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemClasses : props.store.getState().topMenuItemClasses), ...(props.store.getState().activeKeys.includes(this.props.eventKey) ? props.isSub || props.mode === 'vertical-left' ? props.store.getState().popupMenuItemActiveClasses : props.store.getState().topMenuItemActiveClasses : [])].join(' ')
