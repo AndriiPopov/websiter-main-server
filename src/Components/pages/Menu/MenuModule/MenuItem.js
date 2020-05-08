@@ -348,9 +348,6 @@ export var MenuItem =
                         ),
                         _classNames)
                     )
-                    console.log(props.store.getState().topMenuItemActiveClasses)
-                    console.log(props.store.getState().activeKeys)
-                    console.log(this.props.eventKey)
                     var itemAttrs = _objectSpread(
                         {},
                         {

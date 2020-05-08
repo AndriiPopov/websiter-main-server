@@ -36,7 +36,7 @@ const MenuElement = props => {
     const key = item.id + '_' + index;
 
     if (item.children.length === 0) {
-      if (item.url === '/' + props.pageInStructure.relUrl || item.url === '' && props.pageInStructure.homepage) activeKeys.push(key);
+      if (item.url === props.pageInStructure.relUrl || item.url === '' && props.pageInStructure.homepage) activeKeys.push(key);
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
         key: key,
         className: item.properties ? item.properties.class : '',
@@ -74,7 +74,7 @@ const SubMenu1 = props => {
     const key = item.id + '_' + index;
 
     if (item.children.length === 0) {
-      if (item.url === '/' + props.pageInStructure.relUrl || item.url === '' && props.pageInStructure.homepage) activeKeys.push(key);
+      if (item.url === props.pageInStructure.relUrl || item.url === '' && props.pageInStructure.homepage) activeKeys.push(key);
       return /*#__PURE__*/_react.default.createElement(_MenuModule.MenuItem, {
         key: key,
         className: item.properties ? item.properties.class : '',
