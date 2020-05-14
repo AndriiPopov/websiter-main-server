@@ -97,6 +97,7 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         res.send(
             'i5XjARxD2FR-CXu4ZYVJ3Q99laNQnnispQ9mZ_DJgTA.BcxVHurUAJe1Jb9bD-JiGIR3iYtXFNnh6HGNrWWPdFY'
         )
+
         // const link = redirectIndex.find(item => item.old === req.originalUrl)
         // res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''))
         return
