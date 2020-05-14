@@ -2,6 +2,7 @@ import { getInheritedPropertyName } from '../../utils/basic'
 // import { CloudFrontUrl, bucket } from '../../awsConfig'
 import isEqual from 'lodash/isEqual'
 import isEmpty from 'lodash/isEmpty'
+import { getFileUrl } from '../../../../utils/getFileUrl'
 
 const toRGBAString = rgb =>
     rgb ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})` : 'rgba(0,0,0,0)'
@@ -116,6 +117,27 @@ export const refinePropertiesFromCMS = mD => {
                                 : itemValues.defaultMenuItems
                             : itemValues.defaultMenuItems
                         : itemValues.defaultMenuItems,
+                }
+            } else if (itemValues.CMSVariableType === 'file') {
+                return {
+                    [itemValues.CMSVariableSystemName]: getFileUrl(
+                        mD.filesStructure,
+                        resourceVariable
+                            ? resourceVariable.fileUrl ||
+                                  itemValues.defaultFileUrl
+                            : itemValues.defaultFileUrl,
+                        false,
+                        resourceVariable
+                            ? resourceVariable.fileThumbnail ||
+                                  itemValues.fileThumbnail
+                            : itemValues.fileThumbnail
+                    ),
+                    // 'http://live.websiter.dev:5000/' +
+                    // mD.currentWebsiteObject.domain +
+                    // (resourceVariable
+                    //     ? resourceVariable.fileUrl ||
+                    //       itemValues.defaultFileUrl
+                    //     : itemValues.defaultFileUrl),
                 }
             } else if (
                 itemValues.CMSVariableType === 'colorSelect' ||

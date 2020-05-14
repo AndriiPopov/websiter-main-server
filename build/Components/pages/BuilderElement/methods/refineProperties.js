@@ -11,6 +11,8 @@ var _isEqual = _interopRequireDefault(require("lodash/isEqual"));
 
 var _isEmpty = _interopRequireDefault(require("lodash/isEmpty"));
 
+var _getFileUrl = require("../../../../utils/getFileUrl");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import { CloudFrontUrl, bucket } from '../../awsConfig'
@@ -96,6 +98,16 @@ const refinePropertiesFromCMS = mD => {
     if (itemValues.CMSVariableSystemName) if (itemValues.CMSVariableType === 'menuItems') {
       return {
         [itemValues.CMSVariableSystemName]: resourceVariable ? resourceVariable.menuItems ? resourceVariable.menuItems.length > 0 ? resourceVariable.menuItems : itemValues.defaultMenuItems : itemValues.defaultMenuItems : itemValues.defaultMenuItems
+      };
+    } else if (itemValues.CMSVariableType === 'file') {
+      return {
+        [itemValues.CMSVariableSystemName]: (0, _getFileUrl.getFileUrl)(mD.filesStructure, resourceVariable ? resourceVariable.fileUrl || itemValues.defaultFileUrl : itemValues.defaultFileUrl, false, resourceVariable ? resourceVariable.fileThumbnail || itemValues.fileThumbnail : itemValues.fileThumbnail) // 'http://live.websiter.dev:5000/' +
+        // mD.currentWebsiteObject.domain +
+        // (resourceVariable
+        //     ? resourceVariable.fileUrl ||
+        //       itemValues.defaultFileUrl
+        //     : itemValues.defaultFileUrl),
+
       };
     } else if (itemValues.CMSVariableType === 'colorSelect' || itemValues.CMSVariableType === 'color') {
       return {
