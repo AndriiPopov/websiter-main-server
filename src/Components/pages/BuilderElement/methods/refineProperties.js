@@ -215,7 +215,7 @@ export const refinePropertiesFromCMS = mD => {
                 }
             }
     }
-    const refine = (currentPageDraft, pageTemplateDraft, templateId) => {
+    const refine = (mD, currentPageDraft, pageTemplateDraft, templateId) => {
         let result = {}
         if (pageTemplateDraft && currentPageDraft) {
             for (let item of pageTemplateDraft.structure) {
@@ -243,11 +243,13 @@ export const refinePropertiesFromCMS = mD => {
         return result
     }
     const refinedPropertiesPage = refine(
+        mD,
         mD.currentPageFSBDraft,
         mD.pageTemplateFSBDraft,
         mD.pageTemplateFSBId
     )
     const refinedPropertiesGlobal = refine(
+        mD,
         mD.globalSettingsPageDraft,
         mD.globalSettingsTemplateDraft,
         mD.globalSettingsTemplateId

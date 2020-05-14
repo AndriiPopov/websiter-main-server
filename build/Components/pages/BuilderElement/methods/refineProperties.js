@@ -147,7 +147,7 @@ const refinePropertiesFromCMS = mD => {
     }
   };
 
-  const refine = (currentPageDraft, pageTemplateDraft, templateId) => {
+  const refine = (mD, currentPageDraft, pageTemplateDraft, templateId) => {
     let result = {};
 
     if (pageTemplateDraft && currentPageDraft) {
@@ -171,8 +171,8 @@ const refinePropertiesFromCMS = mD => {
     return result;
   };
 
-  const refinedPropertiesPage = refine(mD.currentPageFSBDraft, mD.pageTemplateFSBDraft, mD.pageTemplateFSBId);
-  const refinedPropertiesGlobal = refine(mD.globalSettingsPageDraft, mD.globalSettingsTemplateDraft, mD.globalSettingsTemplateId);
+  const refinedPropertiesPage = refine(mD, mD.currentPageFSBDraft, mD.pageTemplateFSBDraft, mD.pageTemplateFSBId);
+  const refinedPropertiesGlobal = refine(mD, mD.globalSettingsPageDraft, mD.globalSettingsTemplateDraft, mD.globalSettingsTemplateId);
   return { ...refinedPropertiesGlobal,
     ...refinedPropertiesPage
   };
