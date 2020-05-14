@@ -91,8 +91,11 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('X-Frame-Options', 'deny')
         res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
-        const link = redirectIndex.find(item => item.old === req.originalUrl)
-        res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''))
+        res.send(
+            'hmad0TMh_xyR9MrX5D2HJLv9PYqrKcqQhxW2oA04BsI.BcxVHurUAJe1Jb9bD-JiGIR3iYtXFNnh6HGNrWWPdFY'
+        )
+        // const link = redirectIndex.find(item => item.old === req.originalUrl)
+        // res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''))
         return
         // next()
     })
