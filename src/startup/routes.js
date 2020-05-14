@@ -65,10 +65,8 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://live.websiter.dev' }))
         // app.use(express.json())
-        res.send(
-            'g3_ql3UbF-niwitZQY02vXaeIu7UnY2qFGBoDAmsKl4.BcxVHurUAJe1Jb9bD-JiGIR3iYtXFNnh6HGNrWWPdFY'
-        )
-        // next()
+
+        next()
     })
 
     myApp.use(express.json())
@@ -94,12 +92,8 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         res.header('Access-Control-Allow-Origin', '*')
         res.header('X-Frame-Options', 'deny')
         res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE')
-        res.send(
-            'i5XjARxD2FR-CXu4ZYVJ3Q99laNQnnispQ9mZ_DJgTA.BcxVHurUAJe1Jb9bD-JiGIR3iYtXFNnh6HGNrWWPdFY'
-        )
-
-        // const link = redirectIndex.find(item => item.old === req.originalUrl)
-        // res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''))
+        const link = redirectIndex.find(item => item.old === req.originalUrl)
+        res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''))
         return
         // next()
     })
