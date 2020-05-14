@@ -33,6 +33,7 @@ const Index = props => {
     // }
 
     const refinedProperties = (0, _refineProperties.refinePropertiesFromCMS)({
+      filesStructure: mD.filesStructure,
       resourcesObjects: mD.resourcesObjects,
       pageTemplateFSBDraft: mD.resourcesObjects[mD.template],
       currentPageFSBDraft: mD.resourcesObjects[mD.page],
