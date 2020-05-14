@@ -47,6 +47,7 @@ module.exports = async (page, website) => {
     globalSettingsTemplateId,
     pagesStructure: website.pagesStructure,
     pluginsStructure: website.pluginsStructure,
+    filesStructure: website.filesStructure,
     baseUrl: 'https://' + website.customDomain + '/'
   };
 };
