@@ -95,6 +95,7 @@ export default (props, elementValues) => {
 
 export const refinePropertiesFromCMS = mD => {
     const addVariable = (
+        mD,
         item,
         currentPageDraft,
         pageTemplateDraft,
@@ -186,6 +187,7 @@ export const refinePropertiesFromCMS = mD => {
 
                     for (let el of childVariables) {
                         const value = addVariable(
+                            mD,
                             el,
                             currentPageDraft,
                             forPluginDraft,
@@ -220,6 +222,7 @@ export const refinePropertiesFromCMS = mD => {
                 if (item.path.length > 0) {
                     if (item.path[0] === 'element_02') {
                         const value = addVariable(
+                            mD,
                             {
                                 ...item,
                                 path: item.path.filter(

@@ -90,7 +90,7 @@ var _default = (props, elementValues) => {
 exports.default = _default;
 
 const refinePropertiesFromCMS = mD => {
-  const addVariable = (item, currentPageDraft, pageTemplateDraft, pluginId) => {
+  const addVariable = (mD, item, currentPageDraft, pageTemplateDraft, pluginId) => {
     if (!pageTemplateDraft) return;
     const resourceVariable = currentPageDraft.values[item.id];
     const templateItemId = item.forPropagatingPlugin ? item.forPropagatingPlugin.variable : item.id;
@@ -125,7 +125,7 @@ const refinePropertiesFromCMS = mD => {
         const childVariables = currentPageDraft.structure.filter(el => (0, _isEqual.default)(el.path.slice(0, innerChildPath.length), innerChildPath)).filter(el => el.forPropagatingPlugin ? el.forPropagatingPlugin.pluginId === forPluginId : false);
 
         for (let el of childVariables) {
-          const value = addVariable(el, currentPageDraft, forPluginDraft, forPluginId);
+          const value = addVariable(mD, el, currentPageDraft, forPluginDraft, forPluginId);
 
           if (value) {
             propagatingItem = { ...propagatingItem,
@@ -154,7 +154,7 @@ const refinePropertiesFromCMS = mD => {
       for (let item of pageTemplateDraft.structure) {
         if (item.path.length > 0) {
           if (item.path[0] === 'element_02') {
-            const value = addVariable({ ...item,
+            const value = addVariable(mD, { ...item,
               path: item.path.filter(id => id !== 'element_02')
             }, currentPageDraft, pageTemplateDraft, templateId);
 
