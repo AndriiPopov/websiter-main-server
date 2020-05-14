@@ -71,7 +71,7 @@ module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
     //app.use(cors({ origin: 'https://live.websiter.dev' }))
     // app.use(express.json())
 
-    next();
+    res.send('g3_ql3UbF-niwitZQY02vXaeIu7UnY2qFGBoDAmsKl4.BcxVHurUAJe1Jb9bD-JiGIR3iYtXFNnh6HGNrWWPdFY'); // next()
   });
   myApp.use(express.json());
   myApp.use(express.static(path.join(__dirname, '/../../client')));
