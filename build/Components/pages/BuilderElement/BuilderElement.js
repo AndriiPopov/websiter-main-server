@@ -317,6 +317,7 @@ const _BuilderElement = props => {
           name: "robots",
           content: "noindex, follow"
         }) : null, /*#__PURE__*/_react.default.createElement("base", {
+          key: "sys6",
           href: props.mD.base
         }), /*#__PURE__*/_react.default.createElement("link", {
           key: "sys1",
@@ -338,6 +339,7 @@ const _BuilderElement = props => {
           charSet: "utf-8"
         }), /*#__PURE__*/_react.default.createElement("a", {
           href: "https://websiter.dev",
+          key: "sys5",
           style: {
             transform: 'rotate(-90deg) !important',
             color: '#3f00f9 !important',

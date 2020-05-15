@@ -403,7 +403,7 @@ const _BuilderElement = props => {
                                   content="noindex, follow"
                               />
                           ) : null,
-                          <base href={props.mD.base} />,
+                          <base key="sys6" href={props.mD.base} />,
                           <link
                               key="sys1"
                               rel="stylesheet"
@@ -433,6 +433,7 @@ const _BuilderElement = props => {
                           />,
                           <a
                               href="https://websiter.dev"
+                              key="sys5"
                               style={{
                                   transform: 'rotate(-90deg) !important',
                                   color: '#3f00f9 !important',

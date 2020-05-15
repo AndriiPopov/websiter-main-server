@@ -30,7 +30,11 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
     app.use(vhost('api.websiter.test', apiApp))
     app.use(vhost('logision.com', logisionApp))
     app.use(vhost('www.logision.com', logisionApp))
-    app.use(liveApp)
+    app.use(vhost('*.live.websiter.dev', liveApp))
+    app.use(vhost('*.live.websiter.test', liveApp))
+    app.use(vhost('websiter.dev', liveApp))
+    app.use(vhost('www.websiter.dev', liveApp))
+    // app.use(liveApp)
 
     myApp.use(sslRedirect())
     apiApp.use(sslRedirect())

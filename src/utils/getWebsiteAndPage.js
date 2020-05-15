@@ -2,6 +2,8 @@ const Url = require('url-parse')
 const decodeUriComponent = require('decode-uri-component')
 const { Website } = require('../models/website')
 
+const prod = process.env.NODE_ENV === 'production'
+
 const getWebsiteAndPage = async (urlString, res) => {
     if (!urlString) return res.status(400).send(error.details[0].message)
 
@@ -9,31 +11,24 @@ const getWebsiteAndPage = async (urlString, res) => {
     const is120 = url.query.thumbnail === '1'
     let isLocal
     const hostParts = url.hostname.split('.')
-    let website, pathname, base
-    if (
-        url.hostname === 'live.websiter.dev' ||
-        url.hostname === 'live.websiter.test'
-    ) {
+    let website
+    if (url.hostname.indexOf('live.websiter.' + (prod ? 'dev' : 'test')) > 0) {
         isLocal = true
-        const pathArray = url.pathname.split('/')
-        if (pathArray.length < 2) {
+
+        const hostArray = url.hostname.split('.')
+        if (hostArray.length < 4) {
             res.status(400).send('Wrong page')
             return
         }
-        base = 'https://' + url.hostname + '/' + pathArray[1] + '/'
         website = await Website.findOne({
-            domain: pathArray[1],
+            domain: hostArray.slice(0, hostArray.length - 3).join('.'),
         })
         if (website)
             if (website.domainHidden) {
                 res.status(400).send('The website is not found')
                 return
             }
-        pathArray.shift()
-        pathArray.shift()
-        pathname = pathArray.join('/').trim()
     } else {
-        base = 'https://' + url.hostname + '/'
         website = await Website.findOne({
             customDomain: url.hostname,
             customDomainVerified: true,
@@ -48,9 +43,8 @@ const getWebsiteAndPage = async (urlString, res) => {
                 res.status(400).send('The website is not found')
                 return
             }
-        pathname = url.pathname.trim()
     }
-    pathname = decodeUriComponent(pathname)
+    const pathname = decodeUriComponent(url.pathname.trim())
 
     if (!website) {
         res.status(400).send('No website')
@@ -72,7 +66,7 @@ const getWebsiteAndPage = async (urlString, res) => {
         )
     }
 
-    return { website, page, url, pathname, is120, isLocal, base }
+    return { website, page, url, pathname, is120, isLocal }
 }
 
 module.exports.getWebsiteAndPage = getWebsiteAndPage

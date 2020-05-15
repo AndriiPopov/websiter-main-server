@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
     const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
     const websiteAndPageData = await getWebsiteAndPage(fullUrl, res)
     if (!websiteAndPageData) return
-    const { website, page, pathname, is120, isLocal, base } = websiteAndPageData
+    const { website, page, pathname, is120, isLocal } = websiteAndPageData
     if (page) {
         const mD = await resources(page, website)
         let reactComp = renderToStaticMarkup(
@@ -20,7 +20,6 @@ router.get('/', async (req, res, next) => {
                 mD={{
                     ...mD,
                     structure: mD.resourcesObjects[mD.template].structure,
-                    base,
                 }}
             />
         )
@@ -30,7 +29,6 @@ router.get('/', async (req, res, next) => {
                 mD={{
                     ...mD,
                     structure: mD.resourcesObjects[mD.template].structure,
-                    base,
                 }}
                 renderBody={true}
                 isLocal={isLocal}
