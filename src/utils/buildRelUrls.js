@@ -9,5 +9,5 @@ module.exports = (structure, page) =>
                 else {
                     return totalPath
                 }
-            }, '') + item[page ? 'url' : 'name'],
+            }, '/') + item[page ? 'url' : 'name'],
     }))

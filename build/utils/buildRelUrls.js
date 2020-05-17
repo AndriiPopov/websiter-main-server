@@ -6,5 +6,5 @@ module.exports = (structure, page) => structure.map(item => ({ ...item,
     if (el && (!el.hidden || el.folderPage)) return totalPath + el[page ? 'url' : 'name'] + '/';else {
       return totalPath;
     }
-  }, '') + item[page ? 'url' : 'name']
+  }, '/') + item[page ? 'url' : 'name']
 }));
