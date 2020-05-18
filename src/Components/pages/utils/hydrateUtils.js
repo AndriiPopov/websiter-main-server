@@ -55,22 +55,24 @@ export const returnInnerElements = (tags, props) => {
 export const getInnerElement = (tag, attr, addProps, props) => {
     console.log('get')
     console.log(props.elementsPath)
-    return props.inEntry ? (
-        <div
-            websiterforprocessing={tag + props.elementsPath}
-            dangerouslySetInnerHTML={{
-                __html: document.querySelector(
-                    'div[websiterForProcessing="' +
-                        tag +
-                        props.elementsPath +
-                        '"]'
-                ).innerHTML,
-            }}
-            {...(addProps ? addProps : {})}
-        />
-    ) : (
-        <div websiterforprocessing={tag + props.elementsPath}>
-            {props[attr]}
-        </div>
-    )
+    if (props.inEntry) {
+        const element = document.querySelector(
+            'div[websiterforprocessing="' + tag + props.elementsPath + '"]'
+        )
+        return (
+            <div
+                websiterforprocessing={tag + props.elementsPath}
+                dangerouslySetInnerHTML={{
+                    __html: element.innerHTML,
+                }}
+                {...(addProps ? addProps : {})}
+            />
+        )
+    } else {
+        return (
+            <div websiterforprocessing={tag + props.elementsPath}>
+                {props[attr]}
+            </div>
+        )
+    }
 }

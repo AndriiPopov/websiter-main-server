@@ -62,14 +62,20 @@ exports.returnInnerElements = returnInnerElements;
 const getInnerElement = (tag, attr, addProps, props) => {
   console.log('get');
   console.log(props.elementsPath);
-  return props.inEntry ? /*#__PURE__*/_react.default.createElement("div", _extends({
-    websiterforprocessing: tag + props.elementsPath,
-    dangerouslySetInnerHTML: {
-      __html: document.querySelector('div[websiterForProcessing="' + tag + props.elementsPath + '"]').innerHTML
-    }
-  }, addProps ? addProps : {})) : /*#__PURE__*/_react.default.createElement("div", {
-    websiterforprocessing: tag + props.elementsPath
-  }, props[attr]);
+
+  if (props.inEntry) {
+    const element = document.querySelector('div[websiterforprocessing="' + tag + props.elementsPath + '"]');
+    return /*#__PURE__*/_react.default.createElement("div", _extends({
+      websiterforprocessing: tag + props.elementsPath,
+      dangerouslySetInnerHTML: {
+        __html: element.innerHTML
+      }
+    }, addProps ? addProps : {}));
+  } else {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      websiterforprocessing: tag + props.elementsPath
+    }, props[attr]);
+  }
 };
 
 exports.getInnerElement = getInnerElement;
