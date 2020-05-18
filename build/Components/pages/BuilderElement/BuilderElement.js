@@ -274,7 +274,8 @@ const _BuilderElement = props => {
             childrenForPlugin: props.childrenForPlugin,
             pageInStructure: props.pageInStructure,
             // ...getModulePropertiesNodes(Tag),
-            inEntry: props.inEntry
+            inEntry: props.inEntry,
+            elementsPath: props.elementsPath
           })};`
         }
       }), /*#__PURE__*/_react.default.createElement(_Drawer.default, _extends({

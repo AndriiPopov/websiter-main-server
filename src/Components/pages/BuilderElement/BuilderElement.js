@@ -350,6 +350,7 @@ const _BuilderElement = props => {
                                 pageInStructure: props.pageInStructure,
                                 // ...getModulePropertiesNodes(Tag),
                                 inEntry: props.inEntry,
+                                elementsPath: props.elementsPath,
                             })};`,
                         }}
                     />
