@@ -11,6 +11,8 @@ var _MenuModule = _interopRequireWildcard(require("./MenuModule"));
 
 var _buildItemsForMenu = _interopRequireDefault(require("./methods/buildItemsForMenu"));
 
+var _hydrateUtils = require("../utils/hydrateUtils");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -23,12 +25,14 @@ const activeKeys = [];
 
 const MenuElement = props => {
   (0, _react.useEffect)(() => {
-    if (!document.getElementById('__menu__popup__container__')) {
+    if (!document.getElementById('__menu__popup__container__' + props.element.id)) {
       const container = document.createElement('div');
-      container.setAttribute('id', '__menu__popup__container__');
+      container.setAttribute('id', '__menu__popup__container__' + props.element.id);
       container.setAttribute('style', 'z-index:100000;position: absolute;');
       document.body.appendChild(container);
     }
+
+    (0, _hydrateUtils.returnInnerElements)(['websitermenuoverflow_'], props);
   });
   const builtItems = (0, _buildItemsForMenu.default)(props);
   activeKeys.length = 0;
@@ -47,18 +51,18 @@ const MenuElement = props => {
       return /*#__PURE__*/_react.default.createElement(SubMenu1, {
         item: item,
         key: key,
-        pageInStructure: props.pageInStructure,
-        mD: props.mD
+        pageInStructure: props.pageInStructure
       });
     }
   });
+  (0, _hydrateUtils.migrateInnerChildren)(['websitermenuoverflow_'], props);
   return /*#__PURE__*/_react.default.createElement(_MenuModule.default, _extends({
     prefixCls: 'systemclass_menu',
-    getPopupContainer: () => document.getElementById('__menu__popup__container__'),
+    getPopupContainer: () => document.getElementById('__menu__popup__container__' + props.element.id),
     selectable: false,
     triggerSubMenuAction: props.refinedProperties.trigger,
     activeKeys: activeKeys,
-    overflowedIndicator: props.overflowIcon
+    overflowedIndicator: (0, _hydrateUtils.getInnerElement)('websitermenuoverflow_', 'overflowIcon', {}, props)
   }, props.refinedProperties, {
     inEntry: props.inEntry
   }), innerItems);
@@ -68,8 +72,7 @@ const SubMenu1 = props => {
   const { ...other
   } = props;
   return /*#__PURE__*/_react.default.createElement(_MenuModule.SubMenu, _extends({}, other, {
-    title: props.item.name,
-    mD: props.mD
+    title: props.item.name
   }), props.item.children.map((item, index) => {
     const key = item.id + '_' + index;
 
@@ -85,8 +88,7 @@ const SubMenu1 = props => {
       return /*#__PURE__*/_react.default.createElement(SubMenu2, _extends({}, other, {
         item: item,
         key: key,
-        pageInStructure: props.pageInStructure,
-        mD: props.mD
+        pageInStructure: props.pageInStructure
       }));
     }
   }));

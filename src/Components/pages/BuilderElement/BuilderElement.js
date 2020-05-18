@@ -61,7 +61,7 @@ const _BuilderElement = props => {
                     .filter(item =>
                         isEqual(item.path, [...nodeItem.path, nodeItem.id])
                     )
-                    .map(item => (
+                    .map((item, index) => (
                         <BuilderElement
                             key={item.id}
                             structure={props.structure.filter(itemInn =>
@@ -79,6 +79,8 @@ const _BuilderElement = props => {
                             mD={props.mD}
                             isLocal={props.isLocal}
                             inEntry={props.inEntry}
+                            moduleState={props.moduleState}
+                            elementPath={props.elementPath + '_' + index}
                         />
                     ))
             }
@@ -176,7 +178,7 @@ const _BuilderElement = props => {
                                   .filter(itemInn =>
                                       isEqual(itemInn.path, ['element_0'])
                                   )
-                                  .map(itemInn => {
+                                  .map((itemInn, index) => {
                                       if (
                                           props.pluginsPathArray.find(
                                               item => item.plugin === plugin.id
@@ -217,6 +219,11 @@ const _BuilderElement = props => {
                                               mD={props.mD}
                                               isLocal={props.isLocal}
                                               inEntry={props.inEntry}
+                                              elementPath={
+                                                  props.elementPath +
+                                                  '_' +
+                                                  index
+                                              }
                                           />
                                       )
                                   })
@@ -225,7 +232,7 @@ const _BuilderElement = props => {
                 } else {
                     result = pluginResource.structure
                         .filter(itemInn => isEqual(itemInn.path, ['element_0']))
-                        .map(itemInn => {
+                        .map((itemInn, index) => {
                             if (
                                 props.pluginsPathArray.find(
                                     item => item.plugin === plugin.id
@@ -256,6 +263,9 @@ const _BuilderElement = props => {
                                     mD={props.mD}
                                     isLocal={props.isLocal}
                                     inEntry={props.inEntry}
+                                    elementPath={
+                                        props.elementPath + '_' + index
+                                    }
                                 />
                             )
                         })
@@ -266,6 +276,24 @@ const _BuilderElement = props => {
         if (Tag === 'websiterMenu') {
             result = (
                 <div {...attributes}>
+                    <script
+                        websiterforprocessing="websiterMenu"
+                        websiterpropsforelement={props.elementPath}
+                        dangerouslySetInnerHTML={{
+                            __html: ` websiterMenuProps_${
+                                props.elementPath
+                            } = ${serialize({
+                                elementValues: elementValues,
+                                refinedProperties: refinedProperties,
+                                parentPluginProps: props.parentPluginProps,
+                                childrenForPlugin: props.childrenForPlugin,
+                                pageInStructure: props.pageInStructure,
+                                pagesStructure: props.mD.pagesStructure,
+                                inEntry: props.inEntry,
+                                element: props.element,
+                            })};`,
+                        }}
+                    />
                     <Menu
                         element={props.element}
                         elementValues={elementValues}
@@ -273,15 +301,32 @@ const _BuilderElement = props => {
                         parentPluginProps={props.parentPluginProps}
                         childrenForPlugin={props.childrenForPlugin}
                         pageInStructure={props.pageInStructure}
-                        mD={props.mD}
+                        pagesStructure={props.mD.pagesStructure}
                         {...getModulePropertiesNodes(Tag)}
                         inEntry={props.inEntry}
+                        elementPath={props.elementPath}
                     />
                 </div>
             )
         } else if (Tag === 'websiterDrawer') {
             return (
                 <div>
+                    <script
+                        websiterforprocessing="websiterDrawer"
+                        websiterpropsforelement={props.elementPath}
+                        dangerouslySetInnerHTML={{
+                            __html: ` websiterDrawerProps_${
+                                props.elementPath
+                            } = ${serialize({
+                                refinedProperties: refinedProperties,
+                                parentPluginProps: props.parentPluginProps,
+                                childrenForPlugin: props.childrenForPlugin,
+                                pageInStructure: props.pageInStructure,
+                                // ...getModulePropertiesNodes(Tag),
+                                inEntry: props.inEntry,
+                            })};`,
+                        }}
+                    />
                     <Drawer
                         element={props.element}
                         refinedProperties={refinedProperties}
@@ -290,6 +335,16 @@ const _BuilderElement = props => {
                         pageInStructure={props.pageInStructure}
                         {...getModulePropertiesNodes(Tag)}
                         inEntry={props.inEntry}
+                        // handler={
+                        //     <div
+                        //         style={{
+                        //             width: '200px',
+                        //             height: '300px',
+                        //             background: 'orange',
+                        //         }}
+                        //     />
+                        // }
+                        elementPath={props.elementPath}
                     />
                 </div>
             )
@@ -377,7 +432,7 @@ const _BuilderElement = props => {
             const innerResult = [
                 ...props.structure
                     .filter(item => isEqual(item.path, currentPath))
-                    .map(item => (
+                    .map((item, index) => (
                         <BuilderElement
                             key={item.id}
                             structure={props.structure}
@@ -392,6 +447,7 @@ const _BuilderElement = props => {
                             mD={props.mD}
                             isLocal={props.isLocal}
                             inEntry={props.inEntry}
+                            elementPath={props.elementPath + '_' + index}
                         />
                     )),
                 ...(props.element.id === 'element_0' && props.renderBodyAndHead
@@ -410,14 +466,14 @@ const _BuilderElement = props => {
                               type="text/css"
                               href="https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
                           />,
-                          <script
-                              key="sys2"
-                              dangerouslySetInnerHTML={{
-                                  __html: ` window.__MD__ = ${serialize(
-                                      props.mD
-                                  )};`,
-                              }}
-                          />,
+                          //   <script
+                          //       key="sys2"
+                          //       dangerouslySetInnerHTML={{
+                          //           __html: ` window.__MD__ = ${serialize(
+                          //               props.mD
+                          //           )};`,
+                          //       }}
+                          //   />,
                       ]
                     : []),
 

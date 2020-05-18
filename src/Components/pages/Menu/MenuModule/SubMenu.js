@@ -814,6 +814,7 @@ export var SubMenu =
                         : function(triggerNode) {
                               return triggerNode.parentNode
                           }
+                    console.log(getPopupContainer)
                     var popupPlacement = popupPlacementMap[props.mode]
                     var popupAlign = props.popupOffset
                         ? {

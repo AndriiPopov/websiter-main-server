@@ -20,7 +20,7 @@ export default props => {
 
             structureAfterVariables.forEach(item => {
                 if (item.generatedFrom === 'all') {
-                    props.mD.pagesStructure.forEach(page => {
+                    props.pagesStructure.forEach(page => {
                         if (!page.hidden || page.folderPage) {
                             structure.push({
                                 name: page.name,
@@ -35,7 +35,7 @@ export default props => {
                         }
                     })
                 } else if (item.all) {
-                    props.mD.pagesStructure.forEach(page => {
+                    props.pagesStructure.forEach(page => {
                         if (
                             page.path.includes(item.generatedFrom) &&
                             (!page.hidden || page.folderPage)
@@ -59,7 +59,7 @@ export default props => {
                         }
                     })
                 } else if (item.generatedFrom !== 'link') {
-                    props.mD.pagesStructure.forEach(page => {
+                    props.pagesStructure.forEach(page => {
                         if (
                             page.id === item.generatedFrom &&
                             (!page.hidden || page.folderPage)

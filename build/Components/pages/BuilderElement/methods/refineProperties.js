@@ -101,13 +101,7 @@ const refinePropertiesFromCMS = mD => {
       };
     } else if (itemValues.CMSVariableType === 'file') {
       return {
-        [itemValues.CMSVariableSystemName]: (0, _getFileUrl.getFileUrl)(mD.filesStructure, resourceVariable ? resourceVariable.fileUrl || itemValues.defaultFileUrl : itemValues.defaultFileUrl, false, resourceVariable ? resourceVariable.fileThumbnail || itemValues.fileThumbnail : itemValues.fileThumbnail) // 'http://live.websiter.dev:5000/' +
-        // mD.currentWebsiteObject.domain +
-        // (resourceVariable
-        //     ? resourceVariable.fileUrl ||
-        //       itemValues.defaultFileUrl
-        //     : itemValues.defaultFileUrl),
-
+        [itemValues.CMSVariableSystemName]: (0, _getFileUrl.getFileUrl)(mD.filesStructure, resourceVariable ? resourceVariable.fileUrl || itemValues.defaultFileUrl : itemValues.defaultFileUrl, false, resourceVariable ? resourceVariable.fileThumbnail || itemValues.fileThumbnail : itemValues.fileThumbnail)
       };
     } else if (itemValues.CMSVariableType === 'colorSelect' || itemValues.CMSVariableType === 'color') {
       return {

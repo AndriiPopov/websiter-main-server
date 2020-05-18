@@ -682,6 +682,7 @@ var SubMenu = /*#__PURE__*/function (_React$Component) {
       var getPopupContainer = props.parentMenu.isRootMenu ? props.parentMenu.props.getPopupContainer : function (triggerNode) {
         return triggerNode.parentNode;
       };
+      console.log(getPopupContainer);
       var popupPlacement = popupPlacementMap[props.mode];
       var popupAlign = props.popupOffset ? {
         offset: props.popupOffset

@@ -1,35 +1,47 @@
-import React, { useState } from 'react'
-import DrawerElement from 'rc-drawer'
+import React, { useState, useEffect } from 'react'
+import Sidebar from 'react-sidebar'
+import {
+    migrateInnerChildren,
+    returnInnerElements,
+    getInnerElement,
+} from '../utils/hydrateUtils'
 
 const Drawer = props => {
     const [state, setState] = useState()
 
-    const onTouchEnd = () => {
-        setState(false)
-    }
+    const innerElements = ['websiterdrawercontent_', 'websiterdrawerhandler_']
+    migrateInnerChildren(innerElements, props)
+
     const onSwitch = () => {
         setState(!state)
     }
+
+    useEffect(() => {
+        returnInnerElements(innerElements, props)
+    })
+
     return (
         <>
-            {props.handler && <div onClick={onSwitch}>{props.handler}</div>}
-            <DrawerElement
+            <Sidebar
+                sidebar={getInnerElement(
+                    'websiterdrawercontent_',
+                    'content',
+                    {},
+                    props
+                )}
                 open={state}
-                onClose={onTouchEnd}
-                handler={props.autoHandler}
-                level={null}
-                getContainer={() =>
-                    props.refinedProperties.container
-                        ? document.getElementById(
-                              props.refinedProperties.container
-                          ) || document.body
-                        : document.body
-                }
-                onHandleClick={onSwitch}
-                {...props.refinedProperties}
+                onSetOpen={() => setState()}
+                styles={{ sidebar: { background: 'white' } }}
             >
-                {props.content}
-            </DrawerElement>
+                {getInnerElement(
+                    'websiterdrawerhandler_',
+                    'handler',
+                    {
+                        onClick: onSwitch,
+                    },
+                    props
+                )}
+            </Sidebar>
         </>
     )
 }

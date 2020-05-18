@@ -133,12 +133,6 @@ export const refinePropertiesFromCMS = mD => {
                                   itemValues.fileThumbnail
                             : itemValues.fileThumbnail
                     ),
-                    // 'http://live.websiter.dev:5000/' +
-                    // mD.currentWebsiteObject.domain +
-                    // (resourceVariable
-                    //     ? resourceVariable.fileUrl ||
-                    //       itemValues.defaultFileUrl
-                    //     : itemValues.defaultFileUrl),
                 }
             } else if (
                 itemValues.CMSVariableType === 'colorSelect' ||

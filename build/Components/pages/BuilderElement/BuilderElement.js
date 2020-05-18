@@ -73,7 +73,7 @@ const _BuilderElement = props => {
       let node;
 
       if (nodeItem) {
-        node = props.structure.filter(item => (0, _isEqual.default)(item.path, [...nodeItem.path, nodeItem.id])).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
+        node = props.structure.filter(item => (0, _isEqual.default)(item.path, [...nodeItem.path, nodeItem.id])).map((item, index) => /*#__PURE__*/_react.default.createElement(BuilderElement, {
           key: item.id,
           structure: props.structure.filter(itemInn => itemInn.path.includes(item.id)),
           element: item // document={props.document}
@@ -87,7 +87,9 @@ const _BuilderElement = props => {
           pageInStructure: props.pageInStructure,
           mD: props.mD,
           isLocal: props.isLocal,
-          inEntry: props.inEntry
+          inEntry: props.inEntry,
+          moduleState: props.moduleState,
+          elementPath: props.elementPath + '_' + index
         }));
       }
 
@@ -155,7 +157,7 @@ const _BuilderElement = props => {
         if (!pluginResource.structure) return;
 
         if (plugin.propagating) {
-          result = Array.isArray(refinedProperties.items) ? refinedProperties.items.map(item => pluginResource.structure.filter(itemInn => (0, _isEqual.default)(itemInn.path, ['element_0'])).map(itemInn => {
+          result = Array.isArray(refinedProperties.items) ? refinedProperties.items.map(item => pluginResource.structure.filter(itemInn => (0, _isEqual.default)(itemInn.path, ['element_0'])).map((itemInn, index) => {
             if (props.pluginsPathArray.find(item => item.plugin === plugin.id)) {
               return null;
             }
@@ -179,11 +181,12 @@ const _BuilderElement = props => {
               pageInStructure: props.pageInStructure,
               mD: props.mD,
               isLocal: props.isLocal,
-              inEntry: props.inEntry
+              inEntry: props.inEntry,
+              elementPath: props.elementPath + '_' + index
             });
           })) : null;
         } else {
-          result = pluginResource.structure.filter(itemInn => (0, _isEqual.default)(itemInn.path, ['element_0'])).map(itemInn => {
+          result = pluginResource.structure.filter(itemInn => (0, _isEqual.default)(itemInn.path, ['element_0'])).map((itemInn, index) => {
             if (props.pluginsPathArray.find(item => item.plugin === plugin.id)) {
               return null;
             }
@@ -204,7 +207,8 @@ const _BuilderElement = props => {
               pageInStructure: props.pageInStructure,
               mD: props.mD,
               isLocal: props.isLocal,
-              inEntry: props.inEntry
+              inEntry: props.inEntry,
+              elementPath: props.elementPath + '_' + index
             });
           });
         }
@@ -212,26 +216,65 @@ const _BuilderElement = props => {
     }
   } else {
     if (Tag === 'websiterMenu') {
-      result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
+      result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement("script", {
+        websiterforprocessing: "websiterMenu",
+        websiterpropsforelement: props.elementPath,
+        dangerouslySetInnerHTML: {
+          __html: ` websiterMenuProps_${props.elementPath} = ${serialize({
+            elementValues: elementValues,
+            refinedProperties: refinedProperties,
+            parentPluginProps: props.parentPluginProps,
+            childrenForPlugin: props.childrenForPlugin,
+            pageInStructure: props.pageInStructure,
+            pagesStructure: props.mD.pagesStructure,
+            inEntry: props.inEntry,
+            element: props.element
+          })};`
+        }
+      }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
         element: props.element,
         elementValues: elementValues,
         refinedProperties: refinedProperties,
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
-        mD: props.mD
+        pagesStructure: props.mD.pagesStructure
       }, getModulePropertiesNodes(Tag), {
-        inEntry: props.inEntry
+        inEntry: props.inEntry,
+        elementPath: props.elementPath
       })));
     } else if (Tag === 'websiterDrawer') {
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Drawer.default, _extends({
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("script", {
+        websiterforprocessing: "websiterDrawer",
+        websiterpropsforelement: props.elementPath,
+        dangerouslySetInnerHTML: {
+          __html: ` websiterDrawerProps_${props.elementPath} = ${serialize({
+            refinedProperties: refinedProperties,
+            parentPluginProps: props.parentPluginProps,
+            childrenForPlugin: props.childrenForPlugin,
+            pageInStructure: props.pageInStructure,
+            // ...getModulePropertiesNodes(Tag),
+            inEntry: props.inEntry
+          })};`
+        }
+      }), /*#__PURE__*/_react.default.createElement(_Drawer.default, _extends({
         element: props.element,
         refinedProperties: refinedProperties,
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure
       }, getModulePropertiesNodes(Tag), {
-        inEntry: props.inEntry
+        inEntry: props.inEntry // handler={
+        //     <div
+        //         style={{
+        //             width: '200px',
+        //             height: '300px',
+        //             background: 'orange',
+        //         }}
+        //     />
+        // }
+        ,
+        elementPath: props.elementPath
       })));
     } //  else if (Tag === 'websiterGallery') {
     //     let items = refinedProperties.items || []
@@ -298,7 +341,7 @@ const _BuilderElement = props => {
           }));
         }
       } else {
-        const innerResult = [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map(item => /*#__PURE__*/_react.default.createElement(BuilderElement, {
+        const innerResult = [...props.structure.filter(item => (0, _isEqual.default)(item.path, currentPath)).map((item, index) => /*#__PURE__*/_react.default.createElement(BuilderElement, {
           key: item.id,
           structure: props.structure,
           element: item,
@@ -311,7 +354,8 @@ const _BuilderElement = props => {
           pageInStructure: props.pageInStructure,
           mD: props.mD,
           isLocal: props.isLocal,
-          inEntry: props.inEntry
+          inEntry: props.inEntry,
+          elementPath: props.elementPath + '_' + index
         })), ...(props.element.id === 'element_0' && props.renderBodyAndHead ? [props.isLocal ? /*#__PURE__*/_react.default.createElement("meta", {
           key: "sys0",
           name: "robots",
@@ -324,12 +368,15 @@ const _BuilderElement = props => {
           rel: "stylesheet",
           type: "text/css",
           href: "https://websiter.s3.us-east-2.amazonaws.com/systemClasses.css"
-        }), /*#__PURE__*/_react.default.createElement("script", {
-          key: "sys2",
-          dangerouslySetInnerHTML: {
-            __html: ` window.__MD__ = ${serialize(props.mD)};`
-          }
-        })] : []), ...(props.element.id === 'element_1' && props.renderBodyAndHead && !props.inEntry ? [/*#__PURE__*/_react.default.createElement("script", {
+        }) //   <script
+        //       key="sys2"
+        //       dangerouslySetInnerHTML={{
+        //           __html: ` window.__MD__ = ${serialize(
+        //               props.mD
+        //           )};`,
+        //       }}
+        //   />,
+        ] : []), ...(props.element.id === 'element_1' && props.renderBodyAndHead && !props.inEntry ? [/*#__PURE__*/_react.default.createElement("script", {
           key: "sys3",
           src: "/index.js",
           charSet: "utf-8"

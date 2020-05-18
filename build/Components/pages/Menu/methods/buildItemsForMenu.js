@@ -24,7 +24,7 @@ var _default = props => {
       });
       structureAfterVariables.forEach(item => {
         if (item.generatedFrom === 'all') {
-          props.mD.pagesStructure.forEach(page => {
+          props.pagesStructure.forEach(page => {
             if (!page.hidden || page.folderPage) {
               structure.push({
                 name: page.name,
@@ -36,7 +36,7 @@ var _default = props => {
             }
           });
         } else if (item.all) {
-          props.mD.pagesStructure.forEach(page => {
+          props.pagesStructure.forEach(page => {
             if (page.path.includes(item.generatedFrom) && (!page.hidden || page.folderPage)) {
               structure.push({
                 id: item.id + page.id,
@@ -48,7 +48,7 @@ var _default = props => {
             }
           });
         } else if (item.generatedFrom !== 'link') {
-          props.mD.pagesStructure.forEach(page => {
+          props.pagesStructure.forEach(page => {
             if (page.id === item.generatedFrom && (!page.hidden || page.folderPage)) {
               structure.push({
                 id: item.id,

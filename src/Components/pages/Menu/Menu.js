@@ -2,20 +2,34 @@ import React, { useEffect } from 'react'
 // import Menu, { SubMenu, MenuItem } from './MenuModule/index'
 import Menu, { SubMenu, MenuItem } from './MenuModule'
 import buildItemsForMenu from './methods/buildItemsForMenu'
+import {
+    migrateInnerChildren,
+    returnInnerElements,
+    getInnerElement,
+} from '../utils/hydrateUtils'
 
 const activeKeys = []
 
 const MenuElement = props => {
     useEffect(() => {
-        if (!document.getElementById('__menu__popup__container__')) {
+        if (
+            !document.getElementById(
+                '__menu__popup__container__' + props.element.id
+            )
+        ) {
             const container = document.createElement('div')
-            container.setAttribute('id', '__menu__popup__container__')
+            container.setAttribute(
+                'id',
+                '__menu__popup__container__' + props.element.id
+            )
             container.setAttribute(
                 'style',
                 'z-index:100000;position: absolute;'
             )
             document.body.appendChild(container)
         }
+
+        returnInnerElements(['websitermenuoverflow_'], props)
     })
     const builtItems = buildItemsForMenu(props)
 
@@ -47,21 +61,28 @@ const MenuElement = props => {
                     item={item}
                     key={key}
                     pageInStructure={props.pageInStructure}
-                    mD={props.mD}
                 />
             )
         }
     })
+    migrateInnerChildren(['websitermenuoverflow_'], props)
     return (
         <Menu
             prefixCls={'systemclass_menu'}
             getPopupContainer={() =>
-                document.getElementById('__menu__popup__container__')
+                document.getElementById(
+                    '__menu__popup__container__' + props.element.id
+                )
             }
             selectable={false}
             triggerSubMenuAction={props.refinedProperties.trigger}
             activeKeys={activeKeys}
-            overflowedIndicator={props.overflowIcon}
+            overflowedIndicator={getInnerElement(
+                'websitermenuoverflow_',
+                'overflowIcon',
+                {},
+                props
+            )}
             {...props.refinedProperties}
             inEntry={props.inEntry}
         >
@@ -73,7 +94,7 @@ const MenuElement = props => {
 const SubMenu1 = props => {
     const { ...other } = props
     return (
-        <SubMenu {...other} title={props.item.name} mD={props.mD}>
+        <SubMenu {...other} title={props.item.name}>
             {props.item.children.map((item, index) => {
                 const key = item.id + '_' + index
                 if (item.children.length === 0) {
@@ -104,7 +125,6 @@ const SubMenu1 = props => {
                             item={item}
                             key={key}
                             pageInStructure={props.pageInStructure}
-                            mD={props.mD}
                         />
                     )
                 }

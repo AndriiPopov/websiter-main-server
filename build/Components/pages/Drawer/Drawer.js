@@ -7,7 +7,9 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _rcDrawer = _interopRequireDefault(require("rc-drawer"));
+var _reactSidebar = _interopRequireDefault(require("react-sidebar"));
+
+var _hydrateUtils = require("../utils/hydrateUtils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15,29 +17,30 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 const Drawer = props => {
   const [state, setState] = (0, _react.useState)();
-
-  const onTouchEnd = () => {
-    setState(false);
-  };
+  const innerElements = ['websiterdrawercontent_', 'websiterdrawerhandler_'];
+  (0, _hydrateUtils.migrateInnerChildren)(innerElements, props);
 
   const onSwitch = () => {
     setState(!state);
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, props.handler && /*#__PURE__*/_react.default.createElement("div", {
-    onClick: onSwitch
-  }, props.handler), /*#__PURE__*/_react.default.createElement(_rcDrawer.default, _extends({
+  (0, _react.useEffect)(() => {
+    (0, _hydrateUtils.returnInnerElements)(innerElements, props);
+  });
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactSidebar.default, {
+    sidebar: (0, _hydrateUtils.getInnerElement)('websiterdrawercontent_', 'content', {}, props),
     open: state,
-    onClose: onTouchEnd,
-    handler: props.autoHandler,
-    level: null,
-    getContainer: () => props.refinedProperties.container ? document.getElementById(props.refinedProperties.container) || document.body : document.body,
-    onHandleClick: onSwitch
-  }, props.refinedProperties), props.content));
+    onSetOpen: () => setState(),
+    styles: {
+      sidebar: {
+        background: 'white'
+      }
+    }
+  }, (0, _hydrateUtils.getInnerElement)('websiterdrawerhandler_', 'handler', {
+    onClick: onSwitch
+  }, props)));
 };
 
 var _default = Drawer;
