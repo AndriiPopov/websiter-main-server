@@ -20,7 +20,6 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const activeKeys = [];
 
 const MenuElement = props => {
-  console.log(props.elementsPath);
   (0, _react.useEffect)(() => {
     if (!document.getElementById('__menu__popup__container__' + props.element.id)) {
       const container = document.createElement('div');

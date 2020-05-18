@@ -10,7 +10,6 @@ import {
 const activeKeys = []
 
 const MenuElement = props => {
-    console.log(props.elementsPath)
     useEffect(() => {
         if (
             !document.getElementById(
