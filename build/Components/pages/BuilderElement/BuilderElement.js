@@ -252,8 +252,7 @@ const _BuilderElement = props => {
         inEntry: websiterMenuProps.inEntry,
         element: websiterMenuProps.element,
         builtItems,
-        elementPath: props.elementPath,
-        ...getModulePropertiesNodes(Tag)
+        elementPath: props.elementPath
       };
       result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement("script", {
         websiterforprocessing: "websiterMenu",
@@ -261,7 +260,7 @@ const _BuilderElement = props => {
         dangerouslySetInnerHTML: {
           __html: ` websiterMenuProps_${props.elementPath} = ${serialize(refinedWebsiterMenuProps)};`
         }
-      }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({}, refinedWebsiterMenuProps, {
+      }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({}, refinedWebsiterMenuProps, getModulePropertiesNodes(Tag), {
         builtItems: builtItems
       })));
     } else if (Tag === 'websiterDrawer') {
