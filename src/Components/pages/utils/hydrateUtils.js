@@ -3,7 +3,10 @@ import React from 'react'
 export const migrateInnerChildren = (tags, props) => {
     if (props.inEntry && document && document.body) {
         for (let tag of tags) {
+            console.log('migrate')
+            console.log(props.elementsPath)
             const tagPath = tag + props.elementsPath
+            console.log(tagPath)
             const oldDiv = document.querySelector(
                 'div[websiterforprocessing="' + tagPath + '"]'
             )
@@ -29,6 +32,8 @@ export const migrateInnerChildren = (tags, props) => {
 export const returnInnerElements = (tags, props) => {
     if (props.inEntry && document && document.body) {
         for (let tag of tags) {
+            console.log('return')
+            console.log(props.elementsPath)
             const tagPath = tag + props.elementsPath
 
             const newDiv = document.querySelector(
@@ -45,8 +50,10 @@ export const returnInnerElements = (tags, props) => {
     }
 }
 
-export const getInnerElement = (tag, attr, addProps, props) =>
-    props.inEntry ? (
+export const getInnerElement = (tag, attr, addProps, props) => {
+    console.log('get')
+    console.log(props.elementsPath)
+    return props.inEntry ? (
         <div
             websiterforprocessing={tag + props.elementsPath}
             dangerouslySetInnerHTML={{
@@ -64,3 +71,4 @@ export const getInnerElement = (tag, attr, addProps, props) =>
             {props[attr]}
         </div>
     )
+}

@@ -14,7 +14,10 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 const migrateInnerChildren = (tags, props) => {
   if (props.inEntry && document && document.body) {
     for (let tag of tags) {
+      console.log('migrate');
+      console.log(props.elementsPath);
       const tagPath = tag + props.elementsPath;
+      console.log(tagPath);
       const oldDiv = document.querySelector('div[websiterforprocessing="' + tagPath + '"]');
       let newDiv = document.querySelector('div[websiterforprocessing="' + tagPath + '_Temp"]');
 
@@ -37,6 +40,8 @@ exports.migrateInnerChildren = migrateInnerChildren;
 const returnInnerElements = (tags, props) => {
   if (props.inEntry && document && document.body) {
     for (let tag of tags) {
+      console.log('return');
+      console.log(props.elementsPath);
       const tagPath = tag + props.elementsPath;
       const newDiv = document.querySelector('div[websiterforprocessing="' + tagPath + '"]');
       const oldDiv = document.querySelector('div[websiterforprocessing="' + tagPath + '_Temp"]');
@@ -52,13 +57,17 @@ const returnInnerElements = (tags, props) => {
 
 exports.returnInnerElements = returnInnerElements;
 
-const getInnerElement = (tag, attr, addProps, props) => props.inEntry ? /*#__PURE__*/_react.default.createElement("div", _extends({
-  websiterforprocessing: tag + props.elementsPath,
-  dangerouslySetInnerHTML: {
-    __html: document.querySelector('div[websiterForProcessing="' + tag + props.elementsPath + '"]').innerHTML
-  }
-}, addProps ? addProps : {})) : /*#__PURE__*/_react.default.createElement("div", {
-  websiterforprocessing: tag + props.elementsPath
-}, props[attr]);
+const getInnerElement = (tag, attr, addProps, props) => {
+  console.log('get');
+  console.log(props.elementsPath);
+  return props.inEntry ? /*#__PURE__*/_react.default.createElement("div", _extends({
+    websiterforprocessing: tag + props.elementsPath,
+    dangerouslySetInnerHTML: {
+      __html: document.querySelector('div[websiterForProcessing="' + tag + props.elementsPath + '"]').innerHTML
+    }
+  }, addProps ? addProps : {})) : /*#__PURE__*/_react.default.createElement("div", {
+    websiterforprocessing: tag + props.elementsPath
+  }, props[attr]);
+};
 
 exports.getInnerElement = getInnerElement;
