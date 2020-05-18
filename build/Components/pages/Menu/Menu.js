@@ -52,8 +52,6 @@ const MenuElement = props => {
     }
   });
   (0, _hydrateUtils.migrateInnerChildren)(['websitermenuoverflow_'], props);
-  console.log(props);
-  console.log((0, _hydrateUtils.getInnerElement)('websitermenuoverflow_', 'overflowIcon', {}, props));
   return /*#__PURE__*/_react.default.createElement(_MenuModule.default, _extends({}, props.refinedProperties, {
     prefixCls: 'systemclass_menu',
     getPopupContainer: () => document.getElementById('__menu__popup__container__' + props.element.id),
