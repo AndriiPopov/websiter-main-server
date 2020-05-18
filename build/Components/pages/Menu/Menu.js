@@ -53,14 +53,15 @@ const MenuElement = props => {
   });
   (0, _hydrateUtils.migrateInnerChildren)(['websitermenuoverflow_'], props);
   console.log(props);
-  return /*#__PURE__*/_react.default.createElement(_MenuModule.default, _extends({
+  console.log((0, _hydrateUtils.getInnerElement)('websitermenuoverflow_', 'overflowIcon', {}, props));
+  return /*#__PURE__*/_react.default.createElement(_MenuModule.default, _extends({}, props.refinedProperties, {
     prefixCls: 'systemclass_menu',
     getPopupContainer: () => document.getElementById('__menu__popup__container__' + props.element.id),
     selectable: false,
     activeKeys: activeKeys,
     overflowedIndicator: (0, _hydrateUtils.getInnerElement)('websitermenuoverflow_', 'overflowIcon', {}, props),
     inEntry: props.inEntry
-  }, props.refinedProperties), innerItems);
+  }), innerItems);
 };
 
 const SubMenu1 = props => {

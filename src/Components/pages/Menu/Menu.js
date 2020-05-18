@@ -66,8 +66,12 @@ const MenuElement = props => {
     })
     migrateInnerChildren(['websitermenuoverflow_'], props)
     console.log(props)
+    console.log(
+        getInnerElement('websitermenuoverflow_', 'overflowIcon', {}, props)
+    )
     return (
         <Menu
+            {...props.refinedProperties}
             prefixCls={'systemclass_menu'}
             getPopupContainer={() =>
                 document.getElementById(
@@ -83,7 +87,6 @@ const MenuElement = props => {
                 props
             )}
             inEntry={props.inEntry}
-            {...props.refinedProperties}
         >
             {innerItems}
         </Menu>
