@@ -82,7 +82,7 @@ const _BuilderElement = props => {
                             isLocal={props.isLocal}
                             inEntry={props.inEntry}
                             moduleState={props.moduleState}
-                            elementPath={props.elementPath + '_' + index}
+                            elementsPath={props.elementsPath + '_' + index}
                         />
                     ))
             }
@@ -221,8 +221,8 @@ const _BuilderElement = props => {
                                               mD={props.mD}
                                               isLocal={props.isLocal}
                                               inEntry={props.inEntry}
-                                              elementPath={
-                                                  props.elementPath +
+                                              elementsPath={
+                                                  props.elementsPath +
                                                   '_' +
                                                   index
                                               }
@@ -265,8 +265,8 @@ const _BuilderElement = props => {
                                     mD={props.mD}
                                     isLocal={props.isLocal}
                                     inEntry={props.inEntry}
-                                    elementPath={
-                                        props.elementPath + '_' + index
+                                    elementsPath={
+                                        props.elementsPath + '_' + index
                                     }
                                 />
                             )
@@ -285,7 +285,7 @@ const _BuilderElement = props => {
                 pageInStructure: props.pageInStructure,
                 pagesStructure: props.mD.pagesStructure,
                 inEntry: props.inEntry,
-                elementPath: props.elementPath,
+                elementsPath: props.elementsPath,
                 ...getModulePropertiesNodes(Tag),
             }
             const builtItems = buildItemsForMenu(websiterMenuProps)
@@ -314,16 +314,16 @@ const _BuilderElement = props => {
                 inEntry: websiterMenuProps.inEntry,
                 element: websiterMenuProps.element,
                 builtItems,
-                elementPath: props.elementPath,
+                elementsPath: props.elementsPath,
             }
             result = (
                 <div {...attributes}>
                     <script
                         websiterforprocessing="websiterMenu"
-                        websiterpropsforelement={props.elementPath}
+                        websiterpropsforelement={props.elementsPath}
                         dangerouslySetInnerHTML={{
                             __html: ` websiterMenuProps_${
-                                props.elementPath
+                                props.elementsPath
                             } = ${serialize(refinedWebsiterMenuProps)};`,
                         }}
                     />
@@ -339,10 +339,10 @@ const _BuilderElement = props => {
                 <div>
                     <script
                         websiterforprocessing="websiterDrawer"
-                        websiterpropsforelement={props.elementPath}
+                        websiterpropsforelement={props.elementsPath}
                         dangerouslySetInnerHTML={{
                             __html: ` websiterDrawerProps_${
-                                props.elementPath
+                                props.elementsPath
                             } = ${serialize({
                                 refinedProperties: refinedProperties,
                                 parentPluginProps: props.parentPluginProps,
@@ -370,7 +370,7 @@ const _BuilderElement = props => {
                         //         }}
                         //     />
                         // }
-                        elementPath={props.elementPath}
+                        elementsPath={props.elementsPath}
                     />
                 </div>
             )
@@ -473,7 +473,7 @@ const _BuilderElement = props => {
                             mD={props.mD}
                             isLocal={props.isLocal}
                             inEntry={props.inEntry}
-                            elementPath={props.elementPath + '_' + index}
+                            elementsPath={props.elementsPath + '_' + index}
                         />
                     )),
                 ...(props.element.id === 'element_0' && props.renderBodyAndHead

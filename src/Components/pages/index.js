@@ -60,7 +60,7 @@ const Index = props => {
                               pageInStructure={currentPageItemInStructure}
                               parentPluginProps={refinedProperties}
                               mD={mD}
-                              elementPath={'0_' + index}
+                              elementsPath={'0_' + index}
                           />
                       )
                       return result
@@ -90,7 +90,7 @@ const Index = props => {
                                   mD={mD}
                                   renderBodyAndHead
                                   isLocal={props.isLocal}
-                                  elementPath={'1_' + index}
+                                  elementsPath={'1_' + index}
                               />
                           )
                           return result

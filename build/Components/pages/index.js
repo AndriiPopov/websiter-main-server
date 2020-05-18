@@ -51,7 +51,7 @@ const Index = props => {
         pageInStructure: currentPageItemInStructure,
         parentPluginProps: refinedProperties,
         mD: mD,
-        elementPath: '0_' + index
+        elementsPath: '0_' + index
       });
       return result;
     }) : [...mD.structure.filter(itemInn => itemInn.path.length === 1 && itemInn.path[0] === 'element_01').map((itemInn, index) => {
@@ -67,7 +67,7 @@ const Index = props => {
         mD: mD,
         renderBodyAndHead: true,
         isLocal: props.isLocal,
-        elementPath: '1_' + index
+        elementsPath: '1_' + index
       });
       return result;
     })];

@@ -91,7 +91,7 @@ const _BuilderElement = props => {
           isLocal: props.isLocal,
           inEntry: props.inEntry,
           moduleState: props.moduleState,
-          elementPath: props.elementPath + '_' + index
+          elementsPath: props.elementsPath + '_' + index
         }));
       }
 
@@ -184,7 +184,7 @@ const _BuilderElement = props => {
               mD: props.mD,
               isLocal: props.isLocal,
               inEntry: props.inEntry,
-              elementPath: props.elementPath + '_' + index
+              elementsPath: props.elementsPath + '_' + index
             });
           })) : null;
         } else {
@@ -210,7 +210,7 @@ const _BuilderElement = props => {
               mD: props.mD,
               isLocal: props.isLocal,
               inEntry: props.inEntry,
-              elementPath: props.elementPath + '_' + index
+              elementsPath: props.elementsPath + '_' + index
             });
           });
         }
@@ -227,7 +227,7 @@ const _BuilderElement = props => {
         pageInStructure: props.pageInStructure,
         pagesStructure: props.mD.pagesStructure,
         inEntry: props.inEntry,
-        elementPath: props.elementPath,
+        elementsPath: props.elementsPath,
         ...getModulePropertiesNodes(Tag)
       };
       const builtItems = (0, _buildItemsForMenu.default)(websiterMenuProps);
@@ -252,13 +252,13 @@ const _BuilderElement = props => {
         inEntry: websiterMenuProps.inEntry,
         element: websiterMenuProps.element,
         builtItems,
-        elementPath: props.elementPath
+        elementsPath: props.elementsPath
       };
       result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement("script", {
         websiterforprocessing: "websiterMenu",
-        websiterpropsforelement: props.elementPath,
+        websiterpropsforelement: props.elementsPath,
         dangerouslySetInnerHTML: {
-          __html: ` websiterMenuProps_${props.elementPath} = ${serialize(refinedWebsiterMenuProps)};`
+          __html: ` websiterMenuProps_${props.elementsPath} = ${serialize(refinedWebsiterMenuProps)};`
         }
       }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({}, refinedWebsiterMenuProps, getModulePropertiesNodes(Tag), {
         builtItems: builtItems
@@ -266,9 +266,9 @@ const _BuilderElement = props => {
     } else if (Tag === 'websiterDrawer') {
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("script", {
         websiterforprocessing: "websiterDrawer",
-        websiterpropsforelement: props.elementPath,
+        websiterpropsforelement: props.elementsPath,
         dangerouslySetInnerHTML: {
-          __html: ` websiterDrawerProps_${props.elementPath} = ${serialize({
+          __html: ` websiterDrawerProps_${props.elementsPath} = ${serialize({
             refinedProperties: refinedProperties,
             parentPluginProps: props.parentPluginProps,
             childrenForPlugin: props.childrenForPlugin,
@@ -294,7 +294,7 @@ const _BuilderElement = props => {
         //     />
         // }
         ,
-        elementPath: props.elementPath
+        elementsPath: props.elementsPath
       })));
     } //  else if (Tag === 'websiterGallery') {
     //     let items = refinedProperties.items || []
@@ -375,7 +375,7 @@ const _BuilderElement = props => {
           mD: props.mD,
           isLocal: props.isLocal,
           inEntry: props.inEntry,
-          elementPath: props.elementPath + '_' + index
+          elementsPath: props.elementsPath + '_' + index
         })), ...(props.element.id === 'element_0' && props.renderBodyAndHead ? [props.isLocal ? /*#__PURE__*/_react.default.createElement("meta", {
           key: "sys0",
           name: "robots",
