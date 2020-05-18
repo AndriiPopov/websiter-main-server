@@ -315,7 +315,6 @@ const _BuilderElement = props => {
                 element: websiterMenuProps.element,
                 builtItems,
                 elementPath: props.elementPath,
-                ...getModulePropertiesNodes(Tag),
             }
             result = (
                 <div {...attributes}>
@@ -330,6 +329,7 @@ const _BuilderElement = props => {
                     />
                     <Menu
                         {...refinedWebsiterMenuProps}
+                        {...getModulePropertiesNodes(Tag)}
                         builtItems={builtItems}
                     />
                 </div>
