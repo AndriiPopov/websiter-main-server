@@ -33,6 +33,8 @@ var _refineProperties = _interopRequireDefault(require("./methods/refineProperti
 
 var _modulesIndex = require("../utils/modulesIndex");
 
+var _buildItemsForMenu = _interopRequireDefault(require("../Menu/methods/buildItemsForMenu"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -216,32 +218,51 @@ const _BuilderElement = props => {
     }
   } else {
     if (Tag === 'websiterMenu') {
-      result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement("script", {
-        websiterforprocessing: "websiterMenu",
-        websiterpropsforelement: props.elementPath,
-        dangerouslySetInnerHTML: {
-          __html: ` websiterMenuProps_${props.elementPath} = ${serialize({
-            elementValues: elementValues,
-            refinedProperties: refinedProperties,
-            parentPluginProps: props.parentPluginProps,
-            childrenForPlugin: props.childrenForPlugin,
-            pageInStructure: props.pageInStructure,
-            pagesStructure: props.mD.pagesStructure,
-            inEntry: props.inEntry,
-            element: props.element
-          })};`
-        }
-      }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({
+      const websiterMenuProps = {
         element: props.element,
         elementValues: elementValues,
         refinedProperties: refinedProperties,
         parentPluginProps: props.parentPluginProps,
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure,
-        pagesStructure: props.mD.pagesStructure
-      }, getModulePropertiesNodes(Tag), {
+        pagesStructure: props.mD.pagesStructure,
         inEntry: props.inEntry,
-        elementPath: props.elementPath
+        elementPath: props.elementPath,
+        ...getModulePropertiesNodes(Tag)
+      };
+      const builtItems = (0, _buildItemsForMenu.default)(websiterMenuProps);
+      const refinedWebsiterMenuProps = {
+        refinedProperties: {
+          triggerSubMenuAction: refinedProperties.trigger,
+          subMenuOpenDelay: refinedProperties.subMenuOpenDelay,
+          subMenuCloseDelay: refinedProperties.subMenuCloseDelay,
+          className: refinedProperties.className,
+          mode: refinedProperties.mode,
+          style: refinedProperties.style,
+          builtinPlacements: refinedProperties.builtinPlacements,
+          overflowedIndicator: refinedProperties.overflowedIndicator,
+          topMenuBlockClasses: refinedProperties.topMenuBlockClasses,
+          topMenuItemClasses: refinedProperties.topMenuItemClasses,
+          topMenuItemActiveClasses: refinedProperties.topMenuItemActiveClasses,
+          popupMenuBlockClasses: refinedProperties.popupMenuBlockClasses,
+          popupMenuItemClasses: refinedProperties.popupMenuItemClasses,
+          popupMenuItemActiveClasses: refinedProperties.popupMenuItemActiveClasses
+        },
+        pageInStructure: websiterMenuProps.pageInStructure,
+        inEntry: websiterMenuProps.inEntry,
+        element: websiterMenuProps.element,
+        builtItems,
+        elementPath: props.elementPath,
+        ...getModulePropertiesNodes(Tag)
+      };
+      result = /*#__PURE__*/_react.default.createElement("div", attributes, /*#__PURE__*/_react.default.createElement("script", {
+        websiterforprocessing: "websiterMenu",
+        websiterpropsforelement: props.elementPath,
+        dangerouslySetInnerHTML: {
+          __html: ` websiterMenuProps_${props.elementPath} = ${serialize(refinedWebsiterMenuProps)};`
+        }
+      }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({}, refinedWebsiterMenuProps, {
+        builtItems: builtItems
       })));
     } else if (Tag === 'websiterDrawer') {
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("script", {

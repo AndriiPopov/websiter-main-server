@@ -74,7 +74,6 @@ const MenuElement = props => {
                 )
             }
             selectable={false}
-            triggerSubMenuAction={props.refinedProperties.trigger}
             activeKeys={activeKeys}
             overflowedIndicator={getInnerElement(
                 'websitermenuoverflow_',
@@ -82,8 +81,8 @@ const MenuElement = props => {
                 {},
                 props
             )}
-            {...props.refinedProperties}
             inEntry={props.inEntry}
+            {...props.refinedProperties}
         >
             {innerItems}
         </Menu>

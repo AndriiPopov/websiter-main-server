@@ -289,6 +289,34 @@ const _BuilderElement = props => {
                 ...getModulePropertiesNodes(Tag),
             }
             const builtItems = buildItemsForMenu(websiterMenuProps)
+            const refinedWebsiterMenuProps = {
+                refinedProperties: {
+                    triggerSubMenuAction: refinedProperties.trigger,
+                    subMenuOpenDelay: refinedProperties.subMenuOpenDelay,
+                    subMenuCloseDelay: refinedProperties.subMenuCloseDelay,
+                    className: refinedProperties.className,
+                    mode: refinedProperties.mode,
+                    style: refinedProperties.style,
+                    builtinPlacements: refinedProperties.builtinPlacements,
+                    overflowedIndicator: refinedProperties.overflowedIndicator,
+                    topMenuBlockClasses: refinedProperties.topMenuBlockClasses,
+                    topMenuItemClasses: refinedProperties.topMenuItemClasses,
+                    topMenuItemActiveClasses:
+                        refinedProperties.topMenuItemActiveClasses,
+                    popupMenuBlockClasses:
+                        refinedProperties.popupMenuBlockClasses,
+                    popupMenuItemClasses:
+                        refinedProperties.popupMenuItemClasses,
+                    popupMenuItemActiveClasses:
+                        refinedProperties.popupMenuItemActiveClasses,
+                },
+                pageInStructure: websiterMenuProps.pageInStructure,
+                inEntry: websiterMenuProps.inEntry,
+                element: websiterMenuProps.element,
+                builtItems,
+                elementPath: props.elementPath,
+                ...getModulePropertiesNodes(Tag),
+            }
             result = (
                 <div {...attributes}>
                     <script
@@ -297,20 +325,13 @@ const _BuilderElement = props => {
                         dangerouslySetInnerHTML={{
                             __html: ` websiterMenuProps_${
                                 props.elementPath
-                            } = ${serialize({
-                                elementValues: elementValues,
-                                refinedProperties: refinedProperties,
-                                parentPluginProps: props.parentPluginProps,
-                                childrenForPlugin: props.childrenForPlugin,
-                                pageInStructure: props.pageInStructure,
-                                pagesStructure: props.mD.pagesStructure,
-                                inEntry: props.inEntry,
-                                element: props.element,
-                                builtItems,
-                            })};`,
+                            } = ${serialize(refinedWebsiterMenuProps)};`,
                         }}
                     />
-                    <Menu {...websiterMenuProps} builtItems={builtItems} />
+                    <Menu
+                        {...refinedWebsiterMenuProps}
+                        builtItems={builtItems}
+                    />
                 </div>
             )
         } else if (Tag === 'websiterDrawer') {

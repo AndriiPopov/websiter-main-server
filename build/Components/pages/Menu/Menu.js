@@ -9,11 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _MenuModule = _interopRequireWildcard(require("./MenuModule"));
 
-var _buildItemsForMenu = _interopRequireDefault(require("./methods/buildItemsForMenu"));
-
 var _hydrateUtils = require("../utils/hydrateUtils");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -34,7 +30,7 @@ const MenuElement = props => {
 
     (0, _hydrateUtils.returnInnerElements)(['websitermenuoverflow_'], props);
   });
-  const builtItems = (0, _buildItemsForMenu.default)(props);
+  const builtItems = props.builtItems;
   activeKeys.length = 0;
   const innerItems = builtItems.map((item, index) => {
     const key = item.id + '_' + index;
@@ -60,12 +56,10 @@ const MenuElement = props => {
     prefixCls: 'systemclass_menu',
     getPopupContainer: () => document.getElementById('__menu__popup__container__' + props.element.id),
     selectable: false,
-    triggerSubMenuAction: props.refinedProperties.trigger,
     activeKeys: activeKeys,
-    overflowedIndicator: (0, _hydrateUtils.getInnerElement)('websitermenuoverflow_', 'overflowIcon', {}, props)
-  }, props.refinedProperties, {
+    overflowedIndicator: (0, _hydrateUtils.getInnerElement)('websitermenuoverflow_', 'overflowIcon', {}, props),
     inEntry: props.inEntry
-  }), innerItems);
+  }, props.refinedProperties), innerItems);
 };
 
 const SubMenu1 = props => {

@@ -20,7 +20,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 const Drawer = props => {
   const [state, setState] = (0, _react.useState)();
   const innerElements = ['websiterdrawercontent_', 'websiterdrawerhandler_'];
-  (0, _hydrateUtils.migrateInnerChildren)(innerElements, props);
+
+  const onTouchEnd = () => {
+    setState(false);
+  };
 
   const onSwitch = () => {
     setState(!state);
@@ -29,6 +32,7 @@ const Drawer = props => {
   (0, _react.useEffect)(() => {
     (0, _hydrateUtils.returnInnerElements)(innerElements, props);
   });
+  (0, _hydrateUtils.migrateInnerChildren)(innerElements, props);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactSidebar.default, {
     sidebar: (0, _hydrateUtils.getInnerElement)('websiterdrawercontent_', 'content', {}, props),
     open: state,
