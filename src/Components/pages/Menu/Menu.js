@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 // import Menu, { SubMenu, MenuItem } from './MenuModule/index'
 import Menu, { SubMenu, MenuItem } from './MenuModule'
-import buildItemsForMenu from './methods/buildItemsForMenu'
 import {
     migrateInnerChildren,
     returnInnerElements,
@@ -31,7 +30,7 @@ const MenuElement = props => {
 
         returnInnerElements(['websitermenuoverflow_'], props)
     })
-    const builtItems = buildItemsForMenu(props)
+    const builtItems = props.builtItems
 
     activeKeys.length = 0
     const innerItems = builtItems.map((item, index) => {

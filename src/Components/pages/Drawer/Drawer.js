@@ -8,10 +8,10 @@ import {
 
 const Drawer = props => {
     const [state, setState] = useState()
-
     const innerElements = ['websiterdrawercontent_', 'websiterdrawerhandler_']
-    migrateInnerChildren(innerElements, props)
-
+    const onTouchEnd = () => {
+        setState(false)
+    }
     const onSwitch = () => {
         setState(!state)
     }
@@ -19,6 +19,8 @@ const Drawer = props => {
     useEffect(() => {
         returnInnerElements(innerElements, props)
     })
+
+    migrateInnerChildren(innerElements, props)
 
     return (
         <>

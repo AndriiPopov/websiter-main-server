@@ -16,6 +16,8 @@ import { checkIfCapital, getInheritedPropertyName } from '../utils/basic'
 import { setBoxProperties } from './methods/useEffect'
 import refineProperties from './methods/refineProperties'
 import { modulesPropertyNodes } from '../utils/modulesIndex'
+import buildItemsForMenu from '../Menu/methods/buildItemsForMenu'
+
 const entities = new Entities()
 var serialize = require('serialize-javascript')
 
@@ -274,6 +276,19 @@ const _BuilderElement = props => {
         }
     } else {
         if (Tag === 'websiterMenu') {
+            const websiterMenuProps = {
+                element: props.element,
+                elementValues: elementValues,
+                refinedProperties: refinedProperties,
+                parentPluginProps: props.parentPluginProps,
+                childrenForPlugin: props.childrenForPlugin,
+                pageInStructure: props.pageInStructure,
+                pagesStructure: props.mD.pagesStructure,
+                inEntry: props.inEntry,
+                elementPath: props.elementPath,
+                ...getModulePropertiesNodes(Tag),
+            }
+            const builtItems = buildItemsForMenu(websiterMenuProps)
             result = (
                 <div {...attributes}>
                     <script
@@ -291,21 +306,11 @@ const _BuilderElement = props => {
                                 pagesStructure: props.mD.pagesStructure,
                                 inEntry: props.inEntry,
                                 element: props.element,
+                                builtItems,
                             })};`,
                         }}
                     />
-                    <Menu
-                        element={props.element}
-                        elementValues={elementValues}
-                        refinedProperties={refinedProperties}
-                        parentPluginProps={props.parentPluginProps}
-                        childrenForPlugin={props.childrenForPlugin}
-                        pageInStructure={props.pageInStructure}
-                        pagesStructure={props.mD.pagesStructure}
-                        {...getModulePropertiesNodes(Tag)}
-                        inEntry={props.inEntry}
-                        elementPath={props.elementPath}
-                    />
+                    <Menu {...websiterMenuProps} builtItems={builtItems} />
                 </div>
             )
         } else if (Tag === 'websiterDrawer') {

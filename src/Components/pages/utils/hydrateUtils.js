@@ -60,10 +60,7 @@ export const getInnerElement = (tag, attr, addProps, props) =>
             {...(addProps ? addProps : {})}
         />
     ) : (
-        <div
-            websiterforprocessing={tag + props.elementsPath}
-            {...(addProps ? addProps : {})}
-        >
+        <div websiterforprocessing={tag + props.elementsPath}>
             {props[attr]}
         </div>
     )
