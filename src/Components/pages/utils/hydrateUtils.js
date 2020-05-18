@@ -51,6 +51,10 @@ export const getInnerElement = (tag, attr, addProps, props) => {
         const element = document.querySelector(
             'div[websiterforprocessing="' + tag + props.elementsPath + '"]'
         )
+        console.log(
+            'div[websiterforprocessing="' + tag + props.elementsPath + '"]'
+        )
+        console.log(element)
         if (element)
             return (
                 <div

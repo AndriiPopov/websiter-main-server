@@ -62,6 +62,8 @@ exports.returnInnerElements = returnInnerElements;
 const getInnerElement = (tag, attr, addProps, props) => {
   if (props.inEntry) {
     const element = document.querySelector('div[websiterforprocessing="' + tag + props.elementsPath + '"]');
+    console.log('div[websiterforprocessing="' + tag + props.elementsPath + '"]');
+    console.log(element);
     if (element) return /*#__PURE__*/_react.default.createElement("div", _extends({
       websiterforprocessing: tag + props.elementsPath,
       dangerouslySetInnerHTML: {
