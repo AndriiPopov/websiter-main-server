@@ -52,6 +52,7 @@ const MenuElement = props => {
     }
   });
   (0, _hydrateUtils.migrateInnerChildren)(['websitermenuoverflow_'], props);
+  console.log(props);
   return /*#__PURE__*/_react.default.createElement(_MenuModule.default, _extends({
     prefixCls: 'systemclass_menu',
     getPopupContainer: () => document.getElementById('__menu__popup__container__' + props.element.id),

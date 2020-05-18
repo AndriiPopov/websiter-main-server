@@ -65,6 +65,7 @@ const MenuElement = props => {
         }
     })
     migrateInnerChildren(['websitermenuoverflow_'], props)
+    console.log(props)
     return (
         <Menu
             prefixCls={'systemclass_menu'}
