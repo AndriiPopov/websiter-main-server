@@ -65,7 +65,7 @@ const getInnerElement = (tag, attr, addProps, props) => {
 
   if (props.inEntry) {
     const element = document.querySelector('div[websiterforprocessing="' + tag + props.elementsPath + '"]');
-    return /*#__PURE__*/_react.default.createElement("div", _extends({
+    if (element) return /*#__PURE__*/_react.default.createElement("div", _extends({
       websiterforprocessing: tag + props.elementsPath,
       dangerouslySetInnerHTML: {
         __html: element.innerHTML
@@ -76,6 +76,8 @@ const getInnerElement = (tag, attr, addProps, props) => {
       websiterforprocessing: tag + props.elementsPath
     }, props[attr]);
   }
+
+  return null;
 };
 
 exports.getInnerElement = getInnerElement;
