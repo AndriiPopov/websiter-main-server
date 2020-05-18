@@ -10,6 +10,7 @@ export const migrateInnerChildren = (tags, props) => {
             const oldDiv = document.querySelector(
                 'div[websiterforprocessing="' + tagPath + '"]'
             )
+            if (!oldDiv) return
             let newDiv = document.querySelector(
                 'div[websiterforprocessing="' + tagPath + '_Temp"]'
             )
@@ -42,6 +43,7 @@ export const returnInnerElements = (tags, props) => {
             const oldDiv = document.querySelector(
                 'div[websiterforprocessing="' + tagPath + '_Temp"]'
             )
+            if (!oldDiv || !newDiv) return
             while (oldDiv.childNodes.length > 0) {
                 newDiv.appendChild(oldDiv.childNodes[0])
             }
