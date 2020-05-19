@@ -38,7 +38,7 @@ const MenuElement = props => {
         if (item.children.length === 0) {
             if (
                 item.url === props.pageInStructure.relUrl ||
-                (item.url === '' && props.pageInStructure.homepage)
+                (item.url === '/' && props.pageInStructure.homepage)
             )
                 activeKeys.push(key)
             return (
@@ -99,7 +99,7 @@ const SubMenu1 = props => {
                 if (item.children.length === 0) {
                     if (
                         item.url === props.pageInStructure.relUrl ||
-                        (item.url === '' && props.pageInStructure.homepage)
+                        (item.url === '/' && props.pageInStructure.homepage)
                     )
                         activeKeys.push(key)
                     return (
