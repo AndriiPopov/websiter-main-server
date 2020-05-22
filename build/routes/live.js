@@ -35,6 +35,7 @@ const sendmail = require('sendmail')({
 });
 
 router.post('/api/sendmail', (req, res, next) => {
+  console.log('we are posting');
   sendmail({
     from: 'no-reply@websiter.dev',
     to: req.body.to,

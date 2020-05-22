@@ -77,6 +77,7 @@ module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
     //app.use(cors({ origin: 'https://live.websiter.dev' }))
     // app.use(express.json())
 
+    console.log('we are posting start');
     next();
   });
   myApp.use(express.json());
