@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.modulesPropertyNodes = exports.allModules = void 0;
-const allModules = ['websiterMenu', 'parseHTML', 'websiterGallery', 'websiterDrawer'];
+const allModules = ['websiterMenu', 'parseHTML', 'websiterGallery', 'websiterDrawer', 'websiterBasicForm'];
 exports.allModules = allModules;
 const modulesPropertyNodes = {
   websiterMenu: [{

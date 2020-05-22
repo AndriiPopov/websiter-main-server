@@ -8,6 +8,8 @@ var _Drawer = _interopRequireDefault(require("../pages/Drawer/Drawer"));
 
 var _Menu = _interopRequireDefault(require("../pages/Menu/Menu"));
 
+var _BasicForm = _interopRequireDefault(require("../pages/BasicForm/BasicForm"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -43,6 +45,12 @@ for (let script of scriptsForHydrate) {
 
     case 'websiterMenu':
       (0, _reactDom.hydrate)( /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({}, window['websiterMenuProps_' + scriptDom.getAttribute('websiterpropsforelement')], {
+        inEntry: true
+      })), scriptDom.parentNode);
+      break;
+
+    case 'websiterBasicForm':
+      (0, _reactDom.hydrate)( /*#__PURE__*/_react.default.createElement(_BasicForm.default, _extends({}, window['websiterBasicFormProps_' + scriptDom.getAttribute('websiterpropsforelement')], {
         inEntry: true
       })), scriptDom.parentNode);
       break;

@@ -17,6 +17,7 @@ import { setBoxProperties } from './methods/useEffect'
 import refineProperties from './methods/refineProperties'
 import { modulesPropertyNodes } from '../utils/modulesIndex'
 import buildItemsForMenu from '../Menu/methods/buildItemsForMenu'
+import BasicForm from '../BasicForm/BasicForm'
 
 const entities = new Entities()
 var serialize = require('serialize-javascript')
@@ -334,6 +335,30 @@ const _BuilderElement = props => {
                     />
                 </div>
             )
+        } else if (Tag === 'websiterBasicForm') {
+            return (
+                <div>
+                    <script
+                        websiterforprocessing="websiterBasicForm"
+                        websiterpropsforelement={props.elementsPath}
+                        dangerouslySetInnerHTML={{
+                            __html: ` websiterBasicFormProps_${
+                                props.elementsPath
+                            } = ${serialize({
+                                refinedProperties: refinedProperties,
+                                inEntry: props.inEntry,
+                                elementsPath: props.elementsPath,
+                            })};`,
+                        }}
+                    />
+                    <BasicForm
+                        refinedProperties={refinedProperties}
+                        {...getModulePropertiesNodes(Tag)}
+                        inEntry={props.inEntry}
+                        elementsPath={props.elementsPath}
+                    />
+                </div>
+            )
         } else if (Tag === 'websiterDrawer') {
             return (
                 <div>
@@ -362,15 +387,6 @@ const _BuilderElement = props => {
                         pageInStructure={props.pageInStructure}
                         {...getModulePropertiesNodes(Tag)}
                         inEntry={props.inEntry}
-                        // handler={
-                        //     <div
-                        //         style={{
-                        //             width: '200px',
-                        //             height: '300px',
-                        //             background: 'orange',
-                        //         }}
-                        //     />
-                        // }
                         elementsPath={props.elementsPath}
                     />
                 </div>

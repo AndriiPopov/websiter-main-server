@@ -4,6 +4,7 @@ import { hydrate } from 'react-dom'
 
 import Drawer from '../pages/Drawer/Drawer'
 import Menu from '../pages/Menu/Menu'
+import BasicForm from '../pages/BasicForm/BasicForm'
 
 const getDepth = script => {
     let i = 0
@@ -46,6 +47,19 @@ for (let script of scriptsForHydrate) {
                 <Menu
                     {...window[
                         'websiterMenuProps_' +
+                            scriptDom.getAttribute('websiterpropsforelement')
+                    ]}
+                    inEntry={true}
+                />,
+                scriptDom.parentNode
+            )
+            break
+
+        case 'websiterBasicForm':
+            hydrate(
+                <BasicForm
+                    {...window[
+                        'websiterBasicFormProps_' +
                             scriptDom.getAttribute('websiterpropsforelement')
                     ]}
                     inEntry={true}

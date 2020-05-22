@@ -8,6 +8,8 @@ const users = require('../routes/users');
 
 const auth = require('../routes/auth');
 
+const sendMail = require('../routes/sendMail');
+
 const live = require('../routes/live');
 
 const tryWebsiter = require('../routes/tryWebsiter');
@@ -88,6 +90,7 @@ module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
   apiApp.use('/api/users', users);
   apiApp.use('/api/sign-s3', awsSignS3);
   apiApp.use('/api/auth', auth);
+  apiApp.use('/api/sendmail', sendMail);
   liveApp.use(express.json());
   liveApp.use(express.static('./public'));
   liveApp.set('etag', 'strong');

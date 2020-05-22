@@ -3,6 +3,7 @@ export const allModules = [
     'parseHTML',
     'websiterGallery',
     'websiterDrawer',
+    'websiterBasicForm',
 ]
 export const modulesPropertyNodes = {
     websiterMenu: [

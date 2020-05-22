@@ -35,6 +35,8 @@ var _modulesIndex = require("../utils/modulesIndex");
 
 var _buildItemsForMenu = _interopRequireDefault(require("../Menu/methods/buildItemsForMenu"));
 
+var _BasicForm = _interopRequireDefault(require("../BasicForm/BasicForm"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -263,6 +265,23 @@ const _BuilderElement = props => {
       }), /*#__PURE__*/_react.default.createElement(_Menu.default, _extends({}, refinedWebsiterMenuProps, getModulePropertiesNodes(Tag), {
         builtItems: builtItems
       })));
+    } else if (Tag === 'websiterBasicForm') {
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("script", {
+        websiterforprocessing: "websiterBasicForm",
+        websiterpropsforelement: props.elementsPath,
+        dangerouslySetInnerHTML: {
+          __html: ` websiterBasicFormProps_${props.elementsPath} = ${serialize({
+            refinedProperties: refinedProperties,
+            inEntry: props.inEntry,
+            elementsPath: props.elementsPath
+          })};`
+        }
+      }), /*#__PURE__*/_react.default.createElement(_BasicForm.default, _extends({
+        refinedProperties: refinedProperties
+      }, getModulePropertiesNodes(Tag), {
+        inEntry: props.inEntry,
+        elementsPath: props.elementsPath
+      })));
     } else if (Tag === 'websiterDrawer') {
       return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("script", {
         websiterforprocessing: "websiterDrawer",
@@ -285,16 +304,7 @@ const _BuilderElement = props => {
         childrenForPlugin: props.childrenForPlugin,
         pageInStructure: props.pageInStructure
       }, getModulePropertiesNodes(Tag), {
-        inEntry: props.inEntry // handler={
-        //     <div
-        //         style={{
-        //             width: '200px',
-        //             height: '300px',
-        //             background: 'orange',
-        //         }}
-        //     />
-        // }
-        ,
+        inEntry: props.inEntry,
         elementsPath: props.elementsPath
       })));
     } //  else if (Tag === 'websiterGallery') {

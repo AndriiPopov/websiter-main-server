@@ -106,11 +106,13 @@ function buildTree(items) {
 }
 
 const getInheritedPropertyName = value => {
-  const length = value.length;
+  if (typeof value === 'string') {
+    const length = value.length;
 
-  if (length > 2) {
-    if (value.charAt(0) === '$' && value.charAt(length - 1) === '$') {
-      return value.substr(1, length - 2);
+    if (length > 2) {
+      if (value.charAt(0) === '$' && value.charAt(length - 1) === '$') {
+        return value.substr(1, length - 2);
+      }
     }
   }
 
