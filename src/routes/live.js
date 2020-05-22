@@ -10,8 +10,8 @@ const https = require('https')
 const path = require('path')
 const fs = require('fs')
 const pemFile = path.resolve(__dirname, 'ssl/dkim-private.pem')
-var sendmailTransport = require('nodemailer-sendmail-transport')
-var client = sendmailTransport()
+// var sendmailTransport = require('nodemailer-sendmail-transport')
+// var client = sendmailTransport()
 // let transporter = nodemailer.createTransport({
 //     sendmail: true,
 //     // host: 'websiter.dev',
@@ -24,7 +24,7 @@ var client = sendmailTransport()
 //     // },
 // })
 
-var transport = nodemailer.createTransport(client)
+// var transport = nodemailer.createTransport(client)
 
 // const sendmail = require('sendmail')({
 //     silent: true,
@@ -34,19 +34,19 @@ var transport = nodemailer.createTransport(client)
 //     },
 // })
 router.post('/api/sendmail', async (req, res, next) => {
-    console.log('we are posting')
-    let info = await transport.sendMail({
-        // envelope: {
-        //     from: 'bounce@websiter.dev',
-        //     to: req.body.to,
-        // },
-        from: 'no-reply@websiter.dev',
-        to: req.body.to,
-        replyTo: 'no-reply@websiter.dev',
-        subject: 'New message from a contact form on Websiter.dev.',
-        html: req.body.html,
-    })
-    console.log(info)
+    // console.log('we are posting')
+    // let info = await transport.sendMail({
+    //     // envelope: {
+    //     //     from: 'bounce@websiter.dev',
+    //     //     to: req.body.to,
+    //     // },
+    //     from: 'no-reply@websiter.dev',
+    //     to: req.body.to,
+    //     replyTo: 'no-reply@websiter.dev',
+    //     subject: 'New message from a contact form on Websiter.dev.',
+    //     html: req.body.html,
+    // })
+    // console.log(info)
     // client.send({
     //     data: {
     //         envelope: {
@@ -54,7 +54,6 @@ router.post('/api/sendmail', async (req, res, next) => {
     //             to: req.body.to,
     //         },
     //     },
-
     //     message: {
     //         from: 'no-reply@websiter.dev',
     //         to: req.body.to,

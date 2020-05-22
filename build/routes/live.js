@@ -26,11 +26,9 @@ const path = require('path');
 
 const fs = require('fs');
 
-const pemFile = path.resolve(__dirname, 'ssl/dkim-private.pem');
-
-var sendmailTransport = require('nodemailer-sendmail-transport');
-
-var client = sendmailTransport(); // let transporter = nodemailer.createTransport({
+const pemFile = path.resolve(__dirname, 'ssl/dkim-private.pem'); // var sendmailTransport = require('nodemailer-sendmail-transport')
+// var client = sendmailTransport()
+// let transporter = nodemailer.createTransport({
 //     sendmail: true,
 //     // host: 'websiter.dev',
 //     // secure: true,
@@ -41,8 +39,8 @@ var client = sendmailTransport(); // let transporter = nodemailer.createTranspor
 //     //         '-----BEGIN RSA PRIVATE KEY-----MIIEpAIBAAKCAQEAq8B7yA+vAYVhQC5sj/UX4KeZFZDFKRkFYDru4yCjCHxsBFTY+CuVhnbyf88NY7YPRGKUffnp5yCeqOlIQWsSxSuRRkReyTAjxw0NNRUTWuWsCb5DH3CE2b1XIYUQP7lclweJqw0CQk5eKiM3/QpVrAeuPIWYAWO5SXP6FeuOrHK4txiaaOhOXyJL7kyGB7RQz909BgohXWQaBM2ev99hNYUlsiBfZQDQyb/r6oLoirT0uywkSHKmu7ZjSxzI3DsBaFeBqnQbm5ed1mHmQczdNt2uoyIM2bj7PcdZ6BBhcqZ5WTtYXv0JC9pW9gWpS/i3jmWtsGiD3cqCz/FfTJs/vQIDAQABAoIBAHh9GFlJZ2SRxZ/Y8aAsOQwJh4NxhF9IhlT0AxKjmrwhTUXcoDm5mbQzTfwLrUD+P8ehwLp/0G+smqG0xlPeYdSgs9GvtS8+7lp99X3/wwxJg19ycnRj4089XRrO1o9d4m6xgwrUnXkWsUiuXGDQFzoQSVN8BR80bo/xJMir7/NZgTxkHNILR6YA3RB3eFKZi7oYDOTB/t99Y4g71EbvMFSTDs90xap9z/GBKxH/MHhIZwjE6YJR2xiVFHRAEUB7Z37u7QFq9eW1SDldQrXKQzMMTjAMUQ4cZVKa4jyczFXLTLtwUIZhftb8XFu/AcUwsolHqUu9Wei+Gbf9uxbZoqECgYEA3gRYqLwj/WhNxQ+2yfzg1NkBhuJlYBy3DslrI/WAmfUvk42xzr+Nxfh3/2Zc/wCjBoo3Ngy0/v45Zh/OstUmRajnGPyk65No8KuWw8xTo/HcmzirYLmKLREyjnVfht/0Ej/027FIeqiywkEjh7n7t2I2vgrEvZCD6qdv1ytf5YsCgYEAxgqEpd6ctNOubH3O1jkkefCDBy8v2UENmb6eJRIRfzN8h2SZ7F5WEw/nrmcjAMt1C/w88ngrba87nQiftNPUDeAwPgDAlKfE8Cub+7t4df/UH4IDj97k4tk8hi7xe7jrI5NYU9aKswuPtVuB4h1mfBXxcx/3wUdlURM3b7GTaNcCgYEApm+Hr2brbAsHUhWHqECko6vS0zVhXf3o1XL1mM1wjPobonf0tdMwCxtLifFJAfmOPVbcMO6xuP8INKDfqXzU5h/Krxam49tsLg/URBAnG54zDUIcZ7Rv+30K83TWGhxFsnCztQZgGWPiLnH6msM4Cq/b7ffQqXNvEThYRWvExiUCgYEAnnI34sWStxJNkTuuyrJ5Pp5xFsRoEff8O6/Is3wbR5wX2/NfOz/WufWVtXGLDc26XdZ3pL8EcAMtPNxzeqeoF1nw/wp3CfiYllctu2AoZrBCNNs+olMA6YZI6EqSphwy9QmkN5+E5O8xETafWhuPrWOZBDTlclv+8bjgN5rph40CgYBz7PdvwAcuynzy7Pr6fjeaF/1qcTtAaANXOVeVVyBIyaYFPJ098tPXPQpKrU7mlY5rmkjxIqlQrObnEXPL1wP/OqUF6MQnVDbQW/D7rOBm+VPwgSUnkK5948YmXu5VTSulzE6wD/R9AY81qG8YRA3AMdYAkrpmKAv9f2A5YwhXPA==-----END RSA PRIVATE KEY-----',
 //     // },
 // })
-
-var transport = nodemailer.createTransport(client); // const sendmail = require('sendmail')({
+// var transport = nodemailer.createTransport(client)
+// const sendmail = require('sendmail')({
 //     silent: true,
 //     dkim: {
 //         privateKey: fs.readFileSync(pemFile, 'utf8'),
@@ -50,20 +48,20 @@ var transport = nodemailer.createTransport(client); // const sendmail = require(
 //     },
 // })
 
-router.post('/api/sendmail', async (req, res, next) => {
-  console.log('we are posting');
-  let info = await transport.sendMail({
-    // envelope: {
-    //     from: 'bounce@websiter.dev',
-    //     to: req.body.to,
-    // },
-    from: 'no-reply@websiter.dev',
-    to: req.body.to,
-    replyTo: 'no-reply@websiter.dev',
-    subject: 'New message from a contact form on Websiter.dev.',
-    html: req.body.html
-  });
-  console.log(info); // client.send({
+router.post('/api/sendmail', async (req, res, next) => {// console.log('we are posting')
+  // let info = await transport.sendMail({
+  //     // envelope: {
+  //     //     from: 'bounce@websiter.dev',
+  //     //     to: req.body.to,
+  //     // },
+  //     from: 'no-reply@websiter.dev',
+  //     to: req.body.to,
+  //     replyTo: 'no-reply@websiter.dev',
+  //     subject: 'New message from a contact form on Websiter.dev.',
+  //     html: req.body.html,
+  // })
+  // console.log(info)
+  // client.send({
   //     data: {
   //         envelope: {
   //             from: 'bounce@websiter.dev',
