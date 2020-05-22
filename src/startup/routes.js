@@ -93,7 +93,7 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
     liveApp.use(express.json())
     liveApp.use(express.static('./public'))
     liveApp.set('etag', 'strong')
-    liveApp.use('*', live)
+    liveApp.all('*', live)
 
     logisionApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
