@@ -24,7 +24,7 @@ var client = sendmailTransport()
 //     // },
 // })
 
-var transport = nodemailer.createTransport('sendmail')
+var transport = nodemailer.createTransport({ sendmail: true })
 
 // const sendmail = require('sendmail')({
 //     silent: true,
