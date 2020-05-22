@@ -101,7 +101,6 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         const link = redirectIndex.find(item => item.old === req.originalUrl)
         res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''))
         return
-        // next()
     })
 
     app.use(error)

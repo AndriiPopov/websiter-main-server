@@ -22,6 +22,37 @@ const https = require('https');
 
 const path = require('path');
 
+const fs = require('fs');
+
+const pemFile = path.resolve(__dirname, 'ssl/dkim-private.pem');
+
+const sendmail = require('sendmail')({
+  silent: true,
+  dkim: {
+    privateKey: fs.readFileSync(pemFile, 'utf8'),
+    keySelector: 'dkim'
+  }
+});
+
+router.post('/api/sendmail', (req, res, next) => {
+  sendmail({
+    from: 'no-reply@websiter.dev',
+    to: req.body.to,
+    replyTo: 'no-reply@websiter.dev',
+    subject: 'New message from a contact form on Websiter.dev.',
+    html: req.body.html
+  }, function (err, reply) {
+    if (err) {
+      res.send({
+        success: false
+      });
+    } else {
+      res.send({
+        success: true
+      });
+    }
+  });
+});
 router.get('/', async (req, res, next) => {
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const websiteAndPageData = await getWebsiteAndPage(fullUrl, res);
