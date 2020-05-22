@@ -11,7 +11,7 @@
         "webpack": "webpack -wd",
         "dev": "nodemon --exec babel-node src/index.js",
         "clean": "rm -rf build && mkdir build",
-        "build-server": "babel src -d ./build",
+        "build-server": "babel src -d ./build --copy-files",
         "build-app": "webpack --mode production && npm run clean &&  npm run build-server"
     },
     "engines": {
