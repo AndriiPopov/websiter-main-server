@@ -33,10 +33,10 @@ let transporter = nodemailer.createTransport({
 router.post('/api/sendmail', async (req, res, next) => {
     console.log('we are posting')
     let info = await transporter.sendMail({
-        envelope: {
-            from: 'bounce@websiter.dev',
-            to: req.body.to,
-        },
+        // envelope: {
+        //     from: 'bounce@websiter.dev',
+        //     to: req.body.to,
+        // },
         from: 'no-reply@websiter.dev',
         to: req.body.to,
         replyTo: 'no-reply@websiter.dev',
