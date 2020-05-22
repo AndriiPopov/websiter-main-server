@@ -35,7 +35,7 @@ var transport = nodemailer.createTransport({ sendmail: true })
 // })
 router.post('/api/sendmail', async (req, res, next) => {
     console.log('we are posting')
-    let info = await transporter.sendMail({
+    let info = await transport.sendMail({
         // envelope: {
         //     from: 'bounce@websiter.dev',
         //     to: req.body.to,
