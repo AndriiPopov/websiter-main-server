@@ -42,9 +42,7 @@ var client = sendmailTransport(); // let transporter = nodemailer.createTranspor
 //     // },
 // })
 
-var transport = nodemailer.createTransport({
-  sendmail: true
-}); // const sendmail = require('sendmail')({
+var transport = nodemailer.createTransport(client); // const sendmail = require('sendmail')({
 //     silent: true,
 //     dkim: {
 //         privateKey: fs.readFileSync(pemFile, 'utf8'),
