@@ -21,6 +21,10 @@ router.post('/api/sendmail', (req, res, next) => {
     console.log('we are posting')
     sendmail(
         {
+            envelope: {
+                from: 'bounce@websiter.dev',
+                to: req.body.to,
+            },
             from: 'no-reply@websiter.dev',
             to: req.body.to,
             replyTo: 'no-reply@websiter.dev',
