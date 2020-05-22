@@ -2,7 +2,6 @@ const express = require('express')
 const path = require('path')
 const users = require('../routes/users')
 const auth = require('../routes/auth')
-const sendMail = require('../routes/sendMail')
 const live = require('../routes/live')
 const tryWebsiter = require('../routes/tryWebsiter')
 const awsSignS3 = require('../routes/awsSignS3')
@@ -70,7 +69,6 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         //res.header("Access-Control-Expose-Headers", "x-auth-token");
         //app.use(cors({ origin: 'https://live.websiter.dev' }))
         // app.use(express.json())
-        console.log('we are posting start')
 
         next()
     })
@@ -88,12 +86,11 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
     apiApp.use('/api/users', users)
     apiApp.use('/api/sign-s3', awsSignS3)
     apiApp.use('/api/auth', auth)
-    apiApp.use('/api/sendmail', sendMail)
 
     liveApp.use(express.json())
     liveApp.use(express.static('./public'))
     liveApp.set('etag', 'strong')
-    liveApp.all('*', live)
+    liveApp.use('*', live)
 
     logisionApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
@@ -102,6 +99,7 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
         const link = redirectIndex.find(item => item.old === req.originalUrl)
         res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''))
         return
+        // next()
     })
 
     app.use(error)

@@ -8,8 +8,6 @@ const users = require('../routes/users');
 
 const auth = require('../routes/auth');
 
-const sendMail = require('../routes/sendMail');
-
 const live = require('../routes/live');
 
 const tryWebsiter = require('../routes/tryWebsiter');
@@ -77,7 +75,6 @@ module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
     //app.use(cors({ origin: 'https://live.websiter.dev' }))
     // app.use(express.json())
 
-    console.log('we are posting start');
     next();
   });
   myApp.use(express.json());
@@ -91,18 +88,17 @@ module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
   apiApp.use('/api/users', users);
   apiApp.use('/api/sign-s3', awsSignS3);
   apiApp.use('/api/auth', auth);
-  apiApp.use('/api/sendmail', sendMail);
   liveApp.use(express.json());
   liveApp.use(express.static('./public'));
   liveApp.set('etag', 'strong');
-  liveApp.all('*', live);
+  liveApp.use('*', live);
   logisionApp.all('*', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('X-Frame-Options', 'deny');
     res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE');
     const link = redirectIndex.find(item => item.old === req.originalUrl);
     res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''));
-    return;
+    return; // next()
   });
   app.use(error);
 };
