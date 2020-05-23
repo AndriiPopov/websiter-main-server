@@ -4,22 +4,13 @@ const express = require('express');
 
 const router = express.Router();
 
-var fs = require('fs');
-
-var path = require('path');
-
-var pemFile = path.resolve(__dirname, 'ssl/dkim-private.pem');
-
-var sendmail = require('sendmail')({
-  silent: true,
-  dkim: {
-    privateKey: fs.readFileSync(pemFile, 'utf8'),
-    keySelector: 'dkim'
-  }
+var mailgun = require('mailgun-js')({
+  apiKey: process.env.MAILGUN_API_KEY || '1',
+  domain: 'websiter.dev'
 });
 
 router.post('/', (req, res, next) => {
-  sendmail({
+  mailgun.messages().send({
     from: 'no-reply@websiter.dev',
     to: req.body.to,
     replyTo: 'no-reply@websiter.dev',
@@ -36,5 +27,33 @@ router.post('/', (req, res, next) => {
       });
     }
   });
-});
+}); // var fs = require('fs')
+// var path = require('path')
+// var pemFile = path.resolve(__dirname, 'ssl/dkim-private.pem')
+// var sendmail = require('sendmail')({
+//     silent: true,
+//     dkim: {
+//         privateKey: fs.readFileSync(pemFile, 'utf8'),
+//         keySelector: 'dkim',
+//     },
+// })
+// router.post('/', (req, res, next) => {
+//     sendmail(
+//         {
+//             from: 'no-reply@websiter.dev',
+//             to: req.body.to,
+//             replyTo: 'no-reply@websiter.dev',
+//             subject: 'New message from a contact form on Websiter.dev.',
+//             html: req.body.html,
+//         },
+//         function(err, reply) {
+//             if (err) {
+//                 res.send({ success: false })
+//             } else {
+//                 res.send({ success: true })
+//             }
+//         }
+//     )
+// })
+
 module.exports = router;

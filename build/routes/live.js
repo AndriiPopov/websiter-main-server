@@ -24,9 +24,7 @@ const path = require('path');
 
 router.get('/', async (req, res, next) => {
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-  console.log(fullUrl);
   const websiteAndPageData = await getWebsiteAndPage(fullUrl, res);
-  console.log(websiteAndPageData);
   if (!websiteAndPageData) return;
   const {
     website,
