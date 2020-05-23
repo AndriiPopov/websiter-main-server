@@ -112,6 +112,7 @@ const BasicForm = props => {
                                             <textarea
                                                 {...input}
                                                 {...field.inputAttrs}
+                                                className={field.inputClass}
                                             />
                                         ) : null}
                                         {meta.error && meta.touched && (

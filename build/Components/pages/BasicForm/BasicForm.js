@@ -101,7 +101,9 @@ const BasicForm = props => {
       className: field.labelClass
     }, field.label), field.type === 'input' ? /*#__PURE__*/_react.default.createElement("input", _extends({}, input, field.inputAttrs, {
       className: field.inputClass
-    })) : field.type === 'textarea' ? /*#__PURE__*/_react.default.createElement("textarea", _extends({}, input, field.inputAttrs)) : null, meta.error && meta.touched && /*#__PURE__*/_react.default.createElement("span", {
+    })) : field.type === 'textarea' ? /*#__PURE__*/_react.default.createElement("textarea", _extends({}, input, field.inputAttrs, {
+      className: field.inputClass
+    })) : null, meta.error && meta.touched && /*#__PURE__*/_react.default.createElement("span", {
       className: field.validationClass
     }, meta.error)))), /*#__PURE__*/_react.default.createElement("div", {
       className: props.refinedProperties.submitButtonContainerClass

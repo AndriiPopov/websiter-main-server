@@ -426,7 +426,7 @@ const _BuilderElement = props => {
             bottom: '210px !important',
             zIndex: '2147483647 !important',
             display: 'block !important',
-            padding: '0px !important',
+            padding: '0px 5px !important',
             margin: '0px !important',
             borderRadius: '5px !important',
             background: 'white !important',
