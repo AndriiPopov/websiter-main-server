@@ -75,6 +75,7 @@ router.get('/', async (req, res, next) => {
                     }
                 }
                 if (file.url) {
+                    // req.setNoDelay(true)
                     res.set('etag', file.v)
                     res.set('Cache-Control', 'max-age=20')
                     https.get(file.url + (is120 ? '/120' : ''), function(

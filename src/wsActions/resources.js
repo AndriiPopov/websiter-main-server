@@ -22,6 +22,7 @@ const diffpatcher = require('jsondiffpatch/dist/jsondiffpatch.umd.js').create({
 const { requestResource } = require('./requestResource')
 const { getUserRights } = require('../utils/getUserRights')
 const { sendError } = require('./error')
+const { fireCallback } = require('./fireCallback')
 const Joi = require('@hapi/joi')
 Joi.objectId = require('joi-objectid')(Joi)
 
@@ -31,6 +32,7 @@ const addResourceSchema = Joi.object({
     duplicate: Joi.boolean().optional(),
     resourceData: Joi.object().optional(),
     name: Joi.string().optional(),
+    callbackId: Joi.string().optional(),
 }).unknown()
 
 module.exports.addResource = async (data, ws) => {
@@ -84,6 +86,9 @@ module.exports.addResource = async (data, ws) => {
         website.__patch__ = diffpatcher.diff(oldWebsiteObject, newWebsiteObject)
         website.markModified('__patch__')
         website.save()
+        if (data.callbackId) {
+            fireCallback(ws, data.callbackId)
+        }
     } catch (ex) {
         sendError(ws)
     }
