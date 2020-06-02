@@ -75,3 +75,7 @@ module.exports.auth = async (ws, data) => {
         sendError(ws, 'Login error.5', true)
     }
 }
+
+AWSAccessKeyId = 'AKIAYRJEHVZTDUBDXJ5E'
+AWSSecretKey = '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'
+S3_BUCKET = 'websiter'
