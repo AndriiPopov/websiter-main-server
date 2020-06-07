@@ -5,8 +5,8 @@ const express = require('express');
 const router = express.Router();
 
 var mailgun = require('mailgun-js')({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN
+  apiKey: process.env.MAILGUN_API_KEY || '1',
+  domain: process.env.MAILGUN_DOMAIN || '1'
 });
 
 router.post('/', (req, res, next) => {
