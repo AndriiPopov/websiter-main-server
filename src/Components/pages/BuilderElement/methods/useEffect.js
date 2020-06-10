@@ -56,7 +56,7 @@ export const setBoxProperties = (
             //     }
             //     break
             default:
-                result[attr] = ownRefinedProperties[attr]
+                result[attribute] = ownRefinedProperties[attribute]
                 break
         }
     }
