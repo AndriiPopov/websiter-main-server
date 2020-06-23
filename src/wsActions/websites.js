@@ -362,29 +362,34 @@ module.exports.transferWebsite = async (data, ws) => {
         }
         const { error } = transferWebsiteSchema.validate(data)
         if (error) {
-            sendError(ws)
+            console.log(error)
+            sendError(ws, 'validation')
             return
         }
         const user = await User.findById(ws.user)
         if (!user) {
-            sendError(ws)
+            console.log(ws.user)
+            sendError(ws, 'no user')
             return
         }
 
         const userTo = await User.findById(data.userTo.trim())
         if (!userTo) {
-            sendError(ws)
+            console.log(data.userTo.trim())
+            sendError(ws, 'userto')
             return
         }
 
         const website = await Website.findById(data._id)
         if (!website) {
-            sendError(ws)
+            console.log(data._id)
+            sendError(ws, 'website')
             return
         }
 
-        if (user._id.toString !== website.user.toString()) {
-            sendError(ws)
+        if (user._id.toString() !== website.user.toString()) {
+            console.log('eq')
+            sendError(ws, 'eq')
             return
         }
 
@@ -436,7 +441,8 @@ module.exports.transferWebsite = async (data, ws) => {
         user.markModified('__patch__')
         await user.save()
     } catch (ex) {
-        sendError(ws)
+        console.log(ex)
+        sendError(ws, 'exception')
     }
 }
 

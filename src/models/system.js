@@ -9,6 +9,7 @@ const systemSchema = new mongoose.Schema({
         type: String,
         default: 'system',
     },
+    courses: {},
 })
 
 const System = mongoose.model('System', systemSchema)
@@ -22,6 +23,7 @@ module.exports.generateWebsiteId = async () => {
             system = new System({
                 currentWebsiteId: 0,
                 name: 'system',
+                courses: {},
             })
             await system.save()
         }
