@@ -83,6 +83,9 @@ const websiteSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
+  practiceType: {
+    type: Boolean
+  },
   __patch__: {}
 }, {
   minimize: false

@@ -10,7 +10,8 @@ const systemSchema = new mongoose.Schema({
   name: {
     type: String,
     default: 'system'
-  }
+  },
+  courses: {}
 });
 const System = mongoose.model('System', systemSchema);
 module.exports.System = System;
@@ -24,7 +25,8 @@ module.exports.generateWebsiteId = async () => {
     if (!system) {
       system = new System({
         currentWebsiteId: 0,
-        name: 'system'
+        name: 'system',
+        courses: {}
       });
       await system.save();
     }

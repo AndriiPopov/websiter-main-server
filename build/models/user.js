@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  courses: {},
   __patch__: {}
 }, {
   minimize: false
