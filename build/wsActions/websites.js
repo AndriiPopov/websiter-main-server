@@ -390,7 +390,9 @@ module.exports.transferWebsite = async (data, ws) => {
     website.markModified('sharing');
     user.websites = user.websites.filter(item => item.id.toString() !== website.id.toString());
     userTo.websites = userTo.websites.filter(item => item.id.toString() !== website._id.toString());
-    userTo.websites.push(website._id);
+    userTo.websites.push({
+      id: website._id.toString()
+    });
     website.markModified('sharing');
     const newWebsiteObject = website.toObject();
     website.__patch__ = diffpatcher.diff(oldWebsiteObject, newWebsiteObject);

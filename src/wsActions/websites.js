@@ -415,7 +415,7 @@ module.exports.transferWebsite = async (data, ws) => {
             item => item.id.toString() !== website._id.toString()
         )
 
-        userTo.websites.push(website._id)
+        userTo.websites.push({ id: website._id.toString() })
 
         website.markModified('sharing')
         const newWebsiteObject = website.toObject()
