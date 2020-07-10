@@ -12,7 +12,7 @@ const rateLimiterMiddleware = require('./middleware/rateLimiter')
 const oneOffTask = require('./startup/oneOffTask')
 
 const app = express()
-app.use(rateLimiterMiddleware)
+// app.use(rateLimiterMiddleware)
 
 const apiApp = express()
 apiApp.use(passport.initialize())
