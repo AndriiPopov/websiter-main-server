@@ -38,9 +38,9 @@ module.exports = function(app, myApp, liveApp, apiApp, logisionApp) {
     app.use(vhost('www.websiter.dev', liveApp))
     // app.use(liveApp)
 
-    myApp.use(sslRedirect())
-    apiApp.use(sslRedirect())
-    liveApp.use(sslRedirect())
+    // myApp.use(sslRedirect())
+    // apiApp.use(sslRedirect())
+    // liveApp.use(sslRedirect())
 
     myApp.all('*', (req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
