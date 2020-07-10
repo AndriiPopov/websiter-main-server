@@ -48,6 +48,6 @@ module.exports = async (page, website) => {
     pagesStructure: website.pagesStructure,
     pluginsStructure: website.pluginsStructure,
     filesStructure: website.filesStructure,
-    baseUrl: 'https://' + website.customDomain + '/'
+    baseUrl: 'http://' + website.customDomain + '/'
   };
 };

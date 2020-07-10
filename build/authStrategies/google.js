@@ -15,7 +15,7 @@ const {
 const passportConfig = {
   clientID: process.env.GoogleClientID,
   clientSecret: process.env.GoogleClientSecret,
-  callbackURL: process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/api/auth/google/redirect' : 'http://my.websiter.test:5000/api/auth/google/redirect'
+  callbackURL: process.env.NODE_ENV === 'production' ? 'http://my.websiter.dev/api/auth/google/redirect' : 'http://my.websiter.test:5000/api/auth/google/redirect'
 };
 passport.use(new passportGoogle(passportConfig, async (accessToken, refreshToken, profile, done) => {
   try {

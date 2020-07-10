@@ -6,7 +6,7 @@ const { Website } = require('../models/website')
 const passportConfig = {
     consumerKey: process.env.TwitterClientID,
     consumerSecret: process.env.TwitterClientSecret,
-    callbackURL: 'https://api.websiter.dev/api/auth/twitter/redirect',
+    callbackURL: 'http://api.websiter.dev/api/auth/twitter/redirect',
 }
 
 passport.use(

@@ -15,7 +15,7 @@ const {
 const passportConfig = {
   clientID: process.env.GithubClientID,
   clientSecret: process.env.GithubClientSecret,
-  callbackURL: process.env.NODE_ENV === 'production' ? 'https://my.websiter.dev/api/auth/github/redirect' : 'http://my.websiter.test:5000/api/auth/github/redirect'
+  callbackURL: process.env.NODE_ENV === 'production' ? 'http://my.websiter.dev/api/auth/github/redirect' : 'http://my.websiter.test:5000/api/auth/github/redirect'
 };
 passport.use(new passportGithub(passportConfig, async (accessToken, refreshToken, profile, done) => {
   try {

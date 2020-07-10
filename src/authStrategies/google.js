@@ -8,7 +8,7 @@ const passportConfig = {
     clientSecret: process.env.GoogleClientSecret,
     callbackURL:
         process.env.NODE_ENV === 'production'
-            ? 'https://my.websiter.dev/api/auth/google/redirect'
+            ? 'http://my.websiter.dev/api/auth/google/redirect'
             : 'http://my.websiter.test:5000/api/auth/google/redirect',
 }
 

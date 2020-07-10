@@ -100,7 +100,7 @@ module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
     res.header('X-Frame-Options', 'deny');
     res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE');
     const link = redirectIndex.find(item => item.old === req.originalUrl);
-    res.redirect(301, 'https://websiter.dev' + (link ? link.new : ''));
+    res.redirect(301, 'http://websiter.dev' + (link ? link.new : ''));
     return; // next()
   });
   app.use(error);

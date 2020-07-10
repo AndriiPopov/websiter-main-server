@@ -11,7 +11,7 @@ export const getFileUrl = (
     const protocol = addProtocolAndLiveDomain
         ? process.env.NODE_ENV === 'development'
             ? 'http://live.websiter.test:5000/'
-            : 'https://live.websiter.dev/'
+            : 'http://live.websiter.dev/'
         : ''
     const domainString = domain ? domain + '/' : ''
     // const path = file.path.reduce(

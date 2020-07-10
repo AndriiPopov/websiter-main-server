@@ -531,7 +531,7 @@ const _BuilderElement = props => {
                               charSet="utf-8"
                           />,
                           <a
-                              href="https://websiter.dev"
+                              href="http://websiter.dev"
                               key="sys5"
                               style={{
                                   transform: 'rotate(-90deg) !important',

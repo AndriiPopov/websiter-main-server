@@ -10,7 +10,7 @@ import {
 if (process.env.NODE_ENV === 'development') {
     axios.defaults.baseURL = 'http://api.websiter.test:5000'
 } else {
-    axios.defaults.baseURL = 'https://api.websiter.dev'
+    axios.defaults.baseURL = 'http://api.websiter.dev'
 }
 
 const BasicForm = props => {

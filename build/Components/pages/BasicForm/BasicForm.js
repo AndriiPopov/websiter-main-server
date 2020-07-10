@@ -24,7 +24,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 if (process.env.NODE_ENV === 'development') {
   _axios.default.defaults.baseURL = 'http://api.websiter.test:5000';
 } else {
-  _axios.default.defaults.baseURL = 'https://api.websiter.dev';
+  _axios.default.defaults.baseURL = 'http://api.websiter.dev';
 }
 
 const BasicForm = props => {
