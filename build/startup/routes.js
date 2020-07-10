@@ -22,9 +22,8 @@ const vhost = require('vhost');
 
 const https = require('https');
 
-const redirectIndex = require('../utils/logisionRedirect');
+const redirectIndex = require('../utils/logisionRedirect'); // const sslRedirect = require('heroku-ssl-redirect')
 
-const sslRedirect = require('heroku-ssl-redirect');
 
 module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
   app.all('*', (req, res, next) => {
