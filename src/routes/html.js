@@ -8,7 +8,7 @@ import Index from '../Components/pages/index.js'
 const https = require('https')
 const path = require('path')
 
-router.get('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     const fullUrl = req.body.url
     const websiteAndPageData = await getWebsiteAndPage(fullUrl, res)
     if (!websiteAndPageData) return
@@ -40,7 +40,7 @@ router.get('/', async (req, res, next) => {
         //     reactComp.slice(0, reactComp.length - 7) +
         //     bodyComp +
         //     '</html>'
-        res.status(200).send(bodyComp)
+        res.status(200).send({ bodyComp })
     } else {
         if (website && !page) {
             const file = website.filesStructure.find(
