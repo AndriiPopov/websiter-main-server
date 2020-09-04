@@ -51,6 +51,7 @@ router.post('/', async (req, res, next) => {
       renderBody: true,
       isLocal: isLocal
     }));
+    const title = bodyComp.split('<title>')[1].split('</title>')[0];
 
     if (bodyComp.indexOf('<div id="MainDIV" class="wrapp">') > -1) {
       bodyComp = '<div id="MainDIV" class="wrapp">' + bodyComp.split('<div id="MainDIV" class="wrapp">')[1];
@@ -68,7 +69,8 @@ router.post('/', async (req, res, next) => {
 
 
     res.status(200).send({
-      bodyComp
+      bodyComp,
+      title
     });
   } else {
     if (website && !page) {

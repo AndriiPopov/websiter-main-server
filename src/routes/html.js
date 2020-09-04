@@ -35,6 +35,9 @@ router.post('/', async (req, res, next) => {
                 isLocal={isLocal}
             />
         )
+
+        const title = bodyComp.split('<title>')[1].split('</title>')[0]
+
         if (bodyComp.indexOf('<div id="MainDIV" class="wrapp">') > -1) {
             bodyComp =
                 '<div id="MainDIV" class="wrapp">' +
@@ -55,7 +58,7 @@ router.post('/', async (req, res, next) => {
         //     reactComp.slice(0, reactComp.length - 7) +
         //     bodyComp +
         //     '</html>'
-        res.status(200).send({ bodyComp })
+        res.status(200).send({ bodyComp, title })
     } else {
         if (website && !page) {
             const file = website.filesStructure.find(
