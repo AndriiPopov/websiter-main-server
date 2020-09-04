@@ -46,10 +46,10 @@ router.post('/', async (req, res, next) => {
             bodyComp =
                 '<div style="margin-top:100px" class="cont">' +
                 bodyComp.split('<div style="margin-top:100px" class="cont">')[1]
-            bodyComp =
-                bodyComp.split(
-                    '<div class="toKnowledge"><a style="font-size:14px" class="blueLink" href="https://websiter.dev/blog"> Back to blog</a></div>'
-                )[0] + '</div>'
+            // bodyComp =
+            //     bodyComp.split(
+            //         '<div class="toKnowledge"><a style="font-size:14px" class="blueLink" href="https://websiter.dev/blog"> Back to blog</a></div>'
+            //     )[0] + '</div>'
         } else {
             bodyComp = 'Not found'
         }
