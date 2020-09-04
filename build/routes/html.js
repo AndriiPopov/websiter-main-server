@@ -23,11 +23,8 @@ const https = require('https');
 const path = require('path');
 
 router.post('/', async (req, res, next) => {
-  console.log('jo!');
-  console.log(req.body);
   const fullUrl = req.body.url;
   const websiteAndPageData = await getWebsiteAndPage(fullUrl, res);
-  console.log(websiteAndPageData);
   if (!websiteAndPageData) return;
   const {
     website,
@@ -47,13 +44,15 @@ router.post('/', async (req, res, next) => {
     //     />
     // )
 
-    const bodyComp = (0, _server.renderToString)( /*#__PURE__*/_react.default.createElement(_index.default, {
+    let bodyComp = (0, _server.renderToString)( /*#__PURE__*/_react.default.createElement(_index.default, {
       mD: { ...mD,
         structure: mD.resourcesObjects[mD.template].structure
       },
       renderBody: true,
       isLocal: isLocal
-    })); // reactComp =
+    }));
+    bodyComp = '<div id="MainDIV" class="wrapp">' + bodyComp.split('<div id="MainDIV" class="wrapp">')[1];
+    bodyComp = bodyComp.split('<section')[0]; // reactComp =
     //     '<!DOCTYPE html>' +
     //     reactComp.slice(0, reactComp.length - 7) +
     //     bodyComp +

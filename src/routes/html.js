@@ -9,12 +9,9 @@ const https = require('https')
 const path = require('path')
 
 router.post('/', async (req, res, next) => {
-    console.log('jo!')
-    console.log(req.body)
     const fullUrl = req.body.url
 
     const websiteAndPageData = await getWebsiteAndPage(fullUrl, res)
-    console.log(websiteAndPageData)
     if (!websiteAndPageData) return
     const { website, page, pathname, is120, isLocal } = websiteAndPageData
     if (page) {
@@ -28,7 +25,7 @@ router.post('/', async (req, res, next) => {
         //     />
         // )
 
-        const bodyComp = renderToString(
+        let bodyComp = renderToString(
             <Index
                 mD={{
                     ...mD,
@@ -38,6 +35,11 @@ router.post('/', async (req, res, next) => {
                 isLocal={isLocal}
             />
         )
+
+        bodyComp =
+            '<div id="MainDIV" class="wrapp">' +
+            bodyComp.split('<div id="MainDIV" class="wrapp">')[1]
+        bodyComp = bodyComp.split('<section')[0]
 
         // reactComp =
         //     '<!DOCTYPE html>' +
