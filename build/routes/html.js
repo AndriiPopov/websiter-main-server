@@ -56,10 +56,8 @@ router.post('/', async (req, res, next) => {
       bodyComp = '<div id="MainDIV" class="wrapp">' + bodyComp.split('<div id="MainDIV" class="wrapp">')[1];
       bodyComp = bodyComp.split('<section')[0];
     } else if (bodyComp.indexOf('<div style="margin-top:100px" class="cont">') > -1) {
-      bodyComp = '<div style="margin-top:100px" class="cont">' + bodyComp.split('<div style="margin-top:100px" class="cont">')[1]; // bodyComp =
-      //     bodyComp.split(
-      //         '<div class="toKnowledge"><a style="font-size:14px" class="blueLink" href="https://websiter.dev/blog"> Back to blog</a></div>'
-      //     )[0] + '</div>'
+      bodyComp = '<div style="margin-top:100px" class="cont">' + bodyComp.split('<div style="margin-top:100px" class="cont">')[1];
+      bodyComp = bodyComp.split('<section')[0];
     } else {
       bodyComp = 'Not found';
     } // reactComp =
