@@ -29,7 +29,6 @@ const redirectIndex = require('../utils/logisionRedirect'); // const sslRedirect
 
 module.exports = function (app, myApp, liveApp, apiApp, logisionApp) {
   app.all('*', (req, res, next) => {
-    console.log('here');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type, x-auth-token');
     res.header('X-Frame-Options', 'deny');

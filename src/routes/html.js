@@ -9,8 +9,12 @@ const https = require('https')
 const path = require('path')
 
 router.post('/', async (req, res, next) => {
+    console.log('jo!')
+    console.log(req.body)
     const fullUrl = req.body.url
+
     const websiteAndPageData = await getWebsiteAndPage(fullUrl, res)
+    console.log(websiteAndPageData)
     if (!websiteAndPageData) return
     const { website, page, pathname, is120, isLocal } = websiteAndPageData
     if (page) {
