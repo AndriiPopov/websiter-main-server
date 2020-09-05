@@ -35,6 +35,7 @@ router.post('/', async (req, res, next) => {
                 isLocal={isLocal}
             />
         )
+
         let title = ''
         if (bodyComp.indexOf('<title>') > -1)
             title = bodyComp.split('<title>')[1].split('</title>')[0]
