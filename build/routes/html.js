@@ -51,8 +51,12 @@ router.post('/', async (req, res, next) => {
       renderBody: true,
       isLocal: isLocal
     }));
+<<<<<<< HEAD
     let title = '';
     if (bodyComp.indexOf('<title>') > -1) title = bodyComp.split('<title>')[1].split('</title>')[0];
+=======
+    const title = bodyComp.split('<title>')[1].split('</title>')[0];
+>>>>>>> 7eef37ce4fbf775fa7ecd6c97faf951536e6d2c4
 
     if (bodyComp.indexOf('<div id="MainDIV" class="wrapp">') > -1) {
       bodyComp = '<div id="MainDIV" class="wrapp">' + bodyComp.split('<div id="MainDIV" class="wrapp">')[1];
