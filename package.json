@@ -58,7 +58,7 @@
         "react-final-form": "^6.4.0",
         "react-sidebar": "^3.0.2",
         "react-slick": "^0.25.2",
-        "sanitize-html": "^1.22.1",
+        "sanitize-html": "^2.3.2",
         "sendmail": "^1.6.1",
         "serialize-javascript": "^3.0.0",
         "style-to-object": "^0.3.0",
